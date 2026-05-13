@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <title>AI Lab Starter — קורס היכרות עם בינה מלאכותית</title>
+  <meta name="description" content="קורס Starter של AI Lab — 6 שיעורים שמכניסים אותך לעולם הבינה המלאכותית. בלי רקע טכני. בלי קוד שתצטרך לכתוב לבד.">
+
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="./favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <meta property="og:title" content="AI Lab Starter — קורס היכרות עם בינה מלאכותית">
+  <meta property="og:description" content="6 שיעורים שמכניסים אותך לעולם הבינה המלאכותית. בלי רקע טכני.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="he_IL">
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    AI Lab
+    <span class="nav-logo-tag">STARTER</span>
+  </a>
+  <ul class="nav-links nav-links-desktop">
+    <li><a href="#about">על הקורס</a></li>
+    <li><a href="#program">תוכנית</a></li>
+    <li><a href="#portal-showcase">האזור האישי</a></li>
+    <li><a href="#instructor">המרצה</a></li>
+    <li><a href="#faq">שאלות נפוצות</a></li>
+  </ul>
+  <div class="nav-cta-group">
+    <a href="#register" class="nav-cta nav-cta-green">הרשמה</a>
+    <a href="https://chat.whatsapp.com/LpbKfD25gYF6Tx2K9Lj5WG" target="_blank" rel="noopener" class="nav-cta nav-cta-community">הצטרפו לקהילה</a>
+    <a href="./login.html" class="nav-cta nav-cta-portal">אזור אישי</a>
+  </div>
+  <button class="mobile-menu-btn" id="menuBtn" aria-label="תפריט">☰</button>
+</nav>
+<div class="mobile-menu-panel" id="mobileMenuPanel">
+  <div class="mobile-menu-header">
+    <span class="mobile-menu-logo">
+      AI Lab <span class="nav-logo-tag">STARTER</span>
+    </span>
+    <button class="mobile-close-btn" id="menuCloseBtn" aria-label="סגור תפריט">×</button>
+  </div>
+  <ul class="mobile-menu-links">
+    <li><a href="#about">על הקורס</a></li>
+    <li><a href="#program">תוכנית</a></li>
+    <li><a href="#portal-showcase">האזור האישי</a></li>
+    <li><a href="#instructor">המרצה</a></li>
+    <li><a href="#faq">שאלות נפוצות</a></li>
+    <li class="mobile-cta-row"><a href="#register" class="mobile-cta-primary">הרשמה</a></li>
+    <li><a href="https://chat.whatsapp.com/LpbKfD25gYF6Tx2K9Lj5WG" target="_blank" rel="noopener" class="mobile-cta-community">הצטרפו לקהילה</a></li>
+    <li><a href="./login.html" class="mobile-cta-portal">אזור אישי</a></li>
+  </ul>
+</div>
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <canvas id="heroNeuralCanvas" class="hero-neural-canvas"></canvas>
+  <div class="hero-grid"></div>
+  <div class="hero-blob hero-blob--a"></div>
+  <div class="hero-blob hero-blob--b"></div>
+
+  <div class="container hero-content">
+    <div class="hero-badge reveal">
+      <span class="pulse-dot"></span>
+      מחזור חדש נפתח · מפגשים חיים בזום
+    </div>
+
+    <h1 class="reveal">
+      תכירו את עולם
+      <br>
+      <span class="gradient-text">הבינה המלאכותית</span>
+    </h1>
+    <p class="hero-slogan reveal">AI. בלי מסך מפחיד. ✨</p>
+    <p class="hero-sub reveal">
+      קורס היכרות לאנשים שלא יודעים מאיפה להתחיל.
+      <br>בלי רקע טכני. בלי קוד שתצטרכו לכתוב לבד.
+      <br>שישה שיעורים מובנים — ואתם בפנים.
+    </p>
+
+    <div class="hero-buttons reveal">
+      <a href="#register" class="btn-primary">שריינו מקום עכשיו ←</a>
+      <a href="#program" class="btn-secondary">צפו בסילבוס</a>
+    </div>
+
+    <div class="hero-stats reveal">
+      <div class="hero-stat">
+        <div class="number">6</div>
+        <div class="label">שיעורים</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">~5h</div>
+        <div class="label">סה"כ</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">30+</div>
+        <div class="label">גיל מומלץ</div>
+      </div>
+    </div>
+
+    <!-- Terminal Demo -->
+    <div class="terminal reveal">
+      <div class="terminal-header">
+        <span class="terminal-dot red"></span>
+        <span class="terminal-dot yellow"></span>
+        <span class="terminal-dot green"></span>
+        <span class="terminal-title">claude — first prompt</span>
+      </div>
+      <div class="terminal-body" id="termBody">
+        <div class="t-line" data-line="0">
+          <span class="t-prompt">user@ai-lab</span><span class="t-sep">:</span><span class="t-path">~/lesson-01</span><span class="t-sep">$ </span><span class="t-cmd" id="t-cmd-1"></span><span class="t-caret" id="t-caret-1"></span>
+        </div>
+        <div class="t-line t-line--hidden" data-line="1">
+          <span class="t-claude">claude ›</span>
+          <span class="t-out" id="t-cmd-2"></span><span class="t-caret t-caret--off" id="t-caret-2"></span>
+        </div>
+        <div class="t-line t-line--hidden" data-line="2">
+          <span class="t-out t-out--dim" id="t-cmd-3"></span>
+        </div>
+        <div class="t-line t-line--hidden" data-line="3">
+          <span class="t-file" id="t-cmd-4"></span>
+        </div>
+        <div class="t-line t-line--hidden" data-line="4">
+          <span class="t-success" id="t-cmd-5"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#about" class="hero-scroll-indicator" aria-label="גלול למטה">
+    <span>למה הקורס הזה?</span>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </a>
+</section>
+
+<!-- ============ PORTAL SHOWCASE ============ -->
+<section class="portal-showcase" id="portal-showcase">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="kicker">האזור האישי</span>
+      <h2>כל מה שלמדתם — <em>במקום אחד</em></h2>
+      <p>כל סטודנט מקבל פורטל משלו עם המצגות, התקדמות אישית, וכל הכלים שצריך.</p>
+    </div>
+
+    <div class="portal-hero reveal">
+      <!-- Orbiting badges -->
+      <div class="orbit-badge orbit-tl">
+        <span class="ob-emoji">📚</span>
+        <span class="ob-text">כל השיעורים<br>במקום אחד</span>
+      </div>
+      <div class="orbit-badge orbit-tr">
+        <span class="ob-emoji">⌘</span>
+        <span class="ob-text">פרומפטים<br>מוכנים להעתקה</span>
+      </div>
+      <div class="orbit-badge orbit-bl">
+        <span class="ob-emoji">🎯</span>
+        <span class="ob-text">מעקב<br>התקדמות</span>
+      </div>
+      <div class="orbit-badge orbit-br">
+        <span class="ob-emoji">🚀</span>
+        <span class="ob-text">כניסה ישירה<br>לכיתה בזום</span>
+      </div>
+
+      <!-- Computer mockup -->
+      <div class="portal-mac">
+        <div class="portal-mac-bar">
+          <span class="pm-dot pm-dot--red"></span>
+          <span class="pm-dot pm-dot--yellow"></span>
+          <span class="pm-dot pm-dot--green"></span>
+          <span class="pm-url">ai-lab.co.il/portal</span>
+        </div>
+        <div class="portal-mac-frame">
+          <!-- Sidebar -->
+          <aside class="pm-sidebar">
+            <div class="pm-side-user">
+              <div class="pm-avatar">א</div>
+              <div>
+                <div class="pm-user-name">אורח/ת</div>
+                <div class="pm-user-tag">AI Lab <span>STARTER</span></div>
+              </div>
+            </div>
+            <div class="pm-side-cta">
+              <span class="pm-side-cta-dot"></span>
+              <div>
+                <strong>כניסה לכיתה</strong>
+                <span>Zoom · בלייב</span>
+              </div>
+              <span class="pm-side-cta-play">▶</span>
+            </div>
+            <div class="pm-side-label">ראשי</div>
+            <div class="pm-side-item pm-side-item--active"><span>⌂</span>לוח בקרה</div>
+            <div class="pm-side-label">השיעורים</div>
+            <div class="pm-side-item"><span class="num">01</span>מי נגד מי</div>
+            <div class="pm-side-item"><span class="num">02</span>הכלים</div>
+            <div class="pm-side-item"><span class="num">03</span>GitHub</div>
+            <div class="pm-side-item"><span class="num">04</span>בונים את הפנים</div>
+            <div class="pm-side-item"><span class="num">05</span>חיבור Sheets</div>
+            <div class="pm-side-item"><span class="num">06</span>אוטומציות</div>
+            <div class="pm-side-label">ארגז כלים</div>
+            <div class="pm-side-item"><span>⌘</span>תבניות פרומפטים</div>
+            <div class="pm-side-item"><span>✦</span>כלי AI</div>
+          </aside>
+
+          <!-- Main content -->
+          <main class="pm-main">
+            <div class="pm-kicker">— האזור האישי שלי</div>
+            <div class="pm-greet">שלום, <em>סטודנט.</em></div>
+            <div class="pm-greet-sub">כל החומרים והשיעורים שלך — במקום אחד.</div>
+
+            <div class="pm-hero-card">
+              <div class="pm-hero-kicker">השיעור שלך עכשיו</div>
+              <h3>מי נגד מי — מורה נבוכים לעולם ה-AI</h3>
+              <div class="pm-hero-meta">שיעור 01 · ~45 דקות · 14 שקפים</div>
+              <span class="pm-hero-btn">← להמשיך לשיעור</span>
+            </div>
+
+            <div class="pm-tiles">
+              <div class="pm-tile">
+                <div class="pm-tile-num">02</div>
+                <div class="pm-tile-title">הכלים</div>
+                <div class="pm-tile-sub">Cursor · Claude Desktop</div>
+              </div>
+              <div class="pm-tile">
+                <div class="pm-tile-num">03</div>
+                <div class="pm-tile-title">GitHub</div>
+                <div class="pm-tile-sub">בית הקוד שלך</div>
+              </div>
+              <div class="pm-tile">
+                <div class="pm-tile-num">04</div>
+                <div class="pm-tile-title">בונים פנים</div>
+                <div class="pm-tile-sub">דף נחיתה ראשון</div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT / PROBLEM ============ -->
+<section class="problem" id="about">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="kicker">למה הקורס הזה</span>
+      <h2>העולם <em>כבר עבר</em> ל-AI. תורכם</h2>
+      <p>כשכולם מסביב משתמשים בכלי AI כל יום, להישאר מאחור עולה יותר ממה שנדמה.</p>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <div class="problem-icon">🤔</div>
+        <h3>לא יודעים מאיפה להתחיל</h3>
+        <p>ChatGPT? Claude? Gemini? כל יום מילה חדשה, וקשה לדעת מה רלוונטי באמת. כאן נסדר לכם את המפה.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="problem-icon">⏰</div>
+        <h3>אין לכם זמן ללמוד לבד</h3>
+        <p>סרטוני YouTube אינסופיים, קורסים שלא מסתדרים. במקום זה — מסלול קצר ומובנה, פעם בשבוע, בקצב שלכם.</p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="problem-icon">🎯</div>
+        <h3>אתם רוצים תוצאה אמיתית</h3>
+        <p>לא תיאוריה. בסוף הקורס יהיה לכם דף נחיתה חי באוויר, ואוטומציה אישית שעובדת — נכס אמיתי, לא תעודה.</p>
+      </div>
+    </div>
+
+    <!-- Sub-section divider -->
+    <div class="section-sub-divider reveal">
+      <span class="sub-divider-line"></span>
+      <span class="sub-divider-text">איך נעשה את זה?</span>
+      <span class="sub-divider-line"></span>
+    </div>
+
+    <div class="section-subtitle reveal">
+      <h3>הכלים שתכיר</h3>
+      <p>הצוות הסודי של כל יזם AI ב-2026</p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card skill-card--featured reveal">
+        <div class="skill-card-icon">
+          <svg width="32" height="32" viewBox="0 0 52 52" fill="none">
+            <rect width="52" height="52" rx="14" fill="#10E593"/>
+            <path d="M26 10 C32 10 37 14 38.5 20 L35 21 C33.8 16.8 30.2 14 26 14 C20.5 14 16 18.5 16 24 C16 29.5 20.5 34 26 34 C30.2 34 33.8 31.2 35 27 L38.5 28 C37 34 32 38 26 38 C18.3 38 12 31.7 12 24 C12 16.3 18.3 10 26 10Z" fill="#000"/>
+          </svg>
+        </div>
+        <div>
+          <h4>Claude</h4>
+          <p>העוזר הראשי שלך. בעברית, חכם, ובלי הגבלות. תכתוב לו ב-עברית, הוא יענה בעברית.</p>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">✦</div>
+        <h4>Cursor</h4>
+        <p>עורך הקוד החכם — בלי טרמינל, הכל ויזואלי</p>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">⬢</div>
+        <h4>GitHub</h4>
+        <p>איפה הקוד שלכם גר, ואיפה אתרים מתפרסמים בחינם</p>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">📊</div>
+        <h4>Google Sheets</h4>
+        <p>בסיס הנתונים הכי פשוט בעולם — חיבור לאתר שלכם</p>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">⚡</div>
+        <h4>Twilio + WhatsApp</h4>
+        <p>אוטומציות שמדברות אליכם — סיכום יומי, מעקב הוצאות</p>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-icon">🎨</div>
+        <h4>פרומפטינג</h4>
+        <p>איך לבקש נכון — האמנות שתחסוך לכם שעות</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SYLLABUS ============ -->
+<section class="program" id="program">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="kicker">הסילבוס</span>
+      <h2>שישה שיעורים. <em>מסלול מובנה</em></h2>
+      <p>כל שיעור בונה על הקודם, בקצב שמתאים גם למי שלא נגעו במחשב מעבר ל-Office.</p>
+    </div>
+
+    <div class="syllabus-list reveal" id="syllabusList">
+      <div class="lesson-row" onclick="toggleLesson(1)">
+        <div class="lesson-num">01</div>
+        <div class="lesson-info">
+          <h4>מי נגד מי — מורה נבוכים לעולם ה-AI</h4>
+          <p>מפת השחקנים: Claude, Gemini, Grok, ChatGPT. איזה כלי מתאים לאיזו משימה.</p>
+        </div>
+        <div class="lesson-toggle">+</div>
+      </div>
+      <div class="lesson-detail" id="lesson-1">
+        <div class="lesson-detail-inner">
+          <h5>במה נעסוק</h5>
+          <ul>
+            <li>ארבעת השחקנים העיקריים בעולם ה-LLMs וההבדלים ביניהם</li>
+            <li>למה Claude הוא הכלי המרכזי בקורס</li>
+            <li>איזה כלי מתאים לאיזו משימה — כלל אצבע פשוט</li>
+            <li>מפת הכלים שילוו אותך לאורך הקורס</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lesson-row" onclick="toggleLesson(2)">
+        <div class="lesson-num">02</div>
+        <div class="lesson-info">
+          <h4>הכלים שיבנו בשבילך</h4>
+          <p>Cursor, Claude Desktop, ו-Terminal — שלוש סביבות עבודה שמרכיבות את ה-stack שלך.</p>
+        </div>
+        <div class="lesson-toggle">+</div>
+      </div>
+      <div class="lesson-detail" id="lesson-2">
+        <div class="lesson-detail-inner">
+          <h5>במה נעסוק</h5>
+          <ul>
+            <li>מה זה Terminal ולמה כל מתכנת מכיר את המונח</li>
+            <li>Cursor — העורך החכם שתעבוד איתו ברוב הקורס</li>
+            <li>Claude Desktop ושלושת המצבים שלו: Chat · Cowork · Code</li>
+            <li>התקנה חכמה: Cursor מתקין את הכל בשבילך, בלי טרמינל</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lesson-row" onclick="toggleLesson(3)">
+        <div class="lesson-num">03</div>
+        <div class="lesson-info">
+          <h4>GitHub — בית הקוד שלך</h4>
+          <p>איפה הקוד שלך גר, איך לדחוף אותו לענן, ואיך לפרסם אתר חינמי תוך 5 דקות.</p>
+        </div>
+        <div class="lesson-toggle">+</div>
+      </div>
+      <div class="lesson-detail" id="lesson-3">
+        <div class="lesson-detail-inner">
+          <h5>במה נעסוק</h5>
+          <ul>
+            <li>Git לעומת GitHub — מה ההבדל ולמה אתה צריך את שניהם</li>
+            <li>שלושת הפעולות שתעשה כל יום: commit, push, pull</li>
+            <li>Repository, README, ומה הם אומרים על הפרויקט שלך</li>
+            <li>GitHub Pages — איך להעלות אתר חינמי לאוויר</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lesson-row" onclick="toggleLesson(4)">
+        <div class="lesson-num">04</div>
+        <div class="lesson-info">
+          <h4>בונים את ה'פנים' — דף נחיתה ראשון</h4>
+          <p>מהרעיון לאתר חי באוויר. אנטומיה של דף נחיתה מקצועי, פרומפט מנצח, ופרסום.</p>
+        </div>
+        <div class="lesson-toggle">+</div>
+      </div>
+      <div class="lesson-detail" id="lesson-4">
+        <div class="lesson-detail-inner">
+          <h5>במה נעסוק</h5>
+          <ul>
+            <li>אנטומיה של דף נחיתה מקצועי — Hero, About, CTA, Footer</li>
+            <li>הפרומפט המנצח: איך לבקש מ-Claude לבנות דף נחיתה לעסק שלך</li>
+            <li>החלפת תוכן, צבעים, ותמונות — בלי לעבוד עם קוד</li>
+            <li>פרסום ב-GitHub Pages — אתר חי באוויר עם URL לשיתוף</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lesson-row" onclick="toggleLesson(5)">
+        <div class="lesson-num">05</div>
+        <div class="lesson-info">
+          <h4>ה'מוח' של האתר — חיבור ל-Google Sheets</h4>
+          <p>הופכים אתר מ"דף יפה" למערכת חיה — עם טופס לידים מחובר לגיליון.</p>
+        </div>
+        <div class="lesson-toggle">+</div>
+      </div>
+      <div class="lesson-detail" id="lesson-5">
+        <div class="lesson-detail-inner">
+          <h5>במה נעסוק</h5>
+          <ul>
+            <li>למה Google Sheets זה בסיס הנתונים הכי פשוט בעולם</li>
+            <li>Apps Script — השרת החינמי של גוגל שמחבר את הכל</li>
+            <li>חיבור טופס באתר ל-Sheet — לידים נכנסים אוטומטית</li>
+            <li>אוטומציה: התראה במייל בכל ליד חדש</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lesson-row" onclick="toggleLesson(6)">
+        <div class="lesson-num">06</div>
+        <div class="lesson-info">
+          <h4>אוטומציות אישיות — הצוות הסודי שלך</h4>
+          <p>חמש אוטומציות שכל אחד יכול לבנות. עוזר בוקר, מעקב הוצאות, ועוד.</p>
+        </div>
+        <div class="lesson-toggle">+</div>
+      </div>
+      <div class="lesson-detail" id="lesson-6">
+        <div class="lesson-detail-inner">
+          <h5>במה נעסוק</h5>
+          <ul>
+            <li>האנטומיה של כל אוטומציה: Trigger → Steps → Output</li>
+            <li>5 דוגמאות פרקטיות: עוזר בוקר, מעקב הוצאות, ימי הולדת, משלוחים, סיכום קבוצות</li>
+            <li>איך להבין מה כדאי לאוטמט בחיים שלך</li>
+            <li>המשימה: לבנות בעצמך עוזר בוקר אישי</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mid-cta reveal">
+      <a href="#register" class="btn-primary">מוכנים? שריינו את מקומכם ←</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <div class="tt-head reveal">
+      <span class="tt-badge">סטודנטים מספרים</span>
+      <h2>מה אומרים אנשים <em>שעברו את המסלול</em></h2>
+      <p>אנשים בני 30-65, ממקצועות שונים, שעברו את הקורס וראו תוצאה אמיתית בעבודה ובבית.</p>
+    </div>
+  </div>
+
+  <div class="testimonials">
+    <div class="testimonials-row">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"הגעתי לקורס בלי לדעת מה זה Claude. אחרי 6 שיעורים בניתי דף נחיתה לעסק שלי בעצמי. דבר שלא חשבתי שיקרה אי פעם."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">ר</div>
+          <div>
+            <div class="testimonial-author-name">רחל גולן</div>
+            <div class="testimonial-author-role">מורה לאנגלית · 42</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"כל יום אני חוסך לפחות שעה בעבודה. AI הפך לחלק מהשגרה. ההסברים של מאיר היו ברורים גם לי שאני לא טכני."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">ד</div>
+          <div>
+            <div class="testimonial-author-name">דני לוי</div>
+            <div class="testimonial-author-role">בעל סוכנות ביטוח · 51</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"חיפשתי קורס שלא יזרוק עליי קוד מההתחלה. זה בדיוק מה שמצאתי. הקצב מצוין למתחילים, והקהילה תומכת."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">מ</div>
+          <div>
+            <div class="testimonial-author-name">מיכל אבני</div>
+            <div class="testimonial-author-role">מנהלת חשבונות · 38</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"בניתי אוטומציה שכל בוקר שולחת לי סיכום של היום. זה נשמע קסם, אבל זה פשוט וכיף לבנות. הקורס פתח לי את הראש."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">י</div>
+          <div>
+            <div class="testimonial-author-name">יוסי שמש</div>
+            <div class="testimonial-author-role">יועץ עסקי · 47</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"בגיל 60+ חששתי שזה לא בשבילי. טעיתי. הקצב התאים, ועכשיו אני זה שמסביר לנכדים מה זה Claude."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">א</div>
+          <div>
+            <div class="testimonial-author-name">אסתר רוזן</div>
+            <div class="testimonial-author-role">פנסיונרית, מורה לשעבר · 63</div>
+          </div>
+        </div>
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"הגעתי לקורס בלי לדעת מה זה Claude. אחרי 6 שיעורים בניתי דף נחיתה לעסק שלי בעצמי."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">ר</div>
+          <div>
+            <div class="testimonial-author-name">רחל גולן</div>
+            <div class="testimonial-author-role">מורה לאנגלית · 42</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"כל יום אני חוסך לפחות שעה בעבודה. AI הפך לחלק מהשגרה."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">ד</div>
+          <div>
+            <div class="testimonial-author-name">דני לוי</div>
+            <div class="testimonial-author-role">בעל סוכנות ביטוח · 51</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonials-row reverse">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"מאיר עוצר לוודא שכולם הבינו. אין מצב שתישאר מאחור. הקצב מותאם גם לאנשים שלוקח להם זמן לקלוט."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">ש</div>
+          <div>
+            <div class="testimonial-author-name">שירה כהן</div>
+            <div class="testimonial-author-role">מעצבת גרפית · 35</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"חיפשתי קורס שיתן לי כלים פרקטיים, לא תיאוריה. זה בדיוק זה. כבר ביום הראשון התחלתי להשתמש בכלים בעבודה."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">ע</div>
+          <div>
+            <div class="testimonial-author-name">עומר אדלר</div>
+            <div class="testimonial-author-role">איש מכירות · 44</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"האזור האישי שמרתי בו כל מה שלמדנו — מסודר ומובנה. אפשר לחזור בכל זמן. זה נכס יותר משווה את ההשקעה."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">ת</div>
+          <div>
+            <div class="testimonial-author-name">תמר רובינשטיין</div>
+            <div class="testimonial-author-role">עורכת דין · 39</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"הקהילה שווה את הקורס לבדה. אנשים תומכים, עוזרים, ומשתפים מה הם בונים. למדתי מהם לא פחות מהשיעורים."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">נ</div>
+          <div>
+            <div class="testimonial-author-name">נדב פרידמן</div>
+            <div class="testimonial-author-role">יזם · 33</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"חשבתי שזה יהיה מסובך. בפועל — כל שיעור הסביר רעיון אחד, פשוט וברור. מסיים את הקורס עם תחושה שאני שולט."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">ה</div>
+          <div>
+            <div class="testimonial-author-name">הילה גרינברג</div>
+            <div class="testimonial-author-role">מנכ"לית עמותה · 56</div>
+          </div>
+        </div>
+      </div>
+      <!-- Duplicate -->
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"מאיר עוצר לוודא שכולם הבינו. הקצב מותאם גם לאנשים שלוקח להם זמן לקלוט."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">ש</div>
+          <div>
+            <div class="testimonial-author-name">שירה כהן</div>
+            <div class="testimonial-author-role">מעצבת גרפית · 35</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" aria-hidden="true">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"חיפשתי קורס שיתן לי כלים פרקטיים, לא תיאוריה. זה בדיוק זה."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">ע</div>
+          <div>
+            <div class="testimonial-author-name">עומר אדלר</div>
+            <div class="testimonial-author-role">איש מכירות · 44</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTRUCTOR ============ -->
+<section class="instructor-section" id="instructor">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="kicker">מי ילמד אותך</span>
+      <h2>אדם אחד. <em>תוצאות אמיתיות</em></h2>
+    </div>
+    <div class="instructor-card reveal">
+      <div class="instructor-avatar">
+        <img src="meir.jpg" alt="מאיר לביא — מרצה הקורס" loading="lazy">
+      </div>
+      <div class="instructor-info">
+        <h3>מאיר לביא</h3>
+        <div class="title">יזם · משקיע · מנחה AI</div>
+        <p>סמנכ"ל פיתוח עסקי לשעבר בחברות הייטק. בנה מוצרים, ניהל שותפויות, השקיע בסטארטאפים. היום מנחה מבוגרים לעבוד עם AI — בלי תיאוריה מיותרת, רק כלים שיוצאים איתם מהשיעור הראשון.</p>
+
+
+        <div class="instructor-tags">
+          <span>🚀 יזם</span>
+          <span>📈 משקיע</span>
+          <span>🎓 האוניברסיטה העברית</span>
+          <span>🏢 הייטק</span>
+          <span>🧑‍🏫 מנחה</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="kicker">שאלות נפוצות</span>
+      <h2>כל מה ש<em>חששתם לשאול</em></h2>
+      <p>אם השאלה שלכם לא כאן — שלחו הודעה בוואטסאפ ותקבלו תשובה אישית באותו היום.</p>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">אנחנו לא טכניים בכלל. הקורס מתאים לנו?</button>
+        <div class="faq-answer">
+          כן, וזה בדיוק קהל היעד. הקורס נבנה לאנשים בלי רקע טכני — נסביר כל מושג חדש, נראה כל פעולה צעד-צעד. אנשים בני 60+ עוברים את הקורס ומסיימים עם כלים אמיתיים.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">כמה זמן ביום צריך להקדיש?</button>
+        <div class="faq-answer">
+          השיעור עצמו 45-55 דקות, פעם בשבוע. בנוסף שיעורי בית של כשעה (אופציונליים — מי שעוקב לאט יותר יכול לעשות אותם בקצב שלו). סה"כ ~2-3 שעות בשבוע.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">מה אם נפספס שיעור?</button>
+        <div class="faq-answer">
+          כל שיעור מוקלט ועולה לאזור האישי תוך 24 שעות. בנוסף, המצגת המלאה זמינה לעיון בכל עת. אפשר לחזור על שיעור גם חודש אחרי שעבר.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">האם יש תמיכה בזמן הקורס?</button>
+        <div class="faq-answer">
+          כן. יש קבוצת WhatsApp עם תמיכה ישירה ממאיר. אפשר לשאול כל שאלה. בנוסף, תוך כדי השיעורים בזום יש זמן ייעודי לשאלות.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">איזה מנויים בתשלום צריך?</button>
+        <div class="faq-answer">
+          רק שניים: <strong>Claude Pro</strong> (חיוני) ב-$20 לחודש, ו-<strong>Cursor</strong> (מספיק בגרסה החינמית). שאר הכלים — GitHub, Google Sheets, Apps Script — חינמיים לחלוטין.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">איזה מחשב צריך?</button>
+        <div class="faq-answer">
+          Mac (M1 ומעלה) או Windows 10+ עם 16GB RAM ומעלה, מעבד i5 דור 10+ או שווה ערך. רוב המחשבים האישיים מ-5 השנים האחרונות עומדים בדרישות.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">האם יש המשך אחרי הקורס?</button>
+        <div class="faq-answer">
+          כן. הקהילה ממשיכה לאחר הקורס — סטודנטים שעברו את Starter ממשיכים לבנות יחד, לשתף, ולהיעזר. בנוסף, יש קורסים מתקדמים יותר לאלו שרוצים להעמיק.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">איך נדע שהקורס מתאים לנו?</button>
+        <div class="faq-answer">
+          השאירו פרטים — נחזור אליכם, נתאם שיחה קצרה (15 דקות), ונבדוק יחד אם הקורס מתאים. אם לא — נכוון אתכם לאן שכן מתאים.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGISTER ============ -->
+<section class="cta-section" id="register">
+  <div class="container">
+    <span class="kicker reveal" style="justify-content:center;">הרשמה למחזור הבא</span>
+    <h2 class="reveal">מוכנים לקחת את <em>הצעד הראשון</em>?</h2>
+    <p class="cta-sub reveal">השאירו פרטים — נחזור אליכם תוך 24 שעות לשיחת היכרות קצרה (15 דקות). נבדוק התאמה, נענה על שאלות, ואם זה לא מתאים — נכוון אתכם הלאה. בלי לחץ.</p>
+
+    <form class="cta-form reveal" id="contactForm" onsubmit="return submitForm(event)">
+      <input type="hidden" name="access_key" value="9ba5abaf-d501-44db-a33d-d5028c89e0ef">
+      <input type="hidden" name="subject" value="פנייה חדשה — AI Lab Starter">
+      <input type="hidden" name="from_name" value="AI Lab Starter — אתר תדמית">
+      <div class="form-group">
+        <label for="name">שם מלא</label>
+        <input type="text" id="name" name="name" placeholder="הכניסו את השם שלכם" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">מספר טלפון</label>
+        <input type="tel" id="phone" name="phone" placeholder="050-1234567" required>
+      </div>
+      <div class="form-group">
+        <label for="email">אימייל</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+      </div>
+      <div class="form-buttons">
+        <button type="submit" class="btn-primary">שלחו פנייה ←</button>
+        <button type="button" class="btn-whatsapp" onclick="sendWhatsApp()">שלחו בוואטסאפ</button>
+      </div>
+      <div class="form-success" id="formSuccess">
+        ✓ הפנייה התקבלה. נחזור אליכם תוך 24 שעות.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>AI Lab <span class="footer-tag">STARTER</span></h4>
+        <p>קורס בינה מלאכותית למתחילים. ללא רקע טכני. עם תוצאות אמיתיות.</p>
+        <p style="margin-top:10px;">מופעל ע"י מאיר לביא · MEIR LAVI</p>
+      </div>
+      <div class="footer-col">
+        <h4>יצירת קשר</h4>
+        <a href="tel:054-6500795">054-6500795</a>
+        <a href="mailto:laviemb@gmail.com">laviemb@gmail.com</a>
+        <a href="https://wa.me/972546500795" target="_blank">WhatsApp</a>
+      </div>
+      <div class="footer-col">
+        <h4>קהילה</h4>
+        <a href="https://chat.whatsapp.com/LpbKfD25gYF6Tx2K9Lj5WG" target="_blank">קבוצת WhatsApp</a>
+        <a href="https://ai-lab.co.il" target="_blank">האתר הראשי</a>
+      </div>
+      <div class="footer-col">
+        <h4>קישורים</h4>
+        <a href="#program">סילבוס מלא</a>
+        <a href="#instructor">על המרצה</a>
+        <a href="#faq">שאלות נפוצות</a>
+        <a href="#register">הרשמה</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© <span id="year"></span> AI Lab · כל הזכויות שמורות · MEIR LAVI</div>
+      <div>STARTER · v1.0</div>
+    </div>
+  </div>
+</footer>
+
+<script src="./script.js"></script>
+</body>
+</html>
