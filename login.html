@@ -278,8 +278,7 @@
     <span class="login-kicker">— האזור האישי</span>
     <h1 class="login-title">ברוכים הבאים <em>חזרה.</em></h1>
     <p class="login-sub">
-      התחברו עם הפרטים שמסרתם בהרשמה.
-      <br>שם המשתמש = כתובת האימייל. הסיסמה = מספר הטלפון.
+      התחבר עם האימייל שמסרת בהרשמה.
     </p>
 
     <form class="login-form" id="loginForm" autocomplete="on">
@@ -296,19 +295,16 @@
         >
       </div>
 
-      <div class="login-field">
-        <label for="phone">סיסמה (מספר טלפון)</label>
+      <div class="login-field" id="passwordField" style="display:none;">
+        <label for="password">סיסמת אדמין</label>
         <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="050-1234567"
+          type="password"
+          id="password"
+          name="password"
           autocomplete="current-password"
-          inputmode="tel"
-          required
           dir="ltr"
         >
-        <div class="login-hint">הסיסמה היא מספר הטלפון שמסרתם בהרשמה — עם או בלי מקפים.</div>
+        <div class="login-hint">מזוהה כחשבון אדמין — נדרשת סיסמה.</div>
       </div>
 
       <div class="login-error" id="loginError"></div>
@@ -329,21 +325,27 @@
 
   <script>
     (function() {
+      // ⚠️ PASTE the Apps Script Web App URL here after deploying
+      const AUTH_URL = 'https://script.google.com/macros/s/AKfycbz-J5Zz-zLKSe2Ez_SCAkH-jxvKdH8X1Ry2yQLMe5I_la-Vwc7iHX90NDUWZ9bPgLRo/exec';
+      const PORTAL_URL = 'https://mlb-code.github.io/ai-lab-starter/';
+
       const form = document.getElementById('loginForm');
       const errBox = document.getElementById('loginError');
       const submitBtn = document.getElementById('loginSubmit');
       const submitText = document.getElementById('loginSubmitText');
+      const passwordField = document.getElementById('passwordField');
+      const passwordInput = document.getElementById('password');
 
-      // Will be wired to Google Sheets in next step
-      function authenticate(email, phone) {
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            // PLACEHOLDER: accept any non-empty email + phone for now (visual demo only)
-            // Will be replaced with fetch to Google Sheets / Apps Script
-            const ok = email.includes('@') && phone.replace(/\D/g, '').length >= 9;
-            resolve({ ok, error: ok ? null : 'אימייל או מספר טלפון לא תקינים. בדקו ונסו שוב.' });
-          }, 700);
-        });
+      async function authenticate(email, password) {
+        try {
+          const res = await fetch(AUTH_URL, {
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+          });
+          return await res.json();
+        } catch (err) {
+          return { ok: false, error: 'בעיית חיבור. נסה שוב.' };
+        }
       }
 
       form.addEventListener('submit', async (e) => {
@@ -351,25 +353,36 @@
         errBox.classList.remove('show');
 
         const email = form.email.value.trim();
-        const phone = form.phone.value.trim();
+        const password = passwordInput.value.trim();
 
         submitBtn.disabled = true;
         submitText.textContent = 'מתחבר…';
 
-        const res = await authenticate(email, phone);
+        const res = await authenticate(email, password);
 
         if (res.ok) {
+          try {
+            localStorage.setItem('ai_lab_user', JSON.stringify(res.user));
+          } catch {}
           submitText.textContent = 'מעביר אותך לאזור האישי…';
-          // Redirect to the real portal
-          setTimeout(() => {
-            window.location.href = 'https://mlb-code.github.io/ai-lab-starter/';
-          }, 500);
-        } else {
-          errBox.textContent = res.error;
-          errBox.classList.add('show');
-          submitBtn.disabled = false;
-          submitText.textContent = 'כניסה לאזור האישי';
+          setTimeout(() => { window.location.href = PORTAL_URL; }, 500);
+          return;
         }
+
+        if (res.requirePassword) {
+          passwordField.style.display = '';
+          passwordInput.focus();
+          if (res.error) {
+            errBox.textContent = res.error;
+            errBox.classList.add('show');
+          }
+        } else {
+          errBox.textContent = res.error || 'אימייל לא נמצא במערכת.';
+          errBox.classList.add('show');
+        }
+
+        submitBtn.disabled = false;
+        submitText.textContent = 'כניסה לאזור האישי';
       });
     })();
   </script>
