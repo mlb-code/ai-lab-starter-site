@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0a0a0a">
 
   <title>AI Lab Starter — קורס היכרות עם בינה מלאכותית</title>
-  <meta name="description" content="קורס Starter של AI Lab — 6 שיעורים שמכניסים אותך לעולם הבינה המלאכותית. בלי רקע טכני. בלי קוד שתצטרך לכתוב לבד.">
+  <meta name="description" content="קורס Starter של AI Lab — שני קורסים, בסיסי ומתקדם, שמכניסים אותך לעולם הבינה המלאכותית. בלי רקע טכני. בלי קוד שתצטרך לכתוב לבד.">
 
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="icon" href="./favicon-32.png" sizes="32x32" type="image/png">
@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
   <meta property="og:title" content="AI Lab Starter — קורס היכרות עם בינה מלאכותית">
-  <meta property="og:description" content="6 שיעורים שמכניסים אותך לעולם הבינה המלאכותית. בלי רקע טכני.">
+  <meta property="og:description" content="שני קורסים, בסיסי ומתקדם, שמכניסים אותך לעולם הבינה המלאכותית. בלי רקע טכני.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="he_IL">
 
@@ -87,7 +87,7 @@
     <p class="hero-sub reveal">
       קורס היכרות לאנשים שלא יודעים מאיפה להתחיל.
       <br>בלי רקע טכני. בלי קוד שתצטרכו לכתוב לבד.
-      <br>שישה שיעורים מובנים — ואתם בפנים.
+      <br>שני קורסים, חמישה מפגשים כל אחד — ואתם בפנים.
     </p>
 
     <div class="hero-buttons reveal">
@@ -97,8 +97,8 @@
 
     <div class="hero-stats reveal">
       <div class="hero-stat">
-        <div class="number">6</div>
-        <div class="label">שיעורים</div>
+        <div class="number">5</div>
+        <div class="label">מפגשים בקורס</div>
       </div>
       <div class="hero-stat">
         <div class="number">+100</div>
@@ -338,11 +338,17 @@
   <div class="container">
     <div class="section-title reveal">
       <span class="kicker">הסילבוס</span>
-      <h2>שישה שיעורים. <em>מסלול מובנה</em></h2>
-      <p>כל שיעור בונה על הקודם, בקצב שמתאים גם למי שלא נגעו במחשב מעבר ל-Office.</p>
+      <h2>שני קורסים. <em>מסלול שלם</em></h2>
+      <p>הקורס הבסיסי מתחיל מאפס — מהמושגים ועד אתר חי. הקורס המתקדם לוקח אותך לפרויקט אישי אמיתי.</p>
     </div>
 
-    <div class="syllabus-list reveal" id="syllabusList">
+    <div class="section-sub-divider reveal">
+      <span class="sub-divider-line"></span>
+      <span class="sub-divider-text">קורס בסיסי</span>
+      <span class="sub-divider-line"></span>
+    </div>
+
+    <div class="syllabus-list reveal">
       <div class="lesson-row" onclick="toggleLesson(1)">
         <div class="lesson-num">01</div>
         <div class="lesson-info">
@@ -443,11 +449,20 @@
         </div>
       </div>
 
+    </div>
+
+    <div class="section-sub-divider reveal">
+      <span class="sub-divider-line"></span>
+      <span class="sub-divider-text">קורס מתקדם</span>
+      <span class="sub-divider-line"></span>
+    </div>
+
+    <div class="syllabus-list reveal">
       <div class="lesson-row" onclick="toggleLesson(6)">
-        <div class="lesson-num">06</div>
+        <div class="lesson-num">01</div>
         <div class="lesson-info">
-          <h4>אוטומציות אישיות — הצוות הסודי שלך</h4>
-          <p>חמש אוטומציות שכל אחד יכול לבנות. עוזר בוקר, מעקב הוצאות, ועוד.</p>
+          <h4>הפרויקט שלך — אפיון ומפת דרכים</h4>
+          <p>בוחרים פרויקט אישי — אתר, סוכן או אוטומציה — ובונים מפת דרכים ברורה לביצוע.</p>
         </div>
         <div class="lesson-toggle">+</div>
       </div>
@@ -455,10 +470,90 @@
         <div class="lesson-detail-inner">
           <h5>במה נעסוק</h5>
           <ul>
+            <li>שלושת סוגי הפרויקטים — ואיך לבחור את שלך</li>
+            <li>מסע האפיון: מרעיון מעורפל לתכולה ברורה</li>
+            <li>כתיבת מסמך אפיון (spec) יחד עם Claude</li>
+            <li>פירוק לאבני דרך — מתחילים מ-MVP</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lesson-row" onclick="toggleLesson(7)">
+        <div class="lesson-num">02</div>
+        <div class="lesson-info">
+          <h4>בונים סוכן AI — מהתיאוריה לסוכן עובד</h4>
+          <p>הוראות, כלים, חיבור לערוץ ובדיקות — סוכן ראשוני שעובד מול משתמשים אמיתיים.</p>
+        </div>
+        <div class="lesson-toggle">+</div>
+      </div>
+      <div class="lesson-detail" id="lesson-7">
+        <div class="lesson-detail-inner">
+          <h5>במה נעסוק</h5>
+          <ul>
+            <li>האנטומיה של סוכן: הוראות, כלים, זיכרון, לולאה</li>
+            <li>כתיבת System Prompt — הלב של הסוכן</li>
+            <li>מתן כלים לסוכן — שייתן לו לפעול, לא רק לדבר</li>
+            <li>חיבור לערוץ ובדיקות לפני שמשחררים</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lesson-row" onclick="toggleLesson(8)">
+        <div class="lesson-num">03</div>
+        <div class="lesson-info">
+          <h4>אוטומציות אישיות — הצוות הסודי שלך</h4>
+          <p>חמש אוטומציות שכל אחד יכול לבנות. עוזר בוקר, מעקב הוצאות, ועוד.</p>
+        </div>
+        <div class="lesson-toggle">+</div>
+      </div>
+      <div class="lesson-detail" id="lesson-8">
+        <div class="lesson-detail-inner">
+          <h5>במה נעסוק</h5>
+          <ul>
             <li>האנטומיה של כל אוטומציה: Trigger → Steps → Output</li>
             <li>5 דוגמאות פרקטיות: עוזר בוקר, מעקב הוצאות, ימי הולדת, משלוחים, סיכום קבוצות</li>
             <li>איך להבין מה כדאי לאוטמט בחיים שלך</li>
             <li>המשימה: לבנות בעצמך עוזר בוקר אישי</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lesson-row" onclick="toggleLesson(9)">
+        <div class="lesson-num">04</div>
+        <div class="lesson-info">
+          <h4>חיבור למערכות אמיתיות</h4>
+          <p>מחברים את הפרויקט לעולם — תשלומים, קביעת תורים, ו-APIs.</p>
+        </div>
+        <div class="lesson-toggle">+</div>
+      </div>
+      <div class="lesson-detail" id="lesson-9">
+        <div class="lesson-detail-inner">
+          <h5>במה נעסוק</h5>
+          <ul>
+            <li>מה זה API — איך שתי מערכות מדברות זו עם זו</li>
+            <li>חיבור תשלומים: מהחשבון ועד הקופה</li>
+            <li>מערכת תורים והזמנות, מחוברת ליומן</li>
+            <li>אבטחת מפתחות — מה אסור לחשוף לעולם</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lesson-row" onclick="toggleLesson(10)">
+        <div class="lesson-num">05</div>
+        <div class="lesson-info">
+          <h4>השקה וצמיחה</h4>
+          <p>מעלים את הפרויקט לאוויר, מלטשים את הפרטים האחרונים, ומביאים משתמשים ראשונים.</p>
+        </div>
+        <div class="lesson-toggle">+</div>
+      </div>
+      <div class="lesson-detail" id="lesson-10">
+        <div class="lesson-detail-inner">
+          <h5>במה נעסוק</h5>
+          <ul>
+            <li>צ'קליסט לפני השקה — מה בודקים</li>
+            <li>פריסת פרויקט דינמי על שרת אמיתי</li>
+            <li>מעקב וניטור — לדעת שהכל עובד אחרי ההשקה</li>
+            <li>צמיחה: איך מביאים את המשתמשים הראשונים</li>
           </ul>
         </div>
       </div>
@@ -484,7 +579,7 @@
     <div class="testimonials-row">
       <div class="testimonial-card">
         <div class="testimonial-stars">★★★★★</div>
-        <p>"הגעתי לקורס בלי לדעת מה זה Claude. אחרי 6 שיעורים בניתי דף נחיתה לעסק שלי בעצמי. דבר שלא חשבתי שיקרה אי פעם."</p>
+        <p>"הגעתי לקורס בלי לדעת מה זה Claude. אחרי הקורס הבסיסי בניתי דף נחיתה לעסק שלי בעצמי. דבר שלא חשבתי שיקרה אי פעם."</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar">ר</div>
           <div>
@@ -540,7 +635,7 @@
       <!-- Duplicate for seamless loop -->
       <div class="testimonial-card" aria-hidden="true">
         <div class="testimonial-stars">★★★★★</div>
-        <p>"הגעתי לקורס בלי לדעת מה זה Claude. אחרי 6 שיעורים בניתי דף נחיתה לעסק שלי בעצמי."</p>
+        <p>"הגעתי לקורס בלי לדעת מה זה Claude. אחרי הקורס הבסיסי בניתי דף נחיתה לעסק שלי בעצמי."</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar">ר</div>
           <div>
