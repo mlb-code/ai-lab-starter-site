@@ -29,6 +29,22 @@ function toggleFaq(btn) {
 }
 window.toggleFaq = toggleFaq;
 
+// ===== Course syllabus toggle =====
+function toggleSyllabus(course, btn) {
+  const panel = document.getElementById('syllabus-' + course);
+  if (!panel) return;
+  const willOpen = panel.hasAttribute('hidden');
+  // close all panels + reset all buttons
+  document.querySelectorAll('.syllabus-full').forEach((p) => p.setAttribute('hidden', ''));
+  document.querySelectorAll('.btn-syllabus').forEach((b) => { b.textContent = 'צפו בסילבוס המלא ↓'; });
+  if (willOpen) {
+    panel.removeAttribute('hidden');
+    if (btn) btn.textContent = 'הסתירו את הסילבוס ↑';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+window.toggleSyllabus = toggleSyllabus;
+
 // ===== Reveal on scroll =====
 const observer = new IntersectionObserver(
   (entries) => {

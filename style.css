@@ -813,6 +813,109 @@ section { padding: 80px 0; position: relative; }
   .skill-card--featured { grid-column: span 1; grid-template-columns: 1fr; text-align: center; padding: 24px; }
 }
 
+/* ========== COURSE CARDS ========== */
+.course-cards {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+}
+.course-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 32px 28px;
+  display: flex; flex-direction: column;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.course-card:hover {
+  border-color: var(--brand);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(16,229,147,0.12);
+}
+.course-card-badge {
+  align-self: flex-start;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--brand);
+  background: rgba(16,229,147,0.1);
+  border: 1px solid rgba(16,229,147,0.3);
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-bottom: 14px;
+}
+.course-card-badge--alt { color: var(--brand-glow); }
+.course-card-title { font-size: 1.7rem; margin-bottom: 4px; }
+.course-card-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem; color: var(--ink-500);
+  margin-bottom: 14px;
+}
+.course-card-desc {
+  color: var(--ink-300); line-height: 1.6;
+  font-size: 0.96rem; margin-bottom: 18px;
+}
+.course-card-list { list-style: none; margin-bottom: 24px; }
+.course-card-list li {
+  position: relative;
+  padding-right: 28px;
+  margin-bottom: 11px;
+  color: var(--ink-300);
+  font-size: 0.94rem; line-height: 1.5;
+}
+.course-card-list li::before {
+  content: "✔";
+  position: absolute; right: 0; top: 0;
+  color: var(--brand); font-size: 0.9rem;
+}
+.course-card-actions {
+  margin-top: auto;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.btn-syllabus, .btn-enroll {
+  display: block; text-align: center;
+  padding: 13px 20px;
+  border-radius: 6px;
+  font-size: 0.98rem; font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s, color 0.2s;
+}
+.btn-syllabus {
+  background: transparent;
+  color: var(--ink-100);
+  border: 1px solid var(--line-strong);
+}
+.btn-syllabus:hover {
+  border-color: var(--brand); color: var(--brand);
+  background: rgba(16,229,147,0.06);
+}
+.btn-enroll {
+  background: linear-gradient(135deg, var(--brand), var(--brand-glow));
+  color: #04150e;
+  border: 1px solid transparent;
+}
+.btn-enroll:hover { transform: translateY(-2px); box-shadow: var(--shadow-brand-lg); }
+
+.syllabus-full {
+  margin-top: 40px;
+  animation: syllabusFade 0.4s ease;
+}
+.syllabus-full-head {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 24px;
+}
+.syllabus-full-head::before,
+.syllabus-full-head::after {
+  content: ""; flex: 1; height: 1px; background: var(--line);
+}
+@keyframes syllabusFade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 760px) {
+  .course-cards { grid-template-columns: 1fr; }
+}
+
 /* ========== SYLLABUS ========== */
 .syllabus-list { display: flex; flex-direction: column; gap: 10px; }
 .lesson-row {

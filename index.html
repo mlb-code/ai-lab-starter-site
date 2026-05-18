@@ -346,18 +346,52 @@
 <section class="program" id="program">
   <div class="container">
     <div class="section-title reveal">
-      <span class="kicker">הסילבוס</span>
-      <h2>שני קורסים. <em>מסלול שלם</em></h2>
-      <p>הקורס הבסיסי מתחיל מאפס — מהמושגים ועד אתר חי. הקורס המתקדם לוקח אותך לפרויקט אישי אמיתי.</p>
+      <span class="kicker">הקורסים</span>
+      <h2>שני קורסים. <em>כל אחד עומד בפני עצמו</em></h2>
+      <p>הקורס הבסיסי מתחיל מאפס — מהמושגים ועד אתר חי. הקורס המתקדם לוקח אותך לפרויקט אישי אמיתי. כל קורס נמכר בנפרד — אפשר להתחיל מהבסיסי, או לקפוץ ישר למתקדם.</p>
     </div>
 
-    <div class="section-sub-divider reveal">
-      <span class="sub-divider-line"></span>
-      <span class="sub-divider-text">קורס בסיסי</span>
-      <span class="sub-divider-line"></span>
+    <div class="course-cards reveal">
+      <div class="course-card">
+        <span class="course-card-badge">מתחילים מכאן</span>
+        <h3 class="course-card-title">קורס בסיסי</h3>
+        <span class="course-card-meta">5 מפגשים · מתחילים מאפס</span>
+        <p class="course-card-desc">מהמושגים הראשונים ועד אתר חי באוויר — בלי רקע טכני, בלי קוד שתכתוב לבד.</p>
+        <ul class="course-card-list">
+          <li>היכרות עם כלי ה-AI המובילים</li>
+          <li>סביבת עבודה מקצועית — Cursor ו-Claude</li>
+          <li>בניית דף נחיתה ופרסום אתר חינמי</li>
+          <li>חיבור טופס לידים ל-Google Sheets</li>
+        </ul>
+        <div class="course-card-actions">
+          <button type="button" class="btn-syllabus" onclick="toggleSyllabus('basic', this)">צפו בסילבוס המלא ↓</button>
+          <a href="#register" class="btn-enroll">הרשמה לקורס</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <span class="course-card-badge course-card-badge--alt">השלב הבא</span>
+        <h3 class="course-card-title">קורס מתקדם</h3>
+        <span class="course-card-meta">5 מפגשים · ממשיכים לפרויקט</span>
+        <p class="course-card-desc">לוקחים פרויקט אישי אמיתי — מאפיון ועד השקה לאוויר עם משתמשים ראשונים.</p>
+        <ul class="course-card-list">
+          <li>אפיון פרויקט אישי ומפת דרכים</li>
+          <li>בניית סוכן AI שעובד מול משתמשים</li>
+          <li>חמש אוטומציות אישיות מעשיות</li>
+          <li>חיבור למערכות אמיתיות והשקה לאוויר</li>
+        </ul>
+        <div class="course-card-actions">
+          <button type="button" class="btn-syllabus" onclick="toggleSyllabus('advanced', this)">צפו בסילבוס המלא ↓</button>
+          <a href="#register" class="btn-enroll">הרשמה לקורס</a>
+        </div>
+      </div>
     </div>
 
-    <div class="syllabus-list reveal">
+    <div class="syllabus-full" id="syllabus-basic" hidden>
+      <div class="syllabus-full-head">
+        <span class="sub-divider-text">סילבוס מלא · קורס בסיסי</span>
+      </div>
+      <div class="syllabus-list">
       <div class="lesson-row" onclick="toggleLesson(1)">
         <div class="lesson-num">01</div>
         <div class="lesson-info">
@@ -458,15 +492,14 @@
         </div>
       </div>
 
+      </div>
     </div>
 
-    <div class="section-sub-divider reveal">
-      <span class="sub-divider-line"></span>
-      <span class="sub-divider-text">קורס מתקדם</span>
-      <span class="sub-divider-line"></span>
-    </div>
-
-    <div class="syllabus-list reveal">
+    <div class="syllabus-full" id="syllabus-advanced" hidden>
+      <div class="syllabus-full-head">
+        <span class="sub-divider-text">סילבוס מלא · קורס מתקדם</span>
+      </div>
+      <div class="syllabus-list">
       <div class="lesson-row" onclick="toggleLesson(6)">
         <div class="lesson-num">01</div>
         <div class="lesson-info">
@@ -565,6 +598,7 @@
             <li>צמיחה: איך מביאים את המשתמשים הראשונים</li>
           </ul>
         </div>
+      </div>
       </div>
     </div>
 
