@@ -430,8 +430,10 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; color: var(--ink-100
 
 .hero-scroll-indicator {
   position: absolute;
-  bottom: 22px; left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 22px);
+  left: 50%;
   transform: translateX(-50%);
+  z-index: 3;
   display: flex; flex-direction: column; align-items: center; gap: 6px;
   font-family: 'Space Mono', monospace;
   font-size: 0.72rem;
