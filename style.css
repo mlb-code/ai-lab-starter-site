@@ -338,8 +338,15 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; color: var(--ink-100
 .hero-buttons {
   display: flex; gap: 14px; justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: clamp(24px, 3.6vh, 48px);
+  margin-bottom: clamp(18px, 2.4vh, 30px);
 }
+.hero-secondary-cta {
+  margin: 0 0 clamp(22px, 3.2vh, 44px);
+  font-size: 0.95rem;
+  color: #9a9a9a;
+}
+.hero-secondary-cta a { color: var(--brand); font-weight: 600; text-decoration: none; }
+.hero-secondary-cta a:hover { text-decoration: underline; }
 .hero-stats {
   display: flex; justify-content: center; gap: clamp(28px, 4.5vw, 56px);
   flex-wrap: wrap;
@@ -449,9 +456,16 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; color: var(--ink-100
 }
 
 @media (max-width: 700px) {
-  .hero { padding: 56px 0 64px; min-height: 560px; }
+  /* Hero fills exactly one mobile screen, content always fits */
+  .hero { padding: 72px 0 28px; min-height: 100svh; height: auto; }
+  .hero-badge { margin-bottom: 12px; font-size: 0.72rem; padding: 6px 14px; }
+  .hero h1 { font-size: clamp(2rem, 9.5vw, 2.7rem); line-height: 1.02; margin-bottom: 10px; }
+  .hero-slogan { margin-bottom: 10px; }
+  .hero-sub { font-size: 1rem; margin-bottom: 16px; }
+  .hero-buttons { margin-bottom: 14px; gap: 10px; }
   .hero-buttons .btn-primary, .hero-buttons .btn-secondary { width: 100%; }
-  .hero-stats { gap: 28px; margin-bottom: clamp(20px, 3vh, 36px); }
+  .hero-secondary-cta { margin: 0 0 18px; font-size: 0.9rem; }
+  .hero-stats { gap: 24px; margin-bottom: 0; }
   .hero .terminal { display: none; }
   .hero-scroll-indicator {
     display: flex;
@@ -459,6 +473,18 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; color: var(--ink-100
     bottom: 14px;
   }
   .hero-blob { width: 380px; height: 380px; filter: blur(80px); }
+}
+
+/* Short phones (e.g. iPhone SE) — tighten further so nothing overflows */
+@media (max-width: 700px) and (max-height: 720px) {
+  .hero { padding: 64px 0 20px; }
+  .hero-badge { margin-bottom: 8px; }
+  .hero h1 { font-size: clamp(1.65rem, 8vw, 2.2rem); margin-bottom: 8px; }
+  .hero-slogan { font-size: 0.92rem; margin-bottom: 7px; }
+  .hero-sub { font-size: 0.9rem; margin-bottom: 12px; line-height: 1.5; }
+  .hero-buttons { margin-bottom: 10px; }
+  .hero-secondary-cta { margin-bottom: 12px; font-size: 0.85rem; }
+  .hero-stat .number { font-size: 1.8rem; }
 }
 
 /* ========== SECTION (shared) ========== */
@@ -764,6 +790,16 @@ section { padding: 80px 0; position: relative; }
   font-size: 2.2rem;
   margin-bottom: 16px;
 }
+.card-icon {
+  width: 54px; height: 54px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 15px;
+  background: rgba(16,229,147,0.10);
+  border: 1px solid rgba(16,229,147,0.30);
+  color: var(--brand);
+  margin-bottom: 18px;
+}
+.card-icon svg { width: 27px; height: 27px; }
 .problem-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
 .problem-card p { color: var(--ink-300); line-height: 1.6; font-size: 0.98rem; }
 
