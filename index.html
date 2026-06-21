@@ -117,6 +117,26 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "שיעורים פרטיים בבינה מלאכותית (1-על-1)",
+    "name": "שיעורים פרטיים ב-AI — AI Lab",
+    "description": "שיעורים פרטיים 1-על-1 אונליין בבינה מלאכותית, מותאמים אישית. עובדים על הפרויקט האמיתי שלך — אתר, אוטומציה או סוכן AI — בקצב ובזמן שמתאימים לך. בהנחיית מאיר לביא.",
+    "provider": {
+      "@type": "EducationalOrganization",
+      "name": "AI Lab",
+      "url": "https://ai-lab.co.il"
+    },
+    "areaServed": { "@type": "Country", "name": "Israel" },
+    "availableChannel": {
+      "@type": "ServiceChannel",
+      "serviceUrl": "https://starter.ai-lab.co.il/#private",
+      "availableLanguage": "Hebrew"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     "@type": "Person",
     "name": "מאיר לביא",
     "jobTitle": "מרצה ומייסד AI Lab",
@@ -170,6 +190,11 @@
         "@type": "Question",
         "name": "איך נדע שהקורס מתאים לנו?",
         "acceptedAnswer": { "@type": "Answer", "text": "השאירו פרטים — נחזור אליכם, נתאם שיחה קצרה (15 דקות), ונבדוק יחד אם הקורס מתאים. אם לא — נכוון אתכם לאן שכן מתאים." }
+      },
+      {
+        "@type": "Question",
+        "name": "אפשר שיעורים פרטיים במקום קבוצה?",
+        "acceptedAnswer": { "@type": "Answer", "text": "כן. יש אפשרות לשיעורים פרטיים 1-על-1 אונליין, מותאמים אישית למטרה ולקצב שלך — עובדים על הפרויקט האמיתי שלך. אפשר לפנות בוואטסאפ או להשאיר פרטים." }
       }
     ]
   }
@@ -188,6 +213,7 @@
     <li><a href="#program">תוכנית</a></li>
     <li><a href="#portal-showcase">האזור האישי</a></li>
     <li><a href="#instructor">המרצה</a></li>
+    <li><a href="#private">שיעורים פרטיים</a></li>
     <li><a href="#faq">שאלות נפוצות</a></li>
   </ul>
   <div class="nav-cta-group">
@@ -209,6 +235,7 @@
     <li><a href="#program">תוכנית</a></li>
     <li><a href="#portal-showcase">האזור האישי</a></li>
     <li><a href="#instructor">המרצה</a></li>
+    <li><a href="#private">שיעורים פרטיים</a></li>
     <li><a href="#faq">שאלות נפוצות</a></li>
     <li class="mobile-cta-row"><a href="#register" class="mobile-cta-primary">הרשמה</a></li>
     <li><a href="https://chat.whatsapp.com/LpbKfD25gYF6Tx2K9Lj5WG" target="_blank" rel="noopener" class="mobile-cta-community">הצטרפו לקהילה</a></li>
@@ -239,13 +266,16 @@
     <p class="hero-sub reveal">
       קורס היכרות לאנשים שלא יודעים מאיפה להתחיל.
       <br>בלי רקע טכני. בלי קוד שתצטרכו לכתוב לבד.
-      <br>שני קורסים, חמישה מפגשים כל אחד — ואתם בפנים.
+      <br>שני קורסים, חמישה מפגשים כל אחד — או <a href="#private" style="color:var(--brand); font-weight:600;">שיעורים פרטיים 1-על-1</a>.
     </p>
 
     <div class="hero-buttons reveal">
       <a href="#register" class="btn-primary">שריינו מקום עכשיו ←</a>
       <a href="#program" class="btn-secondary">צפו בסילבוס</a>
     </div>
+    <p class="reveal" style="margin-top:16px; font-size:0.95rem; color:var(--ink-300, #9a9a9a);">
+      מעדיפים לימוד אישי? <a href="#private" style="color:var(--brand); font-weight:600;">דברו איתי על שיעור פרטי ←</a>
+    </p>
 
     <div class="hero-stats reveal">
       <div class="hero-stat">
@@ -955,6 +985,40 @@
   </div>
 </section>
 
+<!-- ============ PRIVATE LESSONS ============ -->
+<section class="problem" id="private">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="kicker">לימוד אישי</span>
+      <h2>שיעורים פרטיים <em>1-על-1</em></h2>
+      <p>לא מתאים לך קבוצה? רוצה להתקדם בקצב שלך, על הפרויקט שלך? שיעורים פרטיים אונליין עם מאיר — בדיוק על מה שאתה צריך.</p>
+    </div>
+
+    <div class="problem-grid reveal">
+      <div class="problem-card">
+        <div class="problem-icon">🎯</div>
+        <h3>מותאם אישית אליך</h3>
+        <p>בונים יחד תוכנית לפי המטרה שלך — אתר, אוטומציה, סוכן AI לעסק, או סתם להבין איך לעבוד עם הכלים. בלי חומר מיותר.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🗓️</div>
+        <h3>בקצב ובזמן שלך</h3>
+        <p>שיעורים אונליין בזום, בשעות שנוחות לך. מתקדמים מהר או לאט — אתה קובע. כל שיעור מוקלט ונשאר אצלך.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">🚀</div>
+        <h3>על הפרויקט האמיתי שלך</h3>
+        <p>לא תרגילים תיאורטיים — עובדים על משהו אמיתי שלך, ויוצאים מכל שיעור עם תוצאה שאפשר להשתמש בה.</p>
+      </div>
+    </div>
+
+    <div class="reveal" style="text-align:center; margin-top:36px;">
+      <a class="btn-whatsapp" href="https://wa.me/972546500795?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%91%D7%A9%D7%99%D7%A2%D7%95%D7%A8%D7%99%D7%9D%20%D7%A4%D7%A8%D7%98%D7%99%D7%99%D7%9D%201-%D7%A2%D7%9C-1%20%D7%91-AI.%20%D7%90%D7%A4%D7%A9%D7%A8%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%3F" target="_blank" rel="noopener">דברו איתי על שיעור פרטי בוואטסאפ ←</a>
+      <p class="cta-sub" style="margin-top:14px;">או <a href="#register" style="color:var(--brand);">השאירו פרטים</a> ונחזור אליכם לתיאום שיחת היכרות קצרה.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ============ FAQ ============ -->
 <section class="faq-section" id="faq">
   <div class="container">
@@ -1013,6 +1077,12 @@
           השאירו פרטים — נחזור אליכם, נתאם שיחה קצרה (15 דקות), ונבדוק יחד אם הקורס מתאים. אם לא — נכוון אתכם לאן שכן מתאים.
         </div>
       </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">אפשר שיעורים פרטיים במקום קבוצה?</button>
+        <div class="faq-answer">
+          בהחלט. יש אפשרות לשיעורים פרטיים 1-על-1 אונליין, מותאמים אישית למטרה ולקצב שלך — עובדים על הפרויקט האמיתי שלך. <a href="#private">פרטים בסקשן השיעורים הפרטיים</a> או שלחו הודעה בוואטסאפ.
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1048,6 +1118,44 @@
         ✓ הפנייה התקבלה. נחזור אליכם תוך 24 שעות.
       </div>
     </form>
+  </div>
+</section>
+
+<!-- ============ GUIDES / BLOG FUNNEL ============ -->
+<section class="problem" id="guides">
+  <div class="container">
+    <div class="section-title reveal">
+      <span class="kicker">להעמקה</span>
+      <h2>מדריכים <em>בעברית</em> שכדאי לקרוא</h2>
+      <p>לפני שמתחילים — כמה מדריכים חינמיים מהבלוג שלנו, שיעזרו לך להבין על מה כל הסיפור.</p>
+    </div>
+
+    <div class="problem-grid reveal">
+      <a class="problem-card" href="https://ai-lab.co.il/blog/ai-course-for-adults.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+        <div class="problem-icon">🎓</div>
+        <h3>קורס AI למבוגרים — אף פעם לא מאוחר</h3>
+        <p>למה דווקא עכשיו זה הזמן הנכון להתחיל, ואיך בוחרים קורס AI טוב למבוגרים. קראו עוד ←</p>
+      </a>
+      <a class="problem-card" href="https://ai-lab.co.il/blog/what-is-claude.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+        <div class="problem-icon">🤖</div>
+        <h3>מה זה Claude? מדריך למתחילים</h3>
+        <p>הכלי המרכזי שעובדים איתו בקורס — מה הוא יודע לעשות ואיך מתחילים. קראו עוד ←</p>
+      </a>
+      <a class="problem-card" href="https://ai-lab.co.il/blog/build-website-with-ai.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+        <div class="problem-icon">🌐</div>
+        <h3>איך בונים אתר עם בינה מלאכותית</h3>
+        <p>בדיוק מה שתעשה בקורס — לבנות אתר אמיתי בלי לכתוב קוד. קראו עוד ←</p>
+      </a>
+      <a class="problem-card" href="https://ai-lab.co.il/blog/how-to-choose-ai-course.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+        <div class="problem-icon">🧭</div>
+        <h3>איך לבחור קורס בינה מלאכותית 2026</h3>
+        <p>7 שאלות שכדאי לשאול לפני שנרשמים לכל קורס AI. קראו עוד ←</p>
+      </a>
+    </div>
+
+    <div class="reveal" style="text-align:center; margin-top:36px;">
+      <a class="btn-secondary" href="https://ai-lab.co.il/blog/" target="_blank" rel="noopener">לכל המדריכים בבלוג ←</a>
+    </div>
   </div>
 </section>
 
