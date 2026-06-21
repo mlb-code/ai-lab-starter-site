@@ -467,11 +467,8 @@ h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; color: var(--ink-100
   .hero-secondary-cta { margin: 0 0 18px; font-size: 0.9rem; }
   .hero-stats { gap: 24px; margin-bottom: 0; }
   .hero .terminal { display: none; }
-  .hero-scroll-indicator {
-    display: flex;
-    font-size: 0.66rem;
-    bottom: 14px;
-  }
+  /* Scroll cue is redundant on mobile (and crowds the full-height hero) */
+  .hero-scroll-indicator { display: none; }
   .hero-blob { width: 380px; height: 380px; filter: blur(80px); }
 }
 
