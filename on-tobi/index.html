@@ -77,6 +77,14 @@ header{
   font-family:var(--mono);font-size:12px;color:var(--txt-faint);
   border-inline-start:1px solid var(--line);padding-inline-start:16px;white-space:nowrap;
 }
+.zoom-btn{
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  border:1px solid var(--amber-soft);color:var(--amber);background:var(--amber-glow);
+  padding:7px 14px;font-size:13.5px;border-radius:var(--radius);
+  transition:background .15s ease,border-color .15s ease;
+}
+.zoom-btn:hover{background:rgba(217,155,60,.22);border-color:var(--amber);text-decoration:none}
+.zoom-btn svg{width:16px;height:16px;fill:currentColor;flex:none}
 
 /* ---------- Hero ---------- */
 .hero{padding:44px 0 30px;border-bottom:1px solid var(--line-soft)}
@@ -269,6 +277,8 @@ footer{
 @media (max-width:600px){
   body{font-size:15.5px}
   .hdr{padding:12px 0;gap:10px}
+  .zoom-btn{width:100%;justify-content:center;order:3}
+  .hdr-name{margin-inline-start:auto}
   .hero{padding:32px 0 24px}
   section{padding:34px 0}
   .lesson{padding:17px 16px 15px}
@@ -287,6 +297,10 @@ footer{
   <div class="wrap hdr">
     <div class="brand"><b>AI Lab</b> · שיעורים פרטיים</div>
     <div class="hdr-name">On Tobi</div>
+    <a class="zoom-btn" href="https://us05web.zoom.us/j/8186142816?pwd=VEtXYVh3Z3IwZWhrZHYvWm5hYWlKQT09" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+      כניסה לשיעור בזום
+    </a>
   </div>
 </header>
 
