@@ -148,19 +148,52 @@ section{padding:44px 0}
 .l-links a.off{opacity:.45;pointer-events:none}
 
 /* ---------- התקנה ---------- */
-.dl{display:flex;align-items:center;gap:20px;flex-wrap:wrap;border:1px solid var(--amber-soft);border-radius:var(--radius);
-    background:linear-gradient(180deg,var(--amber-glow),transparent 65%),var(--panel);padding:20px 22px}
-.dl-txt{flex:1;min-width:240px}
-.dl-kick{display:block;font-size:10.5px;letter-spacing:.14em;color:var(--amber);margin-bottom:6px}
-.dl-txt p{margin:0;color:var(--txt-dim);font-size:14.5px}
-.dl-btn{background:var(--amber);color:#12100b;border-radius:var(--radius);padding:12px 22px;font-size:15px;font-weight:500;white-space:nowrap;transition:background .15s ease}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;
+     border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden;margin-bottom:26px}
+.why > div{padding:16px 18px}
+.why > div + div{border-inline-start:1px solid var(--line)}
+.why h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--amber);font-weight:400;margin:0 0 9px}
+.why ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.why li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:14px;position:relative}
+.why li::before{content:"";position:absolute;inset-inline-start:0;top:.66em;width:4px;height:4px;background:var(--amber-soft);border-radius:1px}
+@media (max-width:640px){.why > div + div{border-inline-start:0;border-top:1px solid var(--line)}}
+
+.steps{list-style:none;margin:0;padding:0;position:relative}
+.steps::before{content:"";position:absolute;inset-inline-start:17px;top:14px;bottom:14px;width:1px;background:var(--line)}
+.steps > li{display:grid;grid-template-columns:36px 1fr;gap:18px;padding-bottom:26px;position:relative}
+.steps > li:last-child{padding-bottom:0}
+.s-num{width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+       font-family:var(--mono);font-size:12px;color:var(--amber);
+       border:1px solid var(--amber-soft);border-radius:3px;background:var(--bg);position:relative;z-index:1}
+.s-body{padding-top:5px;min-width:0}
+.s-body h3{font-size:18px;margin-bottom:5px}
+.s-body > p{color:var(--txt-dim);font-size:14.5px;margin:0 0 13px;max-width:62ch}
+.s-list{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.s-list li{font-size:14px;color:var(--txt-dim);padding-inline-start:15px;position:relative}
+.s-list li::before{content:"";position:absolute;inset-inline-start:0;top:.66em;width:4px;height:4px;background:var(--amber-soft);border-radius:1px}
+.s-list li b{color:var(--txt);font-weight:500}
+
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.osbox{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);padding:14px 16px}
+.osbox h4{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--amber);font-weight:400;margin:0 0 10px;
+          padding-bottom:9px;border-bottom:1px solid var(--line)}
+
+.dl-btn{display:inline-block;background:var(--amber);color:#12100b;border-radius:var(--radius);
+        padding:11px 22px;font-size:15px;font-weight:500;transition:background .15s ease}
 .dl-btn:hover{background:#e8ac52;text-decoration:none}
-.sub-h{font-size:16px;margin:28px 0 12px;color:var(--txt)}
-.tbl .ui{font-family:var(--mono);font-size:10.5px;color:var(--txt-faint);display:block}
-.ready{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:16px 18px;margin-top:16px}
-.ready b{display:block;font-size:10.5px;letter-spacing:.13em;color:var(--ok);margin-bottom:9px;font-weight:500}
-.ready ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
-.ready li{font-size:14px;color:var(--txt-dim);padding-inline-start:19px;position:relative}
+
+.finds{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:12px}
+.find{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);padding:13px 15px}
+.find .f-name{font-family:var(--mono);font-size:12.5px;color:var(--amber);display:block;margin-bottom:7px}
+.find .f-where{font-size:13.5px;color:var(--txt);margin:0 0 5px}
+.find .f-why{font-size:13px;color:var(--txt-faint);margin:0;line-height:1.55}
+
+.ready{border:1px solid #3c5a44;background:var(--panel);border-radius:var(--radius);padding:16px 18px;margin-top:26px}
+.ready b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--ok);margin-bottom:10px;font-weight:400}
+.ready ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}
+.ready li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:19px;position:relative}
 .ready li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-size:12px}
 
 /* ---------- בחירת מודל ---------- */
@@ -278,55 +311,113 @@ footer{
     <div class="sec-head"><span class="sec-num mono">01</span><h2>לפני שמתחילים — Claude Desktop</h2></div>
     <p class="sec-sub">המשימה לפני השיעור הראשון: להתקין את האפליקציה על המחשב, להתחבר, ולהתמצא בארבעה מקומות. כרבע שעה. את הפרויקט עצמו נקים יחד בשיעור.</p>
 
-    <div class="dl">
-      <div class="dl-txt">
-        <span class="dl-kick mono">שלב 1 · הורדה</span>
-        <p>העמוד מזהה לבד איזו מערכת הפעלה יש לך ומציע את הקובץ הנכון. מק, ווינדוס — שניהם משם.</p>
+    <div class="why">
+      <div>
+        <h4>למה דסקטופ ולא דפדפן</h4>
+        <ul>
+          <li>עובד ישירות מול קבצים מהמחשב</li>
+          <li>חלון קבוע לצד המסמך שאתה כותב</li>
+          <li>קו-וורק נוח יותר על מסך שלם</li>
+          <li>בלי עשרים לשוניות פתוחות מסביב</li>
+        </ul>
       </div>
-      <a class="dl-btn" href="https://claude.com/download" target="_blank" rel="noopener">הורדת Claude Desktop ←</a>
+      <div>
+        <h4>מה נותן מצב קו-וורק</h4>
+        <ul>
+          <li>המסמך נפתח בצד ולא נשפך לתוך הצ'אט</li>
+          <li>אפשר לתקן סעיף אחד בלי לגעת בשאר</li>
+          <li>בסוף — קובץ להורדה</li>
+          <li>לא מצאת איפה מפעילים? נעשה יחד בשיעור</li>
+        </ul>
+      </div>
     </div>
 
-    <div class="grid2" style="margin-top:16px">
-      <div class="card"><span class="tag mono">שלב 2 · מק</span><h3>התקנה ב-macOS</h3><ul>
-        <li>פותחים את הקובץ שהורד (סיומת dmg.)</li>
-        <li>גוררים את סמל Claude לתיקיית Applications</li>
-        <li>פותחים את האפליקציה מתוך Applications</li>
-        <li>בפתיחה הראשונה מאשרים את חלון האבטחה של מק</li></ul></div>
-      <div class="card"><span class="tag mono">שלב 2 · ווינדוס</span><h3>התקנה ב-Windows</h3><ul>
-        <li>פותחים את הקובץ שהורד (סיומת exe.)</li>
-        <li>מאשרים את חלון ההתקנה ולוחצים Install</li>
-        <li>אם ווינדוס מציג אזהרת SmartScreen — More info ואז Run anyway</li>
-        <li>פותחים מתפריט התחל</li></ul></div>
-      <div class="card"><span class="tag mono">שלב 3 · חשבון</span><h3>התחברות</h3><ul>
-        <li>מתחברים עם אותו חשבון שבו תשתמש בקורס</li>
-        <li>מוודאים שהשיחות מסתנכרנות — אותן שיחות בדפדפן ובאפליקציה</li>
-        <li>אם מודל מסוים לא מופיע ברשימה — זה תלוי בסוג המנוי. תגיד לי ונסדר</li></ul></div>
-    </div>
+    <ol class="steps">
 
-    <h3 class="sub-h">ארבעה מקומות שצריך למצוא באפליקציה</h3>
-    <div class="scroll"><table class="tbl">
-      <tr><th>מה</th><th>איפה</th><th>למה זה משנה</th></tr>
-      <tr><td>Projects</td><td>בתפריט הצד השמאלי</td><td>שם נקים את סביבת העבודה — כל השיחות המקצועיות ייפתחו בתוכו</td></tr>
-      <tr><td>Instructions<span class="ui">בתוך הפרויקט</span></td><td>"Add instructions to tailor Claude's responses"</td><td>ההוראות הקבועות שחלות על כל שיחה בפרויקט</td></tr>
-      <tr><td>הוספת קבצים<span class="ui">בתוך הפרויקט</span></td><td>Add files / Add content</td><td>שם נצרף את מסמכי הידע — תבנית, מילון, מקורות</td></tr>
-      <tr><td>בורר המודל</td><td>מעל או מתחת לתיבת ההודעה</td><td>שם עוברים בין Opus 5 ל-Fable 5 לפי המשימה</td></tr>
-    </table></div>
+      <li>
+        <span class="s-num mono">01</span>
+        <div class="s-body">
+          <h3>הורדה</h3>
+          <p>העמוד מזהה לבד איזו מערכת הפעלה יש לך ומציע את הקובץ הנכון — מק וווינדוס שניהם משם.</p>
+          <a class="dl-btn" href="https://claude.com/download" target="_blank" rel="noopener">הורדת Claude Desktop ←</a>
+        </div>
+      </li>
 
-    <div class="grid2" style="margin-top:16px">
-      <div class="card"><span class="tag mono">למה דסקטופ</span><h3>ולא הדפדפן</h3><ul>
-        <li>עובד ישירות מול קבצים מהמחשב</li>
-        <li>חלון קבוע לצד המסמך שאתה כותב</li>
-        <li>מצב קו-וורק נוח יותר על מסך שלם</li>
-        <li>בלי עשרים לשוניות פתוחות מסביב</li></ul></div>
-      <div class="card"><span class="tag mono">מצב קו-וורק</span><h3>מה זה עושה</h3><ul>
-        <li>המסמך נפתח בצד ולא נשפך לתוך הצ'אט</li>
-        <li>אפשר לתקן סעיף אחד בלי לגעת בשאר</li>
-        <li>בסוף — קובץ להורדה</li>
-        <li>אם לא מצאת איפה מפעילים — אל תחפש, נעשה את זה יחד</li></ul></div>
-    </div>
+      <li>
+        <span class="s-num mono">02</span>
+        <div class="s-body">
+          <h3>התקנה</h3>
+          <p>לפי מערכת ההפעלה שלך.</p>
+          <div class="two">
+            <div class="osbox">
+              <h4>macOS</h4>
+              <ul class="s-list">
+                <li>פותחים את קובץ ה-<span class="ltr">.dmg</span> שהורד</li>
+                <li>גוררים את סמל Claude לתיקיית <b>Applications</b></li>
+                <li>פותחים את האפליקציה מתוך Applications</li>
+                <li>בפתיחה הראשונה מאשרים את חלון האבטחה של מק</li>
+              </ul>
+            </div>
+            <div class="osbox">
+              <h4>Windows</h4>
+              <ul class="s-list">
+                <li>פותחים את קובץ ה-<span class="ltr">.exe</span> שהורד</li>
+                <li>מאשרים את חלון ההתקנה ולוחצים <b>Install</b></li>
+                <li>אם מופיעה אזהרת SmartScreen — לוחצים <span class="ltr">More info</span> ואז <span class="ltr">Run anyway</span></li>
+                <li>פותחים מתפריט התחל</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <span class="s-num mono">03</span>
+        <div class="s-body">
+          <h3>התחברות</h3>
+          <p>עם אותו חשבון שבו תשתמש לאורך הקורס.</p>
+          <ul class="s-list">
+            <li>מתחברים באפליקציה עם החשבון שלך</li>
+            <li>מוודאים שהשיחות מסתנכרנות — אותן שיחות בדפדפן ובאפליקציה</li>
+            <li>אם מודל מסוים לא מופיע ברשימה — זה תלוי בסוג המנוי. תגיד לי ונסדר</li>
+          </ul>
+        </div>
+      </li>
+
+      <li>
+        <span class="s-num mono">04</span>
+        <div class="s-body">
+          <h3>התמצאות — ארבעה מקומות</h3>
+          <p>לא צריך לעשות איתם כלום עכשיו. רק למצוא אותם, כדי שבשיעור לא נבזבז זמן על חיפושים.</p>
+          <div class="finds">
+            <div class="find">
+              <span class="f-name">Projects</span>
+              <p class="f-where">בתפריט הצד השמאלי</p>
+              <p class="f-why">שם נקים את סביבת העבודה. כל השיחות המקצועיות ייפתחו בתוכו.</p>
+            </div>
+            <div class="find">
+              <span class="f-name">Instructions</span>
+              <p class="f-where">בתוך הפרויקט — <span class="ltr">Add instructions to tailor Claude&rsquo;s responses</span></p>
+              <p class="f-why">ההוראות הקבועות שחלות על כל שיחה בפרויקט.</p>
+            </div>
+            <div class="find">
+              <span class="f-name">Add files</span>
+              <p class="f-where">בתוך הפרויקט — לפעמים נקרא <span class="ltr">Add content</span></p>
+              <p class="f-why">שם נצרף את מסמכי הידע — תבנית, מילון, מקורות.</p>
+            </div>
+            <div class="find">
+              <span class="f-name">בורר המודל</span>
+              <p class="f-where">מעל או מתחת לתיבת ההודעה</p>
+              <p class="f-why">שם עוברים בין Opus 5 ל-Fable 5 לפי המשימה.</p>
+            </div>
+          </div>
+        </div>
+      </li>
+
+    </ol>
 
     <div class="ready">
-      <b class="mono">מוכן לשיעור הראשון כש:</b>
+      <b>מוכן לשיעור הראשון כש:</b>
       <ul>
         <li>האפליקציה מותקנת ונפתחת מהמחשב</li>
         <li>אתה מחובר וההיסטוריה מסתנכרנת</li>
