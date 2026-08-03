@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>פורטל אישי — On Tobi | AI Lab</title>
+<meta name="description" content="פורטל לימוד אישי — קורס פרטי בעבודה עם בינה מלאכותית לאנליסט. AI Lab.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0d12;
+  --bg-2:#0f131a;
+  --panel:#12171f;
+  --panel-2:#161c25;
+  --line:#232b36;
+  --line-soft:#1b222c;
+  --txt:#dfe4ea;
+  --txt-dim:#98a1ad;
+  --txt-faint:#6d7783;
+  --amber:#d99b3c;
+  --amber-soft:#8a6326;
+  --amber-glow:rgba(217,155,60,.12);
+  --ok:#5f8f6a;
+  --radius:4px;
+  --mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:"Heebo",-apple-system,"Segoe UI",Arial,sans-serif;
+  font-weight:300;
+  font-size:16px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(1100px 620px at 88% -8%,rgba(217,155,60,.075),transparent 62%),
+    radial-gradient(900px 520px at 6% 104%,rgba(86,116,152,.07),transparent 62%),
+    linear-gradient(180deg,#0d1119 0%,#0a0d12 55%,#080b0f 100%);
+  background-attachment:fixed;
+  min-height:100vh;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0v64' fill='none' stroke='%23ffffff' stroke-opacity='.03' stroke-width='1'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+}
+#app{position:relative;z-index:1}
+h1,h2,h3{font-weight:500;line-height:1.35;margin:0}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+button{
+  font-family:"Heebo",sans-serif;cursor:pointer;
+  border-radius:var(--radius);transition:background .15s ease,border-color .15s ease,color .15s ease;
+}
+
+/* ---------- כותרת עליונה ---------- */
+header{
+  border-bottom:1px solid var(--line);
+  background:rgba(10,13,18,.92);
+  backdrop-filter:blur(6px);
+  position:sticky;top:0;z-index:20;
+}
+.hdr{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 0}
+.brand{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--txt-dim);white-space:nowrap}
+.brand b{color:var(--amber);font-weight:500}
+.hdr-name{
+  margin-inline-start:auto;
+  font-family:var(--mono);font-size:12px;color:var(--txt-faint);
+  border-inline-start:1px solid var(--line);padding-inline-start:16px;white-space:nowrap;
+}
+
+/* ---------- Hero ---------- */
+.hero{padding:44px 0 30px;border-bottom:1px solid var(--line-soft)}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase}
+.hero h1{font-size:clamp(24px,4.4vw,33px);margin:10px 0 10px}
+.hero p{color:var(--txt-dim);max-width:62ch;margin:0;font-size:15.5px}
+
+/* ---------- פס התקדמות ---------- */
+.progress{padding:26px 0 6px}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:12px;color:var(--txt-dim);margin-bottom:10px}
+.progress-top b{color:var(--txt);font-weight:500}
+.bar{display:flex;gap:5px}
+.bar span{flex:1;height:3px;background:var(--line);border-radius:2px}
+.bar span.on{background:var(--amber)}
+.bar span.now{background:var(--amber);opacity:.45}
+
+/* ---------- סקשנים ---------- */
+section{padding:44px 0}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.sec-head h2{font-size:19px;white-space:nowrap}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.14em}
+.sec-head::after{content:"";flex:1;height:1px;background:var(--line)}
+.sec-sub{color:var(--txt-dim);font-size:14.5px;margin:-14px 0 24px;max-width:64ch}
+
+/* ---------- כרטיסי שיעורים ---------- */
+.lessons{display:grid;gap:16px}
+.lesson{
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:var(--radius);
+  padding:20px 22px 18px;
+  position:relative;
+  transition:border-color .18s ease,background .18s ease;
+}
+.lesson:hover{border-color:var(--amber-soft);background:var(--panel-2)}
+.lesson.locked{opacity:.62}
+.lesson.locked:hover{border-color:var(--line)}
+.l-top{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.l-num{font-family:var(--mono);font-size:12px;color:var(--amber);letter-spacing:.12em;padding-top:4px;white-space:nowrap}
+.l-title{font-size:17.5px;flex:1;min-width:200px}
+.stamp{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
+  border:1px solid var(--line);color:var(--txt-faint);
+  padding:3px 9px;border-radius:2px;white-space:nowrap;
+}
+.stamp.done{border-color:#3c5a44;color:var(--ok)}
+.stamp.next{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.l-rule{height:1px;background:linear-gradient(to left,var(--amber-soft),transparent 70%);margin:14px 0 13px}
+.l-desc{color:var(--txt-dim);font-size:14.5px;margin:0 0 12px}
+.topics{list-style:none;margin:0 0 8px;padding:0;display:grid;gap:6px}
+.topics li{position:relative;padding-inline-start:17px;font-size:14.5px;color:var(--txt)}
+.topics li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;width:5px;height:5px;background:var(--amber-soft);border-radius:1px}
+.deliverable{
+  font-size:13.5px;color:var(--txt-dim);
+  border-inline-start:2px solid var(--amber-soft);
+  padding-inline-start:11px;margin:14px 0 0;
+}
+.deliverable b{color:var(--txt);font-weight:500}
+.l-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;padding-top:14px;border-top:1px solid var(--line-soft)}
+.l-links a{
+  font-family:var(--mono);font-size:12px;letter-spacing:.04em;
+  border:1px solid var(--line);color:var(--txt-dim);
+  padding:6px 13px;border-radius:var(--radius);
+  transition:border-color .15s ease,color .15s ease,background .15s ease;
+}
+.l-links a:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow);text-decoration:none}
+.l-links a.primary{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.l-links a.primary:hover{background:rgba(217,155,60,.2)}
+.l-links a.off{opacity:.45;pointer-events:none}
+
+/* ---------- התקנה ---------- */
+.dl{display:flex;align-items:center;gap:20px;flex-wrap:wrap;border:1px solid var(--amber-soft);border-radius:var(--radius);
+    background:linear-gradient(180deg,var(--amber-glow),transparent 65%),var(--panel);padding:20px 22px}
+.dl-txt{flex:1;min-width:240px}
+.dl-kick{display:block;font-size:10.5px;letter-spacing:.14em;color:var(--amber);margin-bottom:6px}
+.dl-txt p{margin:0;color:var(--txt-dim);font-size:14.5px}
+.dl-btn{background:var(--amber);color:#12100b;border-radius:var(--radius);padding:12px 22px;font-size:15px;font-weight:500;white-space:nowrap;transition:background .15s ease}
+.dl-btn:hover{background:#e8ac52;text-decoration:none}
+.sub-h{font-size:16px;margin:28px 0 12px;color:var(--txt)}
+.tbl .ui{font-family:var(--mono);font-size:10.5px;color:var(--txt-faint);display:block}
+.ready{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:16px 18px;margin-top:16px}
+.ready b{display:block;font-size:10.5px;letter-spacing:.13em;color:var(--ok);margin-bottom:9px;font-weight:500}
+.ready ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.ready li{font-size:14px;color:var(--txt-dim);padding-inline-start:19px;position:relative}
+.ready li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-size:12px}
+
+/* ---------- בחירת מודל ---------- */
+.models{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.model-card{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:18px 19px 16px}
+.model-card.hi{border-color:var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 55%),var(--panel)}
+.m-head{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.m-head h3{font-size:19px;font-family:var(--mono);font-weight:500;letter-spacing:.02em}
+.m-tag{font-size:10px;letter-spacing:.11em;border:1px solid var(--line);color:var(--txt-faint);padding:2px 8px;border-radius:2px}
+.model-card.hi .m-tag{border-color:var(--amber-soft);color:var(--amber)}
+.m-role{color:var(--amber);font-size:14px;margin:4px 0 0}
+.m-list{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.m-list li{position:relative;padding-inline-start:16px;font-size:14px}
+.m-list li::before{content:"";position:absolute;inset-inline-start:0;top:.68em;width:5px;height:5px;background:var(--amber-soft);border-radius:1px}
+.m-foot{color:var(--txt-dim);font-size:13.5px;margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line-soft)}
+.m-warn{border:1px solid var(--line);border-inline-start:2px solid var(--amber);background:var(--panel);border-radius:var(--radius);padding:14px 16px;margin:16px 0 0;font-size:14px;color:var(--txt-dim)}
+.m-warn b{color:var(--txt);font-weight:500}
+
+/* ---------- ספריית פרומפטים ---------- */
+.prompts{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}
+.prompt{
+  border:1px solid var(--line);background:var(--panel);
+  border-radius:var(--radius);padding:18px 18px 16px;
+  display:flex;flex-direction:column;
+  transition:border-color .18s ease;
+}
+.prompt:hover{border-color:var(--amber-soft)}
+.p-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.p-head h3{font-size:15.5px;flex:1;min-width:140px}
+.cat{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--amber);border:1px solid var(--amber-soft);padding:2px 7px;border-radius:2px;white-space:nowrap}
+.p-rule{height:1px;background:var(--line-soft);margin:0 0 12px}
+textarea{
+  width:100%;min-height:132px;resize:vertical;
+  background:var(--bg-2);border:1px solid var(--line-soft);
+  color:var(--txt-dim);border-radius:var(--radius);
+  padding:11px 12px;font-family:"Heebo",sans-serif;font-size:13px;line-height:1.65;
+  direction:rtl;
+}
+textarea:focus{border-color:var(--amber-soft);outline:none;color:var(--txt)}
+.copy{
+  margin-top:11px;align-self:flex-start;
+  background:transparent;border:1px solid var(--line);color:var(--txt-dim);
+  font-family:var(--mono);font-size:12px;padding:6px 15px;
+}
+.copy:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.copy.done{border-color:#3c5a44;color:var(--ok);background:transparent}
+
+/* ---------- כללי עבודה בטוחה ---------- */
+.safety{
+  border:1px solid var(--amber-soft);
+  background:linear-gradient(180deg,var(--amber-glow),transparent 70%),var(--panel);
+  border-radius:var(--radius);
+  padding:24px 24px 22px;
+}
+.safety .sh{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.safety .sh h2{font-size:17px}
+.safety .sh .sec-num{color:var(--amber)}
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.rules li{position:relative;padding-inline-start:26px;font-size:14.5px;line-height:1.65}
+.rules li::before{
+  content:"×";position:absolute;inset-inline-start:0;top:-1px;
+  font-family:var(--mono);color:var(--amber);font-size:14px;
+}
+.rules li.pos::before{content:"✓";color:var(--ok)}
+
+/* ---------- כותרת תחתונה ---------- */
+footer{
+  border-top:1px solid var(--line);margin-top:20px;padding:26px 0 40px;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:12px;color:var(--txt-faint);
+}
+
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .hdr{padding:12px 0;gap:10px}
+  .hero{padding:32px 0 24px}
+  section{padding:34px 0}
+  .lesson{padding:17px 16px 15px}
+  .prompts{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+
+<header>
+  <div class="wrap hdr">
+    <div class="brand"><b>AI Lab</b> · שיעורים פרטיים</div>
+    <div class="hdr-name">On Tobi</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <div class="kicker mono">COURSE FILE · 04 SESSIONS</div>
+    <h1>עבודה עם קלוד במצב קו-וורק — לאנליסט דסק</h1>
+    <p>הקורס נבנה סביב מסמך מדיניות אחד שנתקע. בכל שיעור הוא מתקדם שלב, ובסופו הוא מוגש — ומה שנשאר בידך היא השיטה שתחזור על עצמה בכל מסמך הבא.</p>
+  </div>
+
+  <div class="progress">
+    <div class="progress-top">
+      <span>שיעור <b id="prog-current">1</b> מתוך <b>4</b></span>
+      <span id="prog-label">בתהליך</span>
+    </div>
+    <div class="bar" id="bar" aria-hidden="true"></div>
+  </div>
+
+  <!-- ====== התקנה ====== -->
+  <section id="setup">
+    <div class="sec-head"><span class="sec-num mono">01</span><h2>לפני שמתחילים — Claude Desktop</h2></div>
+    <p class="sec-sub">המשימה לפני השיעור הראשון: להתקין את האפליקציה על המחשב, להתחבר, ולהתמצא בארבעה מקומות. כרבע שעה. את הפרויקט עצמו נקים יחד בשיעור.</p>
+
+    <div class="dl">
+      <div class="dl-txt">
+        <span class="dl-kick mono">שלב 1 · הורדה</span>
+        <p>העמוד מזהה לבד איזו מערכת הפעלה יש לך ומציע את הקובץ הנכון. מק, ווינדוס — שניהם משם.</p>
+      </div>
+      <a class="dl-btn" href="https://claude.com/download" target="_blank" rel="noopener">הורדת Claude Desktop ←</a>
+    </div>
+
+    <div class="grid2" style="margin-top:16px">
+      <div class="card"><span class="tag mono">שלב 2 · מק</span><h3>התקנה ב-macOS</h3><ul>
+        <li>פותחים את הקובץ שהורד (סיומת dmg.)</li>
+        <li>גוררים את סמל Claude לתיקיית Applications</li>
+        <li>פותחים את האפליקציה מתוך Applications</li>
+        <li>בפתיחה הראשונה מאשרים את חלון האבטחה של מק</li></ul></div>
+      <div class="card"><span class="tag mono">שלב 2 · ווינדוס</span><h3>התקנה ב-Windows</h3><ul>
+        <li>פותחים את הקובץ שהורד (סיומת exe.)</li>
+        <li>מאשרים את חלון ההתקנה ולוחצים Install</li>
+        <li>אם ווינדוס מציג אזהרת SmartScreen — More info ואז Run anyway</li>
+        <li>פותחים מתפריט התחל</li></ul></div>
+      <div class="card"><span class="tag mono">שלב 3 · חשבון</span><h3>התחברות</h3><ul>
+        <li>מתחברים עם אותו חשבון שבו תשתמש בקורס</li>
+        <li>מוודאים שהשיחות מסתנכרנות — אותן שיחות בדפדפן ובאפליקציה</li>
+        <li>אם מודל מסוים לא מופיע ברשימה — זה תלוי בסוג המנוי. תגיד לי ונסדר</li></ul></div>
+    </div>
+
+    <h3 class="sub-h">ארבעה מקומות שצריך למצוא באפליקציה</h3>
+    <div class="scroll"><table class="tbl">
+      <tr><th>מה</th><th>איפה</th><th>למה זה משנה</th></tr>
+      <tr><td>Projects</td><td>בתפריט הצד השמאלי</td><td>שם נקים את סביבת העבודה — כל השיחות המקצועיות ייפתחו בתוכו</td></tr>
+      <tr><td>Instructions<span class="ui">בתוך הפרויקט</span></td><td>"Add instructions to tailor Claude's responses"</td><td>ההוראות הקבועות שחלות על כל שיחה בפרויקט</td></tr>
+      <tr><td>הוספת קבצים<span class="ui">בתוך הפרויקט</span></td><td>Add files / Add content</td><td>שם נצרף את מסמכי הידע — תבנית, מילון, מקורות</td></tr>
+      <tr><td>בורר המודל</td><td>מעל או מתחת לתיבת ההודעה</td><td>שם עוברים בין Opus 5 ל-Fable 5 לפי המשימה</td></tr>
+    </table></div>
+
+    <div class="grid2" style="margin-top:16px">
+      <div class="card"><span class="tag mono">למה דסקטופ</span><h3>ולא הדפדפן</h3><ul>
+        <li>עובד ישירות מול קבצים מהמחשב</li>
+        <li>חלון קבוע לצד המסמך שאתה כותב</li>
+        <li>מצב קו-וורק נוח יותר על מסך שלם</li>
+        <li>בלי עשרים לשוניות פתוחות מסביב</li></ul></div>
+      <div class="card"><span class="tag mono">מצב קו-וורק</span><h3>מה זה עושה</h3><ul>
+        <li>המסמך נפתח בצד ולא נשפך לתוך הצ'אט</li>
+        <li>אפשר לתקן סעיף אחד בלי לגעת בשאר</li>
+        <li>בסוף — קובץ להורדה</li>
+        <li>אם לא מצאת איפה מפעילים — אל תחפש, נעשה את זה יחד</li></ul></div>
+    </div>
+
+    <div class="ready">
+      <b class="mono">מוכן לשיעור הראשון כש:</b>
+      <ul>
+        <li>האפליקציה מותקנת ונפתחת מהמחשב</li>
+        <li>אתה מחובר וההיסטוריה מסתנכרנת</li>
+        <li>מצאת את Projects בתפריט הצד</li>
+        <li>מצאת את בורר המודל</li>
+      </ul>
+    </div>
+    <p class="m-warn" style="margin-top:16px"><b>הערה:</b> שמות הכפתורים בממשק משתנים מדי פעם. אם משהו נקרא אחרת ממה שכתוב כאן — זה כנראה אותו דבר. אל תיתקע על זה.</p>
+  </section>
+
+  <!-- ====== שיעורים ====== -->
+  <section id="lessons">
+    <div class="sec-head"><span class="sec-num mono">02</span><h2>מהלך הקורס</h2></div>
+
+    <div class="lessons">
+
+      <article class="lesson">
+        <div class="l-top">
+          <div class="l-num mono">שיעור 01</div>
+          <h3 class="l-title">בניית סביבת עבודה בריאה</h3>
+          <span class="stamp next mono">השיעור הבא</span>
+        </div>
+        <div class="l-rule"></div>
+        <p class="l-desc">שלושה שלבים: מסמכי ידע לפרויקט, הוראות קבועות, ופרומפט-אב — ואז הרצה ראשונה בקו-וורק.</p>
+        <ul class="topics">
+          <li>שלב 1 — הכנת מסמכי ידע וצירופם לפרויקט</li>
+          <li>שלב 2 — מילוי הוראות הפרויקט (Instructions)</li>
+          <li>שלב 3 — כתיבת פרומפט-האב ושמירתו כקובץ</li>
+          <li>שלב 4 — הרצה ראשונה במצב קו-וורק</li>
+        </ul>
+        <p class="deliverable"><b>תוצר:</b> פרויקט עובד + טיוטה ראשונה של המסמך.</p>
+        <div class="l-links">
+          <a class="primary" href="lesson-1.html">פתח מצגת</a><a class="off" href="#">הקלטה</a><a class="off" href="#">משימה</a>
+        </div>
+      </article>
+
+      <article class="lesson locked">
+        <div class="l-top">
+          <div class="l-num mono">שיעור 02</div>
+          <h3 class="l-title">סקירת עומק ואינטגרציה של מקורות</h3>
+          <span class="stamp mono">נעול</span>
+        </div>
+        <div class="l-rule"></div>
+        <p class="l-desc">סוגרים את פערי הידע של הטיוטה: מקורות ממוזגים, מהימנות מדורגת, סתירות מסומנות.</p>
+        <ul class="topics">
+          <li>מחקר רשת מובנה</li>
+          <li>מיזוג מקורות מרובים</li>
+          <li>דירוג מהימנות וזיהוי סתירות</li>
+          <li>הפרדה בין עובדה להערכה</li>
+        </ul>
+        <p class="deliverable"><b>תוצר:</b> סקירה שסוגרת את פערי המסמך.</p>
+        <div class="l-links">
+          <a class="primary" href="lesson-2.html">פתח מצגת</a><a class="off" href="#">הקלטה</a><a class="off" href="#">משימה</a>
+        </div>
+      </article>
+
+      <article class="lesson locked">
+        <div class="l-top">
+          <div class="l-num mono">שיעור 03</div>
+          <h3 class="l-title">תפוקות: מסמכי וורד ומצגות</h3>
+          <span class="stamp mono">נעול</span>
+        </div>
+        <div class="l-rule"></div>
+        <p class="l-desc">המסמך יוצא לאוויר: גרסה בתבנית הארגונית, ומצגת שנגזרת ממנה בלי לכתוב מחדש.</p>
+        <ul class="topics">
+          <li>ממסמך גולמי למסמך מעוצב לפי תבנית ארגונית</li>
+          <li>בניית מצגת מאותו חומר</li>
+          <li>שקף מסרים</li>
+          <li>עברית וכיווניות במסמכים</li>
+        </ul>
+        <p class="deliverable"><b>תוצר:</b> המסמך בתבנית + מצגת ממנו.</p>
+        <div class="l-links">
+          <a class="primary" href="lesson-3.html">פתח מצגת</a><a class="off" href="#">הקלטה</a><a class="off" href="#">משימה</a>
+        </div>
+      </article>
+
+      <article class="lesson locked">
+        <div class="l-top">
+          <div class="l-num mono">שיעור 04</div>
+          <h3 class="l-title">נתונים, הערכות ושיטת עבודה קבועה</h3>
+          <span class="stamp mono">נעול</span>
+        </div>
+        <div class="l-rule"></div>
+        <p class="l-desc">נתונים, תרחישים והמלצות סוגרים את המסמך — ומשם לשיטת עבודה שחוזרת על עצמה.</p>
+        <ul class="topics">
+          <li>ניתוח קובצי אקסל וגרפים</li>
+          <li>תרחישים ורמות ודאות</li>
+          <li>המלצות ומדדי הצלחה</li>
+          <li>תרגול מקצה לקצה</li>
+        </ul>
+        <p class="deliverable"><b>תוצר:</b> המסמך מוגש + שיטת עבודה קבועה.</p>
+        <div class="l-links">
+          <a class="primary" href="lesson-4.html">פתח מצגת</a><a class="off" href="#">הקלטה</a><a class="off" href="#">משימה</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ====== בחירת מודל ====== -->
+  <section id="models">
+    <div class="sec-head"><span class="sec-num mono">03</span><h2>איזה מודל, מתי</h2></div>
+    <p class="sec-sub">שני כלים לשני סוגי משימות. בכל תרגיל במצגות מסומן במה להשתמש — זה הכרטיס שחוזרים אליו כשלא בטוחים.</p>
+    <div class="models">
+      <article class="model-card">
+        <div class="m-head"><h3>Opus 5</h3><span class="m-tag mono">ברירת מחדל</span></div>
+        <p class="m-role">מנוע העבודה</p>
+        <div class="p-rule"></div>
+        <ul class="m-list">
+          <li>עריכה איטרטיבית — לתקן סעיף, להריץ שוב</li>
+          <li>החלת מבנה ותבנית על טקסט קיים</li>
+          <li>ביקורת, אימות טענות ובדיקות שפיות</li>
+          <li>כל מה שדורש כמה סיבובים מהירים</li>
+        </ul>
+        <p class="m-foot">מהיר, ומחזיק הרבה יותר שימוש במכסה. זה המודל לרוב מה שתעשה.</p>
+      </article>
+      <article class="model-card hi">
+        <div class="m-head"><h3>Fable 5</h3><span class="m-tag mono">לריצות כבדות</span></div>
+        <p class="m-role">הריצה העמוקה</p>
+        <div class="p-rule"></div>
+        <ul class="m-list">
+          <li>מיזוג מקורות רבים וסותרים</li>
+          <li>ניווט במשימה מעורפלת שאין לה מתכון</li>
+          <li>תוצרים ארגוניים שלמים — מסמך, מצגת, גיליון</li>
+          <li>תרחישים והערכות מורכבות</li>
+        </ul>
+        <p class="m-foot">חושב תמיד — תשובה יכולה לקחת דקות ארוכות. תן לו את כל המשימה בפנייה אחת ותן לו לרוץ.</p>
+      </article>
+    </div>
+    <p class="m-warn"><b>שים לב:</b> ב-Fable 5 יש מסנני בטיחות מחמירים במיוחד בתחומי סייבר וביולוגיה. עבודה גלויה ולגיטימית שנוגעת בסייבר עלולה להיתקל בסירוב. אם זה קורה — עוברים ל-Opus 5 ולא מתווכחים עם הכלי.</p>
+  </section>
+
+  <!-- ====== ספריית פרומפטים ====== -->
+  <section id="prompts">
+    <div class="sec-head"><span class="sec-num mono">04</span><h2>ספריית פרומפטים</h2></div>
+    <p class="sec-sub">פרומפטים מוכנים לשימוש חוזר. העתק, הדבק בקלוד, והחלף את הסוגריים המרובעים בפרטי המשימה שלך.</p>
+    <div class="prompts" id="prompt-grid"></div>
+  </section>
+
+  <!-- ====== כללי עבודה בטוחה ====== -->
+  <section id="safety">
+    <div class="safety">
+      <div class="sh"><span class="sec-num mono">05</span><h2>כללי עבודה בטוחה</h2></div>
+      <ul class="rules">
+        <li class="pos">עובדים עם מקורות גלויים בלבד.</li>
+        <li>אין להעלות חומר מסווג או רגיש לכל שירות ענן.</li>
+        <li>בספק — לא מעלים, ושואלים.</li>
+        <li class="pos">הכלים משלימים את שיקול הדעת של האנליסט ואינם מחליפים אותו.</li>
+        <li class="pos">כל תוצר עובר ביקורת אנושית לפני הפצה.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <span>AI Lab · מאיר לביא</span>
+    <a href="https://ai-lab.co.il" target="_blank" rel="noopener">ai-lab.co.il</a>
+  </footer>
+
+</main>
+</div>
+
+<script>
+/* ============================================================
+   הגדרות — כאן משנים
+   ============================================================ */
+const CURRENT_LESSON = 1;  // השיעור הנוכחי (1–4) — משנה את פס ההתקדמות
+
+/* ---------- פס התקדמות ---------- */
+(function () {
+  const bar = document.getElementById("bar");
+  for (let i = 1; i <= 4; i++) {
+    const s = document.createElement("span");
+    if (i < CURRENT_LESSON) s.className = "on";
+    else if (i === CURRENT_LESSON) s.className = "now";
+    bar.appendChild(s);
+  }
+  document.getElementById("prog-current").textContent = CURRENT_LESSON;
+  document.getElementById("prog-label").textContent =
+    CURRENT_LESSON > 4 ? "הקורס הושלם" : "בתהליך";
+})();
+
+/* ---------- ספריית פרומפטים ---------- */
+const PROMPTS = [
+{
+  title: "מסמך מדיניות",
+  cat: "פרומפט-אב",
+  text:
+`אתה אנליסט בכיר בתחומי ביטחון לאומי ופשיעה, הכותב עבור דרג מקבלי החלטות.
+כתוב מסמך מדיניות בנושא: [הנושא].
+חומר הרקע: [הדבק כאן את המקורות או צרף קבצים].
+
+מבנה קבוע וחובה, בסדר הזה:
+1. תקציר מנהלים — עד 150 מילים, עומד בפני עצמו, ללא ז'רגון.
+2. ממצאים עיקריים — 4-6 נקודות. כל ממצא במשפט אחד ואחריו שורת ביסוס עם המקור.
+3. מגמות — מה משתנה לאורך זמן, לאיזה כיוון, ובאיזה קצב.
+4. הערכה — הפרשנות שלך, מסומנת במפורש כהערכה ולא כעובדה, עם רמת ודאות לכל טענה (ודאי / סביר / אפשרי / ספקולטיבי).
+5. המלצות — 3-5 המלצות מבצעיות. לכל אחת: מה לעשות, מי הגורם המבצע, ומסגרת זמן.
+6. מדדי הצלחה — איך נדע בעוד שישה חודשים אם ההמלצות עבדו. מדדים ניתנים למדידה.
+
+הוראות סגנון:
+- כתיבה נקודתית. משפטים קצרים. בלי מלל סרק, בלי מבוא כללי ובלי סיכום חוזר.
+- כל טענה עובדתית מגובה במקור. אם אין מקור — כתוב "לא מבוסס" במפורש.
+- אל תמציא נתונים, שמות, תאריכים או מספרים. חסר מידע — ציין זאת כפער ידע.
+- הפרד תמיד בין מה שידוע לבין מה שאתה מעריך.
+- עברית תקנית, גוף שלישי, בלי סופרלטיבים.
+
+בסיום הוסף סעיף "פערי ידע" — מה חסר כדי לחזק את המסמך.`
+},
+{
+  title: "אינטגרציית מקורות",
+  cat: "מחקר",
+  text:
+`לפניך מספר מקורות על אותו נושא: [הנושא].
+המקורות: [הדבק כאן את המקורות, או צרף קבצים / קישורים].
+
+בצע אינטגרציה מלאה, לפי הסדר:
+
+1. טבלת מקורות — לכל מקור: שם/כתובת, סוג (דיווח / מחקר / רשמי / משני), תאריך, וציון מהימנות A-E:
+   A = גורם רשמי או מחקר עם מתודולוגיה גלויה
+   B = מקור מקצועי מבוסס
+   C = תקשורת כללית
+   D = מקור אנונימי או לא מזוהה
+   E = מקור בעל אינטרס מובהק בנושא
+   הוסף שורת נימוק קצרה לכל ציון.
+
+2. טבלת השוואה — שורות = הסוגיות המרכזיות, עמודות = המקורות, בתאים = מה כל מקור אומר על אותה סוגיה. תא ריק אם המקור שותק.
+
+3. נקודות הסכמה — מה מופיע בשני מקורות בלתי תלויים או יותר.
+
+4. סתירות — לכל סתירה: מי טוען מה, מהו פער המהימנות ביניהם, ומה ההסבר הסביר לפער (עיתוי שונה, הגדרה שונה, אינטרס).
+
+5. תמונה משולבת — פסקה אחת המשקללת את הכל, עם משקל גדול יותר למקורות בדירוג גבוה.
+
+אל תשלים פערים בהשערות. מה שאף מקור לא אומר — רשום תחת "לא מכוסה".`
+},
+{
+  title: "הפרדת עובדה מהערכה",
+  cat: "ניתוח",
+  text:
+`קח את הטקסט הגולמי הבא ופרק אותו לשתי רשימות נפרדות.
+הטקסט: [הדבק כאן].
+
+רשימה א' — עובדות: רק טענות הניתנות לאימות, שנאמרות במפורש בטקסט. לכל עובדה ציין את המקור בתוך הטקסט (מי אמר, מתי).
+
+רשימה ב' — הערכות ופרשנות: כל טענה שהיא מסקנה, ניבוי, ייחוס כוונה או שיפוט. לכל הערכה ציין:
+- מה נטען
+- על מה היא נשענת (איזו עובדה מרשימה א')
+- רמת ודאות: ודאי / סביר / אפשרי / ספקולטיבי
+- מה היה מחזק אותה ומה היה מפריך אותה
+
+בסוף הוסף רשימה ג' — "נאמר כעובדה אך אינו עובדה": ניסוחים בטקסט שמוצגים כידיעה ודאית אך למעשה הם הערכה. צטט את הניסוח המקורי והצע ניסוח מדויק יותר.
+
+היה שמרן: בספק אם טענה היא עובדה או הערכה — סווג אותה כהערכה.`
+},
+{
+  title: "ממסמך למצגת",
+  cat: "תפוקות",
+  text:
+`הפוך את המסמך הבא למתווה מצגת למקבלי החלטות.
+המסמך: [הדבק כאן או צרף קובץ].
+קהל היעד: [למשל: ראשי אגפים, 20 דקות הצגה].
+
+כללים:
+- עד 10 שקפים סך הכול. שקף 1 = הנושא והשאלה שהמצגת עונה עליה. השקף האחרון = החלטות נדרשות.
+- לכל שקף: כותרת קצרה, שורת מסר אחת (משפט שלם שהוא המסקנה של השקף — לא כותרת נושא), עד 4 בולטים תומכים, והצעה לויזואליזציה (גרף עמודות / ציר זמן / מפה / טבלה / דיאגרמת זרימה) עם ציון איזה נתון בדיוק מוצג בה.
+- בלי טקסט רץ בשקפים. הפירוט עובר לדברי המציג.
+- לכל שקף הוסף שורת "דברי המציג" של 2-3 משפטים.
+
+בסיום הוסף:
+- "שקף מסרים" מרכז: שלושת המשפטים שהקהל צריך לזכור אם ישכח את כל השאר.
+- רשימת שקפי גיבוי אפשריים לשאלות צפויות.`
+},
+{
+  title: "ניתוח מגמות מנתונים",
+  cat: "נתונים",
+  text:
+`צרפתי קובץ נתונים: [תאר את הקובץ — מה כל עמודה מייצגת ומה טווח התאריכים].
+
+בצע ניתוח לפי הסדר:
+
+1. בדיקת שפיות — כמה שורות, אילו עמודות, אילו ערכים חסרים או חריגים טכנית (תאריכים לא תקינים, כפילויות). דווח לפני כל ניתוח.
+
+2. שלוש מגמות מרכזיות — לכל מגמה:
+   - תיאור המגמה במשפט אחד
+   - הנתון המספרי המדויק שתומך בה (מ-X ל-Y בין תאריך לתאריך, שיעור שינוי באחוזים)
+   - האם היא עקבית לאורך כל התקופה או מתרכזת בקטע מסוים
+   - גרף מוצע: סוג הגרף, מה על ציר האופקי, מה על האנכי
+
+3. חריגים — נקודות שסוטות מהדפוס. לכל חריג: מתי, בכמה, ושלוש היפותזות אפשריות להסבר, מסומנות כהיפותזות.
+
+4. מה הנתונים לא אומרים — אילו שאלות אי אפשר לענות עליהן מהקובץ הזה, ואיזה נתון היה נדרש.
+
+עבוד רק מהנתונים בקובץ. אל תשלב ידע חיצוני אלא אם אבקש במפורש, וסמן זאת בנפרד. כל מספר שאתה מציג — ציין מאיזו עמודה הוא חושב.`
+},
+{
+  title: "תחזית ותרחישים",
+  cat: "הערכה",
+  text:
+`בנה הערכת תרחישים בנושא: [הנושא].
+אופק הזמן: [למשל 12 חודשים].
+בסיס הידע: [הדבק את חומר הרקע או הפנה למסמך קודם].
+
+הצג שלושה תרחישים:
+1. תרחיש בסיס — המשך המגמות הקיימות.
+2. תרחיש החמרה — הידרדרות סבירה.
+3. תרחיש הפתעה — אירוע בעל הסתברות נמוכה והשפעה גבוהה.
+
+לכל תרחיש כתוב:
+- תיאור: מה קורה, בשלושה-ארבעה משפטים.
+- הסתברות איכותית: גבוהה / בינונית / נמוכה — ונמק בשורה אחת.
+- הנחות היסוד: מה חייב להתקיים כדי שהתרחיש יתממש.
+- סימנים מקדימים: 3-4 אינדיקטורים שניתן לעקוב אחריהם בפועל, ושהופעתם מעידה שהתרחיש מתממש. כל אינדיקטור צריך להיות דבר שניתן לראות במקורות גלויים.
+- השלכות: על מי ובאיזה אופן.
+- המלצה: מה לעשות היום אם זה התרחיש שיתממש.
+
+בסיום:
+- טבלת אינדיקטורים מרוכזת — אינדיקטור, לאיזה תרחיש הוא מצביע, ואיפה עוקבים אחריו.
+- "מה יפריך את ההערכה שלי" — אילו ממצאים היו מחייבים לכתוב אותה מחדש.
+
+סמן בבירור שכל האמור הוא הערכה ולא ידיעה.`
+}
+];
+
+(function () {
+  const grid = document.getElementById("prompt-grid");
+  PROMPTS.forEach(function (p, i) {
+    const card = document.createElement("article");
+    card.className = "prompt";
+
+    const head = document.createElement("div");
+    head.className = "p-head";
+    const h = document.createElement("h3");
+    h.textContent = p.title;
+    const cat = document.createElement("span");
+    cat.className = "cat mono";
+    cat.textContent = p.cat;
+    head.appendChild(h); head.appendChild(cat);
+
+    const rule = document.createElement("div");
+    rule.className = "p-rule";
+
+    const ta = document.createElement("textarea");
+    ta.readOnly = true;
+    ta.id = "p-" + i;
+    ta.value = p.text;
+    ta.setAttribute("aria-label", "טקסט הפרומפט: " + p.title);
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "copy";
+    btn.textContent = "העתקה";
+    btn.setAttribute("aria-label", "העתקת הפרומפט " + p.title);
+    btn.addEventListener("click", function () { copyPrompt(ta, btn); });
+
+    card.appendChild(head); card.appendChild(rule);
+    card.appendChild(ta); card.appendChild(btn);
+    grid.appendChild(card);
+  });
+})();
+
+/* העתקה ללוח — עובדת גם בטלפון (fallback ל-execCommand) */
+function copyPrompt(ta, btn) {
+  const text = ta.value;
+  const done = function () {
+    btn.textContent = "הועתק ✓";
+    btn.classList.add("done");
+    setTimeout(function () {
+      btn.textContent = "העתקה";
+      btn.classList.remove("done");
+    }, 1800);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(done, function () { legacyCopy(ta, done); });
+  } else {
+    legacyCopy(ta, done);
+  }
+}
+function legacyCopy(ta, done) {
+  const ro = ta.readOnly;
+  ta.readOnly = false;              // iOS לא מסמן שדה readOnly
+  ta.focus();
+  ta.setSelectionRange(0, ta.value.length);
+  try { document.execCommand("copy"); done(); } catch (e) {}
+  ta.readOnly = ro;
+  window.getSelection().removeAllRanges();
+  ta.blur();
+}
+</script>
+</body>
+</html>

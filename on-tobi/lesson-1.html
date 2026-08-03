@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>שיעור 01 — בניית סביבת העבודה | AI Lab</title>
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0d12;--bg-2:#0f131a;--panel:#12171f;--panel-2:#161c25;
+  --line:#232b36;--line-soft:#1b222c;
+  --txt:#dfe4ea;--txt-dim:#98a1ad;--txt-faint:#6d7783;
+  --amber:#d99b3c;--amber-soft:#8a6326;--amber-glow:rgba(217,155,60,.11);
+  --ok:#5f8f6a;--mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:"Heebo",-apple-system,"Segoe UI",Arial,sans-serif;font-weight:300;
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow:hidden;
+  background-image:
+    radial-gradient(1100px 620px at 88% -12%,rgba(217,155,60,.075),transparent 62%),
+    radial-gradient(900px 520px at 6% 108%,rgba(86,116,152,.07),transparent 62%),
+    linear-gradient(180deg,#0d1119 0%,#0a0d12 55%,#080b0f 100%);
+  background-attachment:fixed;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0v64' fill='none' stroke='%23ffffff' stroke-opacity='.032' stroke-width='1'/%3E%3Cpath d='M0 0h1v1H0z' fill='%23d99b3c' fill-opacity='.10'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-position:center;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+}
+h1,h2,h3{font-weight:500;line-height:1.28;margin:0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+button{font-family:"Heebo",sans-serif;cursor:pointer;border-radius:4px;transition:border-color .15s,color .15s,background .15s}
+
+.deck{position:relative;z-index:1;display:flex;flex-direction:column;height:100dvh}
+.tb-back{color:var(--txt-faint);text-decoration:none;border:1px solid var(--line);border-radius:3px;padding:3px 10px;transition:color .15s,border-color .15s}
+.tb-back:hover{color:var(--amber);border-color:var(--amber-soft)}
+.topbar{display:flex;align-items:center;gap:14px;padding:11px 22px;border-bottom:1px solid var(--line);background:rgba(10,13,18,.72);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--txt-faint);flex:none}
+.topbar .b{color:var(--amber)}
+.tb-title{color:var(--txt-dim);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pbar{height:2px;background:var(--line-soft);flex:none}
+.pbar div{height:100%;background:var(--amber);width:0;transition:width .25s ease}
+#stage{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;align-items:stretch;justify-content:center}
+.slide{
+  display:none;flex-direction:column;justify-content:center;justify-content:safe center;
+  width:100%;max-width:1150px;
+  padding:clamp(24px,4.5vh,60px) clamp(20px,4.5vw,58px) clamp(24px,4.5vh,54px);
+  animation:fade .22s ease;
+}
+.slide.active{display:flex}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:11px}
+.kick .n{border:1px solid var(--amber-soft);border-radius:2px;padding:2px 8px;letter-spacing:.1em}
+.slide h2{font-size:clamp(24px,4vw,36px);margin-bottom:8px}
+.rule{height:1px;background:linear-gradient(to left,var(--amber-soft),transparent 65%);margin:16px 0 22px}
+.lead{color:var(--txt-dim);font-size:clamp(15.5px,2vw,18.5px);max-width:66ch;margin:0 0 22px}
+
+ul.b{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+ul.b li{position:relative;padding-inline-start:20px;font-size:clamp(15.5px,2vw,18.5px)}
+ul.b li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:6px;height:6px;background:var(--amber-soft);border-radius:1px}
+ul.b li b{font-weight:500;color:#fff}
+ul.b li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
+ul.num{list-style:none;margin:0;padding:0;display:grid;gap:13px;counter-reset:n}
+ul.num li{position:relative;padding-inline-start:38px;font-size:clamp(15px,1.9vw,17.5px);counter-increment:n}
+ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inset-inline-start:0;top:.15em;font-family:var(--mono);font-size:12px;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:1px 5px}
+ul.num li b{font-weight:500;color:#fff}
+ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{border:1px solid var(--line);background:rgba(18,23,31,.86);border-radius:4px;padding:16px 17px}
+.card h3{font-size:15.5px;margin-bottom:6px}
+.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.11em;color:var(--amber);display:block;margin-bottom:7px}
+.card p{margin:0;color:var(--txt-dim);font-size:14px}
+.card ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:5px}
+.card ul li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:13px;position:relative}
+.card ul li::before{content:"·";position:absolute;inset-inline-start:2px;color:var(--amber)}
+
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.compare .bad{border-color:#4a3030}
+.compare .good{border-color:var(--amber-soft)}
+.compare .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;margin-bottom:8px;display:block}
+.bad .lbl{color:#c07a68}.good .lbl{color:var(--amber)}
+.compare p{font-size:14px;color:var(--txt);margin:0;white-space:pre-wrap}
+
+/* קופסת "מה עושים עכשיו" */
+.do{border:1px solid var(--line);background:rgba(18,23,31,.9);border-radius:4px;padding:17px 18px 16px;margin-top:6px}
+.do-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.do-h b{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px;font-weight:500}
+.do-h span{font-family:var(--mono);font-size:11px;color:var(--txt-faint)}
+.do-h::after{content:"";flex:1;height:1px;background:var(--line)}
+.check{margin-top:15px;border-top:1px solid var(--line);padding-top:12px}
+.check b{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ok);display:block;margin-bottom:8px}
+.check ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.check li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:19px;position:relative}
+.check li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-size:12px}
+
+.ex{border:1px solid var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9);border-radius:4px;padding:20px 20px 18px;margin-top:4px}
+.ex-top{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:6px}
+.ex-badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px}
+.ex-time{font-family:var(--mono);font-size:11px;color:var(--txt-faint)}
+.model{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;padding:3px 9px;border-radius:2px;border:1px solid var(--line);color:var(--txt-faint)}
+.model.fable{border-color:var(--amber-soft);color:var(--amber)}
+.model-note{border-inline-start:2px solid var(--line);padding-inline-start:11px;color:var(--txt-dim);font-size:13.5px;margin:0 0 14px}
+.model-note b{color:var(--txt);font-weight:500}
+.ex h3{font-size:clamp(17px,2.4vw,20px);width:100%}
+.ex .goal{color:var(--txt-dim);font-size:14.5px;margin:0 0 12px}
+
+.pbox{position:relative;margin:13px 0 0}
+.pbox pre{margin:0;background:rgba(10,13,18,.88);border:1px solid var(--line);border-radius:4px;padding:14px 15px;font-family:"Heebo",sans-serif;font-size:13.5px;line-height:1.6;color:var(--txt-dim);white-space:pre-wrap;direction:rtl;max-height:40vh;overflow:auto}
+.copy{position:absolute;top:8px;inset-inline-start:8px;background:var(--panel);border:1px solid var(--line);color:var(--txt-faint);font-family:var(--mono);font-size:11px;padding:4px 10px;z-index:2}
+.copy:hover{border-color:var(--amber-soft);color:var(--amber)}
+.copy.done{border-color:#3c5a44;color:var(--ok)}
+.pcap{font-family:var(--mono);font-size:11px;color:var(--txt-faint);letter-spacing:.05em;margin:0 0 6px}
+
+.note{border-inline-start:2px solid var(--amber-soft);padding-inline-start:12px;color:var(--txt-dim);font-size:14px;margin-top:18px}
+.note b{color:var(--txt);font-weight:500}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:4px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 11px;text-align:right;vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--amber);font-weight:400;background:var(--panel)}
+.tbl td{color:var(--txt-dim)}
+.tbl td:first-child{color:var(--txt)}
+.tbl .ui{font-family:var(--mono);font-size:11px;color:var(--txt-faint);display:block}
+.tbl b.hl{color:var(--amber);font-weight:500}
+.scroll{overflow-x:auto}
+
+.title-slide .big{font-size:clamp(30px,6vw,54px);line-height:1.18;margin:14px 0 18px}
+.title-slide .sub{color:var(--txt-dim);font-size:clamp(16px,2.2vw,20px);max-width:60ch}
+.title-slide .meta{margin-top:26px;font-family:var(--mono);font-size:11.5px;color:var(--txt-faint);letter-spacing:.1em;border-top:1px solid var(--line);padding-top:14px}
+
+.navbar{flex:none;display:flex;align-items:center;gap:10px;padding:10px 22px 14px;border-top:1px solid var(--line);background:rgba(10,13,18,.72)}
+.navbar button{background:transparent;border:1px solid var(--line);color:var(--txt-dim);font-size:13.5px;padding:7px 17px}
+.navbar button:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.navbar button:disabled{opacity:.32;cursor:default}
+.navbar button:disabled:hover{border-color:var(--line);color:var(--txt-dim);background:transparent}
+.navbar .sp{flex:1}
+.navbar .hint{font-family:var(--mono);font-size:10.5px;color:var(--txt-faint);letter-spacing:.06em}
+@media (max-width:640px){
+  .topbar{padding:9px 14px;gap:9px;font-size:10.5px}
+  .tb-title{display:none}
+  .slide{padding:20px 16px 34px}
+  .navbar{padding:9px 14px 12px}
+  .navbar .hint{display:none}
+  .pbox pre{max-height:44vh}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="deck">
+  <div class="topbar">
+    <span class="b">AI Lab</span><span>· שיעור 01</span>
+    <span class="tb-title">בניית סביבת העבודה</span>
+    <a class="tb-back" href="index.html">חזרה לפורטל</a>
+    <span class="mono"><span id="cur">1</span> / <span id="tot">21</span></span>
+  </div>
+  <div class="pbar"><div id="pfill"></div></div>
+
+  <main id="stage">
+
+    <!-- 1 -->
+    <section class="slide title-slide active">
+      <div class="kick">שיעור 01 מתוך 04 · קורס פרטי</div>
+      <h1 class="big">בניית סביבת עבודה בריאה</h1>
+      <p class="sub">בסוף השיעור יש פרויקט עובד: מסמכי ידע מצורפים, הוראות קבועות, ופרומפט-אב — והרצה ראשונה שמוציאה טיוטה של המסמך שנתקע.</p>
+      <div class="meta">AI LAB · מאיר לביא · SETUP, STEP BY STEP</div>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide">
+      <div class="kick">מפת השיעור</div>
+      <h2>שלושה שלבים, בסדר הזה</h2>
+      <div class="rule"></div>
+      <p class="lead">כל שקף מכאן והלאה הוא צעד מעשי אחד, ויש בו קופסת <b>"מה עושים עכשיו"</b>. מבצעים, בודקים, ורק אז ממשיכים לשקף הבא.</p>
+      <ul class="num">
+        <li><b>מסמכי ידע</b> — מכינים ארבעה מסמכים קצרים ומצרפים אותם לפרויקט. <span>זה מה שקלוד יודע על הדסק שלך.</span></li>
+        <li><b>הוראות הפרויקט</b> — ממלאים את שדה ה-Instructions. <span>זה מה שמכתיב איך הוא כותב — בכל שיחה, אוטומטית.</span></li>
+        <li><b>פרומפט-האב</b> — כותבים אותו כמסמך ושומרים בפרויקט. <span>זה המתכון להפקת מסמך מדיניות, שמופעל לפי דרישה.</span></li>
+      </ul>
+      <p class="note"><b>ובסוף:</b> הרצה ראשונה במצב קו-וורק על המסמך שנתקע — כדי לוודא שהסביבה באמת עובדת ולא רק נראית מסודרת.</p>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide">
+      <div class="kick">נקודת המוצא</div>
+      <h2>המסמך שנתקע</h2>
+      <div class="rule"></div>
+      <p class="lead">הקורס לא מתאמן על נושא דמה. יש מסמך מדיניות אחד שנתקע, והוא הנושא של כל ארבעת השיעורים. לפני שנוגעים בכלי — מאבחנים איפה בדיוק הוא נעצר.</p>
+      <div class="scroll"><table class="tbl">
+        <tr><th>סוג התקיעה</th><th>איך היא מרגישה</th><th>איפה היא נפתרת</th></tr>
+        <tr><td>שאלה לא חדה</td><td>"אני לא בטוח מה בעצם המסמך אמור לענות"</td><td>היום — פרומפט-האב שואל אותך את זה ראשון</td></tr>
+        <tr><td>מבנה שלא מתייצב</td><td>כותב, מוחק, מסדר מחדש, חוזר חלילה</td><td>היום — תבנית קבועה כקובץ בפרויקט</td></tr>
+        <tr><td>חומר מפוזר או סותר</td><td>ערימת מקורות שלא מתחברת לתמונה</td><td>שיעור 2 — אינטגרציה</td></tr>
+        <tr><td>עומס תפוקות</td><td>התוכן קיים אבל אין כוח להפוך אותו למסמך ולמצגת</td><td>שיעור 3 — תפוקות</td></tr>
+        <tr><td>המלצות שלא מתגבשות</td><td>הממצאים ברורים, ה"אז מה" לא</td><td>שיעור 4 — תרחישים והמלצות</td></tr>
+      </table></div>
+      <p class="note"><b>לפני שממשיכים:</b> אם המסמך מבוסס על חומר פנימי — לא מעלים אותו. עובדים על <b>השאלה, המבנה והשיטה</b> עם מקורות גלויים, ומרכיבים את הגרסה הסופית מחוץ לכלי. הכלי בונה את השלד; אתה מכניס את התוכן שאסור לו לראות.</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide">
+      <div class="kick">מושג יסוד</div>
+      <h2>למה אנחנו עובדים בקו-וורק</h2>
+      <div class="rule"></div>
+      <p class="lead">בצ'אט רגיל מקבלים תשובה שנשפכת לתוך השיחה. בקו-וורק המסמך נפתח בצד, נשאר על השולחן בין הפניות, ואפשר לתקן בו סעיף אחד בלי לגעת בשאר.</p>
+      <div class="grid2">
+        <div class="card"><span class="tag mono">צ'אט מזדמן</span><h3>שאלה ← תשובה</h3><ul>
+          <li>כל בקשה מתחילה מאפס</li>
+          <li>התיקון מייצר מסמך חדש לגמרי</li>
+          <li>הגרסאות מתערבבות בשיחה</li>
+          <li>אין תוצר מצטבר</li></ul></div>
+        <div class="card"><span class="tag mono">קו-וורק</span><h3>מסמך חי שנבנה בצד</h3><ul>
+          <li>התוצר נשאר פתוח ומתעדכן</li>
+          <li>אפשר לבקש שינוי בסעיף אחד בלבד</li>
+          <li>אתה מכתיב מבנה, הוא ממלא</li>
+          <li>בסוף — קובץ להורדה</li></ul></div>
+      </div>
+      <p class="note"><b>חלוקת התפקידים לאורך כל הקורס:</b> אתה קובע מה נכון, מה חסר ומה נכנס למסמך. הכלי מבצע, מסדר ומזרז. שיקול הדעת נשאר אצלך.</p>
+    </section>
+
+    <!-- 5 -->
+    <section class="slide">
+      <div class="kick">לפני שנוגעים</div>
+      <h2>מי מוביל את מי</h2>
+      <div class="rule"></div>
+      <p class="lead">שלושת הרכיבים שנבנה היום נראים דומים, ועושים דברים שונים לגמרי. ההבחנה הזו היא כל ההבדל בין סביבה שעובדת לסביבה מעצבנת.</p>
+      <div class="scroll"><table class="tbl">
+        <tr><th>הרכיב</th><th>מה יש בו</th><th>מתי הוא פועל</th></tr>
+        <tr><td>הוראות הפרויקט<span class="ui">Instructions</span></td><td>מי אתה מקצועית, לאיזה קהל אתה כותב, סגנון, ומה אסור</td><td><b class="hl">בכל שיחה, אוטומטית</b> — גם בשאלה בת שורה</td></tr>
+        <tr><td>מסמכי ידע<span class="ui">Project files</span></td><td>תבנית מסמך, מילון מונחים, דוגמה, רשימת מקורות</td><td>כשהמשימה נוגעת בהם — הוא ניגש ושולף</td></tr>
+        <tr><td>פרומפט-האב<span class="ui">master prompt</span></td><td>המתכון המלא להפקת מסמך מדיניות</td><td><b class="hl">רק כשאתה מפעיל אותו</b> בתחילת משימה</td></tr>
+      </table></div>
+      <p class="note"><b>הנקודה שקל לטעות בה:</b> מה שמוביל את הפרויקט הוא <b>ההוראות</b> — לא פרומפט-האב. אילו היינו שמים את פרומפט-האב בהוראות, כל שאלה קטנה ("מה המקור לנתון הזה?") הייתה מנסה לייצר מסמך מדיניות בן שבעה סעיפים. ההוראות הן <b>מי אתה תמיד</b>; פרומפט-האב הוא <b>מה שאתה מבקש הפעם</b>.</p>
+    </section>
+
+    <!-- 6 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 0</span> פתיחה</div>
+      <h2>פותחים את הפרויקט</h2>
+      <div class="rule"></div>
+      <p class="lead">הפרויקט הוא הקופסה שכל השאר נכנס לתוכה. פותחים אותו פעם אחת, ומכאן והלאה כל השיחות המקצועיות נפתחות בתוכו.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>2 דקות</span></div>
+        <ul class="num">
+          <li>בתפריט הצד לוחצים על <b>Projects</b>.</li>
+          <li>לוחצים על <b>New project</b>.</li>
+          <li>בשם הפרויקט כותבים: <b>דסק — סקירות ומדיניות</b></li>
+          <li>בתיאור כותבים משפט אחד: "מסמכי מדיניות וסקירות עומק ממקורות גלויים".</li>
+          <li>לוחצים <b>Create</b>. נפתח מסך עם שני אזורים ריקים — מקום לקבצים ומקום להוראות. אלה שני השלבים הבאים.</li>
+        </ul>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>שם הפרויקט מופיע בראש המסך</li>
+          <li>רואים אזור להוספת קבצים ואזור להוראות</li></ul></div>
+      </div>
+      <p class="note">שמות הכפתורים בממשק משתנים מדי פעם. אם כתוב <b>Add content</b> במקום <b>Add files</b>, או "ידע" במקום "קבצים" — זה אותו דבר.</p>
+    </section>
+
+    <!-- 7 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 1</span> מסמכי ידע</div>
+      <h2>ארבעת המסמכים שמכינים</h2>
+      <div class="rule"></div>
+      <p class="lead">כל מסמך פותר בעיה אחת שחוזרת. בלעדיהם תמצא את עצמך מסביר את אותם דברים בכל שיחה מחדש.</p>
+      <div class="scroll"><table class="tbl">
+        <tr><th>המסמך</th><th>מה יש בו</th><th>מה הוא מונע</th></tr>
+        <tr><td>01 · תבנית מסמך מדיניות</td><td>שמות הסעיפים, סדרם ואורכם</td><td>מסמך שיוצא במבנה אחר בכל פעם</td></tr>
+        <tr><td>02 · מילון מונחים והגדרות</td><td>איך הדסק שלך מגדיר מונחים, ומה הם לא כוללים</td><td>שימוש במונח בהוראה אחרת משלך</td></tr>
+        <tr><td>03 · דוגמה למסמך טוב</td><td>מסמך מנוקה אחד שמייצג את הרמה</td><td>הסבר מילולי אינסופי על "סגנון"</td></tr>
+        <tr><td>04 · מקורות קבועים</td><td>המקורות שאתה עובד מולם ודירוג המהימנות שלהם</td><td>שליפת מקורות אקראיים מהרשת</td></tr>
+      </table></div>
+      <p class="note">בארבעת השקפים הבאים יש טקסט מוכן להעתקה לכל מסמך. פותחים Word או Google Docs, מדביקים, מתאימים למציאות שלך, ושומרים כקובץ נפרד.</p>
+    </section>
+
+    <!-- 8 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 1</span> כלל עבודה</div>
+      <h2>איך מכינים מסמך ידע נכון</h2>
+      <div class="rule"></div>
+      <p class="lead">כאן רוב האנשים נכשלים: הם מעלים ערימה. מסמך ידע טוב הוא <b>מזוקק</b> — עמוד אחד שנכתב בכוונה, לא ארבעים עמודים שהיו קיימים ממילא.</p>
+      <div class="compare">
+        <div class="card bad"><span class="lbl mono">מה שלא עובד</span><ul>
+          <li>העלאת נוהל בן 40 עמודים כמו שהוא</li>
+          <li>קובץ בשם "מסמך1.docx"</li>
+          <li>מסמך שמערבב תבנית, דוגמאות והנחיות</li>
+          <li>חומר פנימי "כי זה רק בשביל ההקשר"</li></ul></div>
+        <div class="card good"><span class="lbl mono">מה שעובד</span><ul>
+          <li>עמוד אחד מזוקק לכל נושא</li>
+          <li>שם קובץ שמסביר את עצמו</li>
+          <li>מסמך אחד = שאלה אחת שהוא עונה עליה</li>
+          <li>גלוי בלבד, בלי שמות ובלי פרטים מזהים</li></ul></div>
+      </div>
+      <p class="note"><b>מבחן לפני כל העלאה:</b> אילו הקובץ הזה היה נשלח בטעות למישהו מחוץ לארגון — היה נזק? אם התשובה אינה "לא" ברור, הקובץ לא עולה.</p>
+    </section>
+
+    <!-- 9 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 1</span> מסמך 01</div>
+      <h2>תבנית מסמך מדיניות</h2>
+      <div class="rule"></div>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>5 דקות</span></div>
+        <ul class="num">
+          <li>פותחים מסמך חדש בוורד או ב-Google Docs.</li>
+          <li>מעתיקים את הטקסט שלמטה ומדביקים.</li>
+          <li>מתאימים את שמות הסעיפים והאורכים למה שנהוג אצלכם <b>בפועל</b>.</li>
+          <li>שומרים בשם: <b>תבנית מסמך מדיניות</b></li>
+        </ul>
+        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>תבנית מסמך מדיניות — דסק
+
+המסמך נכתב תמיד בסעיפים הבאים, בסדר הזה:
+
+1. תקציר מנהלים — עד 150 מילים. עומד בפני עצמו, בלי ז'רגון. מי שקורא רק אותו מבין את התמונה ואת הנדרש.
+2. ממצאים עיקריים — 4 עד 6 ממצאים. כל ממצא במשפט אחד, ומתחתיו שורת ביסוס עם המקור.
+3. מגמות — מה משתנה לאורך זמן, לאיזה כיוון ובאיזה קצב, כולל הנתון המספרי.
+4. הערכה — הפרשנות. מסומנת במפורש כהערכה, עם רמת ודאות לכל טענה: ודאי / סביר / אפשרי / ספקולטיבי.
+5. המלצות — 3 עד 5. לכל אחת: מה לעשות, מי הגורם המבצע, ומסגרת זמן.
+6. מדדי הצלחה — איך נדע בעוד שישה חודשים אם ההמלצות עבדו. מדדים שאפשר למדוד בלי ויכוח פרשני.
+7. פערי ידע — מה חסר כדי לחזק את המסמך, ומאיפה אפשר להשיג.
+
+כללי כתיבה קבועים:
+- עברית תקנית, גוף שלישי, משפטים קצרים.
+- בלי מבוא כללי ובלי סיכום שחוזר על התקציר.
+- כל טענה עובדתית מלווה במקור. אין מקור — כותבים "לא מבוסס".
+- מספרים בספרות. מונח לועזי בסוגריים אחרי המונח העברי. פורמט תאריך אחיד.
+- טבלאות מיושרות לימין, עמודה ראשונה מימין.</pre></div>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 1</span> מסמך 02</div>
+      <h2>מילון מונחים והגדרות</h2>
+      <div class="rule"></div>
+      <p class="lead">רוב הסתירות בין מקורות הן ויכוח על הגדרה, לא על עובדה. המסמך הזה קובע איך <b>אתה</b> סופר — וחוסך את הבלבול הזה בכל מסמך.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>7 דקות</span></div>
+        <ul class="num">
+          <li>מעתיקים את המבנה שלמטה למסמך חדש.</li>
+          <li>ממלאים 5 עד 10 מונחים שאתה משתמש בהם בפועל — לא יותר. תמיד אפשר להוסיף בהמשך.</li>
+          <li>לכל מונח כותבים גם מה הוא <b>לא</b> כולל. זה החלק שמונע את הטעויות.</li>
+          <li>שומרים בשם: <b>מילון מונחים — דסק</b></li>
+        </ul>
+        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>מילון מונחים והגדרות — דסק
+
+הגדרות מחייבות. כשמונח מהרשימה מופיע במסמך, זו המשמעות שלו.
+
+[המונח]
+כולל: [מה בדיוק נספר תחתיו]
+לא כולל: [מה עלול להיחשב בטעות ואינו נכלל]
+יחידת מדידה: [אירוע / מקרה / אדם / דיווח]
+מקור הספירה: [מי מפרסם את הנתון הזה]
+
+[המונח הבא]
+כולל:
+לא כולל:
+יחידת מדידה:
+מקור הספירה:
+
+הנחיה: כשמקור חיצוני משתמש במונח מהרשימה בהגדרה אחרת — יש לציין זאת במפורש במסמך, ואין להשוות בין המספרים כאילו הם מודדים אותו דבר.</pre></div>
+      </div>
+    </section>
+
+    <!-- 11 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 1</span> מסמך 03</div>
+      <h2>דוגמה למסמך טוב</h2>
+      <div class="rule"></div>
+      <p class="lead">זה המסמך היחיד מהארבעה שלא מעתיקים מכאן — הוא חייב להיות שלך. דוגמה אחת חוסכת עמוד שלם של הסברים על "סגנון".</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>6 דקות</span></div>
+        <ul class="num">
+          <li>בוחרים מסמך אחד שיצא מהדסק ושאתה מרוצה ממנו.</li>
+          <li><b>מנקים אותו:</b> מוחקים שמות, מספרי תיק, שמות מקורות, פרטים מזהים וכל נתון שלא פורסם. במקומם כותבים <b>[הושמט]</b>.</li>
+          <li>קוראים אותו שוב מההתחלה כאילו אתה זר. אם נשאר משהו שמזהה מקרה או אדם — מוחקים גם אותו.</li>
+          <li>בראש המסמך מוסיפים שורה: "דוגמה מנוקה — להדגמת מבנה וסגנון בלבד. הנתונים הוחלפו."</li>
+          <li>שומרים בשם: <b>דוגמה — מסמך מדיניות</b></li>
+        </ul>
+        <div class="check"><b>מה בודקים לפני שמעלים</b><ul>
+          <li>אין שם פרטי או שם משפחה של אף אדם</li>
+          <li>אין מספר תיק, מספר אירוע או מזהה פנימי</li>
+          <li>אין תאריך שמצמיד את המסמך לאירוע מסוים</li>
+          <li>המבנה והסגנון נשארו שלמים — זה כל מה שצריך ממנו</li></ul></div>
+      </div>
+      <p class="note">אם אין מסמך שאפשר לנקות בבטחה — <b>מדלגים על המסמך הזה.</b> שלושת האחרים מספיקים כדי להתחיל, ותמיד אפשר להוסיף אותו בהמשך.</p>
+    </section>
+
+    <!-- 12 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 1</span> מסמך 04</div>
+      <h2>מקורות קבועים ודירוג מהימנות</h2>
+      <div class="rule"></div>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>5 דקות</span></div>
+        <ul class="num">
+          <li>מעתיקים את הטקסט שלמטה למסמך חדש.</li>
+          <li>ממלאים את המקורות הגלויים שאתה באמת עובד מולם — פרסומים רשמיים, גופי מחקר, תקשורת מקצועית.</li>
+          <li>שומרים בשם: <b>מקורות קבועים ומהימנות</b></li>
+        </ul>
+        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>מקורות קבועים ודירוג מהימנות — דסק
+
+סולם המהימנות שבו אני עובד:
+A — גורם רשמי, או מחקר עם מתודולוגיה גלויה
+B — מקור מקצועי מבוסס בתחומו
+C — תקשורת כללית
+D — מקור אנונימי או לא מזוהה
+E — מקור בעל אינטרס מובהק בנושא
+
+מקורות שאני עובד מולם באופן קבוע:
+[שם המקור] — דירוג [A-E] — [מה הוא מכסה ומה מגבלותיו]
+[שם המקור] — דירוג [A-E] — [מה הוא מכסה ומה מגבלותיו]
+
+הנחיות לשימוש:
+- כל מקור שמוזכר במסמך מקבל דירוג, גם אם אינו ברשימה.
+- דירוג בלי נימוק בשורה אחת אינו דירוג.
+- מקורות שמצטטים זה את זה אינם מקורות בלתי תלויים — יש לציין זאת.
+- מקור בדירוג D או E אינו עומד לבדו. הוא נכנס רק כתמיכה למקור גבוה יותר.</pre></div>
+      </div>
+    </section>
+
+    <!-- 13 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 1</span> העלאה</div>
+      <h2>מצרפים את המסמכים לפרויקט</h2>
+      <div class="rule"></div>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>4 דקות</span></div>
+        <ul class="num">
+          <li>נכנסים לפרויקט <b>דסק — סקירות ומדיניות</b>.</li>
+          <li>באזור הקבצים לוחצים על <b>Add files</b> (או <b>Add content</b> — אותו דבר).</li>
+          <li>בוחרים את כל המסמכים שהכנת ומעלים אותם יחד.</li>
+          <li>מוודאים שכל קובץ מופיע ברשימה עם השם הנכון.</li>
+          <li>פותחים שיחה חדשה <b>בתוך הפרויקט</b> ומדביקים את שאלת הבדיקה.</li>
+        </ul>
+        <div class="pbox"><p class="pcap">שאלת בדיקה — להדבקה בשיחה</p><button class="copy" type="button">העתקה</button><pre>אילו קבצים מצורפים לפרויקט הזה? לכל קובץ כתוב בשורה אחת מה הוא מכיל ומתי תשתמש בו.
+אל תסכם את התוכן — רק תאר את התפקיד של כל אחד.</pre></div>
+        <div class="check"><b>מה בודקים בתשובה</b><ul>
+          <li>כל הקבצים שהעלית מופיעים ברשימה</li>
+          <li>התיאור של כל קובץ מתאים למה שבאמת יש בו</li>
+          <li>אם קובץ חסר — הוא כנראה לא נטען. מעלים שוב</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 14 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 2</span> הוראות</div>
+      <h2>מה נכנס להוראות — ומה לא</h2>
+      <div class="rule"></div>
+      <p class="lead">שדה ההוראות — <span class="mono" style="font-size:.82em">Add instructions to tailor Claude's responses</span> — חל על <b>כל</b> שיחה בפרויקט. לכן נכנס אליו רק מה שנכון תמיד.</p>
+      <div class="compare">
+        <div class="card good"><span class="lbl mono">נכנס להוראות</span><ul>
+          <li>מי אתה מקצועית ולמי אתה כותב</li>
+          <li>סגנון הכתיבה והשפה</li>
+          <li>הפרדה בין עובדה להערכה ורמות ודאות</li>
+          <li>איסור המצאת נתונים</li>
+          <li>מה לעשות כשחסר מידע</li>
+          <li>עבודה עם מקורות גלויים בלבד</li></ul></div>
+        <div class="card bad"><span class="lbl mono">לא נכנס להוראות</span><ul>
+          <li>המבנה המלא של מסמך מדיניות — זה פרומפט-האב</li>
+          <li>נושא מחקר מסוים — זה משתנה בין שיחות</li>
+          <li>תוכן שכבר יושב בקבצים</li>
+          <li>הנחיות למשימה חד-פעמית</li></ul></div>
+      </div>
+      <p class="note"><b>המבחן:</b> לפני שמוסיפים שורה להוראות שואלים — "האם זה נכון גם כשאני שואל שאלה קצרה בת שורה?" אם לא, זה לא שייך לכאן.</p>
+    </section>
+
+    <!-- 15 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 2</span> ביצוע</div>
+      <h2>ממלאים את ההוראות</h2>
+      <div class="rule"></div>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>6 דקות</span></div>
+        <ul class="num">
+          <li>בתוך הפרויקט לוחצים על אזור ההוראות — <b>Add instructions to tailor Claude's responses</b>.</li>
+          <li>מעתיקים את הטקסט שלמטה ומדביקים.</li>
+          <li>ממלאים את השדה בסוגריים המרובעים.</li>
+          <li>שומרים.</li>
+        </ul>
+        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>אני אנליסט דסק בתחומי ביטחון לאומי ופשיעה. אני כותב עבור [דרג מקבלי החלטות / גורמי מטה].
+התוצרים שלי: סקירות עומק, מסמכי מדיניות, מצגות והערכות מצב.
+
+בפרויקט הזה מצורפים קבצים: תבנית מסמך מדיניות, מילון מונחים, דוגמה למסמך, ורשימת מקורות ומהימנות. השתמש בהם כשהם רלוונטיים למשימה, ואל תסתור אותם.
+
+כללי עבודה שחלים על כל שיחה כאן:
+- עברית תקנית, גוף שלישי, כתיבה נקודתית. משפטים קצרים, בלי מלל סרק ובלי סופרלטיבים.
+- כל טענה עובדתית מלווה במקור. אם אין מקור — כתוב "לא מבוסס" במפורש, אל תשמיט את הטענה בשקט.
+- הפרד תמיד בין עובדה לבין הערכה. כל הערכה מסומנת ברמת ודאות: ודאי / סביר / אפשרי / ספקולטיבי.
+- אל תמציא נתונים, שמות, תאריכים או מספרים. אם חסר מידע — עצור ושאל, או רשום זאת כפער ידע.
+- כשאתה לא בטוח — אמור זאת. עדיפה תשובה חלקית ומסומנת על תשובה שלמה ולא מבוססת.
+- אנחנו עובדים עם מקורות גלויים בלבד. אם משימה דורשת חומר שאינו גלוי, אמור זאת ואל תשלים אותו בהשערה.
+- אל תרחיב את היקף המשימה מעבר למה שביקשתי. אם נראה לך שנדרש יותר — אמור זאת במשפט ותן לי להחליט.
+- מונח שמופיע במילון המונחים — השתמש בו לפי ההגדרה שם בלבד.</pre></div>
+      </div>
+    </section>
+
+    <!-- 16 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 2</span> בדיקה</div>
+      <h2>מוודאים שההוראות נקלטו</h2>
+      <div class="rule"></div>
+      <p class="lead">אל תניח שזה עבד. שתי שאלות קצרות מוכיחות את זה בפחות מדקה — והשנייה היא הבדיקה החשובה.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>3 דקות</span></div>
+        <ul class="num">
+          <li>פותחים שיחה חדשה <b>בתוך הפרויקט</b> ומדביקים את בדיקה 1.</li>
+          <li>קוראים את התשובה מול הצ'קליסט למטה.</li>
+          <li>מדביקים את בדיקה 2 — היא בודקת אם הוא באמת נמנע מהמצאה.</li>
+        </ul>
+        <div class="pbox"><p class="pcap">בדיקה 1 — האם הוא מכיר את הכללים</p><button class="copy" type="button">העתקה</button><pre>בלי לפתוח שום קובץ ובלי לכתוב מסמך: סכם לי בחמש שורות מה אתה יודע על אופן העבודה שלי, ומה אסור לך לעשות בפרויקט הזה.</pre></div>
+        <div class="pbox"><p class="pcap">בדיקה 2 — האם הוא נמנע מהמצאה</p><button class="copy" type="button">העתקה</button><pre>כמה אירועים מסוג X נרשמו ברבעון האחרון באזור Y?</pre></div>
+        <div class="check"><b>תשובה תקינה נראית כך</b><ul>
+          <li>בבדיקה 1 — הוא מזכיר מקורות גלויים, הפרדת עובדה מהערכה, ואיסור המצאה</li>
+          <li>בבדיקה 2 — הוא <b>לא</b> נותן מספר. הוא אומר שאין לו את הנתון ושואל מאיפה להביא אותו</li>
+          <li>אם הוא כן נתן מספר בבדיקה 2 — ההוראות לא נשמרו. חוזרים לשקף הקודם</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 17 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 3</span> פרומפט-אב</div>
+      <h2>מה זה פרומפט-האב, ומה הוא לא</h2>
+      <div class="rule"></div>
+      <p class="lead">פרומפט-האב הוא <b>המתכון להפקת מסמך מדיניות</b>: המבנה, האורכים, ומה לעשות בכל מקרה קצה. הוא לא מוביל את הפרויקט — הוא מופעל כשצריך אותו.</p>
+      <div class="grid2">
+        <div class="card"><span class="tag mono">הוא כן</span><h3>מתכון לתוצר אחד</h3><ul>
+          <li>נשמר כמסמך בפרויקט, כדי שיהיה זמין תמיד</li>
+          <li>מופעל בתחילת משימה: "עבוד לפי פרומפט-האב, הנושא הוא…"</li>
+          <li>מתעדכן כשמגלים שהוא מפספס משהו</li>
+          <li>אפשר לבנות לידו מתכונים נוספים — למצגת, לסקירה</li></ul></div>
+        <div class="card"><span class="tag mono">הוא לא</span><h3>לא ההוראות</h3><ul>
+          <li>לא נכנס לשדה ההוראות — שם הוא היה פועל תמיד</li>
+          <li>לא מגדיר מי אתה — זה כבר בהוראות</li>
+          <li>לא מכיל נושא מחקר מסוים</li>
+          <li>לא מחליף את התבנית — הוא מפעיל אותה</li></ul></div>
+      </div>
+      <p class="note"><b>למה בכל זאת שומרים אותו כקובץ בפרויקט:</b> כדי שלא תחפש אותו בכל פעם, וכדי שתוכל לומר "עבוד לפי פרומפט-האב" במקום להדביק שני מסכים של טקסט בכל משימה.</p>
+    </section>
+
+    <!-- 18 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 3</span> ביצוע</div>
+      <h2>כותבים ושומרים את פרומפט-האב</h2>
+      <div class="rule"></div>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>5 דקות</span></div>
+        <ul class="num">
+          <li>פותחים מסמך חדש ומדביקים את הטקסט שלמטה.</li>
+          <li>שומרים בשם: <b>פרומפט-אב — מסמך מדיניות</b></li>
+          <li>מעלים אותו לפרויקט, יחד עם שאר הקבצים.</li>
+        </ul>
+        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>פרומפט-אב — הפקת מסמך מדיניות
+
+כשאבקש "עבוד לפי פרומפט-האב", פעל לפי ההוראות הבאות.
+
+תחילה שאל אותי שלוש שאלות, ואל תתחיל לכתוב לפני שעניתי:
+1. מהי השאלה שהמסמך אמור לענות עליה, במשפט אחד?
+2. מהם המקורות שאני מצרף, ומה טווח התאריכים?
+3. מי הקהל, וכמה זמן יש לו לקרוא?
+
+אחרי שעניתי, כתוב את המסמך לפי הקובץ "תבנית מסמך מדיניות" — כל שבעת הסעיפים, בסדר שנקבע שם.
+
+מגבלות מחייבות:
+- עבוד מהמקורות שצירפתי בלבד. אל תשלים מידע מהידע הכללי שלך. אם בכל זאת נעזרת בו, סמן זאת בשורה נפרדת.
+- כל ממצא מלווה בשורת ביסוס עם המקור המדויק. ממצא בלי מקור אינו נכנס למסמך אלא מסומן "לא מבוסס".
+- הערכות מופרדות מעובדות ומסומנות ברמת ודאות.
+- אל תמציא מספרים, תאריכים או שמות. חסר נתון — כתוב "[חסר — להשלמה ידנית]" והמשך.
+- אל תרחיב את היקף המשימה מעבר למה שביקשתי.
+
+בסיום המסמך הוסף שני סעיפים:
+- "פערי ידע" — מה חסר כדי לחזק את המסמך, ומאיפה אפשר להשיג.
+- "מה לבדוק ידנית" — הנקודות שאני חייב לאמת בעצמי לפני הפצה.
+
+אל תסכם את המסמך בסופו ואל תוסיף הערות על התהליך.</pre></div>
+      </div>
+      <p class="note"><b>שים לב לפתיחה:</b> הוא שואל שלוש שאלות לפני שהוא כותב. זה מונע את התסריט הנפוץ — מסמך שלם ומרשים שעונה על השאלה הלא נכונה.</p>
+    </section>
+
+    <!-- 19 -->
+    <section class="slide">
+      <div class="kick"><span class="n">שלב 4</span> הרצה</div>
+      <div class="ex">
+        <div class="ex-top"><span class="ex-badge mono">הרצה ראשונה</span><span class="ex-time mono">20 דקות</span><span class="model mono">OPUS 5</span>
+          <h3>מפעילים את הסביבה על המסמך שנתקע</h3></div>
+        <p class="goal">בסוף התרגיל יש טיוטה ראשונה של המסמך האמיתי, שיצאה מהסביבה שבנית עכשיו.</p>
+        <p class="model-note"><b>למה Opus 5:</b> זה תרגיל של איטרציות — מריצים, קוראים, מתקנים סעיף אחד, מריצים שוב. מהירות התגובה שווה כאן יותר מעומק.</p>
+        <ul class="num">
+          <li>פותחים שיחה חדשה בתוך הפרויקט ומפעילים <b>מצב קו-וורק</b>, כדי שהמסמך ייפתח בצד ולא יישפך לתוך הצ'אט.</li>
+          <li>מצרפים 2-3 מקורות גלויים שנוגעים לנושא של המסמך התקוע.</li>
+          <li>כותבים: <b>"עבוד לפי פרומפט-האב. הנושא: [הנושא שלך]."</b></li>
+          <li>הוא ישאל שלוש שאלות. עונים עליהן בקצרה ובכנות — במיוחד על הראשונה.</li>
+          <li>קוראים את הטיוטה שנפתחה בצד ומסמנים שלושה מקומות שדורשים תיקון.</li>
+          <li>מבקשים תיקון של <b>סעיף אחד בלבד</b>: "תקן רק את סעיף ההמלצות — [מה לתקן]". שמים לב שהשאר לא זז.</li>
+        </ul>
+        <div class="check"><b>מה בודקים בטיוטה</b><ul>
+          <li>שבעת הסעיפים קיימים, בסדר של התבנית</li>
+          <li>לכל ממצא יש מקור, ואין ממצא מרחף</li>
+          <li>ההערכות מסומנות ברמת ודאות ולא מוצגות כעובדה</li>
+          <li>הסעיפים "פערי ידע" ו"מה לבדוק ידנית" לא ריקים</li>
+          <li>אחרי תיקון הסעיף — שאר המסמך נשאר כמו שהיה</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 20 -->
+    <section class="slide">
+      <div class="kick">בקרה</div>
+      <h2>צ'קליסט — הסביבה בריאה?</h2>
+      <div class="rule"></div>
+      <p class="lead">עוברים על השבעה. כל סעיף שלא מסומן — חוזרים לשלב שלו לפני שממשיכים לשיעור 2.</p>
+      <div class="check" style="border-top:0;padding-top:0;margin-top:0">
+        <ul style="gap:10px">
+          <li>קיים פרויקט בשם "דסק — סקירות ומדיניות"</li>
+          <li>מצורפים אליו לפחות שלושה מסמכי ידע, כולם גלויים ומזוקקים</li>
+          <li>שדה ההוראות מלא ומתאר מי אתה ומה אסור</li>
+          <li>בבדיקת ההמצאה הוא לא נתן מספר — הוא שאל מאיפה להביא אותו</li>
+          <li>פרומפט-האב שמור כקובץ בפרויקט</li>
+          <li>הרצת אותו פעם אחת וקיבלת טיוטה במבנה הנכון</li>
+          <li>ביקשת תיקון של סעיף אחד והשאר לא זז</li>
+        </ul>
+      </div>
+      <p class="note"><b>למה זה חשוב:</b> כל שיעור מכאן והלאה מניח שהסביבה הזו קיימת. אם היא לא — כל שיעור יתחיל מהקמה מחדש במקום מעבודה.</p>
+    </section>
+
+    <!-- 21 -->
+    <section class="slide">
+      <div class="kick">סיכום</div>
+      <h2>מה יצא מהשיעור, ומה עד הפעם הבאה</h2>
+      <div class="rule"></div>
+      <div class="grid2">
+        <div class="card"><span class="tag mono">בידך עכשיו</span><h3>סביבת עבודה</h3><ul>
+          <li>פרויקט עם מסמכי ידע</li>
+          <li>הוראות קבועות שחלות על כל שיחה</li>
+          <li>פרומפט-אב שמור ומופעל בפקודה</li>
+          <li>טיוטה ראשונה של המסמך שנתקע</li></ul></div>
+        <div class="card"><span class="tag mono">משימה לבית</span><h3>מיפוי הפערים</h3><ul>
+          <li>עבור על הטיוטה וסמן כל "לא מבוסס" ו"[חסר]"</li>
+          <li>לכל פער רשום: איזה מקור גלוי היה סוגר אותו</li>
+          <li>אם פרומפט-האב פספס משהו — תקן אותו בקובץ</li>
+          <li>הבא את רשימת הפערים לשיעור הבא</li></ul></div>
+      </div>
+      <p class="note"><b>בשיעור הבא:</b> סוגרים את הפערים שסימנת — מחקר רשת מובנה, מיזוג מקורות סותרים ודירוג מהימנות. שם נכנס Fable 5 לראשונה.</p>
+    </section>
+
+  </main>
+
+  <div class="navbar">
+    <button id="prev" type="button">הקודם</button>
+    <button id="next" type="button">הבא</button>
+    <span class="sp"></span>
+    <span class="hint mono">חצים במקלדת · מקש רווח</span>
+    <button id="fs" type="button">מסך מלא</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')),i=0;
+  document.getElementById('tot').textContent=slides.length;
+  var cur=document.getElementById('cur'),fill=document.getElementById('pfill'),
+      prev=document.getElementById('prev'),next=document.getElementById('next'),stage=document.getElementById('stage');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
+    cur.textContent=i+1;
+    fill.style.width=((i+1)/slides.length*100)+'%';
+    prev.disabled=(i===0); next.disabled=(i===slides.length-1);
+    stage.scrollTop=0;
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  prev.onclick=function(){show(i-1)}; next.onclick=function(){show(i+1)};
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='BUTTON'&&(e.key===' '||e.key==='Enter'))return;
+    if(e.key==='ArrowLeft'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(i+1)}
+    else if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1)}
+    else if(e.key==='Home'){show(0)} else if(e.key==='End'){show(slides.length-1)}
+  });
+  var x0=null;
+  stage.addEventListener('touchstart',function(e){x0=e.changedTouches[0].clientX},{passive:true});
+  stage.addEventListener('touchend',function(e){
+    if(x0===null)return; var d=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(d)>60) show(d<0?i+1:i-1);
+  },{passive:true});
+  document.getElementById('fs').onclick=function(){
+    if(document.fullscreenElement){document.exitFullscreen()}
+    else{document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}
+  };
+  [].forEach.call(document.querySelectorAll('.copy'),function(b){
+    b.onclick=function(){
+      var t=b.parentNode.querySelector('pre').textContent, done=function(){
+        b.textContent='הועתק ✓';b.classList.add('done');
+        setTimeout(function(){b.textContent='העתקה';b.classList.remove('done')},1700);
+      };
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,function(){leg(t,done)})}
+      else{leg(t,done)}
+    };
+  });
+  function leg(t,done){
+    var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';
+    document.body.appendChild(a);a.focus();a.setSelectionRange(0,t.length);
+    try{document.execCommand('copy');done()}catch(e){}
+    document.body.removeChild(a);
+  }
+  var h=parseInt(location.hash.replace('#',''),10);
+  show(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>

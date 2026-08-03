@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>שיעור 02 — סקירת עומק ואינטגרציה של מקורות | AI Lab</title>
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0d12;--bg-2:#0f131a;--panel:#12171f;--panel-2:#161c25;
+  --line:#232b36;--line-soft:#1b222c;
+  --txt:#dfe4ea;--txt-dim:#98a1ad;--txt-faint:#6d7783;
+  --amber:#d99b3c;--amber-soft:#8a6326;--amber-glow:rgba(217,155,60,.11);
+  --ok:#5f8f6a;--mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:"Heebo",-apple-system,"Segoe UI",Arial,sans-serif;font-weight:300;
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow:hidden;
+  background-image:
+    radial-gradient(1100px 620px at 88% -12%,rgba(217,155,60,.075),transparent 62%),
+    radial-gradient(900px 520px at 6% 108%,rgba(86,116,152,.07),transparent 62%),
+    linear-gradient(180deg,#0d1119 0%,#0a0d12 55%,#080b0f 100%);
+  background-attachment:fixed;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cg fill='none' stroke='%23d99b3c' stroke-opacity='.055'%3E%3Ccircle cx='450' cy='450' r='120'/%3E%3Ccircle cx='450' cy='450' r='230'/%3E%3Ccircle cx='450' cy='450' r='340'/%3E%3Ccircle cx='450' cy='450' r='440'/%3E%3C/g%3E%3Cg stroke='%23ffffff' stroke-opacity='.022'%3E%3Cpath d='M450 10v880M10 450h880'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:min(120vh,120vw) min(120vh,120vw);
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+}
+.deck{position:relative;z-index:1}
+h1,h2,h3{font-weight:500;line-height:1.28;margin:0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+button{font-family:"Heebo",sans-serif;cursor:pointer;border-radius:4px;transition:border-color .15s,color .15s,background .15s}
+
+.deck{display:flex;flex-direction:column;height:100dvh}
+.tb-back{color:var(--txt-faint);text-decoration:none;border:1px solid var(--line);border-radius:3px;padding:3px 10px;transition:color .15s,border-color .15s}
+.tb-back:hover{color:var(--amber);border-color:var(--amber-soft)}
+.topbar{display:flex;align-items:center;gap:14px;padding:11px 22px;border-bottom:1px solid var(--line);background:rgba(10,13,18,.72);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--txt-faint);flex:none}
+.topbar .b{color:var(--amber)}
+.tb-title{color:var(--txt-dim);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pbar{height:2px;background:var(--line-soft);flex:none}
+.pbar div{height:100%;background:var(--amber);width:0;transition:width .25s ease}
+#stage{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;align-items:stretch;justify-content:center}
+.slide{
+  display:none;flex-direction:column;justify-content:center;justify-content:safe center;
+  width:100%;max-width:1150px;
+  padding:clamp(24px,4.5vh,60px) clamp(20px,4.5vw,58px) clamp(24px,4.5vh,54px);
+  animation:fade .22s ease;
+}
+.slide.active{display:flex}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase;margin-bottom:12px}
+.slide h2{font-size:clamp(24px,4vw,36px);margin-bottom:8px}
+.rule{height:1px;background:linear-gradient(to left,var(--amber-soft),transparent 65%);margin:16px 0 22px}
+.lead{color:var(--txt-dim);font-size:clamp(15.5px,2vw,18.5px);max-width:66ch;margin:0 0 22px}
+
+ul.b{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+ul.b li{position:relative;padding-inline-start:20px;font-size:clamp(15.5px,2vw,18.5px)}
+ul.b li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:6px;height:6px;background:var(--amber-soft);border-radius:1px}
+ul.b li b{font-weight:500;color:#fff}
+ul.b li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
+ul.num{list-style:none;margin:0;padding:0;display:grid;gap:13px;counter-reset:n}
+ul.num li{position:relative;padding-inline-start:38px;font-size:clamp(15px,1.9vw,17.5px);counter-increment:n}
+ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inset-inline-start:0;top:.15em;font-family:var(--mono);font-size:12px;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:1px 5px}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{border:1px solid var(--line);background:rgba(18,23,31,.86);border-radius:4px;padding:16px 17px}
+.card h3{font-size:15.5px;margin-bottom:6px}
+.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.11em;color:var(--amber);display:block;margin-bottom:7px}
+.card p{margin:0;color:var(--txt-dim);font-size:14px}
+.card ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:5px}
+.card ul li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:13px;position:relative}
+.card ul li::before{content:"·";position:absolute;inset-inline-start:2px;color:var(--amber)}
+
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.compare .bad{border-color:#4a3030}
+.compare .good{border-color:var(--amber-soft)}
+.compare .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;margin-bottom:8px;display:block}
+.bad .lbl{color:#c07a68}.good .lbl{color:var(--amber)}
+.compare p{font-size:14px;color:var(--txt);margin:0;white-space:pre-wrap}
+
+.ex{border:1px solid var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9);border-radius:4px;padding:20px 20px 18px;margin-top:4px}
+.ex-top{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:6px}
+.ex-badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px}
+.ex-time{font-family:var(--mono);font-size:11px;color:var(--txt-faint)}
+.model{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;padding:3px 9px;border-radius:2px;border:1px solid var(--line);color:var(--txt-faint)}
+.model.fable{border-color:var(--amber-soft);color:var(--amber)}
+.model-note{border-inline-start:2px solid var(--line);padding-inline-start:11px;color:var(--txt-dim);font-size:13.5px;margin:0 0 14px}
+.model-note b{color:var(--txt);font-weight:500}
+.model-note.fable{border-inline-start-color:var(--amber-soft)}
+.ex h3{font-size:clamp(17px,2.4vw,20px);width:100%}
+.ex .goal{color:var(--txt-dim);font-size:14.5px;margin:0 0 14px}
+.check{margin-top:16px;border-top:1px solid var(--line);padding-top:13px}
+.check b{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ok);display:block;margin-bottom:7px}
+.check ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.check li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:19px;position:relative}
+.check li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-size:12px}
+
+.pbox{position:relative;margin:14px 0 0}
+.pbox pre{margin:0;background:rgba(10,13,18,.86);border:1px solid var(--line);border-radius:4px;padding:14px 15px;font-family:"Heebo",sans-serif;font-size:13.5px;line-height:1.6;color:var(--txt-dim);white-space:pre-wrap;direction:rtl;max-height:38vh;overflow:auto}
+.copy{position:absolute;top:8px;inset-inline-start:8px;background:var(--panel);border:1px solid var(--line);color:var(--txt-faint);font-family:var(--mono);font-size:11px;padding:4px 10px}
+.copy:hover{border-color:var(--amber-soft);color:var(--amber)}
+.copy.done{border-color:#3c5a44;color:var(--ok)}
+
+.note{border-inline-start:2px solid var(--amber-soft);padding-inline-start:12px;color:var(--txt-dim);font-size:14px;margin-top:18px}
+.note b{color:var(--txt);font-weight:500}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:4px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 11px;text-align:right;vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--amber);font-weight:400;background:var(--panel)}
+.tbl td{color:var(--txt-dim)}
+.tbl td:first-child{color:var(--txt)}
+.scroll{overflow-x:auto}
+
+.title-slide .big{font-size:clamp(30px,6vw,54px);line-height:1.18;margin:14px 0 18px}
+.title-slide .sub{color:var(--txt-dim);font-size:clamp(16px,2.2vw,20px);max-width:60ch}
+.title-slide .meta{margin-top:26px;font-family:var(--mono);font-size:11.5px;color:var(--txt-faint);letter-spacing:.1em;border-top:1px solid var(--line);padding-top:14px}
+
+.navbar{flex:none;display:flex;align-items:center;gap:10px;padding:10px 22px 14px;border-top:1px solid var(--line);background:rgba(10,13,18,.72)}
+.navbar button{background:transparent;border:1px solid var(--line);color:var(--txt-dim);font-size:13.5px;padding:7px 17px}
+.navbar button:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.navbar button:disabled{opacity:.32;cursor:default}
+.navbar button:disabled:hover{border-color:var(--line);color:var(--txt-dim);background:transparent}
+.navbar .sp{flex:1}
+.navbar .hint{font-family:var(--mono);font-size:10.5px;color:var(--txt-faint);letter-spacing:.06em}
+@media (max-width:640px){
+  .topbar{padding:9px 14px;gap:9px;font-size:10.5px}
+  .tb-title{display:none}
+  .slide{padding:20px 16px 34px}
+  .navbar{padding:9px 14px 12px}
+  .navbar .hint{display:none}
+  .pbox pre{max-height:44vh}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="deck">
+  <div class="topbar">
+    <span class="b">AI Lab</span><span>· שיעור 02</span>
+    <span class="tb-title">סקירת עומק ואינטגרציה של מקורות</span>
+    <a class="tb-back" href="index.html">חזרה לפורטל</a>
+    <span class="mono"><span id="cur">1</span> / <span id="tot">12</span></span>
+  </div>
+  <div class="pbar"><div id="pfill"></div></div>
+
+  <main id="stage">
+
+    <!-- 1 -->
+    <section class="slide title-slide active">
+      <div class="kick">שיעור 02 מתוך 04 · קורס פרטי</div>
+      <h1 class="big">סקירת עומק ואינטגרציה של מקורות</h1>
+      <p class="sub">סוגרים את פערי הידע של המסמך: מקורות ממוזגים, מהימנות מדורגת, סתירות מסומנות, ועובדה שמופרדת מהערכה.</p>
+      <div class="meta">AI LAB · מאיר לביא · OSINT WORKFLOW</div>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide">
+      <div class="kick">מפת השיעור</div>
+      <h2>במה נעסוק היום</h2>
+      <div class="rule"></div>
+      <ul class="num">
+        <li><b>מחקר רשת מובנה</b> — למה "תחפש לי על X" מייצר ערימה ולא סקירה.</li>
+        <li><b>מיזוג מקורות מרובים</b> — טבלת השוואה במקום קריאה ברצף.</li>
+        <li><b>דירוג מהימנות וזיהוי סתירות</b> — סולם A-E, וארבעת ההסברים לפער.</li>
+        <li><b>הפרדה בין עובדה להערכה</b> — סולם ודאות שמלווה כל טענה.</li>
+      </ul>
+      <p class="note"><b>תוצר השיעור:</b> סקירת עומק שסוגרת את הפערים שסימנת בטיוטה, עם טבלת מהימנות וסעיף סתירות.</p>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide">
+      <div class="kick">שיטה</div>
+      <h2>מחקר רשת מובנה</h2>
+      <div class="rule"></div>
+      <p class="lead">חיפוש פתוח מחזיר מה שפופולרי. מחקר מובנה מחזיר מה שנדרש. ההבדל מתחיל בשאלה, לא בכלי.</p>
+      <div class="grid2">
+        <div class="card"><span class="tag mono">שלב 01</span><h3>שאלת מחקר אחת</h3><p>משפט אחד שהסקירה עונה עליו. אם אי אפשר לנסח אותו — אין עדיין מה לחקור.</p></div>
+        <div class="card"><span class="tag mono">שלב 02</span><h3>4-6 תת-שאלות</h3><p>כל תת-שאלה תהפוך לסעיף בסקירה. כאן נקבע המבנה, לפני שנאסף חומר.</p></div>
+        <div class="card"><span class="tag mono">שלב 03</span><h3>גבולות</h3><p>טווח תאריכים, מרחב גיאוגרפי, סוגי מקורות קבילים. בלי גבולות — כל חומר "רלוונטי".</p></div>
+        <div class="card"><span class="tag mono">שלב 04</span><h3>איסוף ואז מיזוג</h3><p>קודם אוספים לפי תת-השאלות, רק אחר כך מחברים. לא מנסחים מסקנה תוך כדי איסוף.</p></div>
+      </div>
+      <p class="note"><b>מלכודת:</b> כשמבקשים "סקירה על X" מקבלים מבנה גנרי שמתאים לכל נושא — ולכן לא עונה על שום שאלה. המבנה חייב לנבוע מתת-השאלות שלך.</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide">
+      <div class="kick">תרגיל בכיתה</div>
+      <div class="ex">
+        <div class="ex-top"><span class="ex-badge mono">תרגיל 01</span><span class="ex-time mono">12 דקות</span><span class="model mono">OPUS 5</span>
+          <h3>פירוק שאלת מחקר</h3></div>
+        <p class="goal">בסוף התרגיל יש שאלת מחקר חדה, תת-שאלות שהן שלד הסקירה, וגבולות ברורים.</p><p class="model-note"><b>למה Opus 5:</b> מסגור הוא דיאלוג — מציעים ניסוח, אתה מוחק ומחדד, מציעים שוב. צריך כאן קצב, לא עומק.</p>
+        <ul class="num">
+          <li>בחר נושא גלוי אחד שרלוונטי לדסק שלך.</li>
+          <li>נסח את שאלת המחקר במשפט אחד — ואל תמשיך עד שהיא חדה.</li>
+          <li>הרץ את הפרומפט הבא, וקבל הצעה לתת-שאלות ולגבולות.</li>
+          <li>מחק לפחות שתי תת-שאלות שהוצעו והחלף אותן בשלך. הכלי לא מכיר את הדסק — אתה כן.</li>
+        </ul>
+        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>אני אנליסט וברצוני לבנות סקירת עומק בנושא: [הנושא].
+שאלת המחקר שלי: [נסח כאן במשפט אחד].
+
+לפני שאתה אוסף חומר כלשהו, עזור לי למסגר את המחקר:
+1. חדד את שאלת המחקר — הצע שני ניסוחים מדויקים יותר, והסבר במשפט מה כל אחד משנה בהיקף.
+2. פרק ל-4-6 תת-שאלות. כל תת-שאלה תהפוך לסעיף בסקירה, ולכן היא צריכה להיות עצמאית ולא חופפת.
+3. הצע גבולות: טווח תאריכים, מרחב גיאוגרפי, וסוגי מקורות שכדאי לכלול או לפסול.
+4. ציין אילו תת-שאלות עלולות לא להיות ניתנות למענה ממקורות גלויים בלבד, ולמה.
+
+אל תתחיל לאסוף מידע בשלב הזה. רק מסגור.</pre></div>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>שאלת המחקר נכנסת במשפט אחד ואפשר לענות עליה</li>
+          <li>אין חפיפה בין תת-השאלות</li>
+          <li>מוגדר טווח תאריכים מפורש</li>
+          <li>מסומן במפורש מה כנראה לא ניתן לענות עליו מגלוי</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="slide">
+      <div class="kick">שיטה</div>
+      <h2>מיזוג מקורות — הטבלה לפני הטקסט</h2>
+      <div class="rule"></div>
+      <p class="lead">כשקוראים חמישה מקורות ברצף, האחרון שנקרא משפיע הכי חזק. טבלת השוואה מנטרלת את זה: כל מקור נשקל מול אותה סוגיה בדיוק.</p>
+      <div class="scroll"><table class="tbl">
+        <tr><th>סוגיה</th><th>מקור א'</th><th>מקור ב'</th><th>מקור ג'</th></tr>
+        <tr><td>היקף התופעה</td><td>נתון + תאריך</td><td>נתון סותר</td><td>שותק</td></tr>
+        <tr><td>מגמה</td><td>עלייה</td><td>יציבות</td><td>עלייה</td></tr>
+        <tr><td>הסבר מוצע</td><td>הסבר א'</td><td>הסבר ב'</td><td>ללא</td></tr>
+      </table></div>
+      <ul class="b" style="margin-top:20px">
+        <li><b>תא ריק הוא ממצא</b> <span>מקור שותק בסוגיה מרכזית — זה עצמו אומר משהו על המקור או על הסוגיה.</span></li>
+        <li><b>שורה בלי סתירות</b> <span>הסכמה בין מקורות בלתי תלויים היא הבסיס היציב ביותר לכתוב עליו.</span></li>
+        <li><b>שורה עם סתירה</b> <span>לא בוחרים צד בשקט. מציגים את שניהם ומסבירים את הפער.</span></li>
+      </ul>
+    </section>
+
+    <!-- 6 -->
+    <section class="slide">
+      <div class="kick">בקרה</div>
+      <h2>דירוג מהימנות — סולם A-E</h2>
+      <div class="rule"></div>
+      <p class="lead">לא כל מקור שווה. הדירוג לא נועד לפסול מקורות אלא לתת להם משקל, ולהיות שקוף לגבי המשקל הזה מול הקורא.</p>
+      <div class="scroll"><table class="tbl">
+        <tr><th>דירוג</th><th>סוג מקור</th><th>מה זה אומר בפועל</th></tr>
+        <tr><td>A</td><td>גורם רשמי, או מחקר עם מתודולוגיה גלויה</td><td>אפשר להישען עליו כעובדה, עם ציון המקור</td></tr>
+        <tr><td>B</td><td>מקור מקצועי מבוסס בתחומו</td><td>אמין; מצריך אימות בסוגיות מרכזיות</td></tr>
+        <tr><td>C</td><td>תקשורת כללית</td><td>שימושי לכיוון ולעיתוי, לא למספרים מדויקים</td></tr>
+        <tr><td>D</td><td>מקור אנונימי או לא מזוהה</td><td>לא נשען עליו לבד. רק כתמיכה למקור אחר</td></tr>
+        <tr><td>E</td><td>בעל אינטרס מובהק בנושא</td><td>נקרא כעמדה, לא כדיווח. מסומן ככזה</td></tr>
+      </table></div>
+      <p class="note"><b>שאלת הבקרה לכל דירוג:</b> מה הנימוק בשורה אחת? דירוג בלי נימוק הוא ניחוש שנראה מדעי.</p>
+    </section>
+
+    <!-- 7 -->
+    <section class="slide">
+      <div class="kick">ליבת המקצוע</div>
+      <h2>סתירות — ארבעת ההסברים לפער</h2>
+      <div class="rule"></div>
+      <p class="lead">כששני מקורות אמינים אומרים דברים שונים, ברוב המקרים אף אחד מהם לא משקר. לפני שמכריעים — בודקים איזה מארבעת ההסברים חל.</p>
+      <div class="grid2">
+        <div class="card"><span class="tag mono">הסבר 01</span><h3>עיתוי</h3><p>המקורות מתייחסים לתקופות שונות. הפער אינו סתירה אלא מגמה שלא זוהתה ככזו.</p></div>
+        <div class="card"><span class="tag mono">הסבר 02</span><h3>הגדרה</h3><p>אותה מילה, שתי הגדרות. "אירוע", "מקרה", "נפגע" — כל גוף סופר אחרת. ההסבר הנפוץ ביותר.</p></div>
+        <div class="card"><span class="tag mono">הסבר 03</span><h3>אינטרס</h3><p>לאחד המקורות יש רווח מהמספר שהוא מציג. לא בהכרח שקר — אבל בחירה מגמתית של מה להציג.</p></div>
+        <div class="card"><span class="tag mono">הסבר 04</span><h3>טעות</h3><p>שגיאה פשוטה, או ציטוט משרשרת שהתגלגל. בודקים אם שני המקורות בכלל בלתי תלויים.</p></div>
+      </div>
+      <p class="note"><b>מלכודת התלות:</b> חמישה מקורות שמצטטים את אותו דוח אינם חמישה אישושים — הם מקור אחד. תמיד שואלים: מאיפה כל אחד מהם קיבל את זה?</p>
+    </section>
+
+    <!-- 8 -->
+    <section class="slide">
+      <div class="kick">תרגיל בכיתה</div>
+      <div class="ex">
+        <div class="ex-top"><span class="ex-badge mono">תרגיל 02</span><span class="ex-time mono">20 דקות</span><span class="model fable mono">FABLE 5</span>
+          <h3>אינטגרציה של שלושה מקורות</h3></div>
+        <p class="goal">בסוף התרגיל יש טבלת מהימנות, טבלת השוואה, וסעיף סתירות מנומק.</p><p class="model-note fable"><b>למה Fable 5:</b> זו בדיוק המשימה שהוא בנוי לה — ריצה אחת כבדה על חומר סותר, בלי מתכון מוכן. תן לו את כל המקורות ואת כל ההוראות בפנייה אחת, ותן לו את הזמן. תשובה של כמה דקות היא תקינה כאן.</p>
+        <ul class="num">
+          <li>אסוף שלושה מקורות גלויים על הנושא מתרגיל 1 — בכוונה כאלה שאינם זהים באופיים.</li>
+          <li>הרץ את פרומפט האינטגרציה עם שלושתם מצורפים.</li>
+          <li>עבור על טבלת המהימנות ותקן לפחות דירוג אחד. הסבר בקול רם למה.</li>
+          <li>בחר סתירה אחת שעלתה, וקבע איזה מארבעת ההסברים חל עליה.</li>
+        </ul>
+        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>לפניך מספר מקורות על אותו נושא: [הנושא].
+המקורות מצורפים.
+
+בצע אינטגרציה מלאה, לפי הסדר:
+
+1. טבלת מקורות — לכל מקור: שם/כתובת, סוג (דיווח / מחקר / רשמי / משני), תאריך, וציון מהימנות A-E:
+   A = גורם רשמי או מחקר עם מתודולוגיה גלויה
+   B = מקור מקצועי מבוסס
+   C = תקשורת כללית
+   D = מקור אנונימי או לא מזוהה
+   E = מקור בעל אינטרס מובהק בנושא
+   הוסף שורת נימוק קצרה לכל ציון.
+
+2. טבלת השוואה — שורות = הסוגיות המרכזיות, עמודות = המקורות, בתאים = מה כל מקור אומר על אותה סוגיה. תא ריק אם המקור שותק.
+
+3. נקודות הסכמה — מה מופיע בשני מקורות בלתי תלויים או יותר. ציין במפורש אם המקורות אינם בלתי תלויים.
+
+4. סתירות — לכל סתירה: מי טוען מה, מהו פער המהימנות ביניהם, ומה ההסבר הסביר לפער (עיתוי שונה / הגדרה שונה / אינטרס / טעות).
+
+5. תמונה משולבת — פסקה אחת המשקללת את הכל, עם משקל גדול יותר למקורות בדירוג גבוה.
+
+אל תשלים פערים בהשערות. מה שאף מקור לא אומר — רשום תחת "לא מכוסה".</pre></div>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>לכל דירוג מהימנות יש נימוק, לא רק אות</li>
+          <li>בטבלת ההשוואה יש לפחות תא ריק אחד — ולא הומצא לו תוכן</li>
+          <li>הסתירות מוצגות כשתי עמדות, בלי הכרעה שקטה</li>
+          <li>קיים סעיף "לא מכוסה" והוא לא ריק</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section class="slide">
+      <div class="kick">ליבת המקצוע</div>
+      <h2>עובדה, הערכה, וסולם הוודאות</h2>
+      <div class="rule"></div>
+      <p class="lead">רוב הכשלים בסקירות אינם המצאת עובדות, אלא הערכה שנכתבה בנוסח של עובדה. הקורא לא יכול להבחין — אלא אם סימנת לו.</p>
+      <div class="compare">
+        <div class="card bad"><span class="lbl mono">נכתב כעובדה</span>
+          <p>הארגון מתכוון להרחיב את פעילותו לאזור הצפון.</p>
+          <ul><li>"מתכוון" = ייחוס כוונה, לא ידיעה</li><li>אין מקור ואין רמת ודאות</li><li>הקורא יקרא את זה כמידע</li></ul></div>
+        <div class="card good"><span class="lbl mono">מסומן נכון</span>
+          <p>הערכה (סביר): הארגון עשוי להרחיב פעילות לצפון.
+מבוסס על: שני דיווחים על נוכחות חדשה באזור [מקור, תאריך].
+מה יחזק: זיהוי תשתית קבועה. מה יפריך: נסיגה תוך רבעון.</p></div>
+      </div>
+      <p class="note"><b>ארבע רמות ודאות:</b> ודאי · סביר · אפשרי · ספקולטיבי. אם הכול יוצא "סביר" — הסולם לא באמת הופעל. דחוף אותו לקצוות.</p>
+    </section>
+
+    <!-- 10 -->
+    <section class="slide">
+      <div class="kick">תרגיל בכיתה</div>
+      <div class="ex">
+        <div class="ex-top"><span class="ex-badge mono">תרגיל 03</span><span class="ex-time mono">10 דקות</span><span class="model mono">OPUS 5</span>
+          <h3>מבחן "מאיפה זה"</h3></div>
+        <p class="goal">תרגיל בקרה קצר שנכנס לשגרה שלך אחרי כל תוצר.</p><p class="model-note"><b>למה Opus 5 — ולא אותו מודל שכתב:</b> ביקורת בשיחה חדשה, במודל אחר מזה שייצר את התוצר, מקבלת פחות "הגנה" על מה שנכתב קודם. זו שיטת עבודה, לא תכונה של הכלי — אבל היא עובדת.</p>
+        <ul class="num">
+          <li>קח את התמונה המשולבת שהתקבלה בתרגיל 2.</li>
+          <li>בחר בעצמך שלוש טענות מתוכה — כולל אחת שנשמעת מובנת מאליה.</li>
+          <li>הרץ את הפרומפט הבא ובקש ביסוס לכל אחת.</li>
+          <li>כל טענה שהתשובה עליה מעורפלת — נמחקת מהסקירה או יורדת לרמת ודאות נמוכה יותר.</li>
+        </ul>
+        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>עבור כל אחת משלוש הטענות הבאות מתוך הטקסט שכתבת:
+[טענה 1]
+[טענה 2]
+[טענה 3]
+
+ענה בטבלה, שורה לכל טענה:
+- מקור מדויק: איזה מקור מהחומר שצורף, ואיפה בתוכו. אם אין — כתוב "אין מקור בחומר".
+- סיווג: עובדה / הערכה / השלמה שלך מידע כללי.
+- רמת ודאות: ודאי / סביר / אפשרי / ספקולטיבי.
+- מה היה מפריך את הטענה.
+
+אל תגן על מה שכתבת קודם. אם טענה אינה מבוססת בחומר שצורף — אמור זאת במפורש.</pre></div>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>לפחות טענה אחת מסומנת כהשלמה מידע כללי — ומטופלת</li>
+          <li>אין טענה שנשארה בלי מקור ובלי סימון</li>
+          <li>לכל טענה יש תנאי הפרכה שאפשר לבדוק</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 11 -->
+    <section class="slide">
+      <div class="kick">הרכבה</div>
+      <h2>מהחומר לסקירת העומק</h2>
+      <div class="rule"></div>
+      <p class="lead">עכשיו יש חומר ממוזג, מדורג ומסומן. הסקירה היא הרכבה שלו לפי תת-השאלות שהגדרת בתחילת השיעור — לא כתיבה מחדש.</p>
+      <ul class="num">
+        <li><b>שלד</b> — תת-השאלות הופכות לסעיפים, בסדר שמשרת את הקורא ולא את סדר האיסוף.</li>
+        <li><b>מילוי</b> — לכל סעיף נכנס מה שהטבלה מראה, כולל התאים הריקים כ"לא מכוסה".</li>
+        <li><b>סתירות</b> — סעיף עצמאי, לא הערת שוליים.</li>
+        <li><b>הערכה</b> — בסוף בלבד, מסומנת, אחרי שהעובדות הוצגו במלואן.</li>
+        <li><b>פערי ידע</b> — מה נדרש כדי לחזק, ומאיפה אפשר להשיג.</li>
+      </ul>
+      <p class="note"><b>מבחן האורך:</b> אם הסקירה ארוכה מהחומר שנאסף — נוסף בה מלל שאינו מבוסס. חזור ומחק.</p>
+    </section>
+
+    <!-- 12 -->
+    <section class="slide">
+      <div class="kick">סיכום</div>
+      <h2>מה יצא מהשיעור, ומה עד הפעם הבאה</h2>
+      <div class="rule"></div>
+      <div class="grid2">
+        <div class="card"><span class="tag mono">בידך עכשיו</span><h3>שיטה מלאה</h3><ul>
+          <li>שאלת מחקר מפורקת לתת-שאלות</li>
+          <li>טבלת מהימנות וטבלת השוואה</li>
+          <li>סעיף סתירות מנומק</li>
+          <li>סקירת עומק על נושא גלוי</li></ul></div>
+        <div class="card"><span class="tag mono">משימה לבית</span><h3>מיזוג לתוך הטיוטה</h3><ul>
+          <li>שלב את ממצאי הסקירה בטיוטה משיעור 1</li>
+          <li>הוסף שני מקורות נוספים מסוגים שונים</li>
+          <li>הרץ על התוצאה את מבחן "מאיפה זה"</li>
+          <li>הבא את המסמך המאוחד — ממנו נייצר תפוקות</li></ul></div>
+      </div>
+      <p class="note"><b>בשיעור הבא:</b> מהחומר הזה בדיוק — מסמך מעוצב לפי תבנית ארגונית, ומצגת. אותו תוכן, שתי תפוקות.</p>
+    </section>
+
+  </main>
+
+  <div class="navbar">
+    <button id="prev" type="button">הקודם</button>
+    <button id="next" type="button">הבא</button>
+    <span class="sp"></span>
+    <span class="hint mono">חצים במקלדת · מקש רווח</span>
+    <button id="fs" type="button">מסך מלא</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')),i=0;
+  document.getElementById('tot').textContent=slides.length;
+  var cur=document.getElementById('cur'),fill=document.getElementById('pfill'),
+      prev=document.getElementById('prev'),next=document.getElementById('next'),stage=document.getElementById('stage');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
+    cur.textContent=i+1;
+    fill.style.width=((i+1)/slides.length*100)+'%';
+    prev.disabled=(i===0); next.disabled=(i===slides.length-1);
+    stage.scrollTop=0;
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  prev.onclick=function(){show(i-1)}; next.onclick=function(){show(i+1)};
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='BUTTON'&&(e.key===' '||e.key==='Enter'))return;
+    if(e.key==='ArrowLeft'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(i+1)}
+    else if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1)}
+    else if(e.key==='Home'){show(0)} else if(e.key==='End'){show(slides.length-1)}
+  });
+  var x0=null;
+  stage.addEventListener('touchstart',function(e){x0=e.changedTouches[0].clientX},{passive:true});
+  stage.addEventListener('touchend',function(e){
+    if(x0===null)return; var d=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(d)>60) show(d<0?i+1:i-1);
+  },{passive:true});
+  document.getElementById('fs').onclick=function(){
+    if(document.fullscreenElement){document.exitFullscreen()}
+    else{document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}
+  };
+  [].forEach.call(document.querySelectorAll('.copy'),function(b){
+    b.onclick=function(){
+      var t=b.parentNode.querySelector('pre').textContent, done=function(){
+        b.textContent='הועתק ✓';b.classList.add('done');
+        setTimeout(function(){b.textContent='העתקה';b.classList.remove('done')},1700);
+      };
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,function(){leg(t,done)})}
+      else{leg(t,done)}
+    };
+  });
+  function leg(t,done){
+    var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';
+    document.body.appendChild(a);a.focus();a.setSelectionRange(0,t.length);
+    try{document.execCommand('copy');done()}catch(e){}
+    document.body.removeChild(a);
+  }
+  var h=parseInt(location.hash.replace('#',''),10);
+  show(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>
