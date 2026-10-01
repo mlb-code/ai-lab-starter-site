@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>שאלון היכרות — On Tobi | AI Lab</title>
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0d12;--bg-2:#0f131a;--panel:#12171f;--panel-2:#161c25;
+  --line:#232b36;--line-soft:#1b222c;
+  --txt:#dfe4ea;--txt-dim:#98a1ad;--txt-faint:#6d7783;
+  --amber:#d99b3c;--amber-soft:#8a6326;--amber-glow:rgba(217,155,60,.11);
+  --ok:#5f8f6a;--radius:4px;--mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:"Heebo",-apple-system,"Segoe UI",Arial,sans-serif;font-weight:300;font-size:16px;line-height:1.7;
+  -webkit-font-smoothing:antialiased;min-height:100vh;
+  background-image:
+    radial-gradient(1100px 620px at 88% -8%,rgba(217,155,60,.075),transparent 62%),
+    radial-gradient(900px 520px at 6% 104%,rgba(86,116,152,.07),transparent 62%),
+    linear-gradient(180deg,#0d1119 0%,#0a0d12 55%,#080b0f 100%);
+  background-attachment:fixed;
+}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0v64' fill='none' stroke='%23ffffff' stroke-opacity='.03' stroke-width='1'/%3E%3C/svg%3E")}
+h1,h2,h3{font-weight:500;line-height:1.35;margin:0}
+a{color:var(--amber);text-decoration:none}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+
+header{border-bottom:1px solid var(--line);background:rgba(10,13,18,.92);backdrop-filter:blur(6px);position:sticky;top:0;z-index:20}
+.hdr{display:flex;align-items:center;gap:16px;padding:13px 0}
+.brand{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--txt-dim);white-space:nowrap}
+.brand b{color:var(--amber);font-weight:500}
+.prog{margin-inline-start:auto;font-family:var(--mono);font-size:11.5px;color:var(--txt-faint);white-space:nowrap;display:flex;align-items:center;gap:10px}
+.prog b{color:var(--txt);font-weight:500}
+.pbar{width:120px;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.pbar div{height:100%;background:var(--amber);width:0;transition:width .25s ease}
+
+.intro{padding:40px 0 26px;border-bottom:1px solid var(--line-soft)}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase}
+.intro h1{font-size:clamp(24px,4.4vw,32px);margin:10px 0 10px}
+.intro p{color:var(--txt-dim);max-width:60ch;margin:0 0 8px;font-size:15.5px}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:18px}
+.rule{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:11px 13px;font-size:13.5px;color:var(--txt-dim)}
+.rule b{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--amber);font-weight:400;margin-bottom:4px}
+
+.sec{border:0;margin:0;padding:34px 0 6px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.sec-head h2{font-size:19px;white-space:nowrap}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.14em}
+.sec-head::after{content:"";flex:1;height:1px;background:var(--line)}
+.sec-sub{color:var(--txt-faint);font-size:13.5px;margin:0 0 18px}
+
+.q{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:18px 20px 16px;margin-bottom:14px;transition:border-color .18s ease}
+.q:focus-within{border-color:var(--amber-soft)}
+.q.done{border-inline-start:3px solid var(--ok)}
+.q-h{display:flex;align-items:flex-start;gap:12px;margin-bottom:6px}
+.num{font-family:var(--mono);font-size:11.5px;color:var(--amber);letter-spacing:.08em;padding-top:5px;white-space:nowrap}
+.lbl{font-size:16.5px;color:#fff;font-weight:400;flex:1;line-height:1.5}
+.type{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--txt-faint);border:1px solid var(--line);padding:2px 7px;border-radius:2px;white-space:nowrap;margin-top:5px}
+.hint{color:var(--txt-faint);font-size:13.5px;margin:0 0 12px;padding-inline-start:36px}
+
+textarea,input[type=text]{
+  width:100%;background:var(--bg-2);border:1px solid var(--line);color:var(--txt);
+  font-family:"Heebo",sans-serif;font-size:15px;line-height:1.6;border-radius:var(--radius);padding:11px 13px;
+}
+textarea{min-height:92px;resize:vertical}
+textarea:focus,input[type=text]:focus{border-color:var(--amber-soft);outline:none;box-shadow:0 0 0 3px var(--amber-glow)}
+input[type=text].other{margin-top:8px;font-size:14px;padding:9px 12px}
+
+.opts{display:grid;gap:7px}
+.opts.cols{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.opt{display:flex;align-items:center;gap:11px;border:1px solid var(--line);background:var(--bg-2);border-radius:var(--radius);padding:10px 13px;cursor:pointer;font-size:14.5px;transition:border-color .15s ease,background .15s ease}
+.opt:hover{border-color:var(--amber-soft)}
+.opt:has(input:checked){border-color:var(--amber-soft);background:var(--amber-glow);color:#fff}
+.opt input{width:18px;height:18px;margin:0;accent-color:var(--amber);flex:none;cursor:pointer}
+
+.finish{margin:40px 0 60px;border:1px solid var(--amber-soft);border-radius:var(--radius);
+  background:linear-gradient(180deg,var(--amber-glow),transparent 60%),var(--panel);padding:26px 24px 22px}
+.finish h2{font-size:20px;margin-bottom:6px}
+.finish p{color:var(--txt-dim);margin:0 0 18px;font-size:15px}
+.btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button{font-family:"Heebo",sans-serif;cursor:pointer;border-radius:var(--radius);transition:background .15s ease,border-color .15s ease,color .15s ease}
+.btn-main{background:var(--amber);border:1px solid var(--amber);color:#12100b;font-size:16px;font-weight:500;padding:13px 24px;display:inline-flex;align-items:center;gap:9px}
+.btn-main:hover{background:#e8ac52}
+.btn-main svg{width:18px;height:18px;fill:currentColor}
+.btn-sec{background:transparent;border:1px solid var(--line);color:var(--txt-dim);font-size:14px;padding:11px 16px}
+.btn-sec:hover{border-color:var(--amber-soft);color:var(--amber)}
+#status{margin-top:14px;font-size:14px;color:var(--ok);min-height:22px}
+#status.warn{color:var(--amber)}
+.missing{margin-top:10px;font-size:13.5px;color:var(--txt-faint)}
+
+footer{border-top:1px solid var(--line);padding:22px 0 40px;font-family:var(--mono);font-size:12px;color:var(--txt-faint);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:600px){
+  .hdr{gap:10px}.pbar{width:70px}
+  .q{padding:15px 14px 13px}.hint{padding-inline-start:0}
+  .btn-main{width:100%;justify-content:center}.btn-sec{flex:1;text-align:center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hdr">
+    <div class="brand"><b>AI Lab</b> · שאלון היכרות</div>
+    <div class="prog"><span>ענית על <b id="done">0</b> מתוך <b id="total">0</b></span><div class="pbar"><div id="pfill"></div></div></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="intro">
+    <div class="kicker mono">ON TOBI · PRE-WORK</div>
+    <h1>כמה שאלות, כדי להתאים את הקורס בדיוק אליך</h1>
+    <p>אין תשובות נכונות. ככל שתענה חופשי יותר — כך נמקד טוב יותר את העבודה על המסמך שלך. אפשר לדלג על שאלה ולחזור אליה.</p>
+    <div class="rules">
+      <div class="rule"><b>זמן</b>כרבע שעה. אפשר לעצור ולחזור — התשובות נשמרות במכשיר הזה.</div>
+      <div class="rule"><b>בלי פרטים מזהים</b>בלי שמות של ארגונים, אנשים, תיקים או כל פרט שאינו גלוי.</div>
+      <div class="rule"><b>בסוף</b>כפתור אחד שולח את הכל למאיר בוואטסאפ. אתה רק לוחץ "שלח".</div>
+    </div>
+  </section>
+
+  <form id="q" autocomplete="off">
+
+    <!-- ===== א ===== -->
+    <fieldset class="sec">
+      <div class="sec-head"><span class="sec-num mono">01</span><h2>התפקיד שלך</h2></div>
+      <p class="sec-sub">כדי שנדבר באותה שפה.</p>
+
+      <div class="q" data-id="1" data-type="text">
+        <div class="q-h"><span class="num">01</span><label class="lbl" for="q1">מה אתה עושה ביום-יום? במשפט או שניים.</label></div>
+        <p class="hint">למשל: "מרכז מידע ממקורות גלויים וכותב סקירות שבועיות לגורמי מטה".</p>
+        <textarea id="q1" name="q1"></textarea>
+      </div>
+
+      <div class="q" data-id="2" data-type="multi">
+        <div class="q-h"><span class="num">02</span><span class="lbl">מי קורא את התוצרים שלך?</span><span class="type">אפשר כמה</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="checkbox" name="q2" value="מנהל ישיר"><span>מנהל ישיר</span></label>
+          <label class="opt"><input type="checkbox" name="q2" value="דרג בכיר / מקבלי החלטות"><span>דרג בכיר / מקבלי החלטות</span></label>
+          <label class="opt"><input type="checkbox" name="q2" value="עמיתים בדסק"><span>עמיתים בדסק</span></label>
+          <label class="opt"><input type="checkbox" name="q2" value="גורמים מחוץ ליחידה"><span>גורמים מחוץ ליחידה</span></label>
+        </div>
+        <input type="text" class="other" name="q2_other" placeholder="אחר — פרט">
+      </div>
+
+      <div class="q" data-id="3" data-type="multi">
+        <div class="q-h"><span class="num">03</span><span class="lbl">איזה סוג תוצרים אתה מפיק הכי הרבה?</span><span class="type">אפשר כמה</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="checkbox" name="q3" value="מסמכי מדיניות"><span>מסמכי מדיניות</span></label>
+          <label class="opt"><input type="checkbox" name="q3" value="סקירות עומק"><span>סקירות עומק</span></label>
+          <label class="opt"><input type="checkbox" name="q3" value="הערכות מצב"><span>הערכות מצב</span></label>
+          <label class="opt"><input type="checkbox" name="q3" value="מצגות"><span>מצגות</span></label>
+          <label class="opt"><input type="checkbox" name="q3" value="ניתוחי נתונים / טבלאות"><span>ניתוחי נתונים / טבלאות</span></label>
+          <label class="opt"><input type="checkbox" name="q3" value="תקצירים קצרים"><span>תקצירים קצרים</span></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- ===== ב ===== -->
+    <fieldset class="sec">
+      <div class="sec-head"><span class="sec-num mono">02</span><h2>המסמך</h2></div>
+      <p class="sec-sub">החלק הכי חשוב. המסמך שאתה רוצה שייצא טוב יותר.</p>
+
+      <div class="q" data-id="4" data-type="text">
+        <div class="q-h"><span class="num">04</span><label class="lbl" for="q4">על מה המסמך? במשפט אחד, בלי פרטים מזהים.</label></div>
+        <p class="hint">מספיק הנושא הכללי. למשל: "מגמות בתופעה X באזור Y והמלצות לטיפול".</p>
+        <textarea id="q4" name="q4"></textarea>
+      </div>
+
+      <div class="q" data-id="5" data-type="text">
+        <div class="q-h"><span class="num">05</span><label class="lbl" for="q5">מי אמור לקרוא אותו — ומה הוא אמור לעשות אחרי שקרא?</label></div>
+        <p class="hint">"לאשר תקציב", "לשנות סדר עדיפויות", "להבין את התמונה" — מה שנכון.</p>
+        <textarea id="q5" name="q5"></textarea>
+      </div>
+
+      <div class="q" data-id="6" data-type="single">
+        <div class="q-h"><span class="num">06</span><span class="lbl">מה המצב שלו היום?</span><span class="type">תשובה אחת</span></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q6" value="אין עדיין טיוטה"><span>אין עדיין טיוטה — רק רעיון וחומר</span></label>
+          <label class="opt"><input type="radio" name="q6" value="יש טיוטה חלקית"><span>יש טיוטה חלקית</span></label>
+          <label class="opt"><input type="radio" name="q6" value="יש טיוטה מלאה שאני לא מרוצה ממנה"><span>יש טיוטה מלאה — אבל אני לא מרוצה ממנה</span></label>
+          <label class="opt"><input type="radio" name="q6" value="הוגש וחזר לתיקונים"><span>הוגש, וחזר אליי לתיקונים</span></label>
+        </div>
+      </div>
+
+      <div class="q" data-id="7" data-type="multi">
+        <div class="q-h"><span class="num">07</span><span class="lbl">מה הכי לא עובד בגרסה הנוכחית?</span><span class="type">אפשר כמה</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="checkbox" name="q7" value="לא ממוקד"><span>לא ממוקד — מתפזר</span></label>
+          <label class="opt"><input type="checkbox" name="q7" value="אין מסקנה ברורה"><span>אין מסקנה ברורה</span></label>
+          <label class="opt"><input type="checkbox" name="q7" value="ארוך מדי"><span>ארוך מדי</span></label>
+          <label class="opt"><input type="checkbox" name="q7" value="לא משכנע"><span>לא משכנע</span></label>
+          <label class="opt"><input type="checkbox" name="q7" value="המקורות חלשים"><span>המקורות חלשים</span></label>
+          <label class="opt"><input type="checkbox" name="q7" value="המבנה לא מתייצב"><span>המבנה לא מתייצב</span></label>
+          <label class="opt"><input type="checkbox" name="q7" value="ההמלצות לא מתגבשות"><span>ההמלצות לא מתגבשות</span></label>
+          <label class="opt"><input type="checkbox" name="q7" value="קשה לי להסביר מה לא בסדר"><span>קשה לי להסביר מה לא בסדר</span></label>
+        </div>
+      </div>
+
+      <div class="q" data-id="8" data-type="text">
+        <div class="q-h"><span class="num">08</span><label class="lbl" for="q8">במילים שלך: מה היית רוצה שיקרה כשמישהו קורא את המסמך הזה?</label></div>
+        <textarea id="q8" name="q8"></textarea>
+      </div>
+
+      <div class="q" data-id="9" data-type="single">
+        <div class="q-h"><span class="num">09</span><span class="lbl">יש דדליין?</span><span class="type">תשובה אחת</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="radio" name="q9" value="תוך שבועיים"><span>תוך שבועיים</span></label>
+          <label class="opt"><input type="radio" name="q9" value="תוך חודש"><span>תוך חודש</span></label>
+          <label class="opt"><input type="radio" name="q9" value="אין דדליין קבוע"><span>אין דדליין קבוע</span></label>
+          <label class="opt"><input type="radio" name="q9" value="אחר"><span>אחר</span></label>
+        </div>
+        <input type="text" class="other" name="q9_other" placeholder="אם אחר — מתי?">
+      </div>
+
+      <div class="q" data-id="10" data-type="single">
+        <div class="q-h"><span class="num">10</span><span class="lbl">כמה מהחומר למסמך הזה הוא גלוי — כלומר פורסם ואפשר להעלות אותו לכלי?</span><span class="type">תשובה אחת</span></div>
+        <p class="hint">זה קובע כמה מהעבודה אפשר לעשות בתוך הכלי, וכמה נשאר אצלך.</p>
+        <div class="opts cols">
+          <label class="opt"><input type="radio" name="q10" value="רובו גלוי"><span>רובו גלוי</span></label>
+          <label class="opt"><input type="radio" name="q10" value="בערך חצי-חצי"><span>בערך חצי-חצי</span></label>
+          <label class="opt"><input type="radio" name="q10" value="רובו פנימי"><span>רובו פנימי</span></label>
+          <label class="opt"><input type="radio" name="q10" value="לא בטוח"><span>לא בטוח</span></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- ===== ג ===== -->
+    <fieldset class="sec">
+      <div class="sec-head"><span class="sec-num mono">03</span><h2>איך אתה עובד היום</h2></div>
+      <p class="sec-sub">בלי הכלי. איך זה נראה בפועל.</p>
+
+      <div class="q" data-id="11" data-type="single">
+        <div class="q-h"><span class="num">11</span><span class="lbl">כמה זמן לוקח לך בדרך כלל מסמך כזה, מהתחלה עד הגשה?</span><span class="type">תשובה אחת</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="radio" name="q11" value="יום-יומיים"><span>יום-יומיים</span></label>
+          <label class="opt"><input type="radio" name="q11" value="בערך שבוע"><span>בערך שבוע</span></label>
+          <label class="opt"><input type="radio" name="q11" value="שבועיים ויותר"><span>שבועיים ויותר</span></label>
+          <label class="opt"><input type="radio" name="q11" value="משתנה מאוד"><span>משתנה מאוד</span></label>
+        </div>
+      </div>
+
+      <div class="q" data-id="12" data-type="multi">
+        <div class="q-h"><span class="num">12</span><span class="lbl">איפה הזמן הולך לאיבוד?</span><span class="type">אפשר כמה</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="checkbox" name="q12" value="איסוף מקורות"><span>איסוף מקורות</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="קריאה ומיזוג של החומר"><span>קריאה ומיזוג של החומר</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="הכתיבה עצמה"><span>הכתיבה עצמה</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="עיצוב וסידור"><span>עיצוב וסידור</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="תיקונים אחרי הערות"><span>תיקונים אחרי הערות</span></label>
+          <label class="opt"><input type="checkbox" name="q12" value="להתחיל מאפס כל פעם"><span>להתחיל מאפס כל פעם</span></label>
+        </div>
+      </div>
+
+      <div class="q" data-id="13" data-type="text">
+        <div class="q-h"><span class="num">13</span><label class="lbl" for="q13">מה הדבר הראשון שאתה עושה כשמתחיל מסמך חדש?</label></div>
+        <textarea id="q13" name="q13" style="min-height:70px"></textarea>
+      </div>
+
+      <div class="q" data-id="14" data-type="single">
+        <div class="q-h"><span class="num">14</span><span class="lbl">איך אתה מקבל משוב על מסמכים?</span><span class="type">תשובה אחת</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="radio" name="q14" value="הערות בכתב"><span>הערות בכתב על המסמך</span></label>
+          <label class="opt"><input type="radio" name="q14" value="בעל פה"><span>בעל פה</span></label>
+          <label class="opt"><input type="radio" name="q14" value="כמעט ולא"><span>כמעט ולא מקבל</span></label>
+          <label class="opt"><input type="radio" name="q14" value="משתנה"><span>משתנה</span></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- ===== ד ===== -->
+    <fieldset class="sec">
+      <div class="sec-head"><span class="sec-num mono">04</span><h2>מקורות וחומר</h2></div>
+      <p class="sec-sub">גלוי בלבד. מה שאתה עובד איתו בפועל.</p>
+
+      <div class="q" data-id="15" data-type="multi">
+        <div class="q-h"><span class="num">15</span><span class="lbl">מאיזה סוגי מקורות גלויים אתה עובד הכי הרבה?</span><span class="type">אפשר כמה</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="checkbox" name="q15" value="פרסומים רשמיים"><span>פרסומים רשמיים</span></label>
+          <label class="opt"><input type="checkbox" name="q15" value="דוחות מחקר"><span>דוחות מחקר ומכוני מחקר</span></label>
+          <label class="opt"><input type="checkbox" name="q15" value="תקשורת"><span>תקשורת</span></label>
+          <label class="opt"><input type="checkbox" name="q15" value="רשתות חברתיות"><span>רשתות חברתיות</span></label>
+          <label class="opt"><input type="checkbox" name="q15" value="מאגרי נתונים"><span>מאגרי נתונים וסטטיסטיקה</span></label>
+        </div>
+        <input type="text" class="other" name="q15_other" placeholder="אחר — פרט">
+      </div>
+
+      <div class="q" data-id="16" data-type="single">
+        <div class="q-h"><span class="num">16</span><span class="lbl">אתה עובד עם קובצי אקסל או טבלאות נתונים?</span><span class="type">תשובה אחת</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="radio" name="q16" value="כן, באופן קבוע"><span>כן, באופן קבוע</span></label>
+          <label class="opt"><input type="radio" name="q16" value="לפעמים"><span>לפעמים</span></label>
+          <label class="opt"><input type="radio" name="q16" value="כמעט לא"><span>כמעט לא</span></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- ===== ה ===== -->
+    <fieldset class="sec">
+      <div class="sec-head"><span class="sec-num mono">05</span><h2>אתה והטכנולוגיה</h2></div>
+      <p class="sec-sub">תענה בכנות — זה עוזר לי להתאים את הקצב, לא לשפוט.</p>
+
+      <div class="q" data-id="17" data-type="single">
+        <div class="q-h"><span class="num">17</span><span class="lbl">איך אתה עם כלים חדשים במחשב?</span><span class="type">תשובה אחת</span></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q17" value="לומד מהר"><span>לומד מהר, מסתדר לבד</span></label>
+          <label class="opt"><input type="radio" name="q17" value="צריך שיראו לי פעם אחת"><span>צריך שיראו לי פעם אחת, ואז זה הולך</span></label>
+          <label class="opt"><input type="radio" name="q17" value="צריך לחזור על זה כמה פעמים"><span>צריך לחזור על זה כמה פעמים עד שזה נתפס</span></label>
+          <label class="opt"><input type="radio" name="q17" value="זה מתסכל אותי"><span>זה מתסכל אותי, אני נוטה לוותר</span></label>
+        </div>
+      </div>
+
+      <div class="q" data-id="18" data-type="multi">
+        <div class="q-h"><span class="num">18</span><span class="lbl">מה עזר לך בעבר ללמוד כלי חדש?</span><span class="type">אפשר כמה</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="checkbox" name="q18" value="שמישהו עושה איתי יחד"><span>שמישהו יושב ועושה איתי יחד</span></label>
+          <label class="opt"><input type="checkbox" name="q18" value="הוראות כתובות קצרות"><span>הוראות כתובות, קצרות, צעד-צעד</span></label>
+          <label class="opt"><input type="checkbox" name="q18" value="סרטון"><span>סרטון שאפשר לחזור עליו</span></label>
+          <label class="opt"><input type="checkbox" name="q18" value="לנסות לבד"><span>לנסות לבד ולטעות</span></label>
+          <label class="opt"><input type="checkbox" name="q18" value="לחזור על אותה פעולה כמה פעמים"><span>לחזור על אותה פעולה כמה פעמים</span></label>
+        </div>
+      </div>
+
+      <div class="q" data-id="19" data-type="text">
+        <div class="q-h"><span class="num">19</span><label class="lbl" for="q19">במפגשים שלנו עד עכשיו — מה היה הכי קשה או הכי מבלבל?</label></div>
+        <p class="hint">הכל לגיטימי: איפה לוחצים, מה ההבדל בין הדברים, למה בכלל, המהירות.</p>
+        <textarea id="q19" name="q19"></textarea>
+      </div>
+
+      <div class="q" data-id="20" data-type="single">
+        <div class="q-h"><span class="num">20</span><span class="lbl">כשאתה נתקע עם הכלי — מה אתה עושה?</span><span class="type">תשובה אחת</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="radio" name="q20" value="מנסה שוב בדרך אחרת"><span>מנסה שוב בדרך אחרת</span></label>
+          <label class="opt"><input type="radio" name="q20" value="מחפש בגוגל"><span>מחפש בגוגל</span></label>
+          <label class="opt"><input type="radio" name="q20" value="שואל מישהו"><span>שואל מישהו</span></label>
+          <label class="opt"><input type="radio" name="q20" value="עוזב את זה"><span>עוזב את זה לפעם אחרת</span></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- ===== ו ===== -->
+    <fieldset class="sec">
+      <div class="sec-head"><span class="sec-num mono">06</span><h2>ציפיות וחששות</h2></div>
+      <p class="sec-sub">כדי שנדע מה נחשב הצלחה.</p>
+
+      <div class="q" data-id="21" data-type="text">
+        <div class="q-h"><span class="num">21</span><label class="lbl" for="q21">אם בסוף ארבעת השיעורים דבר אחד ישתנה בעבודה שלך — מה היית רוצה שזה יהיה?</label></div>
+        <textarea id="q21" name="q21"></textarea>
+      </div>
+
+      <div class="q" data-id="22" data-type="multi">
+        <div class="q-h"><span class="num">22</span><span class="lbl">מה מדאיג אותך בעבודה עם AI?</span><span class="type">אפשר כמה</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="checkbox" name="q22" value="שימציא עובדות"><span>שימציא עובדות ואני לא אשים לב</span></label>
+          <label class="opt"><input type="checkbox" name="q22" value="אבטחת מידע"><span>אבטחת מידע</span></label>
+          <label class="opt"><input type="checkbox" name="q22" value="שאתלות בו"><span>שאתלות בו ואאבד את היכולת שלי</span></label>
+          <label class="opt"><input type="checkbox" name="q22" value="שהתוצר יהיה גנרי"><span>שהתוצר יהיה גנרי ולא "שלי"</span></label>
+          <label class="opt"><input type="checkbox" name="q22" value="שלא אצליח לתפעל אותו"><span>שלא אצליח לתפעל אותו</span></label>
+          <label class="opt"><input type="checkbox" name="q22" value="לא מודאג במיוחד"><span>לא מודאג במיוחד</span></label>
+        </div>
+      </div>
+
+      <div class="q" data-id="23" data-type="single">
+        <div class="q-h"><span class="num">23</span><span class="lbl">כמה זמן אתה יכול להקדיש לתרגול בין שיעור לשיעור?</span><span class="type">תשובה אחת</span></div>
+        <div class="opts cols">
+          <label class="opt"><input type="radio" name="q23" value="עד שעה"><span>עד שעה</span></label>
+          <label class="opt"><input type="radio" name="q23" value="שעה-שעתיים"><span>שעה-שעתיים</span></label>
+          <label class="opt"><input type="radio" name="q23" value="שלוש שעות ויותר"><span>שלוש שעות ויותר</span></label>
+          <label class="opt"><input type="radio" name="q23" value="כמעט כלום"><span>כמעט כלום, רק בשיעור</span></label>
+        </div>
+      </div>
+
+      <div class="q" data-id="24" data-type="text">
+        <div class="q-h"><span class="num">24</span><label class="lbl" for="q24">משהו שלא שאלתי וחשוב שאדע?</label></div>
+        <p class="hint">לא חובה.</p>
+        <textarea id="q24" name="q24" style="min-height:70px"></textarea>
+      </div>
+    </fieldset>
+
+  </form>
+
+  <section class="finish" id="finish">
+    <h2>סיימת?</h2>
+    <p>לחץ על הכפתור. תיפתח הודעת וואטסאפ למאיר עם כל התשובות — אתה רק לוחץ "שלח".</p>
+    <div class="btns">
+      <button type="button" class="btn-main" id="send">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.6c.1-.2.2-.3.3-.5 0-.2 0-.4-.1-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.5-.3zM12 2A10 10 0 0 0 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+        שלח למאיר בוואטסאפ
+      </button>
+      <button type="button" class="btn-sec" id="download">הורד כקובץ</button>
+      <button type="button" class="btn-sec" id="copy">העתק הכל</button>
+    </div>
+    <div id="status" role="status"></div>
+    <div class="missing" id="missing"></div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>AI Lab · מאיר לביא</span>
+  <a href="index.html">חזרה לפורטל</a>
+</footer>
+
+<script>
+/* ======== הגדרות ======== */
+const WA_NUMBER = "972546500795";          // מאיר — 054-650-0795
+const STORE_KEY = "ontobi-questionnaire-v1";
+const STUDENT   = "On Tobi";
+
+const form   = document.getElementById("q");
+const qs     = Array.from(form.querySelectorAll(".q"));
+const sects  = Array.from(form.querySelectorAll(".sec"));
+document.getElementById("total").textContent = qs.length;
+
+/* ---- קריאת תשובה לשאלה אחת ---- */
+function answerOf(q){
+  const type = q.dataset.type;
+  if (type === "text") return (q.querySelector("textarea").value || "").trim();
+  const name = q.querySelector("input[type=radio],input[type=checkbox]").name;
+  const picked = Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(i => i.value);
+  const other = q.querySelector(`input[name="${name}_other"]`);
+  const otherVal = other ? other.value.trim() : "";
+  if (otherVal) picked.push((picked.includes("אחר") ? "" : "אחר: ") + otherVal);
+  return picked.filter(Boolean).join(" · ");
+}
+function labelOf(q){ return q.querySelector(".lbl").textContent.trim(); }
+
+/* ---- התקדמות ---- */
+function refresh(){
+  let n = 0;
+  qs.forEach(q => { const ok = !!answerOf(q); q.classList.toggle("done", ok); if (ok) n++; });
+  document.getElementById("done").textContent = n;
+  document.getElementById("pfill").style.width = (n / qs.length * 100) + "%";
+  return n;
+}
+
+/* ---- שמירה אוטומטית במכשיר ---- */
+function save(){
+  const data = {};
+  form.querySelectorAll("textarea,input").forEach(el => {
+    if (el.type === "checkbox" || el.type === "radio") { if (el.checked) (data[el.name] = data[el.name] || []).push(el.value); }
+    else if (el.value) data[el.name] = el.value;
+  });
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch(e){}
+}
+function load(){
+  let data = null;
+  try { data = JSON.parse(localStorage.getItem(STORE_KEY) || "null"); } catch(e){}
+  if (!data) return;
+  form.querySelectorAll("textarea,input").forEach(el => {
+    const v = data[el.name]; if (v == null) return;
+    if (el.type === "checkbox" || el.type === "radio") el.checked = v.includes(el.value);
+    else el.value = v;
+  });
+}
+form.addEventListener("input", () => { save(); refresh(); });
+form.addEventListener("change", () => { save(); refresh(); });
+load(); refresh();
+
+/* ---- בניית המסמך ---- */
+function buildText(){
+  const d = new Date().toLocaleDateString("he-IL");
+  let out = `שאלון היכרות — ${STUDENT}\nתאריך: ${d}\n`;
+  sects.forEach(sec => {
+    out += `\n━━━ ${sec.querySelector("h2").textContent.trim()} ━━━\n`;
+    sec.querySelectorAll(".q").forEach(q => {
+      const a = answerOf(q);
+      out += `\n${q.dataset.id}. ${labelOf(q)}\n→ ${a || "(לא ענה)"}\n`;
+    });
+  });
+  return out;
+}
+function buildHtml(){
+  const esc = s => s.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+  const d = new Date().toLocaleDateString("he-IL");
+  let body = "";
+  sects.forEach(sec => {
+    body += `<h2>${esc(sec.querySelector("h2").textContent.trim())}</h2>`;
+    sec.querySelectorAll(".q").forEach(q => {
+      const a = answerOf(q);
+      body += `<div class="item"><div class="ql"><span>${q.dataset.id}.</span> ${esc(labelOf(q))}</div><div class="${a ? "ans" : "ans none"}">${a ? esc(a).replace(/\n/g,"<br>") : "לא ענה"}</div></div>`;
+    });
+  });
+  return `<!DOCTYPE html><html lang="he" dir="rtl"><head><meta charset="utf-8"><title>שאלון היכרות — ${STUDENT}</title>
+<style>body{font-family:Arial,Heebo,sans-serif;max-width:760px;margin:40px auto;padding:0 24px;color:#1a1a1a;line-height:1.6}
+h1{font-size:24px;margin:0 0 4px}.meta{color:#777;font-size:13px;margin-bottom:28px}h2{font-size:17px;margin:30px 0 10px;padding-bottom:6px;border-bottom:2px solid #d99b3c}
+.item{margin:0 0 14px}.ql{font-weight:600;font-size:14px}.ql span{color:#b07a24;font-family:monospace;margin-left:4px}
+.ans{background:#f6f3ec;border-right:3px solid #d99b3c;padding:8px 12px;margin-top:4px;font-size:14.5px;white-space:pre-wrap}.ans.none{color:#999;font-style:italic;background:#f3f3f3;border-color:#ccc}</style></head>
+<body><h1>שאלון היכרות — ${STUDENT}</h1><div class="meta">AI Lab · ${d}</div>${body}</body></html>`;
+}
+
+/* ---- כפתורים ---- */
+const status = document.getElementById("status");
+function say(msg, warn){ status.textContent = msg; status.className = warn ? "warn" : ""; }
+function listMissing(){
+  const miss = qs.filter(q => !answerOf(q)).map(q => q.dataset.id);
+  document.getElementById("missing").textContent = miss.length
+    ? `עדיין בלי תשובה: ${miss.join(", ")} — אפשר לשלוח גם ככה.` : "";
+}
+async function copyText(t){
+  try { await navigator.clipboard.writeText(t); return true; } catch(e){}
+  const a = document.createElement("textarea"); a.value = t; a.style.position = "fixed"; a.style.opacity = "0";
+  document.body.appendChild(a); a.focus(); a.select();
+  let ok = false; try { ok = document.execCommand("copy"); } catch(e){}
+  document.body.removeChild(a); return ok;
+}
+
+document.getElementById("send").addEventListener("click", async () => {
+  listMissing();
+  const t = buildText();
+  const enc = encodeURIComponent(t);
+  if (enc.length < 6000) {
+    window.open(`https://wa.me/${WA_NUMBER}?text=${enc}`, "_blank", "noopener");
+    say("נפתחה הודעת וואטסאפ עם כל התשובות. לחץ שם על \"שלח\".");
+  } else {
+    const ok = await copyText(t);
+    window.open(`https://wa.me/${WA_NUMBER}`, "_blank", "noopener");
+    say(ok ? "התשובות ארוכות — הן הועתקו. בוואטסאפ שנפתח: הדבק (Ctrl+V) ולחץ שלח."
+           : "לא הצלחתי להעתיק אוטומטית. לחץ \"העתק הכל\" ואז הדבק בוואטסאפ.", true);
+  }
+});
+document.getElementById("download").addEventListener("click", () => {
+  listMissing();
+  const blob = new Blob([buildHtml()], {type: "text/html;charset=utf-8"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob);
+  a.download = "שאלון-היכרות-On-Tobi.html"; document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  say("הקובץ ירד למחשב. אפשר לשלוח אותו למאיר במייל או בוואטסאפ.");
+});
+document.getElementById("copy").addEventListener("click", async () => {
+  listMissing();
+  const ok = await copyText(buildText());
+  say(ok ? "הכל הועתק. עכשיו הדבק בוואטסאפ או במייל למאיר." : "ההעתקה נכשלה — נסה את \"הורד כקובץ\".", !ok);
+});
+</script>
+</body>
+</html>
