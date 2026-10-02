@@ -62,6 +62,80 @@ button{
   border-radius:var(--radius);transition:background .15s ease,border-color .15s ease,color .15s ease;
 }
 
+/* ---------- כניסה ---------- */
+html{scroll-behavior:smooth}
+section{scroll-margin-top:72px}
+.welcome{padding:40px 0 8px}
+.welcome h1{font-size:clamp(27px,4.8vw,36px);margin:8px 0 8px}
+.welcome > p{color:var(--txt-dim);max-width:58ch;margin:0 0 22px;font-size:15.5px}
+.w-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.w-card{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:18px 18px 16px;display:flex;flex-direction:column;gap:3px;color:var(--txt);transition:border-color .18s ease,transform .18s ease,background .18s ease}
+.w-card:hover{border-color:var(--amber-soft);text-decoration:none;transform:translateY(-2px)}
+.w-card.primary{border-color:var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 70%),var(--panel)}
+.w-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--amber);margin-bottom:4px}
+.w-card b{font-size:19px;font-weight:500;color:#fff;line-height:1.3}
+.w-card .sub{color:var(--txt-dim);font-size:13.5px}
+.task{margin-top:14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:16px 18px 12px}
+.task-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.task-h b{font-size:15.5px;font-weight:500;color:#fff}
+.task-h span{margin-inline-start:auto;font-size:11px;color:var(--txt-faint)}
+.task label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line-soft);font-size:14.5px;color:var(--txt);cursor:pointer}
+.task label:first-child{border-top:0}
+.task input{width:19px;height:19px;margin-top:3px;accent-color:var(--amber);flex:none;cursor:pointer}
+.task label:has(input:checked){color:var(--txt-faint);text-decoration:line-through}
+.task-foot{margin:8px 0 0;font-size:12.5px;color:var(--txt-faint)}
+.quick{display:flex;gap:8px;flex-wrap:wrap;padding:16px 0 4px;border-bottom:1px solid var(--line-soft)}
+.quick a{font-family:var(--mono);font-size:12px;border:1px solid var(--line);color:var(--txt-dim);padding:6px 13px;border-radius:999px;transition:border-color .15s ease,color .15s ease}
+.quick a:hover{border-color:var(--amber-soft);color:var(--amber);text-decoration:none}
+
+/* ---------- יחידות ---------- */
+.bar2{height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar2 div{height:100%;background:var(--amber);width:0;transition:width .3s ease}
+.chap{margin:20px 0 8px;display:flex;align-items:center;gap:12px}
+.chap:first-child{margin-top:4px}
+.chap .cn{font-size:10.5px;color:var(--amber);letter-spacing:.14em;border:1px solid var(--amber-soft);border-radius:2px;padding:2px 8px;white-space:nowrap}
+.chap h3{font-size:17px;flex:1;font-weight:500}
+.chap .cs{font-size:11px;color:var(--txt-faint)}
+.unit{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px;transition:border-color .18s ease}
+.unit .st{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--txt-faint);font-family:var(--mono)}
+.unit.done .st{border-color:#3c5a44;color:var(--ok)}
+.unit.next{border-color:var(--amber-soft);background:linear-gradient(90deg,var(--amber-glow),transparent 60%),var(--panel)}
+.unit.next .st{border-color:var(--amber);color:var(--amber);background:var(--amber-glow)}
+.unit.locked{opacity:.5}
+.unit .ut{font-size:15px;color:#fff;line-height:1.4}
+.unit.done .ut{color:var(--txt-dim)}
+.unit.next .ut{font-weight:500}
+.unit .un{font-size:10.5px;color:var(--txt-faint);margin-inline-end:9px}
+.unit .ud{font-size:12.5px;color:var(--txt-faint);margin-top:1px}
+.unit .right{display:flex;align-items:center;gap:12px}
+.unit .um{font-size:11px;color:var(--txt-faint);white-space:nowrap}
+.unit a.go{font-family:var(--mono);font-size:12px;border:1px solid var(--line);color:var(--txt-dim);padding:6px 13px;border-radius:var(--radius);white-space:nowrap;transition:border-color .15s,color .15s,background .15s}
+.unit.next a.go{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.unit a.go:hover{border-color:var(--amber);color:var(--amber);text-decoration:none}
+@media (max-width:600px){.unit{grid-template-columns:24px 1fr}.unit .right{grid-column:2;justify-content:flex-start;margin-top:4px}}
+
+/* ---------- פאנלים מתקפלים ---------- */
+.panel{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);margin-bottom:12px;transition:border-color .18s ease}
+.panel[open]{border-color:var(--amber-soft)}
+.panel > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:16px 18px;font-size:16px;color:#fff;font-weight:400}
+.panel > summary::-webkit-details-marker{display:none}
+.panel > summary::before{content:"+";font-family:var(--mono);color:var(--amber);width:24px;height:24px;border:1px solid var(--amber-soft);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:15px;flex:none;background:var(--bg)}
+.panel[open] > summary::before{content:"–"}
+.panel > summary .ps{color:var(--txt-faint);font-size:12.5px;margin-inline-start:auto;font-family:var(--mono);letter-spacing:.02em;text-align:left}
+.panel > .pb{padding:6px 18px 20px;border-top:1px solid var(--line-soft)}
+.pb-sub{color:var(--txt-dim);font-size:14px;margin:10px 0 16px}
+@media (max-width:600px){.panel > summary .ps{display:none}}
+
+/* ---------- כרטיסים קומפקטיים ---------- */
+.lesson.compact{padding:15px 18px 13px}
+.lesson.compact .l-rule{margin:10px 0 4px}
+.l-more > summary{list-style:none;cursor:pointer;font-family:var(--mono);font-size:11.5px;color:var(--txt-faint);padding:6px 0 2px;display:inline-block}
+.l-more > summary::-webkit-details-marker{display:none}
+.l-more > summary::before{content:"+ ";color:var(--amber)}
+.l-more[open] > summary::before{content:"– ";color:var(--amber)}
+.l-more[open] > summary{margin-bottom:10px}
+.lesson.compact .l-links{margin-top:12px;padding-top:10px}
+
 /* ---------- כותרת עליונה ---------- */
 header{
   border-bottom:1px solid var(--line);
@@ -86,11 +160,37 @@ header{
 .zoom-btn:hover{background:rgba(217,155,60,.22);border-color:var(--amber);text-decoration:none}
 .zoom-btn svg{width:16px;height:16px;fill:currentColor;flex:none}
 
-/* ---------- Hero ---------- */
-.hero{padding:44px 0 30px;border-bottom:1px solid var(--line-soft)}
-.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase}
-.hero h1{font-size:clamp(24px,4.4vw,33px);margin:10px 0 10px}
-.hero p{color:var(--txt-dim);max-width:62ch;margin:0;font-size:15.5px}
+
+/* ---------- המשימה עד השיעור הבא (לפי CURRENT_LESSON) ---------- */
+const TASKS = {
+  2: [
+    "פתחתי את המסמך והעתקתי רק את רשימת ההמלצות למסמך וורד חדש",
+    "מחקתי מהרשימה מספרים, שמות ופרטים פנימיים — ובמקומם כתבתי [פרט]",
+    "מספרתי את ההמלצות: 1, 2, 3…"
+  ]
+};
+(function () {
+  const list = document.getElementById("task-list"), count = document.getElementById("task-count");
+  const items = TASKS[CURRENT_LESSON] || [];
+  const key = "ontobi-tasks-l" + CURRENT_LESSON;
+  let saved = []; try { saved = JSON.parse(localStorage.getItem(key) || "[]"); } catch (e) {}
+  if (!items.length) { list.closest(".task").style.display = "none"; return; }
+  items.forEach((t, i) => {
+    const l = document.createElement("label"), c = document.createElement("input");
+    c.type = "checkbox"; c.checked = !!saved[i];
+    c.addEventListener("change", () => { saved[i] = c.checked; try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {} upd(); });
+    l.appendChild(c); l.appendChild(document.createTextNode(t)); list.appendChild(l);
+  });
+  function upd(){ const d = saved.filter(Boolean).length; count.textContent = d === items.length ? "הכל מוכן ✓" : d + " / " + items.length; }
+  upd();
+})();
+
+/* ---------- קישור לפאנל מקופל פותח אותו ---------- */
+function openTarget() {
+  const el = document.getElementById(location.hash.slice(1));
+  if (el && el.tagName === "DETAILS") el.open = true;
+}
+window.addEventListener("hashchange", openTarget); openTarget();
 
 /* ---------- פס התקדמות ---------- */
 .progress{padding:26px 0 6px}
@@ -315,26 +415,131 @@ footer{
 
 <main class="wrap">
 
-  <div class="hero">
-    <div class="kicker mono">COURSE FILE · 04 SESSIONS</div>
-    <h1>עבודה עם קלוד במצב קו-וורק — לאנליסט דסק</h1>
-    <p>המסמך שלך כמעט מוגש. מכאן הקורס עובד על מה שבא אחריו: פרק ההמלצות לפני ההגשה, ואז תקציר המנהלים והמצגת שנגזרים ממנו — ובסוף, שיטה קבועה לכל התוצרים שחוזרים אצלך.</p>
-  </div>
+  <!-- ====== ברוך הבא ====== -->
+  <section class="welcome" id="top">
+    <div class="kicker mono">הפורטל האישי שלך</div>
+    <h1>שלום און</h1>
+    <p>כל מה שצריך לקורס נמצא בדף הזה. מתחילים תמיד מכאן: מה היחידה הבאה, ומה המשימה הקטנה עד הפגישה.</p>
+    <div class="w-grid">
+      <a class="w-card primary" id="w-next" href="#lessons"><span class="w-tag" id="w-next-tag">היחידה הבאה</span><b id="w-next-title">…</b><span class="sub" id="w-next-sub">פתח ←</span></a>
+      <a class="w-card" href="review-1.html"><span class="w-tag">5 דקות</span><b>חזרה קצרה</b><span class="sub">מה בנינו, ואיך נכנסים</span></a>
+      <a class="w-card" href="https://us05web.zoom.us/j/8186142816?pwd=VEtXYVh3Z3IwZWhrZHYvWm5hYWlKQT09" target="_blank" rel="noopener"><span class="w-tag">שיעור חי</span><b>כניסה לזום</b><span class="sub">אותו חדר, תמיד</span></a>
+    </div>
+    <div class="task">
+      <div class="task-h"><b>המשימה שלך עד הפגישה הבאה</b><span id="task-count" class="mono"></span></div>
+      <div id="task-list"></div>
+      <p class="task-foot">עד שעה. בוורד בלבד, בלי הכלי. הסימונים נשמרים במחשב הזה.</p>
+    </div>
+  </section>
 
   <div class="progress">
     <div class="progress-top">
-      <span>שיעור <b id="prog-current">1</b> מתוך <b>5</b></span>
-      <span id="prog-label">בתהליך</span>
+      <span><b id="prog-done">0</b> מתוך <b id="prog-total">0</b> יחידות</span>
+      <span id="prog-label"></span>
     </div>
-    <div class="bar" id="bar" aria-hidden="true"></div>
+    <div class="bar2" aria-hidden="true"><div id="prog-fill"></div></div>
   </div>
 
-  <!-- ====== התקנה ====== -->
-  <section id="setup">
-    <div class="sec-head"><span class="sec-num mono">01</span><h2>לפני שמתחילים — Claude Desktop</h2></div>
-    <p class="sec-sub">המשימה לפני השיעור הראשון: להתקין את האפליקציה על המחשב, להתחבר, ולהתמצא בארבעה מקומות. כרבע שעה. את הפרויקט עצמו נקים יחד בשיעור.</p>
+  <nav class="quick" aria-label="קפיצה מהירה">
+    <a href="#lessons">מהלך הקורס</a><a href="#words">המילים שלנו</a><a href="#prompts">ספריית הבקשות</a><a href="#safety">כללי עבודה בטוחה</a><a href="#setup">התקנה</a>
+  </nav>
 
-    <div class="why">
+  <!-- ====== יחידות ====== -->
+  <section id="lessons">
+    <div class="sec-head"><span class="sec-num mono">01</span><h2>מהלך הקורס</h2></div>
+    <p class="sec-sub">יחידות קצרות — כל אחת דבר אחד. מסיימים יחידה, ממשיכים לבאה. בפגישה עושים כמה שמספיקים.</p>
+    <div id="units"></div>
+  </section>
+
+  <!-- ====== ארגז הכלים ====== -->
+  <section id="toolbox">
+    <div class="sec-head"><span class="sec-num mono">02</span><h2>ארגז הכלים</h2></div>
+    <p class="sec-sub">דברים שחוזרים אליהם. לוחצים על כותרת כדי לפתוח ולסגור.</p>
+
+    <details class="panel" id="words" open>
+      <summary>המילים שאנחנו משתמשים בהן<span class="ps">מילון קצר · מילה אחת לכל דבר</span></summary>
+      <div class="pb">
+        <p class="pb-sub">כשמופיע מונח באנגלית בממשק — זו המשמעות שלו אצלנו.</p>
+            <div class="scroll"><table class="tbl">
+      <tr><th>אצלנו אומרים</th><th>בממשק כתוב</th><th>מה זה</th></tr>
+      <tr><td>תיק העבודה</td><td class="ltr-cell">Project</td><td>המקום שבו הכל נמצא. כל שיחה מקצועית נפתחת בתוכו</td></tr>
+      <tr><td>פקודת הקבע</td><td class="ltr-cell">Instructions</td><td>מי אתה ואיך אתה כותב. פועלת תמיד, בלי שתבקש</td></tr>
+      <tr><td>הקלסר</td><td class="ltr-cell">Project files</td><td>המסמכים שצירפנו: תבנית, מילון, דוגמה, מקורות</td></tr>
+      <tr><td>טופס המשימה</td><td>—</td><td>פרומפט-האב. המתכון למסמך מדיניות, מופעל רק כשמבקשים</td></tr>
+      <tr><td>הבקשה</td><td class="ltr-cell">Prompt</td><td>מה שאתה כותב לו בתיבת ההודעה</td></tr>
+      <tr><td>שיחה חדשה</td><td class="ltr-cell">New chat</td><td>דף נקי בתוך תיק העבודה. משימה חדשה = שיחה חדשה</td></tr>
+      <tr><td>המסמך בצד</td><td class="ltr-cell">Co-work</td><td>המסמך נפתח ליד השיחה ולא בתוכה. מתקנים בו סעיף-סעיף</td></tr>
+      <tr><td>המנוע</td><td class="ltr-cell">Model · Opus 5 / Fable 5</td><td>מי שעונה. Opus לרוב העבודה, Fable לריצות כבדות</td></tr>
+      <tr><td>לצרף</td><td class="ltr-cell">Attach / Upload</td><td>להעלות קובץ לשיחה או לתיק העבודה</td></tr>
+    </table></div>
+      </div>
+    </details>
+
+    <details class="panel" id="prompts">
+      <summary>ספריית הבקשות<span class="ps">8 בקשות מוכנות · כפתור העתקה</span></summary>
+      <div class="pb">
+        <p class="pb-sub">מעתיקים, מדביקים בשיחה, ומחליפים את מה שבסוגריים המרובעים.</p>
+            <div class="prompts" id="prompt-grid"></div>
+      </div>
+    </details>
+
+    <details class="panel" id="models">
+      <summary>איזה מנוע, מתי<span class="ps">Opus 5 לרוב · Fable 5 לכבד</span></summary>
+      <div class="pb">
+            <div class="models">
+      <article class="model-card">
+        <div class="m-head"><h3>Opus 5</h3><span class="m-tag mono">ברירת מחדל</span></div>
+        <p class="m-role">מנוע העבודה</p>
+        <div class="p-rule"></div>
+        <ul class="m-list">
+          <li>עריכה איטרטיבית — לתקן סעיף, להריץ שוב</li>
+          <li>החלת מבנה ותבנית על טקסט קיים</li>
+          <li>ביקורת, אימות טענות ובדיקות שפיות</li>
+          <li>כל מה שדורש כמה סיבובים מהירים</li>
+        </ul>
+        <p class="m-foot">מהיר, ומחזיק הרבה יותר שימוש במכסה. זה המודל לרוב מה שתעשה.</p>
+      </article>
+      <article class="model-card hi">
+        <div class="m-head"><h3>Fable 5</h3><span class="m-tag mono">לריצות כבדות</span></div>
+        <p class="m-role">הריצה העמוקה</p>
+        <div class="p-rule"></div>
+        <ul class="m-list">
+          <li>מיזוג מקורות רבים וסותרים</li>
+          <li>ניווט במשימה מעורפלת שאין לה מתכון</li>
+          <li>תוצרים ארגוניים שלמים — מסמך, מצגת, גיליון</li>
+          <li>תרחישים והערכות מורכבות</li>
+        </ul>
+        <p class="m-foot">חושב תמיד — תשובה יכולה לקחת דקות ארוכות. תן לו את כל המשימה בפנייה אחת ותן לו לרוץ.</p>
+      </article>
+    </div>
+    <p class="m-warn"><b>שים לב:</b> ב-Fable 5 יש מסנני בטיחות מחמירים במיוחד בתחומי סייבר וביולוגיה. עבודה גלויה ולגיטימית שנוגעת בסייבר עלולה להיתקל בסירוב. אם זה קורה — עוברים ל-Opus 5 ולא מתווכחים עם הכלי.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- ====== כללי עבודה בטוחה ====== -->
+  <section id="safety">
+    <div class="safety">
+      <div class="sh"><span class="sec-num mono">03</span><h2>כללי עבודה בטוחה</h2></div>
+      <ul class="rules">
+        <li class="pos">עובדים עם מקורות גלויים בלבד.</li>
+        <li>אין להעלות חומר מסווג או רגיש לכל שירות ענן.</li>
+        <li class="pos">שלד נכנס, תוכן יוצא: כותרות, מסרים והמלצות בניסוח כללי — כן. המסמך עצמו, מספרים ושמות — לא.</li>
+        <li>בספק — לא מעלים, ושואלים.</li>
+        <li class="pos">הכלים משלימים את שיקול הדעת של האנליסט ואינם מחליפים אותו.</li>
+        <li class="pos">כל תוצר עובר ביקורת אנושית לפני הפצה.</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- ====== התקנה (מקופל) ====== -->
+  <section id="setup">
+    <div class="sec-head"><span class="sec-num mono">04</span><h2>התקנה</h2></div>
+    <details class="panel">
+      <summary>התקנת Claude Desktop<span class="ps">כבר עשית את זה · כאן לרענון</span></summary>
+      <div class="pb">
+            <div class="why">
       <div>
         <h4>למה דסקטופ ולא דפדפן</h4>
         <ul>
@@ -449,122 +654,258 @@ footer{
       </ul>
     </div>
     <p class="m-warn" style="margin-top:16px"><b>הערה:</b> שמות הכפתורים בממשק משתנים מדי פעם. אם משהו נקרא אחרת ממה שכתוב כאן — זה כנראה אותו דבר. אל תיתקע על זה.</p>
+      </div>
+    </details>
   </section>
 
-  <!-- ====== שיעורים ====== -->
-  <section id="lessons">
-    <div class="sec-head"><span class="sec-num mono">02</span><h2>מהלך הקורס</h2></div>
+  <footer>
+    <span>AI Lab · מאיר לביא</span>
+    <a href="https://ai-lab.co.il" target="_blank" rel="noopener">ai-lab.co.il</a>
+  </footer>
 
-    <div class="lessons">
+</main>
+</div>
 
-      <article class="lesson">
-        <div class="l-top">
-          <div class="l-num mono">שיעור 01</div>
-          <h3 class="l-title">בניית סביבת עבודה בריאה</h3>
-          <span class="stamp done mono">הושלם</span>
-        </div>
-        <div class="l-rule"></div>
-        <p class="l-desc">הקמנו יחד את תיק העבודה: מסמכי ידע, פקודת קבע, וטופס המשימה (פרומפט-האב).</p>
-        <ul class="topics">
-          <li>תיק עבודה ב-Claude Desktop</li>
-          <li>ארבעה מסמכי ידע (הקלסר)</li>
-          <li>הוראות קבועות (פקודת הקבע)</li>
-          <li>פרומפט-אב (טופס המשימה) והרצה ראשונה</li>
-        </ul>
-        <p class="deliverable"><b>תוצר:</b> תיק עבודה שעובד.</p>
-        <div class="l-links">
-          <a class="primary" href="lesson-1.html">פתח מצגת</a><a href="review-1.html">חזרה קצרה</a>
-        </div>
-      </article>
+<script>
+/* ============================================================
+   הגדרות — כאן משנים
+   ============================================================ */
+/* ============================================================
+   מהלך הקורס — יחידות. לקידום: משנים רק את DONE_UNITS.
+   ============================================================ */
+const DONE_UNITS = 4;   // כמה יחידות הושלמו (1-20). היחידה הבאה = DONE_UNITS + 1
 
-      <article class="lesson">
-        <div class="l-top">
-          <div class="l-num mono">שיעור 02</div>
-          <h3 class="l-title">פרק ההמלצות — מהמלצה כללית להמלצה שאפשר לבצע</h3>
-          <span class="stamp next mono">השיעור הבא</span>
-        </div>
-        <div class="l-rule"></div>
-        <p class="l-desc">עובדים רק על רשימת ההמלצות — לא על המסמך עצמו. כל המלצה מקבלת: מה · מי · עד מתי · מדד הצלחה, ותקדימים ממקורות גלויים.</p>
-        <ul class="topics">
-          <li>5 דקות חזרה</li>
-          <li>הקו האדום: מה נכנס לכלי ומה לא</li>
-          <li>ארבע השאלות של המלצה אופרטיבית</li>
-          <li>תקדימים מחקיקה ומבתי משפט — במקורות גלויים</li>
-        </ul>
-        <p class="deliverable"><b>תוצר:</b> פרק המלצות חזק יותר, לפני ההגשה.</p>
-        <div class="l-links">
-          <a class="primary" href="lesson-2.html">פתח מצגת</a><a class="off" href="#">הקלטה</a><a class="off" href="#">משימה</a>
-        </div>
-      </article>
+const CHAPTERS = { 1:"בניית סביבת עבודה", 2:"פרק ההמלצות", 3:"תקציר מנהלים", 4:"המצגת", 5:"השגרה שלך" };
+const UNITS = [
+  { c:1, t:"פותחים תיק עבודה",                    d:"Claude Desktop · Projects · שם קבוע",          m:10, href:"lesson-1.html#6"  },
+  { c:1, t:"מכינים את הקלסר — ארבעה מסמכים",      d:"תבנית · מילון · דוגמה · מקורות",               m:25, href:"lesson-1.html#7"  },
+  { c:1, t:"כותבים את פקודת הקבע",                d:"ובודקים שהיא נקלטה",                           m:12, href:"lesson-1.html#14" },
+  { c:1, t:"טופס המשימה והרצה ראשונה",            d:"פרומפט-אב · המסמך בצד",                        m:25, href:"lesson-1.html#17" },
+  { c:2, t:"נכנסים, ולומדים מה מותר להדביק",      d:"5 דקות חזרה · הקו האדום",                      m:15, href:"lesson-2.html#1"  },
+  { c:2, t:"ארבע השאלות, ורשימה נקייה בוורד",     d:"מה · מי · עד מתי · מדד",                       m:15, href:"lesson-2.html#5"  },
+  { c:2, t:"הכלי מאבחן — אתה עונה",               d:"בקשה אחת · טבלה · תשובות קצרות",               m:20, href:"lesson-2.html#7"  },
+  { c:2, t:"מחדדים המלצה אחת",                    d:"לפני ואחרי",                                   m:10, href:"lesson-2.html#9"  },
+  { c:2, t:"תקדימים ממקורות גלויים",              d:"ופותחים כל קישור בעיניים",                     m:15, href:"lesson-2.html#10" },
+  { c:2, t:"מחזירים למסמך — בעצמך",               d:"והשגרה של חמישה צעדים",                        m:10, href:"lesson-2.html#11" },
+  { c:3, t:"מה תקציר מנהלים צריך לעשות",          d:"ומכינים שלד: ראשי פרקים + מסר לכל פרק",        m:15 },
+  { c:3, t:"שלוש גרסאות — ובחירה",                d:"בקשה אחת",                                     m:15 },
+  { c:3, t:"ליטוש במילים שלך",                    d:"ובדיקה ליד המקור",                             m:10 },
+  { c:4, t:"שורת מסר מול כותרת נושא",             d:"על הפרקים שלך",                                m:15 },
+  { c:4, t:"מתווה עשרה שקפים",                    d:"מהשלד, לא מהמסמך",                             m:20 },
+  { c:4, t:"שקף המסרים",                          d:"שלושה משפטים",                                 m:10 },
+  { c:4, t:"מהמתווה לקובץ מצגת",                  d:"ומה בודקים ידנית",                             m:15 },
+  { c:5, t:"ממפים את התוצרים שחוזרים",            d:"נהלים · סקירות · נתונים רבעוניים",             m:15 },
+  { c:5, t:"טופס משימה לסוג תוצר אחד",            d:"בונים ומריצים",                                m:20 },
+  { c:5, t:"ספריית הבקשות שלך",                   d:"ואיך היא נשארת חיה",                           m:10 },
+];
+const NEXT_UNIT = Math.min(DONE_UNITS + 1, UNITS.length);
+const NEXT_CHAPTER = UNITS[NEXT_UNIT - 1].c;
 
-      <article class="lesson locked">
-        <div class="l-top">
-          <div class="l-num mono">שיעור 03</div>
-          <h3 class="l-title">תקציר מנהלים</h3>
-          <span class="stamp mono">אחרי ההגשה</span>
-        </div>
-        <div class="l-rule"></div>
-        <p class="l-desc">150 מילים שעומדות לבד — מתוך ראשי הפרקים והמסרים שאתה כותב, בלי להעלות את המסמך.</p>
-        <ul class="topics">
-          <li>מה תקציר מנהלים צריך לעשות לקורא</li>
-          <li>שלד נכנס, תוכן יוצא</li>
-          <li>שלוש גרסאות — ובחירה</li>
-          <li>ליטוש ידני: המילים שלך</li>
-        </ul>
-        <p class="deliverable"><b>תוצר:</b> תקציר מנהלים מוכן להגשה.</p>
-        <div class="l-links">
-          <a class="off" href="#">המצגת תיבנה לקראת השיעור</a>
-        </div>
-      </article>
+/* ---------- המשימה עד הפגישה הבאה (לפי היחידה הבאה) ---------- */
+const TASKS = {
+  5: [
+    "פתחתי את המסמך והעתקתי רק את רשימת ההמלצות למסמך וורד חדש",
+    "מחקתי מהרשימה מספרים, שמות ופרטים פנימיים — ובמקומם כתבתי [פרט]",
+    "מספרתי את ההמלצות: 1, 2, 3…"
+  ]
+};
 
-      <article class="lesson locked">
-        <div class="l-top">
-          <div class="l-num mono">שיעור 04</div>
-          <h3 class="l-title">המצגת</h3>
-          <span class="stamp mono">נעול</span>
-        </div>
-        <div class="l-rule"></div>
-        <p class="l-desc">עד 10 שקפים מתוך שלד המסמך. שורת מסר אחת לכל שקף, בלי טקסט רץ.</p>
-        <ul class="topics">
-          <li>כלל עשרת השקפים</li>
-          <li>שורת מסר מול כותרת נושא</li>
-          <li>שקף המסרים</li>
-          <li>מהמתווה לקובץ מצגת</li>
-        </ul>
-        <p class="deliverable"><b>תוצר:</b> מתווה מצגת + קובץ.</p>
-        <div class="l-links">
-          <a class="off" href="#">המצגת תיבנה לקראת השיעור</a>
-        </div>
-      </article>
+/* ---------- רינדור ---------- */
+(function () {
+  const pad = n => String(n).padStart(2, "0");
+  const box = document.getElementById("units");
+  let chap = 0;
+  UNITS.forEach((u, i) => {
+    const n = i + 1;
+    if (u.c !== chap) {
+      chap = u.c;
+      const done = UNITS.filter((x, k) => x.c === chap && k < DONE_UNITS).length;
+      const total = UNITS.filter(x => x.c === chap).length;
+      const h = document.createElement("div"); h.className = "chap";
+      h.innerHTML = `<span class="cn mono">פרק ${pad(chap)}</span><h3>${CHAPTERS[chap]}</h3><span class="cs mono">${done}/${total}</span>`;
+      box.appendChild(h);
+    }
+    const st = n <= DONE_UNITS ? "done" : n === NEXT_UNIT ? "next" : "locked";
+    const canOpen = !!u.href && u.c <= NEXT_CHAPTER;
+    const row = document.createElement("div"); row.className = "unit " + st;
+    row.innerHTML =
+      `<span class="st">${st === "done" ? "✓" : st === "next" ? "◆" : ""}</span>` +
+      `<div><div class="ut"><span class="un mono">${pad(n)}</span>${u.t}</div><div class="ud">${u.d}</div></div>` +
+      `<div class="right"><span class="um mono">${u.m} דק'</span>` +
+      (canOpen ? `<a class="go" href="${u.href}">${st === "next" ? "מתחילים" : "פתח"}</a>` : `<span class="um mono">${st === "locked" ? "ייבנה כשנגיע" : ""}</span>`) +
+      `</div>`;
+    box.appendChild(row);
+  });
 
-      <article class="lesson locked">
-        <div class="l-top">
-          <div class="l-num mono">שיעור 05</div>
-          <h3 class="l-title">השגרה שלך</h3>
-          <span class="stamp mono">נעול</span>
-        </div>
-        <div class="l-rule"></div>
-        <p class="l-desc">מתכון קבוע לכל סוג תוצר שחוזר אצלך: נהלים, סקירות, נתונים רבעוניים, סיכומים עתיים.</p>
-        <ul class="topics">
-          <li>מיפוי התוצרים שחוזרים</li>
-          <li>טופס משימה לכל סוג</li>
-          <li>ספריית הבקשות שלך</li>
-          <li>איך זה נשאר חי אחרי הקורס</li>
-        </ul>
-        <p class="deliverable"><b>תוצר:</b> שיטה לשנה הבאה.</p>
-        <div class="l-links">
-          <a class="off" href="#">המצגת תיבנה לקראת השיעור</a>
-        </div>
-      </article>
+  // התקדמות
+  document.getElementById("prog-done").textContent = DONE_UNITS;
+  document.getElementById("prog-total").textContent = UNITS.length;
+  document.getElementById("prog-fill").style.width = (DONE_UNITS / UNITS.length * 100) + "%";
+  document.getElementById("prog-label").textContent =
+    DONE_UNITS >= UNITS.length ? "הקורס הושלם" : `עכשיו בפרק ${pad(NEXT_CHAPTER)} — ${CHAPTERS[NEXT_CHAPTER]}`;
 
+  // כרטיס "היחידה הבאה" בכניסה
+  const nu = UNITS[NEXT_UNIT - 1];
+  document.getElementById("w-next-tag").textContent = `היחידה הבאה · ${pad(NEXT_UNIT)} · ${nu.m} דק'`;
+  document.getElementById("w-next-title").textContent = nu.t;
+  document.getElementById("w-next-sub").textContent = nu.href ? "פתח את המצגת ←" : "ייבנה כשנגיע";
+  document.getElementById("w-next").href = nu.href || "#lessons";
+
+  // משימות
+  const list = document.getElementById("task-list"), count = document.getElementById("task-count");
+  const items = TASKS[NEXT_UNIT] || [];
+  const key = "ontobi-tasks-u" + NEXT_UNIT;
+  let saved = []; try { saved = JSON.parse(localStorage.getItem(key) || "[]"); } catch (e) {}
+  if (!items.length) { list.closest(".task").style.display = "none"; }
+  items.forEach((t, i) => {
+    const l = document.createElement("label"), c = document.createElement("input");
+    c.type = "checkbox"; c.checked = !!saved[i];
+    c.addEventListener("change", () => { saved[i] = c.checked; try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {} upd(); });
+    l.appendChild(c); l.appendChild(document.createTextNode(t)); list.appendChild(l);
+  });
+  function upd(){ const d = saved.filter(Boolean).length; count.textContent = d === items.length ? "הכל מוכן ✓" : d + " / " + items.length; }
+  if (items.length) upd();
+})();
+
+/* ---------- קישור לפאנל מקופל פותח אותו ---------- */
+function openTarget() {
+  const el = document.getElementById(location.hash.slice(1));
+  if (el && el.tagName === "DETAILS") el.open = true;
+}
+window.addEventListener("hashchange", openTarget); openTarget();
+
+/* ---------- ספריית פרומפטים ---------- */
+.prompts{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}
+.prompt{
+  border:1px solid var(--line);background:var(--panel);
+  border-radius:var(--radius);padding:18px 18px 16px;
+  display:flex;flex-direction:column;
+  transition:border-color .18s ease;
+}
+.prompt:hover{border-color:var(--amber-soft)}
+.p-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.p-head h3{font-size:15.5px;flex:1;min-width:140px}
+.cat{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--amber);border:1px solid var(--amber-soft);padding:2px 7px;border-radius:2px;white-space:nowrap}
+.p-rule{height:1px;background:var(--line-soft);margin:0 0 12px}
+textarea{
+  width:100%;min-height:132px;resize:vertical;
+  background:var(--bg-2);border:1px solid var(--line-soft);
+  color:var(--txt-dim);border-radius:var(--radius);
+  padding:11px 12px;font-family:"Heebo",sans-serif;font-size:13px;line-height:1.65;
+  direction:rtl;
+}
+textarea:focus{border-color:var(--amber-soft);outline:none;color:var(--txt)}
+.copy{
+  margin-top:11px;align-self:flex-start;
+  background:transparent;border:1px solid var(--line);color:var(--txt-dim);
+  font-family:var(--mono);font-size:12px;padding:6px 15px;
+}
+.copy:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.copy.done{border-color:#3c5a44;color:var(--ok);background:transparent}
+
+/* ---------- כללי עבודה בטוחה ---------- */
+.safety{
+  border:1px solid var(--amber-soft);
+  background:linear-gradient(180deg,var(--amber-glow),transparent 70%),var(--panel);
+  border-radius:var(--radius);
+  padding:24px 24px 22px;
+}
+.safety .sh{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.safety .sh h2{font-size:17px}
+.safety .sh .sec-num{color:var(--amber)}
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.rules li{position:relative;padding-inline-start:26px;font-size:14.5px;line-height:1.65}
+.rules li::before{
+  content:"×";position:absolute;inset-inline-start:0;top:-1px;
+  font-family:var(--mono);color:var(--amber);font-size:14px;
+}
+.rules li.pos::before{content:"✓";color:var(--ok)}
+
+/* ---------- כותרת תחתונה ---------- */
+footer{
+  border-top:1px solid var(--line);margin-top:20px;padding:26px 0 40px;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:12px;color:var(--txt-faint);
+}
+
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .hdr{padding:12px 0;gap:10px}
+  .zoom-btn{width:100%;justify-content:center;order:3}
+  .hdr-name{margin-inline-start:auto}
+  .hero{padding:32px 0 24px}
+  section{padding:34px 0}
+  .lesson{padding:17px 16px 15px}
+  .prompts{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+
+<header>
+  <div class="wrap hdr">
+    <div class="brand"><b>AI Lab</b> · שיעורים פרטיים</div>
+    <div class="hdr-name">On Tobi</div>
+    <a class="zoom-btn" href="https://us05web.zoom.us/j/8186142816?pwd=VEtXYVh3Z3IwZWhrZHYvWm5hYWlKQT09" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+      כניסה לשיעור בזום
+    </a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ====== ברוך הבא ====== -->
+  <section class="welcome" id="top">
+    <div class="kicker mono">הפורטל האישי שלך</div>
+    <h1>שלום און</h1>
+    <p>כל מה שצריך לקורס נמצא בדף הזה. מתחילים תמיד מכאן: מה היחידה הבאה, ומה המשימה הקטנה עד הפגישה.</p>
+    <div class="w-grid">
+      <a class="w-card primary" id="w-next" href="#lessons"><span class="w-tag" id="w-next-tag">היחידה הבאה</span><b id="w-next-title">…</b><span class="sub" id="w-next-sub">פתח ←</span></a>
+      <a class="w-card" href="review-1.html"><span class="w-tag">5 דקות</span><b>חזרה קצרה</b><span class="sub">מה בנינו, ואיך נכנסים</span></a>
+      <a class="w-card" href="https://us05web.zoom.us/j/8186142816?pwd=VEtXYVh3Z3IwZWhrZHYvWm5hYWlKQT09" target="_blank" rel="noopener"><span class="w-tag">שיעור חי</span><b>כניסה לזום</b><span class="sub">אותו חדר, תמיד</span></a>
+    </div>
+    <div class="task">
+      <div class="task-h"><b>המשימה שלך עד הפגישה הבאה</b><span id="task-count" class="mono"></span></div>
+      <div id="task-list"></div>
+      <p class="task-foot">עד שעה. בוורד בלבד, בלי הכלי. הסימונים נשמרים במחשב הזה.</p>
     </div>
   </section>
 
-  <!-- ====== המילים שלנו ====== -->
-  <section id="words">
-    <div class="sec-head"><span class="sec-num mono">03</span><h2>המילים שאנחנו משתמשים בהן</h2></div>
-    <p class="sec-sub">מילה אחת לכל דבר, תמיד אותה מילה. כשמופיע מונח באנגלית בממשק — זו המשמעות שלו אצלנו.</p>
-    <div class="scroll"><table class="tbl">
+  <div class="progress">
+    <div class="progress-top">
+      <span><b id="prog-done">0</b> מתוך <b id="prog-total">0</b> יחידות</span>
+      <span id="prog-label"></span>
+    </div>
+    <div class="bar2" aria-hidden="true"><div id="prog-fill"></div></div>
+  </div>
+
+  <nav class="quick" aria-label="קפיצה מהירה">
+    <a href="#lessons">מהלך הקורס</a><a href="#words">המילים שלנו</a><a href="#prompts">ספריית הבקשות</a><a href="#safety">כללי עבודה בטוחה</a><a href="#setup">התקנה</a>
+  </nav>
+
+  <!-- ====== יחידות ====== -->
+  <section id="lessons">
+    <div class="sec-head"><span class="sec-num mono">01</span><h2>מהלך הקורס</h2></div>
+    <p class="sec-sub">יחידות קצרות — כל אחת דבר אחד. מסיימים יחידה, ממשיכים לבאה. בפגישה עושים כמה שמספיקים.</p>
+    <div id="units"></div>
+  </section>
+
+  <!-- ====== ארגז הכלים ====== -->
+  <section id="toolbox">
+    <div class="sec-head"><span class="sec-num mono">02</span><h2>ארגז הכלים</h2></div>
+    <p class="sec-sub">דברים שחוזרים אליהם. לוחצים על כותרת כדי לפתוח ולסגור.</p>
+
+    <details class="panel" id="words" open>
+      <summary>המילים שאנחנו משתמשים בהן<span class="ps">מילון קצר · מילה אחת לכל דבר</span></summary>
+      <div class="pb">
+        <p class="pb-sub">כשמופיע מונח באנגלית בממשק — זו המשמעות שלו אצלנו.</p>
+            <div class="scroll"><table class="tbl">
       <tr><th>אצלנו אומרים</th><th>בממשק כתוב</th><th>מה זה</th></tr>
       <tr><td>תיק העבודה</td><td class="ltr-cell">Project</td><td>המקום שבו הכל נמצא. כל שיחה מקצועית נפתחת בתוכו</td></tr>
       <tr><td>פקודת הקבע</td><td class="ltr-cell">Instructions</td><td>מי אתה ואיך אתה כותב. פועלת תמיד, בלי שתבקש</td></tr>
@@ -576,13 +917,21 @@ footer{
       <tr><td>המנוע</td><td class="ltr-cell">Model · Opus 5 / Fable 5</td><td>מי שעונה. Opus לרוב העבודה, Fable לריצות כבדות</td></tr>
       <tr><td>לצרף</td><td class="ltr-cell">Attach / Upload</td><td>להעלות קובץ לשיחה או לתיק העבודה</td></tr>
     </table></div>
-  </section>
+      </div>
+    </details>
 
-  <!-- ====== בחירת מודל ====== -->
-  <section id="models">
-    <div class="sec-head"><span class="sec-num mono">04</span><h2>איזה מנוע, מתי</h2></div>
-    <p class="sec-sub">שני כלים לשני סוגי משימות. בכל תרגיל במצגות מסומן במה להשתמש — זה הכרטיס שחוזרים אליו כשלא בטוחים.</p>
-    <div class="models">
+    <details class="panel" id="prompts">
+      <summary>ספריית הבקשות<span class="ps">8 בקשות מוכנות · כפתור העתקה</span></summary>
+      <div class="pb">
+        <p class="pb-sub">מעתיקים, מדביקים בשיחה, ומחליפים את מה שבסוגריים המרובעים.</p>
+            <div class="prompts" id="prompt-grid"></div>
+      </div>
+    </details>
+
+    <details class="panel" id="models">
+      <summary>איזה מנוע, מתי<span class="ps">Opus 5 לרוב · Fable 5 לכבד</span></summary>
+      <div class="pb">
+            <div class="models">
       <article class="model-card">
         <div class="m-head"><h3>Opus 5</h3><span class="m-tag mono">ברירת מחדל</span></div>
         <p class="m-role">מנוע העבודה</p>
@@ -609,19 +958,14 @@ footer{
       </article>
     </div>
     <p class="m-warn"><b>שים לב:</b> ב-Fable 5 יש מסנני בטיחות מחמירים במיוחד בתחומי סייבר וביולוגיה. עבודה גלויה ולגיטימית שנוגעת בסייבר עלולה להיתקל בסירוב. אם זה קורה — עוברים ל-Opus 5 ולא מתווכחים עם הכלי.</p>
-  </section>
-
-  <!-- ====== ספריית פרומפטים ====== -->
-  <section id="prompts">
-    <div class="sec-head"><span class="sec-num mono">05</span><h2>ספריית הבקשות</h2></div>
-    <p class="sec-sub">פרומפטים מוכנים לשימוש חוזר. העתק, הדבק בקלוד, והחלף את הסוגריים המרובעים בפרטי המשימה שלך.</p>
-    <div class="prompts" id="prompt-grid"></div>
+      </div>
+    </details>
   </section>
 
   <!-- ====== כללי עבודה בטוחה ====== -->
   <section id="safety">
     <div class="safety">
-      <div class="sh"><span class="sec-num mono">06</span><h2>כללי עבודה בטוחה</h2></div>
+      <div class="sh"><span class="sec-num mono">03</span><h2>כללי עבודה בטוחה</h2></div>
       <ul class="rules">
         <li class="pos">עובדים עם מקורות גלויים בלבד.</li>
         <li>אין להעלות חומר מסווג או רגיש לכל שירות ענן.</li>
@@ -631,6 +975,132 @@ footer{
         <li class="pos">כל תוצר עובר ביקורת אנושית לפני הפצה.</li>
       </ul>
     </div>
+  </section>
+
+
+  <!-- ====== התקנה (מקופל) ====== -->
+  <section id="setup">
+    <div class="sec-head"><span class="sec-num mono">04</span><h2>התקנה</h2></div>
+    <details class="panel">
+      <summary>התקנת Claude Desktop<span class="ps">כבר עשית את זה · כאן לרענון</span></summary>
+      <div class="pb">
+            <div class="why">
+      <div>
+        <h4>למה דסקטופ ולא דפדפן</h4>
+        <ul>
+          <li>עובד ישירות מול קבצים מהמחשב</li>
+          <li>חלון קבוע לצד המסמך שאתה כותב</li>
+          <li>קו-וורק נוח יותר על מסך שלם</li>
+          <li>בלי עשרים לשוניות פתוחות מסביב</li>
+        </ul>
+      </div>
+      <div>
+        <h4>מה נותן מצב קו-וורק</h4>
+        <ul>
+          <li>המסמך נפתח בצד ולא נשפך לתוך הצ'אט</li>
+          <li>אפשר לתקן סעיף אחד בלי לגעת בשאר</li>
+          <li>בסוף — קובץ להורדה</li>
+          <li>לא מצאת איפה מפעילים? נעשה יחד בשיעור</li>
+        </ul>
+      </div>
+    </div>
+
+    <ol class="steps">
+
+      <li>
+        <span class="s-num mono">01</span>
+        <div class="s-body">
+          <h3>הורדה</h3>
+          <p>העמוד מזהה לבד איזו מערכת הפעלה יש לך ומציע את הקובץ הנכון — מק וווינדוס שניהם משם.</p>
+          <a class="dl-btn" href="https://claude.com/download" target="_blank" rel="noopener">הורדת Claude Desktop ←</a>
+        </div>
+      </li>
+
+      <li>
+        <span class="s-num mono">02</span>
+        <div class="s-body">
+          <h3>התקנה</h3>
+          <p>לפי מערכת ההפעלה שלך.</p>
+          <div class="two">
+            <div class="osbox">
+              <h4>macOS</h4>
+              <ul class="s-list">
+                <li>פותחים את קובץ ה-<span class="ltr">.dmg</span> שהורד</li>
+                <li>גוררים את סמל Claude לתיקיית <b>Applications</b></li>
+                <li>פותחים את האפליקציה מתוך Applications</li>
+                <li>בפתיחה הראשונה מאשרים את חלון האבטחה של מק</li>
+              </ul>
+            </div>
+            <div class="osbox">
+              <h4>Windows</h4>
+              <ul class="s-list">
+                <li>פותחים את קובץ ה-<span class="ltr">.exe</span> שהורד</li>
+                <li>מאשרים את חלון ההתקנה ולוחצים <b>Install</b></li>
+                <li>אם מופיעה אזהרת SmartScreen — לוחצים <span class="ltr">More info</span> ואז <span class="ltr">Run anyway</span></li>
+                <li>פותחים מתפריט התחל</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <span class="s-num mono">03</span>
+        <div class="s-body">
+          <h3>התחברות</h3>
+          <p>עם אותו חשבון שבו תשתמש לאורך הקורס.</p>
+          <ul class="s-list">
+            <li>מתחברים באפליקציה עם החשבון שלך</li>
+            <li>מוודאים שהשיחות מסתנכרנות — אותן שיחות בדפדפן ובאפליקציה</li>
+            <li>אם מודל מסוים לא מופיע ברשימה — זה תלוי בסוג המנוי. תגיד לי ונסדר</li>
+          </ul>
+        </div>
+      </li>
+
+      <li>
+        <span class="s-num mono">04</span>
+        <div class="s-body">
+          <h3>התמצאות — ארבעה מקומות</h3>
+          <p>לא צריך לעשות איתם כלום עכשיו. רק למצוא אותם, כדי שבשיעור לא נבזבז זמן על חיפושים.</p>
+          <div class="finds">
+            <div class="find">
+              <span class="f-name">Projects</span>
+              <p class="f-where">בתפריט הצד השמאלי</p>
+              <p class="f-why">שם נקים את סביבת העבודה. כל השיחות המקצועיות ייפתחו בתוכו.</p>
+            </div>
+            <div class="find">
+              <span class="f-name">Instructions</span>
+              <p class="f-where">בתוך הפרויקט — <span class="ltr">Add instructions to tailor Claude&rsquo;s responses</span></p>
+              <p class="f-why">ההוראות הקבועות שחלות על כל שיחה בפרויקט.</p>
+            </div>
+            <div class="find">
+              <span class="f-name">Add files</span>
+              <p class="f-where">בתוך הפרויקט — לפעמים נקרא <span class="ltr">Add content</span></p>
+              <p class="f-why">שם נצרף את מסמכי הידע — תבנית, מילון, מקורות.</p>
+            </div>
+            <div class="find">
+              <span class="f-name">בורר המודל</span>
+              <p class="f-where">מעל או מתחת לתיבת ההודעה</p>
+              <p class="f-why">שם עוברים בין Opus 5 ל-Fable 5 לפי המשימה.</p>
+            </div>
+          </div>
+        </div>
+      </li>
+
+    </ol>
+
+    <div class="ready">
+      <b>מוכן לשיעור הראשון כש:</b>
+      <ul>
+        <li>האפליקציה מותקנת ונפתחת מהמחשב</li>
+        <li>אתה מחובר וההיסטוריה מסתנכרנת</li>
+        <li>מצאת את Projects בתפריט הצד</li>
+        <li>מצאת את בורר המודל</li>
+      </ul>
+    </div>
+    <p class="m-warn" style="margin-top:16px"><b>הערה:</b> שמות הכפתורים בממשק משתנים מדי פעם. אם משהו נקרא אחרת ממה שכתוב כאן — זה כנראה אותו דבר. אל תיתקע על זה.</p>
+      </div>
+    </details>
   </section>
 
   <footer>
