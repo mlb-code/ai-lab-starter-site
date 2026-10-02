@@ -204,6 +204,15 @@ section{padding:44px 0}
 .ready li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:19px;position:relative}
 .ready li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-size:12px}
 
+/* ---------- המילים שלנו ---------- */
+.scroll{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:9px 12px;text-align:right;vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--amber);font-weight:400;background:var(--panel)}
+.tbl td{color:var(--txt-dim)}
+.tbl td:first-child{color:#fff;font-weight:400;white-space:nowrap}
+.tbl td.ltr-cell{font-family:var(--mono);font-size:12.5px;color:var(--txt);direction:ltr;text-align:right;unicode-bidi:isolate}
+
 /* ---------- בחירת מודל ---------- */
 .models{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
 .model-card{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:18px 19px 16px}
@@ -309,12 +318,12 @@ footer{
   <div class="hero">
     <div class="kicker mono">COURSE FILE · 04 SESSIONS</div>
     <h1>עבודה עם קלוד במצב קו-וורק — לאנליסט דסק</h1>
-    <p>הקורס נבנה סביב מסמך מדיניות אחד שנתקע. בכל שיעור הוא מתקדם שלב, ובסופו הוא מוגש — ומה שנשאר בידך היא השיטה שתחזור על עצמה בכל מסמך הבא.</p>
+    <p>המסמך שלך כמעט מוגש. מכאן הקורס עובד על מה שבא אחריו: פרק ההמלצות לפני ההגשה, ואז תקציר המנהלים והמצגת שנגזרים ממנו — ובסוף, שיטה קבועה לכל התוצרים שחוזרים אצלך.</p>
   </div>
 
   <div class="progress">
     <div class="progress-top">
-      <span>שיעור <b id="prog-current">1</b> מתוך <b>4</b></span>
+      <span>שיעור <b id="prog-current">1</b> מתוך <b>5</b></span>
       <span id="prog-label">בתהליך</span>
     </div>
     <div class="bar" id="bar" aria-hidden="true"></div>
@@ -452,37 +461,37 @@ footer{
         <div class="l-top">
           <div class="l-num mono">שיעור 01</div>
           <h3 class="l-title">בניית סביבת עבודה בריאה</h3>
-          <span class="stamp next mono">השיעור הבא</span>
+          <span class="stamp done mono">הושלם</span>
         </div>
         <div class="l-rule"></div>
-        <p class="l-desc">שלושה שלבים: מסמכי ידע לפרויקט, הוראות קבועות, ופרומפט-אב — ואז הרצה ראשונה בקו-וורק.</p>
+        <p class="l-desc">הקמנו יחד את תיק העבודה: מסמכי ידע, פקודת קבע, וטופס המשימה (פרומפט-האב).</p>
         <ul class="topics">
-          <li>שלב 1 — הכנת מסמכי ידע וצירופם לפרויקט</li>
-          <li>שלב 2 — מילוי הוראות הפרויקט (Instructions)</li>
-          <li>שלב 3 — כתיבת פרומפט-האב ושמירתו כקובץ</li>
-          <li>שלב 4 — הרצה ראשונה במצב קו-וורק</li>
+          <li>תיק עבודה ב-Claude Desktop</li>
+          <li>ארבעה מסמכי ידע (הקלסר)</li>
+          <li>הוראות קבועות (פקודת הקבע)</li>
+          <li>פרומפט-אב (טופס המשימה) והרצה ראשונה</li>
         </ul>
-        <p class="deliverable"><b>תוצר:</b> פרויקט עובד + טיוטה ראשונה של המסמך.</p>
+        <p class="deliverable"><b>תוצר:</b> תיק עבודה שעובד.</p>
         <div class="l-links">
-          <a class="primary" href="lesson-1.html">פתח מצגת</a><a class="off" href="#">הקלטה</a><a class="off" href="#">משימה</a>
+          <a class="primary" href="lesson-1.html">פתח מצגת</a><a href="review-1.html">חזרה קצרה</a>
         </div>
       </article>
 
-      <article class="lesson locked">
+      <article class="lesson">
         <div class="l-top">
           <div class="l-num mono">שיעור 02</div>
-          <h3 class="l-title">סקירת עומק ואינטגרציה של מקורות</h3>
-          <span class="stamp mono">נעול</span>
+          <h3 class="l-title">פרק ההמלצות — מהמלצה כללית להמלצה שאפשר לבצע</h3>
+          <span class="stamp next mono">השיעור הבא</span>
         </div>
         <div class="l-rule"></div>
-        <p class="l-desc">סוגרים את פערי הידע של הטיוטה: מקורות ממוזגים, מהימנות מדורגת, סתירות מסומנות.</p>
+        <p class="l-desc">עובדים רק על רשימת ההמלצות — לא על המסמך עצמו. כל המלצה מקבלת: מה · מי · עד מתי · מדד הצלחה, ותקדימים ממקורות גלויים.</p>
         <ul class="topics">
-          <li>מחקר רשת מובנה</li>
-          <li>מיזוג מקורות מרובים</li>
-          <li>דירוג מהימנות וזיהוי סתירות</li>
-          <li>הפרדה בין עובדה להערכה</li>
+          <li>5 דקות חזרה</li>
+          <li>הקו האדום: מה נכנס לכלי ומה לא</li>
+          <li>ארבע השאלות של המלצה אופרטיבית</li>
+          <li>תקדימים מחקיקה ומבתי משפט — במקורות גלויים</li>
         </ul>
-        <p class="deliverable"><b>תוצר:</b> סקירה שסוגרת את פערי המסמך.</p>
+        <p class="deliverable"><b>תוצר:</b> פרק המלצות חזק יותר, לפני ההגשה.</p>
         <div class="l-links">
           <a class="primary" href="lesson-2.html">פתח מצגת</a><a class="off" href="#">הקלטה</a><a class="off" href="#">משימה</a>
         </div>
@@ -491,49 +500,87 @@ footer{
       <article class="lesson locked">
         <div class="l-top">
           <div class="l-num mono">שיעור 03</div>
-          <h3 class="l-title">תפוקות: מסמכי וורד ומצגות</h3>
-          <span class="stamp mono">נעול</span>
+          <h3 class="l-title">תקציר מנהלים</h3>
+          <span class="stamp mono">אחרי ההגשה</span>
         </div>
         <div class="l-rule"></div>
-        <p class="l-desc">המסמך יוצא לאוויר: גרסה בתבנית הארגונית, ומצגת שנגזרת ממנה בלי לכתוב מחדש.</p>
+        <p class="l-desc">150 מילים שעומדות לבד — מתוך ראשי הפרקים והמסרים שאתה כותב, בלי להעלות את המסמך.</p>
         <ul class="topics">
-          <li>ממסמך גולמי למסמך מעוצב לפי תבנית ארגונית</li>
-          <li>בניית מצגת מאותו חומר</li>
-          <li>שקף מסרים</li>
-          <li>עברית וכיווניות במסמכים</li>
+          <li>מה תקציר מנהלים צריך לעשות לקורא</li>
+          <li>שלד נכנס, תוכן יוצא</li>
+          <li>שלוש גרסאות — ובחירה</li>
+          <li>ליטוש ידני: המילים שלך</li>
         </ul>
-        <p class="deliverable"><b>תוצר:</b> המסמך בתבנית + מצגת ממנו.</p>
+        <p class="deliverable"><b>תוצר:</b> תקציר מנהלים מוכן להגשה.</p>
         <div class="l-links">
-          <a class="primary" href="lesson-3.html">פתח מצגת</a><a class="off" href="#">הקלטה</a><a class="off" href="#">משימה</a>
+          <a class="off" href="#">המצגת תיבנה לקראת השיעור</a>
         </div>
       </article>
 
       <article class="lesson locked">
         <div class="l-top">
           <div class="l-num mono">שיעור 04</div>
-          <h3 class="l-title">נתונים, הערכות ושיטת עבודה קבועה</h3>
+          <h3 class="l-title">המצגת</h3>
           <span class="stamp mono">נעול</span>
         </div>
         <div class="l-rule"></div>
-        <p class="l-desc">נתונים, תרחישים והמלצות סוגרים את המסמך — ומשם לשיטת עבודה שחוזרת על עצמה.</p>
+        <p class="l-desc">עד 10 שקפים מתוך שלד המסמך. שורת מסר אחת לכל שקף, בלי טקסט רץ.</p>
         <ul class="topics">
-          <li>ניתוח קובצי אקסל וגרפים</li>
-          <li>תרחישים ורמות ודאות</li>
-          <li>המלצות ומדדי הצלחה</li>
-          <li>תרגול מקצה לקצה</li>
+          <li>כלל עשרת השקפים</li>
+          <li>שורת מסר מול כותרת נושא</li>
+          <li>שקף המסרים</li>
+          <li>מהמתווה לקובץ מצגת</li>
         </ul>
-        <p class="deliverable"><b>תוצר:</b> המסמך מוגש + שיטת עבודה קבועה.</p>
+        <p class="deliverable"><b>תוצר:</b> מתווה מצגת + קובץ.</p>
         <div class="l-links">
-          <a class="primary" href="lesson-4.html">פתח מצגת</a><a class="off" href="#">הקלטה</a><a class="off" href="#">משימה</a>
+          <a class="off" href="#">המצגת תיבנה לקראת השיעור</a>
+        </div>
+      </article>
+
+      <article class="lesson locked">
+        <div class="l-top">
+          <div class="l-num mono">שיעור 05</div>
+          <h3 class="l-title">השגרה שלך</h3>
+          <span class="stamp mono">נעול</span>
+        </div>
+        <div class="l-rule"></div>
+        <p class="l-desc">מתכון קבוע לכל סוג תוצר שחוזר אצלך: נהלים, סקירות, נתונים רבעוניים, סיכומים עתיים.</p>
+        <ul class="topics">
+          <li>מיפוי התוצרים שחוזרים</li>
+          <li>טופס משימה לכל סוג</li>
+          <li>ספריית הבקשות שלך</li>
+          <li>איך זה נשאר חי אחרי הקורס</li>
+        </ul>
+        <p class="deliverable"><b>תוצר:</b> שיטה לשנה הבאה.</p>
+        <div class="l-links">
+          <a class="off" href="#">המצגת תיבנה לקראת השיעור</a>
         </div>
       </article>
 
     </div>
   </section>
 
+  <!-- ====== המילים שלנו ====== -->
+  <section id="words">
+    <div class="sec-head"><span class="sec-num mono">03</span><h2>המילים שאנחנו משתמשים בהן</h2></div>
+    <p class="sec-sub">מילה אחת לכל דבר, תמיד אותה מילה. כשמופיע מונח באנגלית בממשק — זו המשמעות שלו אצלנו.</p>
+    <div class="scroll"><table class="tbl">
+      <tr><th>אצלנו אומרים</th><th>בממשק כתוב</th><th>מה זה</th></tr>
+      <tr><td>תיק העבודה</td><td class="ltr-cell">Project</td><td>המקום שבו הכל נמצא. כל שיחה מקצועית נפתחת בתוכו</td></tr>
+      <tr><td>פקודת הקבע</td><td class="ltr-cell">Instructions</td><td>מי אתה ואיך אתה כותב. פועלת תמיד, בלי שתבקש</td></tr>
+      <tr><td>הקלסר</td><td class="ltr-cell">Project files</td><td>המסמכים שצירפנו: תבנית, מילון, דוגמה, מקורות</td></tr>
+      <tr><td>טופס המשימה</td><td>—</td><td>פרומפט-האב. המתכון למסמך מדיניות, מופעל רק כשמבקשים</td></tr>
+      <tr><td>הבקשה</td><td class="ltr-cell">Prompt</td><td>מה שאתה כותב לו בתיבת ההודעה</td></tr>
+      <tr><td>שיחה חדשה</td><td class="ltr-cell">New chat</td><td>דף נקי בתוך תיק העבודה. משימה חדשה = שיחה חדשה</td></tr>
+      <tr><td>המסמך בצד</td><td class="ltr-cell">Co-work</td><td>המסמך נפתח ליד השיחה ולא בתוכה. מתקנים בו סעיף-סעיף</td></tr>
+      <tr><td>המנוע</td><td class="ltr-cell">Model · Opus 5 / Fable 5</td><td>מי שעונה. Opus לרוב העבודה, Fable לריצות כבדות</td></tr>
+      <tr><td>לצרף</td><td class="ltr-cell">Attach / Upload</td><td>להעלות קובץ לשיחה או לתיק העבודה</td></tr>
+    </table></div>
+  </section>
+
   <!-- ====== בחירת מודל ====== -->
   <section id="models">
-    <div class="sec-head"><span class="sec-num mono">03</span><h2>איזה מודל, מתי</h2></div>
+    <div class="sec-head"><span class="sec-num mono">04</span><h2>איזה מנוע, מתי</h2></div>
     <p class="sec-sub">שני כלים לשני סוגי משימות. בכל תרגיל במצגות מסומן במה להשתמש — זה הכרטיס שחוזרים אליו כשלא בטוחים.</p>
     <div class="models">
       <article class="model-card">
@@ -566,7 +613,7 @@ footer{
 
   <!-- ====== ספריית פרומפטים ====== -->
   <section id="prompts">
-    <div class="sec-head"><span class="sec-num mono">04</span><h2>ספריית פרומפטים</h2></div>
+    <div class="sec-head"><span class="sec-num mono">05</span><h2>ספריית הבקשות</h2></div>
     <p class="sec-sub">פרומפטים מוכנים לשימוש חוזר. העתק, הדבק בקלוד, והחלף את הסוגריים המרובעים בפרטי המשימה שלך.</p>
     <div class="prompts" id="prompt-grid"></div>
   </section>
@@ -574,10 +621,11 @@ footer{
   <!-- ====== כללי עבודה בטוחה ====== -->
   <section id="safety">
     <div class="safety">
-      <div class="sh"><span class="sec-num mono">05</span><h2>כללי עבודה בטוחה</h2></div>
+      <div class="sh"><span class="sec-num mono">06</span><h2>כללי עבודה בטוחה</h2></div>
       <ul class="rules">
         <li class="pos">עובדים עם מקורות גלויים בלבד.</li>
         <li>אין להעלות חומר מסווג או רגיש לכל שירות ענן.</li>
+        <li class="pos">שלד נכנס, תוכן יוצא: כותרות, מסרים והמלצות בניסוח כללי — כן. המסמך עצמו, מספרים ושמות — לא.</li>
         <li>בספק — לא מעלים, ושואלים.</li>
         <li class="pos">הכלים משלימים את שיקול הדעת של האנליסט ואינם מחליפים אותו.</li>
         <li class="pos">כל תוצר עובר ביקורת אנושית לפני הפצה.</li>
@@ -597,12 +645,12 @@ footer{
 /* ============================================================
    הגדרות — כאן משנים
    ============================================================ */
-const CURRENT_LESSON = 1;  // השיעור הנוכחי (1–4) — משנה את פס ההתקדמות
+const CURRENT_LESSON = 2;  // השיעור הנוכחי (1–4) — משנה את פס ההתקדמות
 
 /* ---------- פס התקדמות ---------- */
 (function () {
   const bar = document.getElementById("bar");
-  for (let i = 1; i <= 4; i++) {
+  for (let i = 1; i <= 5; i++) {
     const s = document.createElement("span");
     if (i < CURRENT_LESSON) s.className = "on";
     else if (i === CURRENT_LESSON) s.className = "now";
@@ -610,11 +658,40 @@ const CURRENT_LESSON = 1;  // השיעור הנוכחי (1–4) — משנה א�
   }
   document.getElementById("prog-current").textContent = CURRENT_LESSON;
   document.getElementById("prog-label").textContent =
-    CURRENT_LESSON > 4 ? "הקורס הושלם" : "בתהליך";
+    CURRENT_LESSON > 5 ? "הקורס הושלם" : "בתהליך";
 })();
 
 /* ---------- ספריית פרומפטים ---------- */
 const PROMPTS = [
+{
+  title: "המלצה אופרטיבית",
+  cat: "המלצות",
+  text:
+`קח את המלצה מספר [X] בלבד.
+על בסיס התשובות שנתתי, נסח אותה מחדש כהמלצה אופרטיבית, בארבע שורות:
+- מה: הפעולה המדויקת.
+- מי: הגורם האחראי האחד.
+- עד מתי: מסגרת זמן.
+- מדד הצלחה: מה נבדוק בעוד שישה חודשים.
+
+הוסף שתי חלופות קצרות — אחת שמרנית יותר ואחת שאפתנית יותר — ושורה אחת על הסיכון בכל חלופה.
+אל תיגע בהמלצות האחרות. אל תוסיף נתונים שלא נתתי. אם משהו חסר לך — שאל, אל תמלא.`
+},
+{
+  title: "תקציר מנהלים",
+  cat: "תפוקות",
+  text:
+`מצורפים ראשי הפרקים של מסמך מדיניות והמסר המרכזי של כל פרק, במשפט. אין כאן את המסמך עצמו.
+
+כתוב תקציר מנהלים של עד 150 מילים שעומד בפני עצמו:
+- משפט ראשון: מה השאלה שהמסמך עונה עליה.
+- שניים-שלושה משפטים: הממצא המרכזי והמשמעות שלו.
+- משפט: מה מומלץ לעשות, ומי.
+- משפט אחרון: מה נדרש מהקורא עכשיו — להחליט, לאשר, להעביר הלאה.
+
+בלי ז'רגון, בלי "מסמך זה סוקר", בלי סופרלטיבים. כל טענה חייבת להיגזר ממה שנתתי — אל תוסיף נתון או טענה משלך.
+כתוב שלוש גרסאות: אחת שמרנית, אחת ישירה, אחת קצרה במיוחד (עד 90 מילים).`
+},
 {
   title: "מסמך מדיניות",
   cat: "פרומפט-אב",

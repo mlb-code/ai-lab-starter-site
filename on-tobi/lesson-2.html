@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>שיעור 02 — סקירת עומק ואינטגרציה של מקורות | AI Lab</title>
+<title>שיעור 02 — פרק ההמלצות | AI Lab</title>
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#0a0d12">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,21 +32,18 @@ body{
 body::before{
   content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cg fill='none' stroke='%23d99b3c' stroke-opacity='.055'%3E%3Ccircle cx='450' cy='450' r='120'/%3E%3Ccircle cx='450' cy='450' r='230'/%3E%3Ccircle cx='450' cy='450' r='340'/%3E%3Ccircle cx='450' cy='450' r='440'/%3E%3C/g%3E%3Cg stroke='%23ffffff' stroke-opacity='.022'%3E%3Cpath d='M450 10v880M10 450h880'/%3E%3C/g%3E%3C/svg%3E");
-  background-repeat:no-repeat;
-  background-position:center;
-  background-size:min(120vh,120vw) min(120vh,120vw);
+  background-repeat:no-repeat;background-position:center;background-size:min(120vh,120vw) min(120vh,120vw);
 }
 body::after{
   content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
   background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
 }
-.deck{position:relative;z-index:1}
 h1,h2,h3{font-weight:500;line-height:1.28;margin:0}
 .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 button{font-family:"Heebo",sans-serif;cursor:pointer;border-radius:4px;transition:border-color .15s,color .15s,background .15s}
 
-.deck{display:flex;flex-direction:column;height:100dvh}
+.deck{position:relative;z-index:1;display:flex;flex-direction:column;height:100dvh}
 .tb-back{color:var(--txt-faint);text-decoration:none;border:1px solid var(--line);border-radius:3px;padding:3px 10px;transition:color .15s,border-color .15s}
 .tb-back:hover{color:var(--amber);border-color:var(--amber-soft)}
 .topbar{display:flex;align-items:center;gap:14px;padding:11px 22px;border-bottom:1px solid var(--line);background:rgba(10,13,18,.72);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--txt-faint);flex:none}
@@ -64,7 +61,8 @@ button{font-family:"Heebo",sans-serif;cursor:pointer;border-radius:4px;transitio
 .slide.active{display:flex}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
-.kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase;margin-bottom:12px}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:11px}
+.kick .n{border:1px solid var(--amber-soft);border-radius:2px;padding:2px 8px;letter-spacing:.1em}
 .slide h2{font-size:clamp(24px,4vw,36px);margin-bottom:8px}
 .rule{height:1px;background:linear-gradient(to left,var(--amber-soft),transparent 65%);margin:16px 0 22px}
 .lead{color:var(--txt-dim);font-size:clamp(15.5px,2vw,18.5px);max-width:66ch;margin:0 0 22px}
@@ -77,6 +75,8 @@ ul.b li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
 ul.num{list-style:none;margin:0;padding:0;display:grid;gap:13px;counter-reset:n}
 ul.num li{position:relative;padding-inline-start:38px;font-size:clamp(15px,1.9vw,17.5px);counter-increment:n}
 ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inset-inline-start:0;top:.15em;font-family:var(--mono);font-size:12px;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:1px 5px}
+ul.num li b{font-weight:500;color:#fff}
+ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
 
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
 .card{border:1px solid var(--line);background:rgba(18,23,31,.86);border-radius:4px;padding:16px 17px}
@@ -94,6 +94,18 @@ ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inse
 .bad .lbl{color:#c07a68}.good .lbl{color:var(--amber)}
 .compare p{font-size:14px;color:var(--txt);margin:0;white-space:pre-wrap}
 
+/* קופסת "מה עושים עכשיו" */
+.do{border:1px solid var(--line);background:rgba(18,23,31,.9);border-radius:4px;padding:17px 18px 16px;margin-top:6px}
+.do-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.do-h b{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px;font-weight:500}
+.do-h span{font-family:var(--mono);font-size:11px;color:var(--txt-faint)}
+.do-h::after{content:"";flex:1;height:1px;background:var(--line)}
+.check{margin-top:15px;border-top:1px solid var(--line);padding-top:12px}
+.check b{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ok);display:block;margin-bottom:8px}
+.check ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.check li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:19px;position:relative}
+.check li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-size:12px}
+
 .ex{border:1px solid var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9);border-radius:4px;padding:20px 20px 18px;margin-top:4px}
 .ex-top{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:6px}
 .ex-badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px}
@@ -102,20 +114,15 @@ ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inse
 .model.fable{border-color:var(--amber-soft);color:var(--amber)}
 .model-note{border-inline-start:2px solid var(--line);padding-inline-start:11px;color:var(--txt-dim);font-size:13.5px;margin:0 0 14px}
 .model-note b{color:var(--txt);font-weight:500}
-.model-note.fable{border-inline-start-color:var(--amber-soft)}
 .ex h3{font-size:clamp(17px,2.4vw,20px);width:100%}
-.ex .goal{color:var(--txt-dim);font-size:14.5px;margin:0 0 14px}
-.check{margin-top:16px;border-top:1px solid var(--line);padding-top:13px}
-.check b{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ok);display:block;margin-bottom:7px}
-.check ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.check li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:19px;position:relative}
-.check li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-size:12px}
+.ex .goal{color:var(--txt-dim);font-size:14.5px;margin:0 0 12px}
 
-.pbox{position:relative;margin:14px 0 0}
-.pbox pre{margin:0;background:rgba(10,13,18,.86);border:1px solid var(--line);border-radius:4px;padding:14px 15px;font-family:"Heebo",sans-serif;font-size:13.5px;line-height:1.6;color:var(--txt-dim);white-space:pre-wrap;direction:rtl;max-height:38vh;overflow:auto}
-.copy{position:absolute;top:8px;inset-inline-start:8px;background:var(--panel);border:1px solid var(--line);color:var(--txt-faint);font-family:var(--mono);font-size:11px;padding:4px 10px}
+.pbox{position:relative;margin:13px 0 0}
+.pbox pre{margin:0;background:rgba(10,13,18,.88);border:1px solid var(--line);border-radius:4px;padding:14px 15px;font-family:"Heebo",sans-serif;font-size:13.5px;line-height:1.6;color:var(--txt-dim);white-space:pre-wrap;direction:rtl;max-height:40vh;overflow:auto}
+.copy{position:absolute;top:8px;inset-inline-start:8px;background:var(--panel);border:1px solid var(--line);color:var(--txt-faint);font-family:var(--mono);font-size:11px;padding:4px 10px;z-index:2}
 .copy:hover{border-color:var(--amber-soft);color:var(--amber)}
 .copy.done{border-color:#3c5a44;color:var(--ok)}
+.pcap{font-family:var(--mono);font-size:11px;color:var(--txt-faint);letter-spacing:.05em;margin:0 0 6px}
 
 .note{border-inline-start:2px solid var(--amber-soft);padding-inline-start:12px;color:var(--txt-dim);font-size:14px;margin-top:18px}
 .note b{color:var(--txt);font-weight:500}
@@ -124,6 +131,8 @@ ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inse
 .tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--amber);font-weight:400;background:var(--panel)}
 .tbl td{color:var(--txt-dim)}
 .tbl td:first-child{color:var(--txt)}
+.tbl .ui{font-family:var(--mono);font-size:11px;color:var(--txt-faint);display:block}
+.tbl b.hl{color:var(--amber);font-weight:500}
 .scroll{overflow-x:auto}
 
 .title-slide .big{font-size:clamp(30px,6vw,54px);line-height:1.18;margin:14px 0 18px}
@@ -146,15 +155,18 @@ ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inse
   .pbox pre{max-height:44vh}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.note-m{margin-top:18px;border:1px dashed var(--amber-soft);border-radius:4px;padding:10px 14px;font-size:13.5px;color:var(--txt-dim);background:rgba(217,155,60,.05)}
+.note-m b{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--amber);font-weight:400;margin-inline-end:8px}
+body.hide-notes .note-m{display:none}
 </style>
 </head>
 <body>
 <div class="deck">
   <div class="topbar">
     <span class="b">AI Lab</span><span>· שיעור 02</span>
-    <span class="tb-title">סקירת עומק ואינטגרציה של מקורות</span>
+    <span class="tb-title">פרק ההמלצות</span>
     <a class="tb-back" href="index.html">חזרה לפורטל</a>
-    <span class="mono"><span id="cur">1</span> / <span id="tot">12</span></span>
+    <span class="mono"><span id="cur">1</span> / <span id="tot">14</span></span>
   </div>
   <div class="pbar"><div id="pfill"></div></div>
 
@@ -162,250 +174,295 @@ ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inse
 
     <!-- 1 -->
     <section class="slide title-slide active">
-      <div class="kick">שיעור 02 מתוך 04 · קורס פרטי</div>
-      <h1 class="big">סקירת עומק ואינטגרציה של מקורות</h1>
-      <p class="sub">סוגרים את פערי הידע של המסמך: מקורות ממוזגים, מהימנות מדורגת, סתירות מסומנות, ועובדה שמופרדת מהערכה.</p>
-      <div class="meta">AI LAB · מאיר לביא · OSINT WORKFLOW</div>
+      <div class="kick">שיעור 02 · לפני ההגשה</div>
+      <h1 class="big">פרק ההמלצות</h1>
+      <p class="sub">מהמלצה כללית להמלצה שאפשר לבצע. עובדים רק על רשימת ההמלצות — המסמך עצמו נשאר אצלך.</p>
+      <div class="meta">AI LAB · מאיר לביא · RECOMMENDATIONS</div>
+      <p class="note-m"><b>למאיר</b>מקש N מסתיר ומציג את ההערות האלה. לפני שיתוף מסך — N.</p>
     </section>
 
     <!-- 2 -->
     <section class="slide">
-      <div class="kick">מפת השיעור</div>
-      <h2>במה נעסוק היום</h2>
+      <div class="kick">5 דקות חזרה</div>
+      <h2>מה יש לנו, ואיך נכנסים</h2>
       <div class="rule"></div>
-      <ul class="num">
-        <li><b>מחקר רשת מובנה</b> — למה "תחפש לי על X" מייצר ערימה ולא סקירה.</li>
-        <li><b>מיזוג מקורות מרובים</b> — טבלת השוואה במקום קריאה ברצף.</li>
-        <li><b>דירוג מהימנות וזיהוי סתירות</b> — סולם A-E, וארבעת ההסברים לפער.</li>
-        <li><b>הפרדה בין עובדה להערכה</b> — סולם ודאות שמלווה כל טענה.</li>
-      </ul>
-      <p class="note"><b>תוצר השיעור:</b> סקירת עומק שסוגרת את הפערים שסימנת בטיוטה, עם טבלת מהימנות וסעיף סתירות.</p>
+      <p class="lead">ב-Claude Desktop יש לך <b>תיק עבודה</b> בשם "דסק — סקירות ומדיניות". בתוכו: <b>פקודת הקבע</b> (איך אתה כותב), <b>הקלסר</b> (ארבעה מסמכים), ו<b>טופס המשימה</b> (פרומפט-האב).</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>3 דקות · אתה לבד</span></div>
+        <ul class="num">
+          <li>פותחים את <b>Claude Desktop</b>.</li>
+          <li>לוחצים על <b>Projects</b> ואז על <b>דסק — סקירות ומדיניות</b>.</li>
+          <li>פותחים <b>שיחה חדשה</b> בתוך התיק.</li>
+          <li>בודקים שהמנוע הוא <b>Opus 5</b> (ליד תיבת ההודעה).</li>
+        </ul>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>שם התיק מופיע בראש המסך</li>
+          <li>ברשימת הקבצים יש חמישה קבצים</li></ul></div>
+      </div>
+      <p class="note-m"><b>למאיר</b>שותק. הוא עושה את ארבעת הצעדים לבד. אם הצליח — הוא זוכר, ממשיכים. אם לא — מתקנים כאן ולא ממשיכים לפני.</p>
     </section>
 
     <!-- 3 -->
     <section class="slide">
-      <div class="kick">שיטה</div>
-      <h2>מחקר רשת מובנה</h2>
+      <div class="kick">למה היום</div>
+      <h2>מה עושים היום, ולמה דווקא את זה</h2>
       <div class="rule"></div>
-      <p class="lead">חיפוש פתוח מחזיר מה שפופולרי. מחקר מובנה מחזיר מה שנדרש. ההבדל מתחיל בשאלה, לא בכלי.</p>
-      <div class="grid2">
-        <div class="card"><span class="tag mono">שלב 01</span><h3>שאלת מחקר אחת</h3><p>משפט אחד שהסקירה עונה עליו. אם אי אפשר לנסח אותו — אין עדיין מה לחקור.</p></div>
-        <div class="card"><span class="tag mono">שלב 02</span><h3>4-6 תת-שאלות</h3><p>כל תת-שאלה תהפוך לסעיף בסקירה. כאן נקבע המבנה, לפני שנאסף חומר.</p></div>
-        <div class="card"><span class="tag mono">שלב 03</span><h3>גבולות</h3><p>טווח תאריכים, מרחב גיאוגרפי, סוגי מקורות קבילים. בלי גבולות — כל חומר "רלוונטי".</p></div>
-        <div class="card"><span class="tag mono">שלב 04</span><h3>איסוף ואז מיזוג</h3><p>קודם אוספים לפי תת-השאלות, רק אחר כך מחברים. לא מנסחים מסקנה תוך כדי איסוף.</p></div>
-      </div>
-      <p class="note"><b>מלכודת:</b> כשמבקשים "סקירה על X" מקבלים מבנה גנרי שמתאים לכל נושא — ולכן לא עונה על שום שאלה. המבנה חייב לנבוע מתת-השאלות שלך.</p>
+      <p class="lead">המסמך שלך כמעט גמור, ואתה מגיש אותו בעוד כשבועיים. לא נוגעים בו. יש דבר אחד שאמרת שאתה רוצה לחזק: <b>פרק ההמלצות</b> — שיהיה אופרטיבי יותר.</p>
+      <ul class="b">
+        <li><b>מה כן</b> <span>רשימת ההמלצות בלבד, בניסוח כללי. כל אחת תקבל: מה בדיוק · מי מבצע · עד מתי · איך נדע שעבד.</span></li>
+        <li><b>מה עוד</b> <span>תקדימים ממקורות גלויים — הצעות חוק, דוחות מבקר, ועדות — שמחזקים או מחלישים כל המלצה.</span></li>
+        <li><b>מה לא</b> <span>לא מעלים את המסמך. לא נותנים לכלי לכתוב את הפרק. הוא מחדד, אתה מחליט ומכניס למסמך בעצמך.</span></li>
+      </ul>
+      <p class="note-m"><b>למאיר</b>תזכיר לו שזה בא ממנו — שאלה 8 בשאלון: "הייתי רוצה יותר המלצות אופרטיביות — בתי משפט, חקיקה, שיטות עבודה". זה לא תרגיל, זה המסמך שלו.</p>
     </section>
 
     <!-- 4 -->
     <section class="slide">
-      <div class="kick">תרגיל בכיתה</div>
-      <div class="ex">
-        <div class="ex-top"><span class="ex-badge mono">תרגיל 01</span><span class="ex-time mono">12 דקות</span><span class="model mono">OPUS 5</span>
-          <h3>פירוק שאלת מחקר</h3></div>
-        <p class="goal">בסוף התרגיל יש שאלת מחקר חדה, תת-שאלות שהן שלד הסקירה, וגבולות ברורים.</p><p class="model-note"><b>למה Opus 5:</b> מסגור הוא דיאלוג — מציעים ניסוח, אתה מוחק ומחדד, מציעים שוב. צריך כאן קצב, לא עומק.</p>
-        <ul class="num">
-          <li>בחר נושא גלוי אחד שרלוונטי לדסק שלך.</li>
-          <li>נסח את שאלת המחקר במשפט אחד — ואל תמשיך עד שהיא חדה.</li>
-          <li>הרץ את הפרומפט הבא, וקבל הצעה לתת-שאלות ולגבולות.</li>
-          <li>מחק לפחות שתי תת-שאלות שהוצעו והחלף אותן בשלך. הכלי לא מכיר את הדסק — אתה כן.</li>
-        </ul>
-        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>אני אנליסט וברצוני לבנות סקירת עומק בנושא: [הנושא].
-שאלת המחקר שלי: [נסח כאן במשפט אחד].
-
-לפני שאתה אוסף חומר כלשהו, עזור לי למסגר את המחקר:
-1. חדד את שאלת המחקר — הצע שני ניסוחים מדויקים יותר, והסבר במשפט מה כל אחד משנה בהיקף.
-2. פרק ל-4-6 תת-שאלות. כל תת-שאלה תהפוך לסעיף בסקירה, ולכן היא צריכה להיות עצמאית ולא חופפת.
-3. הצע גבולות: טווח תאריכים, מרחב גיאוגרפי, וסוגי מקורות שכדאי לכלול או לפסול.
-4. ציין אילו תת-שאלות עלולות לא להיות ניתנות למענה ממקורות גלויים בלבד, ולמה.
-
-אל תתחיל לאסוף מידע בשלב הזה. רק מסגור.</pre></div>
-        <div class="check"><b>מה בודקים</b><ul>
-          <li>שאלת המחקר נכנסת במשפט אחד ואפשר לענות עליה</li>
-          <li>אין חפיפה בין תת-השאלות</li>
-          <li>מוגדר טווח תאריכים מפורש</li>
-          <li>מסומן במפורש מה כנראה לא ניתן לענות עליו מגלוי</li></ul></div>
+      <div class="kick">הקו האדום</div>
+      <h2>מה נכנס לכלי — ומה לא</h2>
+      <div class="rule"></div>
+      <p class="lead">הכלל של היום: <b>שלד נכנס, תוכן יוצא.</b> הכלי רואה את הניסוח הכללי של ההמלצות. את כל השאר — אתה.</p>
+      <div class="compare">
+        <div class="card good"><span class="lbl mono">נכנס</span><ul>
+          <li>רשימת ההמלצות, בניסוח כללי</li>
+          <li>כותרות הפרקים</li>
+          <li>שאלות על חקיקה ונהלים — נושאים ציבוריים</li>
+          <li>התשובות שלך לשאלות הכלי, בכלליות</li></ul></div>
+        <div class="card bad"><span class="lbl mono">לא נכנס</span><ul>
+          <li>המסמך עצמו, או פרקים ממנו</li>
+          <li>מספרים, נתונים, שמות של אנשים</li>
+          <li>פרטים על פעילות, יחידות או שיטות</li>
+          <li>כל דבר שלא היית שולח במייל רגיל</li></ul></div>
       </div>
+      <p class="note"><b>בספק — לא מדביקים.</b> שואלים את מאיר. אין המלצה ששווה את זה.</p>
+      <p class="note-m"><b>למאיר</b>לפני שממשיכים — שאל אותו מה בדיוק עלה בשיעורים הקודמים ("העלינו גרסה קודמת"). אם עלה חומר פנימי, זה הרגע להסביר את הקו, בלי דרמה.</p>
     </section>
 
     <!-- 5 -->
     <section class="slide">
-      <div class="kick">שיטה</div>
-      <h2>מיזוג מקורות — הטבלה לפני הטקסט</h2>
+      <div class="kick">השיטה</div>
+      <h2>מה הופך המלצה לאופרטיבית</h2>
       <div class="rule"></div>
-      <p class="lead">כשקוראים חמישה מקורות ברצף, האחרון שנקרא משפיע הכי חזק. טבלת השוואה מנטרלת את זה: כל מקור נשקל מול אותה סוגיה בדיוק.</p>
-      <div class="scroll"><table class="tbl">
-        <tr><th>סוגיה</th><th>מקור א'</th><th>מקור ב'</th><th>מקור ג'</th></tr>
-        <tr><td>היקף התופעה</td><td>נתון + תאריך</td><td>נתון סותר</td><td>שותק</td></tr>
-        <tr><td>מגמה</td><td>עלייה</td><td>יציבות</td><td>עלייה</td></tr>
-        <tr><td>הסבר מוצע</td><td>הסבר א'</td><td>הסבר ב'</td><td>ללא</td></tr>
-      </table></div>
-      <ul class="b" style="margin-top:20px">
-        <li><b>תא ריק הוא ממצא</b> <span>מקור שותק בסוגיה מרכזית — זה עצמו אומר משהו על המקור או על הסוגיה.</span></li>
-        <li><b>שורה בלי סתירות</b> <span>הסכמה בין מקורות בלתי תלויים היא הבסיס היציב ביותר לכתוב עליו.</span></li>
-        <li><b>שורה עם סתירה</b> <span>לא בוחרים צד בשקט. מציגים את שניהם ומסבירים את הפער.</span></li>
-      </ul>
+      <p class="lead">ארבע שאלות. המלצה שעונה על ארבעתן — אפשר לבצע ולמדוד. המלצה שלא — היא משאלה.</p>
+      <div class="compare">
+        <div class="card bad"><span class="lbl mono">משאלה</span>
+          <p>"יש לחזק את שיתוף הפעולה בין הגופים הרלוונטיים בטיפול בתופעה."</p>
+          <ul><li>מה בדיוק? לא ברור</li><li>מי? אף אחד</li><li>עד מתי? אף פעם</li><li>איך נדע? אי אפשר</li></ul></div>
+        <div class="card good"><span class="lbl mono">המלצה</span>
+          <p><b>מה:</b> הקמת צוות משותף קבוע עם נציגים מוסמכים משני הגופים.
+<b>מי:</b> [הגורם האחראי האחד].
+<b>עד מתי:</b> תוך רבעון.
+<b>מדד:</b> שלושה דיונים ברצף עם סיכום כתוב, עד סוף התקופה.</p></div>
+      </div>
+      <p class="note">זה בדיוק מה שהכלי יעשה לכל המלצה שלך: ישאל איפה חסרה אחת מארבע התשובות — ואתה תענה. <b>הידע הוא שלך. הסדר הוא שלו.</b></p>
     </section>
 
     <!-- 6 -->
     <section class="slide">
-      <div class="kick">בקרה</div>
-      <h2>דירוג מהימנות — סולם A-E</h2>
+      <div class="kick"><span class="n">צעד 1</span> הכנה</div>
+      <h2>מכינים את רשימת ההמלצות — מחוץ לכלי</h2>
       <div class="rule"></div>
-      <p class="lead">לא כל מקור שווה. הדירוג לא נועד לפסול מקורות אלא לתת להם משקל, ולהיות שקוף לגבי המשקל הזה מול הקורא.</p>
-      <div class="scroll"><table class="tbl">
-        <tr><th>דירוג</th><th>סוג מקור</th><th>מה זה אומר בפועל</th></tr>
-        <tr><td>A</td><td>גורם רשמי, או מחקר עם מתודולוגיה גלויה</td><td>אפשר להישען עליו כעובדה, עם ציון המקור</td></tr>
-        <tr><td>B</td><td>מקור מקצועי מבוסס בתחומו</td><td>אמין; מצריך אימות בסוגיות מרכזיות</td></tr>
-        <tr><td>C</td><td>תקשורת כללית</td><td>שימושי לכיוון ולעיתוי, לא למספרים מדויקים</td></tr>
-        <tr><td>D</td><td>מקור אנונימי או לא מזוהה</td><td>לא נשען עליו לבד. רק כתמיכה למקור אחר</td></tr>
-        <tr><td>E</td><td>בעל אינטרס מובהק בנושא</td><td>נקרא כעמדה, לא כדיווח. מסומן ככזה</td></tr>
-      </table></div>
-      <p class="note"><b>שאלת הבקרה לכל דירוג:</b> מה הנימוק בשורה אחת? דירוג בלי נימוק הוא ניחוש שנראה מדעי.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>10 דקות · בוורד</span></div>
+        <ul class="num">
+          <li>פותחים מסמך וורד <b>חדש וריק</b>.</li>
+          <li>מעתיקים אליו <b>רק את ההמלצות</b> מפרק הסיכום — לא את הפרק, רק את רשימת ההמלצות.</li>
+          <li>ממספרים אותן: 1, 2, 3…</li>
+          <li>עוברים על כל אחת ומוחקים: מספרים, שמות, יחידות, פרטים פנימיים. במקומם כותבים <b>[פרט]</b>.</li>
+          <li>קוראים שוב כאילו אתה זר. אם נשאר משהו שלא היית שולח במייל רגיל — מוחקים.</li>
+        </ul>
+        <div class="check"><b>מה בודקים לפני שממשיכים</b><ul>
+          <li>ברשימה יש רק המלצות, ממוספרות</li>
+          <li>אין אף מספר, שם או פרט פנימי</li>
+          <li>כל המלצה בניסוח שאפשר להקריא בקול בכנס פתוח</li></ul></div>
+      </div>
+      <p class="note-m"><b>למאיר</b>תן לו לעשות את הניקוי לבד, אבל תסתכל על הרשימה לפני שהוא מדביק אותה. זו הבדיקה היחידה שאתה עושה בשבילו היום.</p>
     </section>
 
     <!-- 7 -->
     <section class="slide">
-      <div class="kick">ליבת המקצוע</div>
-      <h2>סתירות — ארבעת ההסברים לפער</h2>
+      <div class="kick"><span class="n">צעד 2</span> הבקשה הראשונה</div>
+      <h2>הכלי בודק — ושואל</h2>
       <div class="rule"></div>
-      <p class="lead">כששני מקורות אמינים אומרים דברים שונים, ברוב המקרים אף אחד מהם לא משקר. לפני שמכריעים — בודקים איזה מארבעת ההסברים חל.</p>
-      <div class="grid2">
-        <div class="card"><span class="tag mono">הסבר 01</span><h3>עיתוי</h3><p>המקורות מתייחסים לתקופות שונות. הפער אינו סתירה אלא מגמה שלא זוהתה ככזו.</p></div>
-        <div class="card"><span class="tag mono">הסבר 02</span><h3>הגדרה</h3><p>אותה מילה, שתי הגדרות. "אירוע", "מקרה", "נפגע" — כל גוף סופר אחרת. ההסבר הנפוץ ביותר.</p></div>
-        <div class="card"><span class="tag mono">הסבר 03</span><h3>אינטרס</h3><p>לאחד המקורות יש רווח מהמספר שהוא מציג. לא בהכרח שקר — אבל בחירה מגמתית של מה להציג.</p></div>
-        <div class="card"><span class="tag mono">הסבר 04</span><h3>טעות</h3><p>שגיאה פשוטה, או ציטוט משרשרת שהתגלגל. בודקים אם שני המקורות בכלל בלתי תלויים.</p></div>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>8 דקות</span></div>
+        <ul class="num">
+          <li>בשיחה החדשה בתוך התיק — מעתיקים את הבקשה שלמטה ומדביקים.</li>
+          <li>מתחת לבקשה מדביקים את רשימת ההמלצות הנקייה.</li>
+          <li>שולחים. מחכים לטבלה.</li>
+        </ul>
+        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>מצורפת רשימת המלצות מתוך פרק הסיכום של מסמך מדיניות. אין כאן את המסמך עצמו — רק ההמלצות, בניסוח כללי.
+
+עבור כל המלצה, בדוק ארבע שאלות:
+1. מה בדיוק — האם ברור איזו פעולה נדרשת, או שזו כוונה כללית?
+2. מי מבצע — האם מצוין גורם אחראי אחד?
+3. עד מתי — האם יש מסגרת זמן?
+4. איך נדע שעבד — האם אפשר למדוד את זה בעוד חצי שנה?
+
+הצג טבלה: מספר ההמלצה · הניסוח הקיים · מה מהארבעה חסר · שאלה אחת אליי שתעזור להשלים את החסר.
+אל תנסח מחדש עדיין, ואל תמציא פרטים. רק אבחן ושאל.
+
+רשימת ההמלצות:</pre></div>
+        <div class="check"><b>מה אמור להופיע על המסך</b><ul>
+          <li>טבלה, שורה לכל המלצה</li>
+          <li>בכל שורה — מה חסר, ושאלה אחת אליך</li>
+          <li>הוא <b>לא</b> ניסח מחדש ולא הוסיף פרטים. אם כן — כותבים לו: "ביקשתי רק לאבחן"</li></ul></div>
       </div>
-      <p class="note"><b>מלכודת התלות:</b> חמישה מקורות שמצטטים את אותו דוח אינם חמישה אישושים — הם מקור אחד. תמיד שואלים: מאיפה כל אחד מהם קיבל את זה?</p>
     </section>
 
     <!-- 8 -->
     <section class="slide">
-      <div class="kick">תרגיל בכיתה</div>
-      <div class="ex">
-        <div class="ex-top"><span class="ex-badge mono">תרגיל 02</span><span class="ex-time mono">20 דקות</span><span class="model fable mono">FABLE 5</span>
-          <h3>אינטגרציה של שלושה מקורות</h3></div>
-        <p class="goal">בסוף התרגיל יש טבלת מהימנות, טבלת השוואה, וסעיף סתירות מנומק.</p><p class="model-note fable"><b>למה Fable 5:</b> זו בדיוק המשימה שהוא בנוי לה — ריצה אחת כבדה על חומר סותר, בלי מתכון מוכן. תן לו את כל המקורות ואת כל ההוראות בפנייה אחת, ותן לו את הזמן. תשובה של כמה דקות היא תקינה כאן.</p>
+      <div class="kick"><span class="n">צעד 3</span> התשובות שלך</div>
+      <h2>עונים על השאלות — בקצרה</h2>
+      <div class="rule"></div>
+      <p class="lead">הכלי שאל שאלה על כל המלצה. אתה יודע את התשובות — הוא לא. כאן נכנס הידע שלך.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>10 דקות</span></div>
         <ul class="num">
-          <li>אסוף שלושה מקורות גלויים על הנושא מתרגיל 1 — בכוונה כאלה שאינם זהים באופיים.</li>
-          <li>הרץ את פרומפט האינטגרציה עם שלושתם מצורפים.</li>
-          <li>עבור על טבלת המהימנות ותקן לפחות דירוג אחד. הסבר בקול רם למה.</li>
-          <li>בחר סתירה אחת שעלתה, וקבע איזה מארבעת ההסברים חל עליה.</li>
+          <li>כותבים בשיחה: <b>"תשובות לשאלות:"</b> ומתחת — מספר ההמלצה ותשובה של משפט אחד לכל שאלה.</li>
+          <li>תשובה <b>בכלליות</b>: "הגורם האחראי צריך להיות גוף אחד ברמה הארצית", לא שם של אדם או יחידה.</li>
+          <li>שאלה שאין לך עליה תשובה — כותבים "לא יודע עדיין". זה בסדר, זה פער שהמסמך צריך להודות בו.</li>
+          <li>שולחים.</li>
         </ul>
-        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>לפניך מספר מקורות על אותו נושא: [הנושא].
-המקורות מצורפים.
-
-בצע אינטגרציה מלאה, לפי הסדר:
-
-1. טבלת מקורות — לכל מקור: שם/כתובת, סוג (דיווח / מחקר / רשמי / משני), תאריך, וציון מהימנות A-E:
-   A = גורם רשמי או מחקר עם מתודולוגיה גלויה
-   B = מקור מקצועי מבוסס
-   C = תקשורת כללית
-   D = מקור אנונימי או לא מזוהה
-   E = מקור בעל אינטרס מובהק בנושא
-   הוסף שורת נימוק קצרה לכל ציון.
-
-2. טבלת השוואה — שורות = הסוגיות המרכזיות, עמודות = המקורות, בתאים = מה כל מקור אומר על אותה סוגיה. תא ריק אם המקור שותק.
-
-3. נקודות הסכמה — מה מופיע בשני מקורות בלתי תלויים או יותר. ציין במפורש אם המקורות אינם בלתי תלויים.
-
-4. סתירות — לכל סתירה: מי טוען מה, מהו פער המהימנות ביניהם, ומה ההסבר הסביר לפער (עיתוי שונה / הגדרה שונה / אינטרס / טעות).
-
-5. תמונה משולבת — פסקה אחת המשקללת את הכל, עם משקל גדול יותר למקורות בדירוג גבוה.
-
-אל תשלים פערים בהשערות. מה שאף מקור לא אומר — רשום תחת "לא מכוסה".</pre></div>
         <div class="check"><b>מה בודקים</b><ul>
-          <li>לכל דירוג מהימנות יש נימוק, לא רק אות</li>
-          <li>בטבלת ההשוואה יש לפחות תא ריק אחד — ולא הומצא לו תוכן</li>
-          <li>הסתירות מוצגות כשתי עמדות, בלי הכרעה שקטה</li>
-          <li>קיים סעיף "לא מכוסה" והוא לא ריק</li></ul></div>
+          <li>ענית לכל השאלות — או סימנת "לא יודע עדיין"</li>
+          <li>בתשובות אין שמות, מספרים או פרטים פנימיים</li></ul></div>
       </div>
+      <p class="note-m"><b>למאיר</b>אם הוא מתלבט מה לכתוב — זה בדיוק האבחון של המסמך. השאלות שהוא לא יודע לענות עליהן הן המקומות שבהם הפרק חלש. תגיד לו את זה.</p>
     </section>
 
     <!-- 9 -->
     <section class="slide">
-      <div class="kick">ליבת המקצוע</div>
-      <h2>עובדה, הערכה, וסולם הוודאות</h2>
+      <div class="kick"><span class="n">צעד 4</span> חידוד</div>
+      <h2>מחדדים המלצה אחת</h2>
       <div class="rule"></div>
-      <p class="lead">רוב הכשלים בסקירות אינם המצאת עובדות, אלא הערכה שנכתבה בנוסח של עובדה. הקורא לא יכול להבחין — אלא אם סימנת לו.</p>
-      <div class="compare">
-        <div class="card bad"><span class="lbl mono">נכתב כעובדה</span>
-          <p>הארגון מתכוון להרחיב את פעילותו לאזור הצפון.</p>
-          <ul><li>"מתכוון" = ייחוס כוונה, לא ידיעה</li><li>אין מקור ואין רמת ודאות</li><li>הקורא יקרא את זה כמידע</li></ul></div>
-        <div class="card good"><span class="lbl mono">מסומן נכון</span>
-          <p>הערכה (סביר): הארגון עשוי להרחיב פעילות לצפון.
-מבוסס על: שני דיווחים על נוכחות חדשה באזור [מקור, תאריך].
-מה יחזק: זיהוי תשתית קבועה. מה יפריך: נסיגה תוך רבעון.</p></div>
+      <p class="lead">לא את כולן. אחת. בוחרים את ההמלצה שהכי חשובה לך — ומבקשים ניסוח מחדש רק שלה.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>10 דקות</span></div>
+        <ul class="num">
+          <li>בוחרים מספר של המלצה אחת.</li>
+          <li>מעתיקים את הבקשה שלמטה, מחליפים את ה-[X] במספר, שולחים.</li>
+          <li>קוראים את התוצאה <b>ליד הניסוח המקורי</b> בוורד. מה השתפר? מה אתה לא מקבל?</li>
+          <li>אם משהו לא נכון — כותבים לו במשפט מה לתקן. רק את זה.</li>
+        </ul>
+        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>קח את המלצה מספר [X] בלבד.
+על בסיס התשובות שנתתי, נסח אותה מחדש כהמלצה אופרטיבית, בארבע שורות:
+- מה: הפעולה המדויקת.
+- מי: הגורם האחראי האחד.
+- עד מתי: מסגרת זמן.
+- מדד הצלחה: מה נבדוק בעוד שישה חודשים.
+
+הוסף שתי חלופות קצרות — אחת שמרנית יותר ואחת שאפתנית יותר — ושורה אחת על הסיכון בכל חלופה.
+אל תיגע בהמלצות האחרות. אל תוסיף נתונים שלא נתתי. אם משהו חסר לך — שאל, אל תמלא.</pre></div>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>ארבע השורות קיימות וכל אחת עונה על שאלה אחת</li>
+          <li>אין בניסוח החדש שום דבר שאתה לא אמרת לו</li>
+          <li>אתה יכול להגיד במשפט למה הניסוח החדש טוב יותר — או למה לא</li></ul></div>
       </div>
-      <p class="note"><b>ארבע רמות ודאות:</b> ודאי · סביר · אפשרי · ספקולטיבי. אם הכול יוצא "סביר" — הסולם לא באמת הופעל. דחוף אותו לקצוות.</p>
     </section>
 
     <!-- 10 -->
     <section class="slide">
-      <div class="kick">תרגיל בכיתה</div>
-      <div class="ex">
-        <div class="ex-top"><span class="ex-badge mono">תרגיל 03</span><span class="ex-time mono">10 דקות</span><span class="model mono">OPUS 5</span>
-          <h3>מבחן "מאיפה זה"</h3></div>
-        <p class="goal">תרגיל בקרה קצר שנכנס לשגרה שלך אחרי כל תוצר.</p><p class="model-note"><b>למה Opus 5 — ולא אותו מודל שכתב:</b> ביקורת בשיחה חדשה, במודל אחר מזה שייצר את התוצר, מקבלת פחות "הגנה" על מה שנכתב קודם. זו שיטת עבודה, לא תכונה של הכלי — אבל היא עובדת.</p>
+      <div class="kick"><span class="n">צעד 5</span> תקדימים</div>
+      <h2>מה כבר הוצע או נוסה — במקורות גלויים</h2>
+      <div class="rule"></div>
+      <p class="lead">המלצות על חקיקה, על בתי משפט ועל שיטות עבודה בין גופים — הן נושאים ציבוריים. כמעט תמיד מישהו כבר הציע משהו דומה. זה מחזק את הפרק.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>10 דקות</span></div>
         <ul class="num">
-          <li>קח את התמונה המשולבת שהתקבלה בתרגיל 2.</li>
-          <li>בחר בעצמך שלוש טענות מתוכה — כולל אחת שנשמעת מובנת מאליה.</li>
-          <li>הרץ את הפרומפט הבא ובקש ביסוס לכל אחת.</li>
-          <li>כל טענה שהתשובה עליה מעורפלת — נמחקת מהסקירה או יורדת לרמת ודאות נמוכה יותר.</li>
+          <li>מוודאים ש<b>חיפוש ברשת</b> מופעל בשיחה (מאיר יראה איפה).</li>
+          <li>מעתיקים את הבקשה, ממלאים את המספר ואת סוג ההמלצה, שולחים.</li>
+          <li>על כל מקור בטבלה — <b>לוחצים על הקישור ופותחים אותו בעצמך.</b> מקור שלא נפתח — לא נכנס למסמך.</li>
         </ul>
-        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>עבור כל אחת משלוש הטענות הבאות מתוך הטקסט שכתבת:
-[טענה 1]
-[טענה 2]
-[טענה 3]
+        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>המלצה מספר [X] נוגעת ל[חקיקה / נוהל עבודה בבתי משפט / שיטת עבודה בין גופים].
+חפש בפרסומים גלויים בלבד — הצעות חוק, דוחות מבקר המדינה, ועדות ציבוריות, פרסומי משרדי ממשלה, מחקר אקדמי — האם הוצע או יושם משהו דומה, בישראל או במדינה אחרת.
 
-ענה בטבלה, שורה לכל טענה:
-- מקור מדויק: איזה מקור מהחומר שצורף, ואיפה בתוכו. אם אין — כתוב "אין מקור בחומר".
-- סיווג: עובדה / הערכה / השלמה שלך מידע כללי.
-- רמת ודאות: ודאי / סביר / אפשרי / ספקולטיבי.
-- מה היה מפריך את הטענה.
-
-אל תגן על מה שכתבת קודם. אם טענה אינה מבוססת בחומר שצורף — אמור זאת במפורש.</pre></div>
+הצג טבלה: המקור (עם קישור) · מה הוצע או יושם · מה קרה בפועל · דירוג מהימנות A-E עם נימוק בשורה אחת.
+אם לא מצאת — כתוב "לא נמצא". אל תשלים מהזיכרון ואל תמציא מקור.
+בסוף, שורה אחת: מה מתוך זה מחזק את ההמלצה שלי, ומה מחליש אותה.</pre></div>
         <div class="check"><b>מה בודקים</b><ul>
-          <li>לפחות טענה אחת מסומנת כהשלמה מידע כללי — ומטופלת</li>
-          <li>אין טענה שנשארה בלי מקור ובלי סימון</li>
-          <li>לכל טענה יש תנאי הפרכה שאפשר לבדוק</li></ul></div>
+          <li>פתחת כל קישור בעצמך וראית שהוא אומר מה שכתוב בטבלה</li>
+          <li>לכל מקור יש דירוג A-E עם נימוק</li>
+          <li>יש שורת "מחזק / מחליש" — וזה הגיוני לך</li></ul></div>
       </div>
+      <p class="note-m"><b>למאיר</b>כאן הכי סביר שיופיע מקור שנראה אמיתי ואינו. תעשה איתו את הפתיחה של הקישור הראשון יחד, בקול: "זה מה שכתוב בטבלה? כן / לא". אחר כך הוא ממשיך לבד.</p>
     </section>
 
     <!-- 11 -->
     <section class="slide">
-      <div class="kick">הרכבה</div>
-      <h2>מהחומר לסקירת העומק</h2>
+      <div class="kick"><span class="n">צעד 6</span> חזרה למסמך</div>
+      <h2>מכניסים למסמך — בעצמך, בוורד</h2>
       <div class="rule"></div>
-      <p class="lead">עכשיו יש חומר ממוזג, מדורג ומסומן. הסקירה היא הרכבה שלו לפי תת-השאלות שהגדרת בתחילת השיעור — לא כתיבה מחדש.</p>
-      <ul class="num">
-        <li><b>שלד</b> — תת-השאלות הופכות לסעיפים, בסדר שמשרת את הקורא ולא את סדר האיסוף.</li>
-        <li><b>מילוי</b> — לכל סעיף נכנס מה שהטבלה מראה, כולל התאים הריקים כ"לא מכוסה".</li>
-        <li><b>סתירות</b> — סעיף עצמאי, לא הערת שוליים.</li>
-        <li><b>הערכה</b> — בסוף בלבד, מסומנת, אחרי שהעובדות הוצגו במלואן.</li>
-        <li><b>פערי ידע</b> — מה נדרש כדי לחזק, ומאיפה אפשר להשיג.</li>
-      </ul>
-      <p class="note"><b>מבחן האורך:</b> אם הסקירה ארוכה מהחומר שנאסף — נוסף בה מלל שאינו מבוסס. חזור ומחק.</p>
+      <p class="lead">הכלי לא ראה את המסמך ולא יראה אותו. את ההמלצה המחודדת ואת התקדימים שאימתת — <b>אתה</b> מעתיק פנימה.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>5 דקות</span></div>
+        <ul class="num">
+          <li>פותחים את המסמך האמיתי בוורד.</li>
+          <li>מעתיקים את ארבע השורות של ההמלצה המחודדת למקום שלה בפרק.</li>
+          <li>מחזירים את הפרטים שהוצאת — המספרים, השמות — <b>אצלך</b>, במסמך.</li>
+          <li>מוסיפים את התקדים שאימתת כהפניה, רק אם פתחת אותו וראית.</li>
+          <li>קוראים את ההמלצה החדשה ליד השכנות שלה. היא נשמעת כמו שאר המסמך?</li>
+        </ul>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>ההמלצה במסמך עונה על ארבע השאלות</li>
+          <li>כל הפניה למקור — נפתחה ונבדקה בעיניים</li>
+          <li>המסמך לא עלה לכלי בשום שלב</li></ul></div>
+      </div>
     </section>
 
     <!-- 12 -->
     <section class="slide">
+      <div class="kick">הכלל</div>
+      <h2>אחת בכל פעם</h2>
+      <div class="rule"></div>
+      <p class="lead">עשית את זה להמלצה אחת. עכשיו עושים את אותו דבר להמלצה הבאה — <b>אותם שלושה צעדים, בלי לשנות כלום.</b></p>
+      <ul class="num">
+        <li><b>חידוד</b> — הבקשה מצעד 4, עם מספר אחר.</li>
+        <li><b>תקדימים</b> — הבקשה מצעד 5, רק אם ההמלצה נוגעת לחקיקה או לנהלים.</li>
+        <li><b>חזרה למסמך</b> — בעצמך, בוורד.</li>
+      </ul>
+      <p class="note">לא מבקשים "תחדד את כולן". המלצה אחת, בודקים, מכניסים. אחרת מקבלים עשר המלצות שנראות טוב ואי אפשר לבדוק אף אחת.</p>
+      <p class="note-m"><b>למאיר</b>אם נשאר זמן — תן לו לעשות המלצה שנייה לבד, מההתחלה, כשאתה שותק. זו הבדיקה האמיתית של השיעור.</p>
+    </section>
+
+    <!-- 13 -->
+    <section class="slide">
+      <div class="kick">לקחת הביתה</div>
+      <h2>דף אחד: איך חוזרים על זה לבד</h2>
+      <div class="rule"></div>
+      <div class="do">
+        <div class="do-h"><b>השגרה</b><span>להעתיק ולשמור</span></div>
+        <div class="pbox"><button class="copy" type="button">העתקה</button><pre>חידוד המלצה — איך חוזרים על זה לבד
+
+1. פותחים Claude Desktop → תיק "דסק — סקירות ומדיניות" → שיחה חדשה.
+2. מדביקים את בקשת החידוד (מהפורטל, ספריית הבקשות: "המלצה אופרטיבית") עם מספר ההמלצה.
+3. אם חסר לו משהו — הוא שואל. עונים במשפט, בכלליות. בלי שמות, בלי מספרים.
+4. קוראים את ארבע השורות ליד המקור. מה טוב יותר? מה לא?
+5. מעתיקים למסמך בוורד — בעצמך. מחזירים את הפרטים שם.
+
+נתקעת? סוגרים את השיחה, פותחים שיחה חדשה בתוך התיק, מתחילים מצעד 2. עדיין תקוע — צילום מסך למאיר.</pre></div>
+      </div>
+      <p class="note"><b>שיעורי בית — עד שעה:</b> שתי המלצות נוספות, לפי הדף הזה. לא יותר. תביא לשיעור הבא את הגרסה לפני ואחרי של כל אחת.</p>
+    </section>
+
+    <!-- 14 -->
+    <section class="slide">
       <div class="kick">סיכום</div>
-      <h2>מה יצא מהשיעור, ומה עד הפעם הבאה</h2>
+      <h2>מה יצא מהשיעור, ומה הלאה</h2>
       <div class="rule"></div>
       <div class="grid2">
-        <div class="card"><span class="tag mono">בידך עכשיו</span><h3>שיטה מלאה</h3><ul>
-          <li>שאלת מחקר מפורקת לתת-שאלות</li>
-          <li>טבלת מהימנות וטבלת השוואה</li>
-          <li>סעיף סתירות מנומק</li>
-          <li>סקירת עומק על נושא גלוי</li></ul></div>
-        <div class="card"><span class="tag mono">משימה לבית</span><h3>מיזוג לתוך הטיוטה</h3><ul>
-          <li>שלב את ממצאי הסקירה בטיוטה משיעור 1</li>
-          <li>הוסף שני מקורות נוספים מסוגים שונים</li>
-          <li>הרץ על התוצאה את מבחן "מאיפה זה"</li>
-          <li>הבא את המסמך המאוחד — ממנו נייצר תפוקות</li></ul></div>
+        <div class="card"><span class="tag mono">בידך עכשיו</span><h3>פרק המלצות חזק יותר</h3><ul>
+          <li>המלצה אחת לפחות שעונה על ארבע השאלות</li>
+          <li>תקדים גלוי שאימתת בעיניים</li>
+          <li>שגרה כתובה של חמישה צעדים</li>
+          <li>והמסמך לא עלה לכלי</li></ul></div>
+        <div class="card"><span class="tag mono">אחרי ההגשה</span><h3>שיעור 3 — תקציר מנהלים</h3><ul>
+          <li>150 מילים שעומדות לבד</li>
+          <li>מתוך ראשי הפרקים והמסרים שאתה כותב</li>
+          <li>בלי להעלות את המסמך — אותו כלל</li>
+          <li>ואחריו: המצגת</li></ul></div>
       </div>
-      <p class="note"><b>בשיעור הבא:</b> מהחומר הזה בדיוק — מסמך מעוצב לפי תבנית ארגונית, ומצגת. אותו תוכן, שתי תפוקות.</p>
+      <p class="note"><b>מה שלמדת היום נשאר נכון לכל השאר:</b> שלד נכנס, תוכן יוצא. אחת בכל פעם. אתה מחליט, הוא מסדר.</p>
     </section>
 
   </main>
@@ -414,7 +471,7 @@ ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inse
     <button id="prev" type="button">הקודם</button>
     <button id="next" type="button">הבא</button>
     <span class="sp"></span>
-    <span class="hint mono">חצים במקלדת · מקש רווח</span>
+    <span class="hint mono">חצים · רווח · N להערות</span>
     <button id="fs" type="button">מסך מלא</button>
   </div>
 </div>
@@ -467,6 +524,7 @@ ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inse
     try{document.execCommand('copy');done()}catch(e){}
     document.body.removeChild(a);
   }
+  document.addEventListener("keydown",function(e){if(e.key==="n"||e.key==="N"||e.key==="נ"){document.body.classList.toggle("hide-notes")}});
   var h=parseInt(location.hash.replace('#',''),10);
   show(isNaN(h)?0:h-1);
 })();
