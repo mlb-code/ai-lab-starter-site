@@ -11,11 +11,31 @@
   </script>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0a0a">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#050605">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://starter.ai-lab.co.il/">
 
-  <title>שיעורים פרטיים וקורס AI למבוגרים בזום, בלי רקע טכני | AI Lab Starter</title>
-  <meta name="description" content="AI Lab Starter: לימודי בינה מלאכותית למבוגרים ומתחילים, אחד על אחד או בקבוצה קטנה בזום. ChatGPT, Claude ואוטומציות לעבודה ולעסק, בקצב שלכם, בלי קוד. מנחה: מאיר לביא. שיעור היכרות ראשון בתיאום.">
+  <title>קורס AI למבוגרים: בונים אתר אמיתי, חי בזום | AI Lab Starter</title>
+  <meta name="description" content="קורס בינה מלאכותית מעשי למבוגרים בלי רקע טכני. 5 מפגשים חיים בזום בקבוצה קטנה: עובדים עם Claude ו-Cursor ובונים אתר אמיתי עם טופס שנכנס לגיליון. 990 ₪ בהרשמה מוקדמת. הצעד הבא: קורס הסוכנים. מנחה: מאיר לביא.">
+
+  <meta property="og:title" content="קורס AI למבוגרים: בונים אתר אמיתי, חי בזום | AI Lab Starter">
+  <meta property="og:description" content="קורס בינה מלאכותית מעשי למבוגרים בלי רקע טכני. 5 מפגשים חיים בזום בקבוצה קטנה: עובדים עם Claude ו-Cursor ובונים אתר אמיתי עם טופס שנכנס לגיליון. 990 ₪ בהרשמה מוקדמת. הצעד הבא: קורס הסוכנים. מנחה: מאיר לביא.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://starter.ai-lab.co.il/">
+  <meta property="og:locale" content="he_IL">
+  <meta property="og:site_name" content="AI Lab">
+  <meta property="og:image" content="https://starter.ai-lab.co.il/og-image.jpg?v=2026-10">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="קורס AI למבוגרים: בונים אתר אמיתי, חי בזום | AI Lab Starter">
+  <meta name="twitter:description" content="קורס בינה מלאכותית מעשי למבוגרים בלי רקע טכני. 5 מפגשים חיים בזום בקבוצה קטנה: עובדים עם Claude ו-Cursor ובונים אתר אמיתי עם טופס שנכנס לגיליון. 990 ₪ בהרשמה מוקדמת. הצעד הבא: קורס הסוכנים. מנחה: מאיר לביא.">
+  <meta name="twitter:image" content="https://starter.ai-lab.co.il/og-image.jpg?v=2026-10">
+  <meta name="geo.region" content="IL">
+  <meta name="author" content="מאיר לביא, AI Lab">
 
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="icon" href="./favicon-32.png" sizes="32x32" type="image/png">
@@ -23,1210 +43,1455 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wdth,wght@62.5..100,100..900&family=Noto+Sans+Hebrew:wdth,wght@62.5..100,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-  <link rel="canonical" href="https://starter.ai-lab.co.il/">
-  <meta name="robots" content="index, follow">
-  <meta name="keywords" content="שיעורים פרטיים בינה מלאכותית, קורס AI למבוגרים, לימודי AI למבוגרים, קורס בינה מלאכותית למבוגרים, קורס AI למתחילים, קורס בינה מלאכותית למתחילים, קורס AI אונליין, לימוד בינה מלאכותית בלי רקע טכני, קורס Claude, קורס Cursor, AI Lab Starter, קורס AI בעברית, בינה מלאכותית למבוגרים">
-  <meta name="language" content="Hebrew">
-  <meta name="geo.region" content="IL">
-  <meta name="author" content="AI Lab">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js"}}</script>
 
-  <meta property="og:title" content="שיעורים פרטיים וקורס AI למבוגרים בזום, בלי רקע טכני">
-  <meta property="og:description" content="AI Lab Starter: לימודי בינה מלאכותית למבוגרים ומתחילים, אחד על אחד או בקבוצה קטנה בזום. ChatGPT, Claude ואוטומציות לעבודה ולעסק, בקצב שלכם, בלי קוד. מנחה: מאיר לביא. שיעור היכרות ראשון בתיאום.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://starter.ai-lab.co.il/">
-  <meta property="og:locale" content="he_IL">
-  <meta property="og:site_name" content="AI Lab">
-  <meta property="og:image" content="https://starter.ai-lab.co.il/og-image.jpg">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "EducationalOrganization", "name": "AI Lab", "alternateName": "AI Lab Starter", "url": "https://starter.ai-lab.co.il/", "logo": "https://ai-lab.co.il/og-image.jpg", "description": "קורסי בינה מלאכותית בעברית למבוגרים ולנוער. קורס Starter: 5 מפגשים חיים בזום לבניית אתר אמיתי עם Claude ו-Cursor, בלי רקע טכני.", "areaServed": {"@type": "Country", "name": "Israel"}, "sameAs": ["https://www.facebook.com/share/18CXmH7Zum/", "https://www.instagram.com/ai.lab.il", "https://www.tiktok.com/@ai.labisrael", "https://www.linkedin.com/in/meirlavi"], "contactPoint": {"@type": "ContactPoint", "telephone": "+972-54-650-0795", "contactType": "customer service", "availableLanguage": "Hebrew"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Course", "name": "AI Lab Starter: קורס AI למבוגרים ומתחילים", "description": "קורס בינה מלאכותית מעשי למבוגרים בלי רקע טכני. 5 מפגשים חיים בזום בקבוצה קטנה: Claude, Cursor, GitHub ו-Google Sheets, ובונים אתר אמיתי עם טופס שנכנס לגיליון. בלי שורת קוד. כל מפגש מוקלט.", "provider": {"@type": "EducationalOrganization", "name": "AI Lab", "url": "https://ai-lab.co.il"}, "inLanguage": "he", "url": "https://starter.ai-lab.co.il/#price", "educationalLevel": "Beginner", "audience": {"@type": "EducationalAudience", "educationalRole": "student", "audienceType": "מבוגרים 18+ ללא רקע טכני"}, "offers": {"@type": "Offer", "price": "990", "priceCurrency": "ILS", "availability": "https://schema.org/PreOrder", "url": "https://starter.ai-lab.co.il/#seat", "description": "מחיר הרשמה מוקדמת. מחיר מלא 1,290 ₪ עם פרסום התאריך."}, "hasCourseInstance": {"@type": "CourseInstance", "courseMode": "online", "courseWorkload": "PT5H", "location": {"@type": "VirtualLocation", "name": "Zoom"}, "instructor": {"@type": "Person", "name": "מאיר לביא"}}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Course", "name": "קורס הסוכנים: סוכן AI ואוטומציות (AI Lab)", "description": "הצעד הבא אחרי Starter: 5 מפגשים חיים בזום שבהם בונים סוכן AI על פרויקט אישי, חמש אוטומציות, חיבור למערכות אמיתיות והשקה.", "provider": {"@type": "EducationalOrganization", "name": "AI Lab", "url": "https://ai-lab.co.il"}, "inLanguage": "he", "url": "https://starter.ai-lab.co.il/#agents", "coursePrerequisites": "קורס Starter או עבודה בסיסית עם Claude ו-Cursor", "offers": {"@type": "Offer", "price": "1090", "priceCurrency": "ILS", "availability": "https://schema.org/PreOrder", "url": "https://starter.ai-lab.co.il/#seat", "description": "לבוגרי Starter ולנרשמים מוקדם. מחיר מלא 1,390 ₪."}, "hasCourseInstance": {"@type": "CourseInstance", "courseMode": "online", "courseWorkload": "PT5H", "location": {"@type": "VirtualLocation", "name": "Zoom"}, "instructor": {"@type": "Person", "name": "מאיר לביא"}}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "serviceType": "שיעורים פרטיים בבינה מלאכותית (1-על-1)", "name": "שיעור פרטי AI בזום עם מאיר לביא", "provider": {"@type": "EducationalOrganization", "name": "AI Lab", "url": "https://ai-lab.co.il"}, "areaServed": {"@type": "Country", "name": "Israel"}, "offers": {"@type": "Offer", "price": "390", "priceCurrency": "ILS", "description": "60 דקות בזום. 4 שיעורים ב-1,390 ₪."}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "מאיר לביא", "jobTitle": "מייסד AI Lab ומנחה הקורס", "worksFor": {"@type": "EducationalOrganization", "name": "AI Lab"}, "url": "https://starter.ai-lab.co.il/#who", "image": "https://starter.ai-lab.co.il/meir.jpg", "sameAs": ["https://www.linkedin.com/in/meirlavi"]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "אנחנו לא טכנולוגיים בכלל. באמת שזה מתאים לנו?", "acceptedAnswer": {"@type": "Answer", "text": "כן, וזה בדיוק קהל היעד. מספיק שאתם יודעים להשתמש בגוגל ובזום. כל מושג מוסבר בעברית פשוטה, כל פעולה מודגמת צעד אחר צעד, ואת הכלים מתקינים יחד במפגש. גם בני 60 פלוס עוברים את הקורס."}}, {"@type": "Question", "name": "צריך לדעת לתכנת?", "acceptedAnswer": {"@type": "Answer", "text": "לא. בקורס לא כותבים שורת קוד. ה-AI כותב, ואתם מתארים בעברית מה צריך ובודקים את התוצאה על המסך."}}, {"@type": "Question", "name": "מה זה סוכן AI, ואיפה לומדים את זה?", "acceptedAnswer": {"@type": "Answer", "text": "סוכן הוא עוזר שרץ לבד בזמן קבוע, לפי הוראות שלכם, ומחובר לכלים שלכם: גיליון, מייל, יומן. זה הנושא של קורס הסוכנים, הצעד הבא אחרי Starter: חמישה מפגשים שבהם בונים סוכן על הפרויקט שלכם, מאפיון ועד השקה."}}, {"@type": "Question", "name": "כמה זה עולה, ואיך משלמים?", "acceptedAnswer": {"@type": "Answer", "text": "990 ₪ בהרשמה מוקדמת (המחיר המלא 1,290 ₪). בכרטיס אשראי או בביט, בתשלום אחד. משלמים רק אחרי שנקבע תאריך, ומי שברשימה המחיר נעול לו."}}, {"@type": "Question", "name": "איך יודעים שזה מתאים לנו לפני שמשלמים?", "acceptedAnswer": {"@type": "Answer", "text": "פגישת היכרות של 15 דקות עם מאיר, ללא עלות וללא התחייבות: מספרים מה אתם רוצים לבנות, שומעים איך הקורס עובד, ומחליטים. משלמים רק אחרי שנקבע תאריך. ביטול עד 14 יום מההרשמה ולפני תחילת הקורס מזכה בהחזר מלא, והמדיניות המלאה בתקנון."}}, {"@type": "Question", "name": "מה אם נפספס מפגש?", "acceptedAnswer": {"@type": "Answer", "text": "כל מפגש מוקלט ועולה לאזור האישי תוך 24 שעות. המצגת המלאה זמינה בכל עת, ואפשר לחזור על מפגש גם חודש אחרי."}}, {"@type": "Question", "name": "איזה מנויים צריך חוץ מהקורס?", "acceptedAnswer": {"@type": "Answer", "text": "מנוי אחד: Claude Pro, $20 לחודש, ואפשר לבטל אחרי הקורס. Cursor מספיק בגרסה החינמית, ושאר הכלים (GitHub, Google Sheets, Apps Script) חינמיים."}}, {"@type": "Question", "name": "איזה מחשב צריך?", "acceptedAnswer": {"@type": "Answer", "text": "Mac (M1 ומעלה) או Windows 10 ומעלה עם 16GB זיכרון. רוב המחשבים מחמש השנים האחרונות מתאימים. על טלפון בלבד אי אפשר."}}, {"@type": "Question", "name": "כמה זמן זה דורש בשבוע?", "acceptedAnswer": {"@type": "Answer", "text": "מפגש של 45 עד 55 דקות, ועוד כשעה תרגול למי שרוצה. בסך הכל שעתיים עד שלוש בשבוע."}}, {"@type": "Question", "name": "מי מלמד?", "acceptedAnswer": {"@type": "Answer", "text": "מאיר לביא, מייסד AI Lab. יזם ומשקיע, סמנכ\"ל פיתוח עסקי לשעבר בהייטק, ומי שמלמד ב-AI Lab ילדים, נוער ומבוגרים לעבוד עם AI. הוא מנחה את כל המפגשים בעצמו."}}, {"@type": "Question", "name": "מה בונים בקורס?", "acceptedAnswer": {"@type": "Answer", "text": "אתר אמיתי שלכם: דף נחיתה, טופס שמזרים כל פנייה לגיליון, והתראה במייל על כל ליד. בכתובת חיה שאפשר לשלוח ללקוחות. האתר נשאר שלכם, וכך גם ההקלטות, המצגות וספריית הפרומפטים באזור האישי."}}, {"@type": "Question", "name": "איך נדע שזה מתאים לנו?", "acceptedAnswer": {"@type": "Answer", "text": "משאירים פרטים, ומאיר חוזר אליכם לשיחת היכרות של 15 דקות, חינם. אם זה לא מתאים, הוא יגיד, ויכוון למה שכן."}}, {"@type": "Question", "name": "יש גם שיעורים פרטיים?", "acceptedAnswer": {"@type": "Answer", "text": "כן. שיעור פרטי 1-על-1 בזום, 390 ₪ ל-60 דקות, או 4 שיעורים ב-1,390 ₪. על הפרויקט שלכם, בקצב שלכם."}}]}</script>
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="שיעורים פרטיים וקורס AI למבוגרים בזום, בלי רקע טכני">
-  <meta name="twitter:description" content="AI Lab Starter: לימודי בינה מלאכותית למבוגרים ומתחילים, אחד על אחד או בקבוצה קטנה בזום. ChatGPT, Claude ואוטומציות לעבודה ולעסק, בקצב שלכם, בלי קוד. מנחה: מאיר לביא. שיעור היכרות ראשון בתיאום.">
-  <meta name="twitter:image" content="https://starter.ai-lab.co.il/og-image.jpg">
+<style>
+/* ============ TOKENS: שני צבעים. זהו. ============ */
+:root{
+  --bg:#050605;
+  --bg-2:#0B0E0D;
+  --fg:#F1EEE5;
+  --fg-2:rgba(241,238,229,.64);
+  --fg-3:rgba(241,238,229,.38);
+  --line:rgba(241,238,229,.16);
+  --line-2:rgba(241,238,229,.32);
+  --acc:#10E593;
+  --serif:'Noto Serif Hebrew',Georgia,serif;
+  --sans:'Noto Sans Hebrew',system-ui,sans-serif;
+  --mono:'Space Mono','Noto Sans Hebrew',monospace;
+  --gutter:clamp(18px,6vw,96px);
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --wd:100;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:auto}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{
+  background:var(--bg);color:var(--fg);
+  font-family:var(--sans);font-weight:400;line-height:1.65;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+html.cur-on body,html.cur-on a,html.cur-on button,html.cur-on summary,html.cur-on .btn{cursor:none}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--acc);color:#050605}
+body::after{
+  content:"";position:fixed;inset:-50%;z-index:9000;pointer-events:none;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .7 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 1.2s steps(4) infinite;
+}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-2%,1%)}50%{transform:translate(1%,-2%)}75%{transform:translate(-1%,-1%)}100%{transform:translate(2%,2%)}}
 
-  <link rel="stylesheet" href="./style.css?v=20260521b">
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.05;letter-spacing:-.01em;color:var(--fg);font-variation-settings:"wdth" var(--wd),"wght" 700;text-wrap:balance}
+p,li,summary{text-wrap:pretty}
+.mono{font-family:var(--mono);direction:ltr;unicode-bidi:isolate;letter-spacing:.14em;text-transform:uppercase;font-size:.68rem}
+.label{font-size:.78rem;font-weight:600;letter-spacing:.06em;color:var(--fg-3)}
+.label.acc{color:var(--acc)}
+em{font-style:normal;color:var(--acc)}
+.wrap{padding-inline:var(--gutter)}
+.num{direction:ltr;unicode-bidi:isolate}
+.dsk-only{display:inline}.mob-only{display:none}
+@media(max-width:760px){.dsk-only{display:none}.mob-only{display:inline}}
 
-  <!-- ===== JSON-LD Structured Data (SEO + GEO) ===== -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "AI Lab",
-    "alternateName": "AI Lab Starter",
-    "url": "https://starter.ai-lab.co.il/",
-    "logo": "https://ai-lab.co.il/og-image.jpg",
-    "description": "קורסי בינה מלאכותית למתחילים בעברית. לומדים לעבוד עם כלי AI מובילים ולבנות פרויקטים אמיתיים — בלי רקע טכני.",
-    "areaServed": { "@type": "Country", "name": "Israel" },
-    "sameAs": [
-      "https://www.facebook.com/share/18CXmH7Zum/",
-      "https://www.instagram.com/ai.lab.il",
-      "https://www.tiktok.com/@ai.labisrael",
-      "https://www.linkedin.com/in/meirlavi"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+972-54-650-0795",
-      "contactType": "customer service",
-      "availableLanguage": "Hebrew"
-    }
+/* ============ CURSOR + RAIL ============ */
+.cur{position:fixed;left:0;top:0;z-index:9500;pointer-events:none;mix-blend-mode:difference}
+.cur i{position:absolute;left:0;top:0;border-radius:50%;background:#fff;width:8px;height:8px;transform:translate(-50%,-50%)}
+.cur b{position:absolute;left:0;top:0;border-radius:50%;border:1px solid #fff;width:34px;height:34px;transform:translate(-50%,-50%);transition:width .25s,height .25s,opacity .25s}
+.cur.hov b{width:64px;height:64px;opacity:.7}
+@media(pointer:coarse),(max-width:760px){.cur{display:none}}
+
+.rail{position:fixed;right:28px;top:50%;transform:translateY(-50%);z-index:800;display:flex;flex-direction:column;gap:12px}
+.rail a{display:flex;align-items:center;gap:10px;font-size:.72rem;color:var(--fg-3);transition:color .3s}
+.rail a::before{content:"";width:12px;height:1px;background:currentColor;transition:width .3s}
+.rail a .n{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em}
+.rail a.on{color:var(--acc)}
+.rail a.on::before{width:28px}
+.rail.inv a{color:rgba(5,6,5,.5)}
+.rail.inv a.on{color:#050605}
+@media(max-width:1279px){.rail{display:none}}
+@media(min-width:1280px){:root{--gutter:clamp(150px,10.5vw,190px)}.rail{right:26px}}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;top:0;right:0;left:0;z-index:900;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px var(--gutter);color:var(--fg);
+  transition:background .35s,padding .35s,-webkit-backdrop-filter .35s,backdrop-filter .35s;
+}
+.nav.scrolled{padding-block:13px;background:rgba(5,6,5,.6);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%)}
+.nav .logo{font-family:var(--serif);font-weight:700;font-size:1.2rem;display:flex;align-items:baseline;gap:10px;direction:ltr}
+.nav .logo small{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;color:var(--acc)}
+.nav .right{display:flex;align-items:center;gap:22px;font-size:.86rem}
+.nav .right a{opacity:.75;transition:opacity .2s}
+.nav .right a:hover{opacity:1}
+.nav .right a.cta{opacity:1;border-bottom:1px solid var(--acc);padding-bottom:2px}
+@media(max-width:760px){
+  .nav{padding:14px 18px}
+  .nav.scrolled{padding-block:10px}
+  .nav .right a:not(.cta){display:none}
+}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  padding:18px 30px;border:1px solid var(--fg);color:var(--fg);
+  font:inherit;font-size:.98rem;font-weight:600;line-height:1;cursor:pointer;border-radius:0;
+  background:transparent;transition:background .25s,color .25s,border-color .25s,transform .15s;
+  will-change:transform;
+}
+.btn:hover{background:var(--fg);color:var(--bg)}
+.btn:active{transform:scale(.98)}
+.btn.acc{background:var(--acc);border-color:var(--acc);color:#050605}
+.btn.acc:hover{background:#2BF2A6;border-color:#2BF2A6}
+.btn .ar{display:inline-block;transition:transform .3s}
+.btn:hover .ar{transform:translateX(-5px)}
+@media(max-width:760px){.btn{border-radius:999px;padding:17px 26px}}
+
+/* ============ HERO ============ */
+.hero{position:relative;height:100svh;min-height:640px;overflow:hidden}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 40%,transparent 50%,rgba(5,6,5,.75) 100%)}
+.hero-copy{
+  position:absolute;right:var(--gutter);bottom:clamp(40px,8vh,88px);left:var(--gutter);
+  display:grid;grid-template-columns:minmax(0,660px);justify-content:start;will-change:transform;
+}
+.hs{grid-area:1/1;max-width:660px}
+#hs1,#hs2{opacity:0;visibility:hidden}
+.hs .k{display:block;margin-bottom:14px}
+.hs h1,.hs .h{font-family:var(--serif);font-weight:700;font-size:clamp(2.1rem,4.6vw,4.4rem);line-height:1.04;margin-bottom:16px;color:var(--fg);font-variation-settings:"wdth" 86,"wght" 700}
+#hs3 .h{font-size:clamp(1.8rem,3.4vw,3.1rem);margin-bottom:12px}
+.hs p{font-size:clamp(1.02rem,1.3vw,1.18rem);color:var(--fg-2);max-width:560px;font-weight:300}
+.hs p strong{color:var(--fg);font-weight:500}
+.hs .price-line{margin-top:16px;font-size:1rem;color:var(--fg-2);font-weight:400}
+.hs .price-line b{font-family:var(--serif);font-size:1.5rem;color:var(--acc);font-weight:700;margin-inline-end:6px}
+.sh{font-size:.72em;font-weight:500}
+.nw{white-space:nowrap}
+.hs .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.hs .fine{font-size:.82rem;color:var(--fg-3);margin-top:14px}
+.hint{position:absolute;left:var(--gutter);bottom:clamp(40px,8vh,88px);display:flex;align-items:center;gap:12px;font-size:.74rem;color:var(--fg-3);letter-spacing:.08em}
+.hint::after{content:"";width:1px;height:46px;background:linear-gradient(var(--fg-3),transparent);animation:drip 1.8s ease-in-out infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media(max-width:760px){
+  .hero{min-height:600px}
+  .hero-copy{justify-content:center;text-align:center;bottom:calc(96px + env(safe-area-inset-bottom));right:18px;left:18px}
+  .hs{max-width:none}
+  .hs h1,.hs .h{font-size:clamp(1.9rem,8.4vw,2.6rem)}
+  #hs3 .h{font-size:clamp(1.6rem,7.4vw,2.2rem)}
+  .hs p{margin-inline:auto;font-size:1rem}
+  .hs .price-line{margin-top:10px;font-size:.92rem}
+  .hs .ctas{justify-content:center;gap:10px;margin-top:14px}
+  .hs .ctas .btn{width:100%}
+  .hs .ctas .btn:not(.acc),.hs .fine,.hint{display:none}
+}
+html.static .hero{height:880px}
+@media(max-width:760px){html.static .hero{height:760px}}
+
+/* ============ CHAPTERS ============ */
+.ch{position:relative;padding-block:clamp(96px,16vh,180px)}
+.ch-head{position:relative;display:flex;align-items:baseline;gap:22px;margin-bottom:clamp(40px,7vh,80px)}
+.ch-head::before{content:"";position:absolute;top:-26px;inset-inline-start:0;width:56px;height:2px;background:var(--acc);transform:scaleX(0);transform-origin:right;transition:transform 1.1s var(--ease) .15s}
+.ch-head .n{order:-1}
+.ch-head.in::before,html.static .ch-head::before,html.reduce .ch-head::before{transform:scaleX(1)}
+.ch-head .n{font-family:var(--mono);color:var(--acc);font-size:.7rem;letter-spacing:.2em}
+.ch-head h2{font-size:clamp(2.2rem,5.6vw,5.4rem);--wd:76}
+.ch-head p{font-size:clamp(1rem,1.3vw,1.18rem);color:var(--fg-2);max-width:580px;font-weight:300;margin-top:16px}
+.ch-head.center{justify-content:center;text-align:center}
+.ch-head.center::before{inset-inline-start:50%;transform:translateX(50%) scaleX(0);transform-origin:center}
+.ch-head.center.in::before,html.static .ch-head.center::before,html.reduce .ch-head.center::before{transform:translateX(50%) scaleX(1)}
+.ch-head.center p{margin-inline:auto}
+@media(max-width:760px){
+  .ch{padding-block:60px}
+  .ch-head{flex-direction:column;gap:10px;margin-bottom:28px}
+  .ch-head.center{align-items:center}
+  .ch-head h2{font-size:clamp(2rem,9vw,2.6rem)}
+}
+
+/* תכלס (מובייל בלבד) */
+.tldr{display:none}
+@media(max-width:760px){
+  .tldr{display:block;position:relative;z-index:2;padding:22px 18px 26px;background:var(--bg-2);border-radius:32px 32px 0 0;margin-top:-28px}
+  .tl-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+  .tl-grid div{border:1px solid var(--line);border-radius:18px;padding:14px 14px 12px;background:var(--bg)}
+  .tl-grid b{display:block;font-family:var(--serif);font-size:1.5rem;line-height:1.1;color:var(--acc);font-variation-settings:"wdth" 80,"wght" 700}
+  .tl-grid b .sh{font-size:.7em!important}
+  .tl-grid > div > span{font-size:.82rem;color:var(--fg-2)}
+  .tl-grid b *{font-size:inherit;color:inherit}
+  .tldr .btn{width:100%}
+  .tl-more{display:block;text-align:center;margin-top:14px;font-size:.88rem;color:var(--fg-2)}
+}
+
+/* 02 — ההבדל */
+.big{
+  font-family:var(--serif);font-weight:500;font-size:clamp(1.75rem,4.3vw,4rem);line-height:1.22;
+  max-width:1100px;margin-inline:auto;text-align:center;font-variation-settings:"wdth" 90,"wght" 500;
+}
+html.gs .big .w{opacity:.3;transition:none}
+html.reduce .big .w{opacity:1}
+@media(max-width:760px){html.gs .big .w{opacity:1}.big .w.acc{color:var(--acc)}}
+.big .w.acc{color:var(--acc)}
+.seg{display:none}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:clamp(56px,9vh,110px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.col{padding:40px 0 30px}
+.col:first-child{border-inline-end:1px solid var(--line);padding-inline-end:clamp(24px,4vw,64px)}
+.col:last-child{padding-inline-start:clamp(24px,4vw,64px)}
+.col .label{display:block;margin-bottom:24px}
+.col ul{list-style:none}
+.col li{font-family:var(--serif);font-size:clamp(1.15rem,1.7vw,1.6rem);line-height:1.35;padding:16px 0;border-bottom:1px solid var(--line);color:var(--fg-2);font-variation-settings:"wdth" 92,"wght" 400}
+.col.now li{color:var(--fg-3)}
+.col.course li{color:var(--fg)}
+.col li:last-child{border-bottom:0}
+@media(max-width:760px){
+  .big{text-align:right;font-size:clamp(1.6rem,7vw,2.1rem)}
+  .seg{display:grid;grid-template-columns:1fr 1fr;position:relative;border:1px solid var(--line-2);border-radius:999px;padding:4px;margin-top:30px}
+  .seg button{position:relative;z-index:1;background:none;border:0;color:var(--fg-2);font:inherit;font-size:.95rem;font-weight:600;padding:13px 10px;border-radius:999px;transition:color .3s}
+  .seg button.on{color:#050605}
+  .seg i{position:absolute;top:4px;bottom:4px;right:4px;width:calc(50% - 4px);background:var(--acc);border-radius:999px;transition:transform .4s var(--ease)}
+  .seg.course i{transform:translateX(-100%)}
+  .cols{grid-template-columns:1fr;margin-top:8px;border-top:0}
+  .col{padding:12px 0 0;animation:colin .4s var(--ease)}
+  .col:first-child{border-inline-end:0;padding-inline-end:0}
+  .col:last-child{padding-inline-start:0}
+  .col .label{display:none}
+  .cols .col.course{display:none}
+  .cols.course .col.course{display:block}
+  .cols.course .col.now{display:none}
+  .col li{font-size:1.15rem;padding:14px 0}
+  @keyframes colin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+}
+
+/* 03 — המפגשים */
+.meets{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(24px,5vw,80px);align-items:start}
+.numwrap{position:sticky;top:min(18vh,150px);height:min(50vh,420px);display:flex;align-items:flex-start;justify-content:flex-end}
+#bigNum{
+  font-family:var(--serif);font-weight:900;font-size:clamp(9rem,26vw,30rem);line-height:.8;color:var(--acc);
+  font-variation-settings:"wdth" var(--wd),"wght" 900;direction:ltr;letter-spacing:-.04em;will-change:transform,opacity;
+}
+.meet{padding:clamp(34px,5vh,56px) 0;border-top:1px solid var(--line)}
+.meet:last-of-type{border-bottom:1px solid var(--line)}
+.meet .t{display:flex;align-items:baseline;gap:16px;margin-bottom:10px;flex-wrap:wrap}
+.meet .t .n{font-family:var(--mono);font-size:.68rem;color:var(--acc);letter-spacing:.18em}
+.meet h3{font-size:clamp(1.5rem,2.6vw,2.4rem);--wd:84;transition:color .3s}
+.meet:hover h3{color:var(--acc)}
+.meet .ghost{display:none}
+.meet .tag{font-size:.7rem;font-weight:700;letter-spacing:.08em;color:#050605;background:var(--acc);padding:4px 10px;border-radius:999px}
+.meet p{color:var(--fg-2);font-size:1.05rem;max-width:560px;margin-bottom:16px}
+.meet ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.meet li{position:relative;padding-inline-start:18px;color:var(--fg-3);font-size:.98rem}
+.meet li::before{content:"";position:absolute;inset-inline-start:0;top:.75em;width:7px;height:1px;background:var(--acc)}
+.meet.bonus{border-top:1px solid var(--acc)}
+.dots{display:none}
+.meets-foot{margin-top:28px;font-size:1rem;color:var(--fg-2)}
+.meets-foot a{color:var(--acc);border-bottom:1px solid var(--acc)}
+@media(max-width:860px){
+  .meets{display:block}
+  .numwrap{display:none}
+  .list{display:flex;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:6px 0 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .list::-webkit-scrollbar{display:none}
+  .meet{flex:0 0 84%;scroll-snap-align:start;border:1px solid var(--line);border-radius:24px;padding:22px 20px 26px;background:var(--bg-2);position:relative;overflow:hidden}
+  .meet.bonus{border-color:var(--acc)}
+  .meet:last-of-type{border-bottom:1px solid var(--line)}
+  .meet.bonus:last-of-type{border-bottom-color:var(--acc)}
+  .meet .ghost{display:block;position:absolute;top:20px;left:20px;font-family:var(--serif);font-weight:900;font-size:3.4rem;line-height:.9;color:var(--acc);direction:ltr;letter-spacing:-.04em}
+  .meet .t .n{display:none}
+  .meet .t{margin-top:58px}
+  .meet h3{font-size:1.45rem}
+  .meet p{font-size:1rem}
+  .dots{display:flex;justify-content:center;gap:8px;margin-top:16px}
+  .dots i{width:6px;height:6px;border-radius:3px;background:var(--line-2);transition:background .3s,width .3s}
+  .dots i.on{background:var(--acc);width:22px}
+  .meets-foot{margin-top:26px;font-size:.98rem}
+}
+
+/* 04 — הסוכן */
+.ag{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,80px);align-items:start}
+.ag-bonus{position:relative;border:1px solid var(--acc);padding:clamp(26px,3vw,40px);overflow:hidden}
+.ag-bonus .ghost{position:absolute;top:22px;left:24px;font-family:var(--serif);font-weight:900;font-size:4.6rem;line-height:.9;color:var(--acc);opacity:.22;direction:ltr;letter-spacing:-.04em;pointer-events:none}
+.ag-bonus .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;color:#050605;background:var(--acc);padding:5px 12px;border-radius:999px;margin-bottom:18px}
+.ag-bonus h3{font-size:clamp(1.6rem,2.8vw,2.5rem);--wd:82;margin-bottom:12px}
+.ag-bonus p{color:var(--fg-2);font-size:1.05rem;margin-bottom:14px;max-width:560px}
+.ag-bonus p b{color:var(--fg);font-weight:500}
+.ag-bonus ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+.ag-bonus li{position:relative;padding-inline-start:18px;color:var(--fg-3);font-size:.98rem}
+.ag-bonus li::before{content:"";position:absolute;inset-inline-start:0;top:.75em;width:7px;height:1px;background:var(--acc)}
+.ag-bonus .out{border-top:1px solid var(--line);padding-top:14px;font-size:.98rem;color:var(--fg-2)}
+.ag-bonus .out b{color:var(--acc);font-weight:600}
+.ag-next .label{display:block;margin-bottom:12px}
+.ag-next h3{font-size:clamp(1.5rem,2.6vw,2.3rem);--wd:82;margin-bottom:8px}
+.ag-next > p{color:var(--fg-2);font-size:1.02rem;margin-bottom:22px;max-width:520px}
+.ag-next ol{list-style:none;border-top:1px solid var(--line)}
+.ag-next li{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:1rem;color:var(--fg-2)}
+.ag-next li .n{font-family:var(--mono);color:var(--acc);font-size:.66rem;letter-spacing:.14em;padding-top:5px}
+.ag-next li b{color:var(--fg);font-weight:500}
+.ag-next .pr{margin-top:18px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;color:var(--fg-2);font-size:.98rem}
+.ag-next .pr b{font-family:var(--serif);font-size:1.6rem;color:var(--fg);font-weight:700}
+.ag-plain{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
+.ag-plain div{padding:22px 0;font-family:var(--serif);font-size:clamp(1.05rem,1.4vw,1.3rem);color:var(--fg-2);font-variation-settings:"wdth" 90,"wght" 500;border-bottom:1px solid var(--line)}
+.ag-plain b{color:var(--acc);font-weight:600}
+@media(max-width:1100px){.ag{grid-template-columns:1fr}.ch{padding-block:clamp(64px,9vh,96px)}.ch-head{margin-bottom:clamp(28px,5vh,48px)}}
+@media(max-width:860px){
+  .ag-bonus{border-radius:24px}
+  .ag-bonus .ghost{font-size:3.4rem;top:20px;left:20px;opacity:.28}
+  .ag-bonus .tag{margin-top:2px}
+
+}
+
+/* 05 — איך זה עובד */
+.spec{list-style:none;border-top:1px solid var(--line)}
+.spec li{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line)}
+.spec b{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,4vw,3.6rem);line-height:1;font-variation-settings:"wdth" 70,"wght" 700;color:var(--acc);white-space:nowrap}
+.spec span{font-size:clamp(1rem,1.25vw,1.15rem);color:var(--fg-2)}
+.need{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);margin-top:clamp(56px,8vh,96px)}
+.need h3{font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.06em;color:var(--fg-3);margin-bottom:18px;font-variation-settings:normal}
+.need p{color:var(--fg-2);font-size:1.05rem;max-width:520px}
+.need p b{color:var(--fg);font-weight:500}
+@media(max-width:760px){
+  .spec{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:0}
+  .spec li{display:block;border:1px solid var(--line);border-radius:20px;padding:18px 16px 16px;background:var(--bg-2)}
+  .spec b{display:block;font-size:2.2rem;margin-bottom:8px}
+  .spec span{font-size:.9rem;line-height:1.45;display:block}
+  .need{grid-template-columns:1fr;gap:24px;margin-top:36px}
+}
+
+/* 06 — המחיר */
+.plans{display:grid;grid-template-columns:1.2fr 2fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media(min-width:861px){.plans .plan.main{padding-inline-start:0}.price-foot p:first-child{padding-inline-start:0}}
+.plan{padding:36px clamp(18px,2.6vw,40px) 34px;position:relative}
+.plan+.plan{border-inline-start:1px solid var(--line)}
+.plan .label{display:block;margin-bottom:18px}
+.plan .amount{display:flex;align-items:baseline;gap:8px;direction:rtl}
+.plan .amount b{font-family:var(--serif);font-weight:700;font-size:clamp(3rem,6vw,5.6rem);line-height:1;color:var(--fg);font-variation-settings:"wdth" 70,"wght" 700}
+.plan .amount small{font-size:1.4rem;color:var(--fg-2)}
+.plan.main .amount b{color:var(--acc)}
+.plan.main::before{content:"";position:absolute;top:-1px;right:0;left:0;height:3px;background:var(--acc)}
+.plan .sub{margin-top:10px;font-size:.98rem;color:var(--fg-2)}
+.plan ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:7px}
+.plan li{position:relative;padding-inline-start:18px;font-size:.98rem;color:var(--fg-2)}
+.plan li::before{content:"";position:absolute;inset-inline-start:0;top:.75em;width:7px;height:1px;background:var(--acc)}
+.plan .note{margin-top:18px;font-size:.86rem;color:var(--fg-3)}
+.plan .btn{margin-top:22px}
+.price-foot{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:0;margin-top:0;border-bottom:1px solid var(--line)}
+.price-foot p{padding:22px clamp(18px,2.6vw,40px)}
+.price-foot p+p{border-inline-start:1px solid var(--line)}
+.price-foot p{font-size:.98rem;color:var(--fg-2)}
+.price-foot p b{display:block;color:var(--fg);font-weight:600;margin-bottom:4px}
+.price-foot p a{color:var(--acc);border-bottom:1px solid var(--acc)}
+@media(max-width:860px){
+  .plans{grid-template-columns:1fr;border:0;gap:12px}
+  .plan{border:1px solid var(--line)!important;border-radius:24px;padding:24px 20px 24px;background:var(--bg-2)}
+  .plan.main{border-color:var(--acc)!important}
+  .plan.main::before{display:none}
+  .plan .amount b{font-size:3.2rem}
+  .plan .btn{width:100%}
+  .price-foot{grid-template-columns:1fr;gap:16px;margin-top:22px;border-bottom:0}
+  .price-foot p{padding:0;border:0!important}
+}
+
+/* 07 — למי */
+.fit{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.fit > div{padding:40px 0 20px}
+.fit > div:first-child{border-inline-end:1px solid var(--line);padding-inline-end:clamp(24px,4vw,64px)}
+.fit > div:last-child{padding-inline-start:clamp(24px,4vw,64px)}
+.fit h3{font-size:clamp(1.6rem,2.8vw,2.6rem);margin-bottom:22px;--wd:80}
+.fit ul{list-style:none}
+.fit li{padding:14px 0;border-bottom:1px solid var(--line);font-size:1.08rem;color:var(--fg-2)}
+.fit li:last-child{border-bottom:0}
+.fit .yes li{color:var(--fg)}
+.fit .yes h3{color:var(--acc)}
+@media(max-width:760px){
+  .fit{grid-template-columns:1fr;border-top:0;gap:12px}
+  .fit > div{border:1px solid var(--line);border-radius:24px;padding:22px 20px 10px;background:var(--bg-2)}
+  .fit > div:first-child{border-inline-end:1px solid var(--line);padding-inline-end:20px}
+  .fit > div:last-child{padding-inline-start:20px}
+  .fit h3{font-size:1.5rem;margin-bottom:10px}
+  .fit li{font-size:1rem}
+}
+
+/* 08 — המנחה */
+.who{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(30px,6vw,96px);align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;overflow:hidden;max-width:420px;background:#0a0c0a}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:grayscale(1) contrast(1.2) brightness(.82)}
+.portrait::after{content:"";position:absolute;inset:0;background:var(--acc);mix-blend-mode:multiply;opacity:.75}
+.portrait::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,transparent 60%,rgba(5,6,5,.9))}
+.portrait .cap{position:absolute;z-index:3;right:20px;bottom:18px;left:20px}
+.portrait .cap b{display:block;font-family:var(--serif);font-size:1.5rem;font-weight:700}
+.portrait .cap span{font-size:.82rem;color:var(--fg-2)}
+.who h2{font-size:clamp(2rem,4.2vw,4rem);--wd:78;margin-bottom:22px}
+.who p{color:var(--fg-2);font-size:clamp(1.02rem,1.3vw,1.18rem);font-weight:300;margin-bottom:16px;max-width:620px}
+.who p b{color:var(--fg);font-weight:500}
+.who .tags{font-size:.86rem;color:var(--fg-3);margin-top:10px}
+@media(max-width:860px){.who{grid-template-columns:1fr}.portrait{max-width:300px;border-radius:28px;aspect-ratio:1/1}}
+
+/* 09 — מקום: הבלוק הירוק */
+#seat{
+  background:var(--acc);color:#050605;
+  --fg:#050605;--fg-2:rgba(5,6,5,.72);--fg-3:rgba(5,6,5,.52);--line:rgba(5,6,5,.16);--line-2:rgba(5,6,5,.34);
+}
+#seat .ch-head::before{background:#050605}
+#seat .ch-head .n,#seat .steps li .n,#seat .private a{color:#050605}
+#seat .private a{border-color:#050605}
+#seat .status i{background:#050605}
+#seat ::selection{background:#050605;color:var(--acc)}
+.seat{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(30px,6vw,110px);align-items:start}
+.seat h2{font-size:clamp(2.6rem,7vw,7rem);--wd:68;line-height:.98;margin-bottom:22px}
+.seat .status{display:flex;align-items:flex-start;gap:10px;font-size:.92rem;color:var(--fg-2);margin-bottom:26px}
+.seat .status i{width:8px;height:8px;border-radius:50%;flex:none;display:block;margin-top:.55em;animation:blink 2.2s infinite}
+@keyframes blink{50%{opacity:.25}}
+.seat p{color:var(--fg-2);font-size:1.08rem;max-width:520px;margin-bottom:16px;font-weight:300}
+.seat p b{color:var(--fg);font-weight:500}
+.steps{list-style:none;margin-top:28px;border-top:1px solid var(--line)}
+.steps li{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:.98rem;color:var(--fg-2)}
+.steps li .n{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;padding-top:5px}
+.form{
+  background:#050605;color:#F1EEE5;padding:clamp(22px,3vw,40px);border-radius:0;
+  --fg:#F1EEE5;--fg-2:rgba(241,238,229,.64);--fg-3:rgba(241,238,229,.38);--line:rgba(241,238,229,.16);--line-2:rgba(241,238,229,.32);
+}
+.form .fh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.form .fh b{font-family:var(--serif);font-size:1.3rem;font-weight:700}
+.form .fh span{font-size:.82rem;color:var(--fg-3)}
+.form .fh span b{font-family:var(--serif);font-size:1.1rem;color:var(--acc)}
+.form .fh span b *{font-size:inherit;color:inherit}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.field label{font-size:.8rem;color:var(--fg-3);font-weight:600;letter-spacing:.04em}
+.field input,.field select{
+  width:100%;background:transparent;border:0;border-bottom:1px solid var(--line-2);color:var(--fg);
+  font:inherit;font-size:1.15rem;padding:10px 0;outline:none;border-radius:0;appearance:none;-webkit-appearance:none;
+  transition:border-color .25s,background .25s;
+}
+.field input::placeholder{color:var(--fg-3)}
+.field input:focus,.field select:focus{border-color:var(--acc)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23F1EEE5' stroke-width='1.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 2px center;padding-left:28px}
+.field select option{background:#0a0c0a;color:#F1EEE5}
+.form .btn{width:100%;margin-top:8px}
+@media(max-width:860px){.form{border-radius:24px}.form .btn.acc{border-radius:999px}}
+.form .alt{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;font-size:.84rem;color:var(--fg-3)}
+.form .alt a{color:var(--fg);border-bottom:1px solid var(--line-2)}
+.form .ok{display:none;margin-top:16px;padding:14px;border:1px solid var(--acc);color:var(--acc);font-weight:500;text-align:center;border-radius:12px}
+.form .ok.show{display:block}
+.private{margin-top:clamp(24px,4vh,40px);padding-top:0;border-top:0;display:flex;flex-wrap:wrap;justify-content:flex-start;gap:10px 24px;align-items:baseline}
+.private p{color:var(--fg-2);font-size:1rem}
+.private a{white-space:nowrap;border-bottom:1px solid currentColor}
+@media(max-width:860px){
+  .seat{grid-template-columns:1fr;gap:30px}
+  .seat h2{font-size:clamp(2.6rem,12vw,3.6rem)}
+  .form{padding:22px 18px 20px}
+  .field input,.field select{background:#0F1211;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:1.05rem}
+  .field select{background-position:left 14px center;padding-left:40px}
+}
+
+/* 09 — המלצות: מסילה אופקית */
+.qrail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 0 8px;-webkit-overflow-scrolling:touch}
+.qrail::-webkit-scrollbar{display:none}
+.qcard{flex:0 0 360px;scroll-snap-align:start;margin:0;border:1px solid var(--line);padding:26px 26px 22px;display:flex;flex-direction:column;gap:18px;min-height:250px}
+.qcard blockquote{margin:0;font-family:var(--serif);font-size:1.1rem;line-height:1.5;color:var(--fg);font-variation-settings:"wdth" 92,"wght" 400;text-wrap:pretty}
+.qcard blockquote::before{content:"”";display:block;font-size:2.6rem;line-height:.55;color:var(--acc);margin-bottom:12px}
+.qcard figcaption{margin-top:auto;border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:2px}
+.qcard b{font-weight:600;font-size:.95rem}.qcard span{font-size:.84rem;color:var(--fg-3)}
+.qnav{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
+.qbtn{width:46px;height:46px;border:1px solid var(--line-2);background:transparent;color:var(--fg);font:inherit;font-size:1.2rem;cursor:pointer;transition:background .25s,color .25s}
+.qbtn:hover{background:var(--fg);color:var(--bg)}
+.qdots{display:none;justify-content:center;gap:7px;margin-top:14px}
+.qdots i{width:6px;height:6px;border-radius:3px;background:var(--line-2);transition:background .3s,width .3s}
+.qdots i.on{background:var(--acc);width:20px}
+@media(max-width:860px){.qcard{flex-basis:84%;border-radius:24px;background:var(--bg-2);padding:22px 20px 18px;min-height:0}.qnav{display:none}.qdots{display:flex}}
+
+/* FAQ */
+.faq{max-width:860px;margin-inline:auto;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 0;font-family:var(--serif);font-size:clamp(1.15rem,1.7vw,1.5rem);font-variation-settings:"wdth" 90,"wght" 500;transition:color .25s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--acc)}
+.faq summary i{flex:none;width:28px;height:28px;position:relative}
+.faq summary i::before,.faq summary i::after{content:"";position:absolute;left:50%;top:50%;background:currentColor;transform:translate(-50%,-50%)}
+.faq summary i::before{width:14px;height:1px}
+.faq summary i::after{width:1px;height:14px;transition:transform .3s}
+.faq details[open] summary{color:var(--acc)}
+.faq details[open] summary i::after{transform:translate(-50%,-50%) scaleY(0)}
+.faq .a{padding:0 0 24px;color:var(--fg-2);font-size:1.02rem;max-width:680px}
+.faq .a a{color:var(--acc)}
+
+/* FOOTER */
+footer{padding:72px 0 40px;border-top:1px solid var(--line)}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 2fr;gap:40px}
+.foot h4{font-size:.76rem;letter-spacing:.08em;color:var(--fg-3);font-weight:600;margin-bottom:16px;font-variation-settings:normal}
+.foot a{display:block;color:var(--fg-2);font-size:.95rem;padding:3px 0;transition:color .25s}
+.foot a:hover{color:var(--acc)}
+.foot p{color:var(--fg-2);font-size:.95rem;max-width:300px}
+.foot .brand{font-family:var(--serif);font-size:1.4rem;font-weight:700;display:flex;gap:10px;align-items:baseline;direction:ltr;margin-bottom:14px}
+.foot .brand small{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;color:var(--acc)}
+.foot-b{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:.78rem;color:var(--fg-3)}
+@media(max-width:860px){.foot{grid-template-columns:1fr;gap:28px}}
+@media(max-width:760px){footer{padding:48px 0 calc(110px + env(safe-area-inset-bottom))}}
+
+/* מרקיז ירוק */
+.marq{overflow:hidden;background:var(--acc);padding:20px 0;white-space:nowrap}
+.marq .track{display:inline-flex;animation:marq 42s linear infinite;will-change:transform}
+.marq span{font-family:var(--serif);font-size:clamp(1.1rem,1.8vw,1.6rem);color:#050605;padding:0 26px;font-variation-settings:"wdth" 80,"wght" 600}
+.marq span::after{content:"·";margin-inline-start:52px;opacity:.45}
+@keyframes marq{to{transform:translateX(50%)}}
+
+/* קיפולים (.mx): פתוחים תמיד בדסקטופ, סגורים כברירת מחדל במובייל */
+details.mx > summary{display:none;list-style:none;cursor:pointer}
+details.mx > summary::-webkit-details-marker{display:none}
+.plans-more{display:grid;grid-template-columns:1fr 1fr;height:100%}
+.plans > details{display:flex;flex-direction:column}
+.plans > details > summary{display:none}
+.plans-more .plan+.plan{border-inline-start:1px solid var(--line)}
+.plans > details{border-inline-start:1px solid var(--line)}
+.foot-more-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.faq-btn{display:none}
+@media(max-width:860px){
+  details.mx > summary{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;
+    margin-top:14px;padding:14px 18px;border:1px solid var(--line-2);border-radius:999px;
+    font-size:.95rem;font-weight:600;color:var(--fg);min-height:48px;
   }
-  </script>
-  <script type="application/ld+json">
-  [
-    {
-      "@context": "https://schema.org",
-      "@type": "Course",
-      "name": "קורס בינה מלאכותית למתחילים — בסיסי (AI Lab Starter)",
-      "description": "קורס AI למתחילים בעברית. 5 מפגשים מהמושגים הראשונים ועד אתר חי באוויר — היכרות עם כלי ה-AI המובילים, עבודה ב-Cursor ו-Claude, בניית דף נחיתה וחיבור טופס לידים. בלי רקע טכני, בלי קוד שתכתוב לבד.",
-      "provider": {
-        "@type": "EducationalOrganization",
-        "name": "AI Lab",
-        "url": "https://ai-lab.co.il"
-      },
-      "courseMode": "online",
-      "inLanguage": "he",
-      "url": "https://starter.ai-lab.co.il/#register",
-      "audience": {
-        "@type": "EducationalAudience",
-        "educationalRole": "student"
-      },
-      "hasCourseInstance": {
-        "@type": "CourseInstance",
-        "courseMode": "online",
-        "location": { "@type": "VirtualLocation", "name": "Zoom" }
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Course",
-      "name": "קורס בינה מלאכותית למתחילים — מתקדם (AI Lab Starter)",
-      "description": "המשך הקורס הבסיסי. 5 מפגשים שבהם לוקחים פרויקט אישי אמיתי מאפיון ועד השקה לאוויר: בניית סוכן AI שעובד מול משתמשים, חמש אוטומציות מעשיות וחיבור למערכות אמיתיות.",
-      "provider": {
-        "@type": "EducationalOrganization",
-        "name": "AI Lab",
-        "url": "https://ai-lab.co.il"
-      },
-      "courseMode": "online",
-      "inLanguage": "he",
-      "url": "https://starter.ai-lab.co.il/#register",
-      "coursePrerequisites": "קורס בסיסי או ידע בסיסי בעבודה עם כלי AI"
-    }
-  ]
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "שיעורים פרטיים בבינה מלאכותית (1-על-1)",
-    "name": "שיעורים פרטיים ב-AI — AI Lab",
-    "description": "שיעורים פרטיים 1-על-1 אונליין בבינה מלאכותית, מותאמים אישית. עובדים על הפרויקט האמיתי שלך — אתר, אוטומציה או סוכן AI — בקצב ובזמן שמתאימים לך. בהנחיית מאיר לביא.",
-    "provider": {
-      "@type": "EducationalOrganization",
-      "name": "AI Lab",
-      "url": "https://ai-lab.co.il"
-    },
-    "areaServed": { "@type": "Country", "name": "Israel" },
-    "availableChannel": {
-      "@type": "ServiceChannel",
-      "serviceUrl": "https://starter.ai-lab.co.il/#private",
-      "availableLanguage": "Hebrew"
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "מאיר לביא",
-    "jobTitle": "מרצה ומייסד AI Lab",
-    "worksFor": { "@type": "EducationalOrganization", "name": "AI Lab" },
-    "url": "https://starter.ai-lab.co.il/",
-    "image": "https://starter.ai-lab.co.il/meir.jpg",
-    "sameAs": [ "https://www.linkedin.com/in/meirlavi" ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "אנחנו לא טכניים בכלל. הקורס מתאים לנו?",
-        "acceptedAnswer": { "@type": "Answer", "text": "כן, וזה בדיוק קהל היעד. הקורס נבנה לאנשים בלי רקע טכני — נסביר כל מושג חדש ונראה כל פעולה צעד-צעד. אנשים בני 60+ עוברים את הקורס ומסיימים עם כלים אמיתיים." }
-      },
-      {
-        "@type": "Question",
-        "name": "כמה זמן ביום צריך להקדיש?",
-        "acceptedAnswer": { "@type": "Answer", "text": "השיעור עצמו 45-55 דקות, פעם בשבוע. בנוסף שיעורי בית של כשעה (אופציונליים). סה\"כ כ-2-3 שעות בשבוע." }
-      },
-      {
-        "@type": "Question",
-        "name": "מה אם נפספס שיעור?",
-        "acceptedAnswer": { "@type": "Answer", "text": "כל שיעור מוקלט ועולה לאזור האישי תוך 24 שעות. בנוסף, המצגת המלאה זמינה לעיון בכל עת. אפשר לחזור על שיעור גם חודש אחרי שעבר." }
-      },
-      {
-        "@type": "Question",
-        "name": "האם יש תמיכה בזמן הקורס?",
-        "acceptedAnswer": { "@type": "Answer", "text": "כן. יש קבוצת WhatsApp עם תמיכה ישירה ממאיר, ובתוך השיעורים בזום יש זמן ייעודי לשאלות." }
-      },
-      {
-        "@type": "Question",
-        "name": "איזה מנויים בתשלום צריך?",
-        "acceptedAnswer": { "@type": "Answer", "text": "רק שניים: Claude Pro (חיוני) ב-20$ לחודש, ו-Cursor (מספיק בגרסה החינמית). שאר הכלים — GitHub, Google Sheets, Apps Script — חינמיים לחלוטין." }
-      },
-      {
-        "@type": "Question",
-        "name": "איזה מחשב צריך?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Mac (M1 ומעלה) או Windows 10+ עם 16GB RAM ומעלה, מעבד i5 דור 10+ או שווה ערך. רוב המחשבים האישיים מ-5 השנים האחרונות עומדים בדרישות." }
-      },
-      {
-        "@type": "Question",
-        "name": "האם יש המשך אחרי הקורס?",
-        "acceptedAnswer": { "@type": "Answer", "text": "כן. הקהילה ממשיכה לאחר הקורס, וסטודנטים שעברו את Starter ממשיכים לבנות יחד. בנוסף יש קורסים מתקדמים יותר לאלו שרוצים להעמיק." }
-      },
-      {
-        "@type": "Question",
-        "name": "איך נדע שהקורס מתאים לנו?",
-        "acceptedAnswer": { "@type": "Answer", "text": "השאירו פרטים — נחזור אליכם, נתאם שיחה קצרה (15 דקות), ונבדוק יחד אם הקורס מתאים. אם לא — נכוון אתכם לאן שכן מתאים." }
-      },
-      {
-        "@type": "Question",
-        "name": "אפשר שיעורים פרטיים במקום קבוצה?",
-        "acceptedAnswer": { "@type": "Answer", "text": "כן. יש אפשרות לשיעורים פרטיים 1-על-1 אונליין, מותאמים אישית למטרה ולקצב שלך — עובדים על הפרויקט האמיתי שלך. אפשר לפנות בוואטסאפ או להשאיר פרטים." }
-      }
-    ]
-  }
-  </script>
+  details.mx > summary::after{content:"+";font-family:var(--serif);font-size:1.3rem;line-height:1;color:var(--acc);transition:transform .3s}
+  details.mx[open] > summary::after{transform:rotate(45deg)}
+  details.mx[open] > summary{margin-bottom:14px}
+  #seat details.mx > summary::after{color:#050605}
+  .plans > details{border:0}
+  .plans-more{grid-template-columns:1fr;gap:12px}
+  .plans-more .plan+.plan{border-inline-start:1px solid var(--line)}
+  .foot-more-grid{grid-template-columns:1fr;gap:28px}
+  .fit .no h3{display:none}
+  .fit > div.no{border:0!important;background:transparent;padding:0!important}
+  .fit > div.no details.mx > summary{margin-top:0}
+  .fit > div.no ul{padding:0 16px 8px}
+  .faq-more{display:none}
+  .faq-more.open{display:block}
+  .faq-btn{display:flex;width:100%;justify-content:center;align-items:center;min-height:50px;margin-top:14px;border:1px solid var(--line-2);border-radius:999px;background:transparent;color:var(--fg);font:inherit;font-weight:600;font-size:.95rem;cursor:pointer}
+  .faq-btn.done{display:none}
+  .ag-plain{display:none}
+  .ag-next .pr{margin-top:14px}
+  .meet details.mx > summary{margin-top:4px;padding:10px 14px;min-height:40px;font-size:.88rem;border-color:var(--line)}
+  .meet details.mx[open] > summary{margin-bottom:10px}
+  .meet ul{margin-bottom:4px}
+  .who{display:grid;grid-template-columns:84px 1fr;gap:14px 16px;align-items:center}
+  .portrait{max-width:84px;aspect-ratio:1/1;border-radius:50%;grid-row:1}
+  .portrait .cap,.portrait::before{display:none}
+  .who > div{display:contents}
+  .who .ch-head{grid-column:2;margin-bottom:0!important;align-self:center}
+  .who .ch-head h2{font-size:1.45rem;line-height:1.15}
+  .who > div > p,.who > div > details{grid-column:1/-1}
+  .who p{font-size:.98rem;margin-bottom:10px}
+  .mbar{transition:transform .35s var(--ease)}
+  .mbar.hide{transform:translateY(120%)}
+}
+@media(max-width:760px){
+  .ch-head .n{display:none}
+  .ch{padding-block:44px}
+  .ch-head{margin-bottom:18px}
+  .ch-head p{margin-top:10px;font-size:.98rem}
+  .fit > div{padding:18px 16px 8px}
+  .fit h3{font-size:1.35rem;margin-bottom:6px}
+  .fit li{padding:10px 0;font-size:.95rem}
+  .fit .yes li:nth-child(5){display:none}
+  .fit .yes li:nth-child(4){border-bottom:0}
+  .plan{padding:20px 18px 20px}
+  .plan .amount b{font-size:2.8rem}
+  .plan ul{margin-top:12px;gap:5px}
+  .plan.main li:nth-child(n+3){display:none}
+  .plan .note{margin-top:12px}
+  .plan .btn{margin-top:16px}
+  .seat h2{font-size:clamp(2.2rem,10vw,3rem);margin-bottom:14px}
+  .seat .status{margin-bottom:12px;font-size:.88rem}
+  .seat p{margin-bottom:8px;font-size:1rem}
+  .form{padding:18px 16px 16px}
+  .form .fh{margin-bottom:12px;padding-bottom:10px;flex-wrap:wrap}
+  .form .fh span{white-space:nowrap}
+  .form .alt{flex-wrap:wrap}
+  .form .alt a{white-space:nowrap}
+  .field{margin-bottom:11px;gap:6px}
+  .field input,.field select{padding:12px 14px}
+  .spec li{padding:14px 14px 12px}
+  .spec b{font-size:2rem;margin-bottom:6px}
+  .spec span{font-size:.86rem}
+  .big{font-size:clamp(1.45rem,6.4vw,1.9rem)}
+  .col li{font-size:1.05rem;padding:12px 0}
+  .ag-bonus{padding:20px 18px}
+  .ag-bonus h3{font-size:1.5rem}
+  .ag-bonus .out{font-size:.92rem}
+  .faq summary{padding:16px 0;font-size:1.08rem}
+  .faq .a{padding-bottom:16px;font-size:.98rem}
+  footer{padding:36px 0 calc(100px + env(safe-area-inset-bottom))}
+  .foot > div:first-child p{display:none}
+  .foot > div:nth-child(2){display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+  .foot > div:nth-child(2) h4{grid-column:1/-1}
+  .foot-b{margin-top:24px}
+}
+
+/* מובייל: סדר קצר לתכלס, גיליונות, בר תחתון */
+@media(max-width:760px){
+  body{display:flex;flex-direction:column}
+  #hero{order:1}.tldr{order:2}#meets{order:3}#fit{order:4}#quotes{order:5}#price{order:6}#seat{order:7}#agents{order:8}#how{order:9}#who{order:10}#diff{order:11}#faq{order:12}footer{order:13}
+  .marq{display:none}
+  .cur,.rail,.nav,.mbar{order:0}
+  #agents,#how,#who,#diff,#quotes{background:var(--bg-2);border-radius:32px 32px 0 0}
+  #meets,#price,#fit,#faq{border-radius:32px 32px 0 0;background:var(--bg)}
+}
+.mbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:850;display:none;align-items:center;gap:6px;
+  padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+  background:rgba(5,6,5,.78);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+  border-top:1px solid var(--line);
+}
+.mb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:50px;font-size:.66rem;color:var(--fg-2);border-radius:14px}
+.mb svg{width:22px;height:22px}
+.mb svg.line{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mb svg.fill{fill:currentColor}
+.mb.primary{flex:1.7;background:var(--acc);color:#050605;border-radius:999px;font-size:.95rem;font-weight:700;min-height:50px}
+.mb:active{transform:scale(.97)}
+@media(max-width:760px){.mbar{display:flex}}
+html.static .mbar{display:none}
+
+@media(prefers-reduced-motion:reduce){
+  body::after{animation:none}
+  .hint::after,.seat .status i,.marq .track{animation:none}
+}
+html.static body::after,html.static .marq .track,html.static .hint::after,html.static .seat .status i{animation:none}
+</style>
 </head>
 <body>
 
-<!-- ============ NAV ============ -->
-<nav id="navbar">
-  <a href="#" class="nav-logo">
-    AI Lab
-    <span class="nav-logo-tag">STARTER</span>
-  </a>
-  <ul class="nav-links nav-links-desktop">
-    <li><a href="#about">על הקורס</a></li>
-    <li><a href="#program">תוכנית</a></li>
-    <li><a href="#portal-showcase">האזור האישי</a></li>
-    <li><a href="#instructor">המרצה</a></li>
-    <li><a href="#private">שיעורים פרטיים</a></li>
-    <li><a href="#faq">שאלות נפוצות</a></li>
-  </ul>
-  <div class="nav-cta-group">
-    <a href="#register" class="nav-cta nav-cta-green">הרשמה</a>
-    <a href="https://chat.whatsapp.com/LpbKfD25gYF6Tx2K9Lj5WG" target="_blank" rel="noopener" class="nav-cta nav-cta-community">הצטרפו לקהילה</a>
-    <a href="./login.html" class="nav-cta nav-cta-portal">אזור אישי</a>
-  </div>
-  <button class="mobile-menu-btn" id="menuBtn" aria-label="תפריט">☰</button>
+<div class="cur" id="cur" aria-hidden="true"><b></b><i></i></div>
+
+<nav class="rail" id="rail" aria-label="פרקים">
+  <a href="#hero" data-ch="hero"><span class="n">01</span>התחלה</a>
+  <a href="#diff" data-ch="diff"><span class="n">02</span>ההבדל</a>
+  <a href="#meets" data-ch="meets"><span class="n">03</span>המפגשים</a>
+  <a href="#agents" data-ch="agents"><span class="n">04</span>הסוכנים</a>
+  <a href="#how" data-ch="how"><span class="n">05</span>איך זה עובד</a>
+  <a href="#price" data-ch="price"><span class="n">06</span>המחיר</a>
+  <a href="#fit" data-ch="fit"><span class="n">07</span>למי</a>
+  <a href="#who" data-ch="who"><span class="n">08</span>המנחה</a>
+  <a href="#quotes" data-ch="quotes"><span class="n">09</span>המלצות</a>
+  <a href="#seat" data-ch="seat"><span class="n">10</span>מקום</a>
 </nav>
-<div class="mobile-menu-panel" id="mobileMenuPanel">
-  <div class="mobile-menu-header">
-    <span class="mobile-menu-logo">
-      AI Lab <span class="nav-logo-tag">STARTER</span>
-    </span>
-    <button class="mobile-close-btn" id="menuCloseBtn" aria-label="סגור תפריט">×</button>
+
+<header class="nav" id="nav">
+  <a href="#hero" class="logo">AI Lab <small>STARTER</small></a>
+  <div class="right">
+    <a href="./login.html">אזור אישי</a>
+    <a href="#price">המחיר</a>
+    <a href="https://wa.me/972546500795?text=%D7%94%D7%99%D7%99%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A9%D7%90%D7%9C%D7%94%20%D7%A2%D7%9C%20%D7%94%D7%A7%D7%95%D7%A8%D7%A1" target="_blank" rel="noopener">וואטסאפ</a>
+    <a href="#seat" class="cta">לשמור לי מקום</a>
   </div>
-  <ul class="mobile-menu-links">
-    <li><a href="#about">על הקורס</a></li>
-    <li><a href="#program">תוכנית</a></li>
-    <li><a href="#portal-showcase">האזור האישי</a></li>
-    <li><a href="#instructor">המרצה</a></li>
-    <li><a href="#private">שיעורים פרטיים</a></li>
-    <li><a href="#faq">שאלות נפוצות</a></li>
-    <li class="mobile-cta-row"><a href="#register" class="mobile-cta-primary">הרשמה</a></li>
-    <li><a href="https://chat.whatsapp.com/LpbKfD25gYF6Tx2K9Lj5WG" target="_blank" rel="noopener" class="mobile-cta-community">הצטרפו לקהילה</a></li>
-    <li><a href="./login.html" class="mobile-cta-portal">אזור אישי</a></li>
-  </ul>
+</header>
+
+<!-- ================= 01 HERO ================= -->
+<section class="hero ch" id="hero">
+  <canvas id="gl" aria-hidden="true"></canvas>
+  <div class="vig"></div>
+  <div class="hero-copy" id="heroCopy">
+    <div class="hs" id="hs1">
+      <span class="k mono">2026</span>
+      <h1>כולם כבר שואלים את ה-AI.</h1>
+      <p>שאלה בצ'אט. טקסט בחזרה. העתק-הדבק. וזהו.</p>
+    </div>
+    <div class="hs" id="hs2">
+      <span class="k label acc">ההבדל</span>
+      <div class="h">מעטים נותנים לו משימה.</div>
+      <p>ומקבלים בחזרה דף. טופס. מערכת שעובדת גם כשסוגרים את המחשב.</p>
+    </div>
+    <div class="hs" id="hs3">
+      <span class="k label acc"><bdi>AI Lab Starter</bdi> · 5 מפגשים חיים בזום<span class="dsk-only"> · למבוגרים בלי רקע טכני</span></span>
+      <div class="h">בונים אתר אמיתי. <span class="nw">עם Claude ו‑Cursor.</span></div>
+      <p>חמישה מפגשים חיים בזום, בקבוצה קטנה. בכל מפגש מוסיפים חלק לאתר שלכם: דף, טופס שנכנס לגיליון, כתובת באוויר.<span class="dsk-only"> הצעד הבא בדרך: קורס הסוכנים.</span></p>
+      <p class="price-line"><b class="nw"><span data-p="starterEarly">990</span> <span class="sh">₪</span></b> בהרשמה מוקדמת<span class="dsk-only"> · בכרטיס אשראי או בביט</span></p>
+      <div class="ctas">
+        <a href="#seat" class="btn acc">לשמור לי מקום <span class="ar">←</span></a>
+        <a href="https://wa.me/972546500795?text=%D7%94%D7%99%D7%99%20%D7%9E%D7%90%D7%99%D7%A8%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C-15%20%D7%93%D7%A7%D7%95%D7%AA%20%D7%A2%D7%9C%20%D7%94%D7%A7%D7%95%D7%A8%D7%A1" target="_blank" rel="noopener" class="btn">15 דקות עם מאיר, ללא עלות</a>
+      </div>
+      <p class="fine">בלי תשלום עכשיו. פגישת היכרות של 15 דקות, ואז מחליטים. התאריך מתפרסם לרשומים קודם, והמחיר נעול להם.</p>
+    </div>
+  </div>
+  <div class="hint" id="hint">גללו</div>
+</section>
+
+<!-- ================= תכלס (מובייל) ================= -->
+<section class="tldr" id="tldr" aria-label="תכלס">
+  <div class="tl-grid">
+    <div><b>5</b><span>מפגשים חיים בזום</span></div>
+    <div><b><span data-p="starterEarly">990</span> <span class="sh">₪</span></b><span>בהרשמה מוקדמת</span></div>
+    <div><b>אתר שלכם</b><span>באוויר, עם טופס</span></div>
+    <div><b>קבוצה קטנה</b><span>בלי רקע טכני</span></div>
+  </div>
+  <a href="#seat" class="btn acc">לשמור לי מקום</a>
+  <a href="#meets" class="tl-more">מה עושים בכל מפגש ↓</a>
+</section>
+
+<!-- ================= 02 ההבדל ================= -->
+<section class="ch wrap" id="diff">
+  <div class="ch-head center rv">
+    <span class="n">02</span>
+    <h2>שאלה או משימה.</h2>
+  </div>
+  <p class="big scrub">שאלה בצ'אט מחזירה טקסט. משימה מחזירה משהו שעובד: דף, טופס, מערכת שרצה בלעדיכם.</p>
+  <div class="seg" id="seg" role="tablist" aria-label="היום לעומת הקורס">
+    <button type="button" class="on" data-t="now" role="tab">ככה זה היום</button>
+    <button type="button" data-t="course" role="tab">ככה זה בקורס</button>
+    <i aria-hidden="true"></i>
+  </div>
+  <div class="cols" id="cols">
+    <div class="col now">
+      <span class="label">ככה זה נראה היום</span>
+      <ul>
+        <li>שואלים, מקבלים טקסט, מעתיקים ומתקנים ביד.</li>
+        <li>מנסים לנסח "פרומפט נכון", מתייאשים, חוזרים לגוגל.</li>
+        <li>שומרים סרטונים ל"מתישהו" ולא מתחילים.</li>
+        <li>כל כלי חדש נשמע כמו עוד שפה זרה, והפער רק גדל.</li>
+      </ul>
+    </div>
+    <div class="col course">
+      <span class="label acc">ככה זה נראה בקורס</span>
+      <ul>
+        <li>מתארים בעברית פשוטה מה צריך.</li>
+        <li>ה-AI כותב את הקבצים, ואתם רואים אותם על המסך שלכם.</li>
+        <li>בכל מפגש מוסיפים חלק אחד שעובד, ורואים אותו על המסך.</li>
+        <li>במפגש החמישי האתר עולה לאוויר, עם כתובת לשלוח ללקוחות.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="marq" aria-hidden="true">
+  <div class="track">
+    <span>בלי רקע טכני</span><span>בלי שורת קוד</span><span>בעברית פשוטה</span><span>Claude</span><span>Cursor</span><span>אתר חי עם טופס</span><span>קבוצה קטנה בזום</span><span>כל מפגש מוקלט</span><span>קבוצת וואטסאפ</span>
+    <span>בלי רקע טכני</span><span>בלי שורת קוד</span><span>בעברית פשוטה</span><span>Claude</span><span>Cursor</span><span>אתר חי עם טופס</span><span>קבוצה קטנה בזום</span><span>כל מפגש מוקלט</span><span>קבוצת וואטסאפ</span>
+  </div>
 </div>
-<div class="mobile-overlay" id="mobileOverlay"></div>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <canvas id="heroNeuralCanvas" class="hero-neural-canvas"></canvas>
-  <div class="hero-grid"></div>
-  <div class="hero-blob hero-blob--a"></div>
-  <div class="hero-blob hero-blob--b"></div>
-
-  <div class="container hero-content">
-    <div class="hero-badge reveal">
-      <span class="pulse-dot"></span>
-      מחזור חדש נפתח · מפגשים חיים בזום
-    </div>
-
-    <h1 class="reveal">
-      תכירו את עולם
-      <br>
-      <span class="gradient-text">הבינה המלאכותית</span>
-    </h1>
-    <p class="hero-slogan reveal">AI. מתחילים מההתחלה.</p>
-    <p class="hero-sub reveal">
-      קורס היכרות לאנשים שלא יודעים מאיפה להתחיל.
-      <br>בלי רקע טכני. בלי קוד שתצטרכו לכתוב לבד.
-      <br>שני קורסים, חמישה מפגשים כל אחד — ואתם בפנים.
-    </p>
-
-    <div class="hero-buttons reveal">
-      <a href="#register" class="btn-primary">שריינו מקום עכשיו ←</a>
-      <a href="#program" class="btn-secondary">צפו בסילבוס</a>
-    </div>
-    <p class="reveal hero-secondary-cta">
-      מעדיפים לימוד אישי? <a href="#private">דברו איתי על שיעור פרטי ←</a>
-    </p>
-
-    <div class="hero-stats reveal">
-      <div class="hero-stat">
-        <div class="number">5</div>
-        <div class="label">מפגשים בקורס</div>
-      </div>
-      <div class="hero-stat">
-        <div class="number">+100</div>
-        <div class="label">פרויקטים</div>
-      </div>
-      <div class="hero-stat">
-        <div class="number">24/7</div>
-        <div class="label">קהילה</div>
-      </div>
-    </div>
-
-    <!-- Terminal Demo -->
-    <div class="terminal reveal">
-      <div class="terminal-header">
-        <span class="terminal-dot red"></span>
-        <span class="terminal-dot yellow"></span>
-        <span class="terminal-dot green"></span>
-        <span class="terminal-title">claude — first prompt</span>
-      </div>
-      <div class="terminal-body" id="termBody">
-        <div class="t-line" data-line="0">
-          <span class="t-prompt">user@ai-lab</span><span class="t-sep">:</span><span class="t-path">~/lesson-01</span><span class="t-sep">$ </span><span class="t-cmd" id="t-cmd-1"></span><span class="t-caret" id="t-caret-1"></span>
-        </div>
-        <div class="t-line t-line--hidden" data-line="1">
-          <span class="t-claude">claude ›</span>
-          <span class="t-out" id="t-cmd-2"></span><span class="t-caret t-caret--off" id="t-caret-2"></span>
-        </div>
-        <div class="t-line t-line--hidden" data-line="2">
-          <span class="t-out t-out--dim" id="t-cmd-3"></span>
-        </div>
-        <div class="t-line t-line--hidden" data-line="3">
-          <span class="t-file" id="t-cmd-4"></span>
-        </div>
-        <div class="t-line t-line--hidden" data-line="4">
-          <span class="t-success" id="t-cmd-5"></span>
-        </div>
-      </div>
+<!-- ================= 03 המפגשים ================= -->
+<section class="ch wrap" id="meets">
+  <div class="ch-head rv">
+    <span class="n">03</span>
+    <div>
+      <h2>5 מפגשים. אתר אחד.</h2>
+      <p>מאיר מדגים בשידור חי, ואתם חוזרים על אותו צעד בדיוק, על הפרויקט שלכם.<span class="dsk-only"> בלי הרצאות השראה, בלי תיאוריה יבשה.</span></p>
     </div>
   </div>
-
-  <a href="#about" class="hero-scroll-indicator" aria-label="גלול למטה">
-    <span>למה הקורס הזה?</span>
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="6 9 12 15 18 9"></polyline>
-    </svg>
-  </a>
-</section>
-
-<!-- ============ PORTAL SHOWCASE ============ -->
-<section class="portal-showcase" id="portal-showcase">
-  <div class="container">
-    <div class="section-title reveal">
-      <span class="kicker">האזור האישי</span>
-      <h2>כל מה שלמדתם — <em>במקום אחד</em></h2>
-      <p>כל סטודנט מקבל פורטל משלו עם המצגות, התקדמות אישית, וכל הכלים שצריך.</p>
-    </div>
-
-    <div class="portal-hero reveal">
-      <!-- Orbiting badges -->
-      <div class="orbit-badge orbit-tl">
-        <span class="ob-emoji">▤</span>
-        <span class="ob-text">כל השיעורים<br>במקום אחד</span>
+  <div class="meets">
+    <div class="numwrap" aria-hidden="true"><div id="bigNum">01</div></div>
+    <div>
+      <div class="list" id="meetList">
+        <article class="meet" data-n="01">
+          <span class="ghost" aria-hidden="true">01</span>
+          <div class="t"><span class="n">01</span><h3>מי נגד מי: עושים סדר בראש</h3></div>
+          <p>מפת השחקנים: Claude, ChatGPT, Gemini. מה כל אחד עושה, איזה כלי מתאים לאיזו משימה, ולמה בוחרים ב-Claude כשותף העבודה.</p>
+          <details class="mx" open><summary>במה נעסוק</summary><ul><li>ארבעת השחקנים העיקריים וההבדלים ביניהם</li><li>כלל אצבע: איזה כלי לאיזו משימה</li><li>מפת הכלים שמלווים אותנו לאורך הקורס</li></ul></details>
+        </article>
+        <article class="meet" data-n="02">
+          <span class="ghost" aria-hidden="true">02</span>
+          <div class="t"><span class="n">02</span><h3>סביבת העבודה: מתקינים יחד</h3></div>
+          <p>מתקינים יחד, בתוך המפגש ובלי לחץ: Cursor, Claude Code ו‑Claude&nbsp;Desktop. Cursor מתקין הכל בעצמו, בלי פקודות, ושום דבר לא יכול להישבר.</p>
+          <details class="mx" open><summary>במה נעסוק</summary><ul><li>למה אנשי מקצוע לא עובדים בצ'אט</li><li>Cursor: העורך שעובדים בו ברוב הקורס, והוא מתקין את Claude Code בלחיצה</li><li>Claude&nbsp;Desktop ושלושת המצבים שלו: שיחה, עבודה משותפת, קוד</li></ul></details>
+        </article>
+        <article class="meet" data-n="03">
+          <span class="ghost" aria-hidden="true">03</span>
+          <div class="t"><span class="n">03</span><h3>הבית של הפרויקט</h3></div>
+          <p>GitHub במילים של בני אדם: איפה הפרויקט נשמר, ואיך אתר מתפרסם בחינם.</p>
+          <details class="mx" open><summary>במה נעסוק</summary><ul><li>מקובץ במחשב, דרך localhost, עד שרת חי</li><li>חיבור Cursor ל-GitHub בבקשה אחת ובלחיצה אחת</li><li>הכתובת החינמית של האתר שלכם</li></ul></details>
+        </article>
+        <article class="meet" data-n="04">
+          <span class="ghost" aria-hidden="true">04</span>
+          <div class="t"><span class="n">04</span><h3>דף הנחיתה: הדף שעובד בשבילכם</h3></div>
+          <p>מהרעיון לדף חי באוויר. איך נראה דף נחיתה שמביא פניות, איך מבקשים אותו נכון בעברית, ואיך מפרסמים.</p>
+          <details class="mx" open><summary>במה נעסוק</summary><ul><li>אנטומיה של דף נחיתה: פתיח, אודות, קריאה לפעולה, יצירת קשר</li><li>הפרומפט שעובד, בעברית</li><li>טקסטים, צבעים ותמונות בלי לגעת בקוד</li></ul></details>
+        </article>
+        <article class="meet" data-n="05">
+          <span class="ghost" aria-hidden="true">05</span>
+          <div class="t"><span class="n">05</span><h3>המוח: הטופס שמביא פניות</h3></div>
+          <p>הופכים דף יפה למערכת חיה: טופס שמזרים כל פנייה ל‑Google&nbsp;Sheets, והתראה במייל על כל ליד חדש.</p>
+          <details class="mx" open><summary>במה נעסוק</summary><ul><li>Sheets כבסיס הנתונים הפשוט בעולם</li><li>Apps Script: השרת החינמי של גוגל</li><li>מתי כדאי לעבור למערכת אמיתית</li></ul></details>
+        </article>
       </div>
-      <div class="orbit-badge orbit-tr">
-        <span class="ob-emoji">⌘</span>
-        <span class="ob-text">פרומפטים<br>מוכנים להעתקה</span>
-      </div>
-      <div class="orbit-badge orbit-bl">
-        <span class="ob-emoji">◎</span>
-        <span class="ob-text">מעקב<br>התקדמות</span>
-      </div>
-      <div class="orbit-badge orbit-br">
-        <span class="ob-emoji">▶</span>
-        <span class="ob-text">כניסה ישירה<br>לכיתה בזום</span>
-      </div>
-
-      <!-- Computer mockup -->
-      <div class="portal-mac">
-        <div class="portal-mac-bar">
-          <span class="pm-dot pm-dot--red"></span>
-          <span class="pm-dot pm-dot--yellow"></span>
-          <span class="pm-dot pm-dot--green"></span>
-          <span class="pm-url">ai-lab.co.il/portal</span>
-        </div>
-        <div class="portal-mac-frame">
-          <!-- Sidebar -->
-          <aside class="pm-sidebar">
-            <div class="pm-side-user">
-              <div class="pm-avatar">א</div>
-              <div>
-                <div class="pm-user-name">אורח/ת</div>
-                <div class="pm-user-tag">AI Lab <span>STARTER</span></div>
-              </div>
-            </div>
-            <div class="pm-side-cta">
-              <span class="pm-side-cta-dot"></span>
-              <div>
-                <strong>כניסה לכיתה</strong>
-                <span>Zoom · בלייב</span>
-              </div>
-              <span class="pm-side-cta-play">▶</span>
-            </div>
-            <div class="pm-side-label">ראשי</div>
-            <div class="pm-side-item pm-side-item--active"><span>⌂</span>לוח בקרה</div>
-            <div class="pm-side-label">השיעורים</div>
-            <div class="pm-side-item"><span class="num">01</span>מי נגד מי</div>
-            <div class="pm-side-item"><span class="num">02</span>הכלים</div>
-            <div class="pm-side-item"><span class="num">03</span>GitHub</div>
-            <div class="pm-side-item"><span class="num">04</span>בונים את הפנים</div>
-            <div class="pm-side-item"><span class="num">05</span>חיבור Sheets</div>
-            <div class="pm-side-item"><span class="num">06</span>אוטומציות</div>
-            <div class="pm-side-label">ארגז כלים</div>
-            <div class="pm-side-item"><span>⌘</span>תבניות פרומפטים</div>
-            <div class="pm-side-item"><span>✦</span>כלי AI</div>
-          </aside>
-
-          <!-- Main content -->
-          <main class="pm-main">
-            <div class="pm-kicker">— האזור האישי שלי</div>
-            <div class="pm-greet">שלום, <em>סטודנט.</em></div>
-            <div class="pm-greet-sub">כל החומרים והשיעורים שלך — במקום אחד.</div>
-
-            <div class="pm-hero-card">
-              <div class="pm-hero-kicker">השיעור שלך עכשיו</div>
-              <h3>מי נגד מי — מורה נבוכים לעולם ה-AI</h3>
-              <div class="pm-hero-meta">שיעור 01 · ~45 דקות · 14 שקפים</div>
-              <span class="pm-hero-btn">← להמשיך לשיעור</span>
-            </div>
-
-            <div class="pm-tiles">
-              <div class="pm-tile">
-                <div class="pm-tile-num">02</div>
-                <div class="pm-tile-title">הכלים</div>
-                <div class="pm-tile-sub">Cursor · Claude Desktop</div>
-              </div>
-              <div class="pm-tile">
-                <div class="pm-tile-num">03</div>
-                <div class="pm-tile-title">GitHub</div>
-                <div class="pm-tile-sub">בית הקוד שלך</div>
-              </div>
-              <div class="pm-tile">
-                <div class="pm-tile-num">04</div>
-                <div class="pm-tile-title">בונים פנים</div>
-                <div class="pm-tile-sub">דף נחיתה ראשון</div>
-              </div>
-            </div>
-          </main>
-        </div>
-      </div>
+      <div class="dots" id="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      <p class="meets-foot">רוצים סוכן שגם פועל מול לקוחות? זה <a href="#agents" class="nw">קורס הסוכנים</a>, הצעד הבא <span class="nw">אחרי Starter.</span></p>
     </div>
   </div>
 </section>
 
-<!-- ============ ABOUT / PROBLEM ============ -->
-<section class="problem" id="about">
-  <div class="container">
-    <div class="section-title reveal">
-      <span class="kicker">למה הקורס הזה</span>
-      <h2>העולם <em>כבר עבר</em> ל-AI. תורכם</h2>
-      <p>כשכולם מסביב משתמשים בכלי AI כל יום, להישאר מאחור עולה יותר ממה שנדמה.</p>
+<!-- ================= 04 הסוכנים ================= -->
+<section class="ch wrap" id="agents">
+  <div class="ch-head rv">
+    <span class="n">04</span>
+    <div>
+      <h2>הצעד הבא: קורס הסוכנים.</h2>
+      <p>סוכן AI הוא עוזר שעובד בשבילכם גם כשאתם לא מול המסך. לא קסם: רשימת הוראות ברורה שרצה בזמן קבוע, מחוברת לכלים שכבר יש לכם. חמישה מפגשים לבוגרי Starter ולמי שכבר עובד עם הכלים.</p>
     </div>
-
-    <div class="problem-grid">
-      <div class="problem-card reveal">
-        <div class="problem-icon">01</div>
-        <h3>לא יודעים מאיפה להתחיל</h3>
-        <p>ChatGPT? Claude? Gemini? כל יום מילה חדשה, וקשה לדעת מה רלוונטי באמת. כאן נסדר לכם את המפה.</p>
-      </div>
-      <div class="problem-card reveal">
-        <div class="problem-icon">02</div>
-        <h3>אין לכם זמן ללמוד לבד</h3>
-        <p>סרטוני YouTube אינסופיים, קורסים שלא מסתדרים. במקום זה — מסלול קצר ומובנה, פעם בשבוע, בקצב שלכם.</p>
-      </div>
-      <div class="problem-card reveal">
-        <div class="problem-icon">03</div>
-        <h3>אתם רוצים תוצאה אמיתית</h3>
-        <p>לא תיאוריה. בסוף הקורס יהיה לכם דף נחיתה חי באוויר, ואוטומציה אישית שעובדת — נכס אמיתי, לא תעודה.</p>
-      </div>
+  </div>
+  <div class="ag">
+    <div class="ag-next rv">
+      <details class="mx" open><summary>מה עושים בחמשת המפגשים</summary>
+      <ol>
+        <li><span class="n">01</span><span><b>הפרויקט שלכם.</b> אפיון ומפת דרכים, מרעיון מעורפל לתכולה ברורה.</span></li>
+        <li><span class="n">02</span><span><b>בונים סוכן.</b> הוראות, כלים, זיכרון, וחיבור לערוץ שבו הלקוחות נמצאים.</span></li>
+        <li><span class="n">03</span><span><b>חמש אוטומציות.</b> עוזר בוקר, מעקב הוצאות, תזכורות, סיכומים.</span></li>
+        <li><span class="n">04</span><span><b>חיבור למערכות אמיתיות.</b> סליקה, יומן, ממשקים. ומה אסור לחשוף.</span></li>
+        <li><span class="n">05</span><span><b>השקה.</b> צ'קליסט, שרת אמיתי, ניטור, והמשתמשים הראשונים.</span></li>
+      </ol>
+      </details>
+      <div class="pr"><b><span class="nw"><span data-p="agentsEarly">1,090</span> ₪</span></b><span>לבוגרי Starter ולנרשמים מוקדם · מחיר מלא <span class="nw"><span data-p="agentsFull">1,390</span> ₪</span></span></div>
     </div>
-
-    <!-- Sub-section divider -->
-    <div class="section-sub-divider reveal">
-      <span class="sub-divider-line"></span>
-      <span class="sub-divider-text">איך נעשה את זה?</span>
-      <span class="sub-divider-line"></span>
-    </div>
-
-    <div class="section-subtitle reveal">
-      <h3>הכלים שתכיר</h3>
-      <p>הצוות הסודי של כל יזם AI ב-2026</p>
-    </div>
-
-    <div class="skills-grid">
-      <div class="skill-card skill-card--featured reveal">
-        <div class="skill-card-icon">
-          <svg width="32" height="32" viewBox="0 0 52 52" fill="none">
-            <rect width="52" height="52" rx="14" fill="#10E593"/>
-            <path d="M26 10 C32 10 37 14 38.5 20 L35 21 C33.8 16.8 30.2 14 26 14 C20.5 14 16 18.5 16 24 C16 29.5 20.5 34 26 34 C30.2 34 33.8 31.2 35 27 L38.5 28 C37 34 32 38 26 38 C18.3 38 12 31.7 12 24 C12 16.3 18.3 10 26 10Z" fill="#000"/>
-          </svg>
-        </div>
-        <div>
-          <h4>Claude</h4>
-          <p>העוזר הראשי שלך. בעברית, חכם, ובלי הגבלות. תכתוב לו ב-עברית, הוא יענה בעברית.</p>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-icon">✦</div>
-        <h4>Cursor</h4>
-        <p>עורך הקוד החכם — בלי טרמינל, הכל ויזואלי</p>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-icon">⬢</div>
-        <h4>GitHub</h4>
-        <p>איפה הקוד שלכם גר, ואיפה אתרים מתפרסמים בחינם</p>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-icon">▦</div>
-        <h4>Google Sheets</h4>
-        <p>בסיס הנתונים הכי פשוט בעולם — חיבור לאתר שלכם</p>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-icon">↯</div>
-        <h4>Twilio + WhatsApp</h4>
-        <p>אוטומציות שמדברות אליכם — סיכום יומי, מעקב הוצאות</p>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-icon">❖</div>
-        <h4>פרומפטינג</h4>
-        <p>איך לבקש נכון — האמנות שתחסוך לכם שעות</p>
-      </div>
+    <div class="ag-plain rv">
+      <div><b>פעם אחת</b> מסבירים לו את העבודה, ומאז הוא עושה אותה בעצמו.</div>
+      <div><b>בתוך הכלים שלכם:</b> הגיליון, המייל, היומן. בלי מערכת חדשה ללמוד.</div>
+      <div><b>בשליטה שלכם:</b> מה הוא רשאי לעשות לבד, ומה רק אחרי אישור.</div>
     </div>
   </div>
 </section>
 
-<!-- ============ SYLLABUS ============ -->
-<section class="program" id="program">
-  <div class="container">
-    <div class="section-title reveal">
-      <span class="kicker">הקורסים</span>
-      <h2>שני קורסים. <em>כל אחד עומד בפני עצמו</em></h2>
-      <p>הקורס הבסיסי מתחיל מאפס — מהמושגים ועד אתר חי. הקורס המתקדם לוקח אותך לפרויקט אישי אמיתי. כל קורס נמכר בנפרד — אפשר להתחיל מהבסיסי, או לקפוץ ישר למתקדם.</p>
+<!-- ================= 05 איך זה עובד ================= -->
+<section class="ch wrap" id="how">
+  <div class="ch-head center rv">
+    <span class="n">05</span>
+    <h2>איך זה עובד.</h2>
+  </div>
+  <ul class="spec">
+    <li><b>5</b><span>מפגשים חיים בזום, פעם בשבוע, בעברית</span></li>
+    <li><b><bdi dir="ltr">45–55</bdi></b><span>דקות כל מפגש, ועוד כשעה תרגול בשבוע למי שרוצה</span></li>
+    <li><b>קטנה</b><span>הקבוצה. יחס אישי, לא כיתה של 30. יש זמן לעצור, לשאול ולוודא שכולם איתנו</span></li>
+    <li><b>24</b><span>שעות, וההקלטה של המפגש כבר מחכה באזור האישי שלכם</span></li>
+    <li><b>יחד</b><span>מתקינים את הכלים במפגש, לא לבד בבית. שום דבר לא יכול להישבר</span></li>
+    <li><b>וואטסאפ</b><span>קבוצה עם מענה ישיר ממאיר, לאורך כל הקורס</span></li>
+  </ul>
+  <details class="mx" open><summary>מה צריך להביא, ועל מה עובדים</summary>
+  <div class="need">
+    <div>
+      <h3>מה צריך להביא</h3>
+      <p><b>מחשב</b> Mac או Windows מחמש השנים האחרונות, ומספיק שאתם יודעים להשתמש בגוגל ובזום. <b>מנוי אחד:</b> Claude Pro, <bdi dir="ltr">$20</bdi> לחודש, אפשר לבטל אחרי הקורס. כל השאר, Cursor, GitHub, Google Sheets, בחינם. ו<b>כשעה בשבוע</b> בין המפגשים.</p>
     </div>
-
-    <div class="course-cards reveal">
-      <div class="course-card">
-        <span class="course-card-badge">מתחילים מכאן</span>
-        <h3 class="course-card-title">קורס בסיסי</h3>
-        <span class="course-card-meta">5 מפגשים · מתחילים מאפס</span>
-        <p class="course-card-desc">מהמושגים הראשונים ועד אתר חי באוויר — בלי רקע טכני, בלי קוד שתכתוב לבד.</p>
-        <ul class="course-card-list">
-          <li>היכרות עם כלי ה-AI המובילים</li>
-          <li>סביבת עבודה מקצועית — Cursor ו-Claude</li>
-          <li>בניית דף נחיתה ופרסום אתר חינמי</li>
-          <li>חיבור טופס לידים ל-Google Sheets</li>
-        </ul>
-        <div class="course-card-actions">
-          <button type="button" class="btn-syllabus" onclick="toggleSyllabus('basic', this)">צפו בסילבוס המלא ↓</button>
-          <a href="#register" class="btn-enroll">הרשמה לקורס</a>
-        </div>
-      </div>
-
-      <div class="course-card">
-        <span class="course-card-badge course-card-badge--alt">השלב הבא</span>
-        <h3 class="course-card-title">קורס מתקדם</h3>
-        <span class="course-card-meta">5 מפגשים · ממשיכים לפרויקט</span>
-        <p class="course-card-desc">לוקחים פרויקט אישי אמיתי — מאפיון ועד השקה לאוויר עם משתמשים ראשונים.</p>
-        <ul class="course-card-list">
-          <li>אפיון פרויקט אישי ומפת דרכים</li>
-          <li>בניית סוכן AI שעובד מול משתמשים</li>
-          <li>חמש אוטומציות אישיות מעשיות</li>
-          <li>חיבור למערכות אמיתיות והשקה לאוויר</li>
-        </ul>
-        <div class="course-card-actions">
-          <button type="button" class="btn-syllabus" onclick="toggleSyllabus('advanced', this)">צפו בסילבוס המלא ↓</button>
-          <a href="#register" class="btn-enroll">הרשמה לקורס</a>
-        </div>
-      </div>
+    <div>
+      <h3>על איזה פרויקט עובדים</h3>
+      <p>על <b>העסק, העמותה, התחביב או הרעיון שלכם.</b> אין רעיון? בוחרים אחת מהדוגמאות של הקורס: מאפייה שכונתית, קבוצת ריצה, עמותה, מאמן כושר, משרד עו"ד, סטודיו.</p>
     </div>
+  </div>
+  </details>
+</section>
 
-    <div class="syllabus-full" id="syllabus-basic" hidden>
-      <div class="syllabus-full-head">
-        <span class="sub-divider-text">סילבוס מלא · קורס בסיסי</span>
-      </div>
-      <div class="syllabus-list">
-      <div class="lesson-row" onclick="toggleLesson(1)">
-        <div class="lesson-num">01</div>
-        <div class="lesson-info">
-          <h4>מי נגד מי — מורה נבוכים לעולם ה-AI</h4>
-          <p>מפת השחקנים: Claude, Gemini, Grok, ChatGPT. איזה כלי מתאים לאיזו משימה.</p>
-        </div>
-        <div class="lesson-toggle">+</div>
-      </div>
-      <div class="lesson-detail" id="lesson-1">
-        <div class="lesson-detail-inner">
-          <h5>במה נעסוק</h5>
-          <ul>
-            <li>ארבעת השחקנים העיקריים בעולם ה-LLMs וההבדלים ביניהם</li>
-            <li>למה Claude הוא הכלי המרכזי בקורס</li>
-            <li>איזה כלי מתאים לאיזו משימה — כלל אצבע פשוט</li>
-            <li>מפת הכלים שילוו אותך לאורך הקורס</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="lesson-row" onclick="toggleLesson(2)">
-        <div class="lesson-num">02</div>
-        <div class="lesson-info">
-          <h4>הכלים שיבנו בשבילך</h4>
-          <p>Cursor, Claude Desktop, ו-Terminal — שלוש סביבות עבודה שמרכיבות את ה-stack שלך.</p>
-        </div>
-        <div class="lesson-toggle">+</div>
-      </div>
-      <div class="lesson-detail" id="lesson-2">
-        <div class="lesson-detail-inner">
-          <h5>במה נעסוק</h5>
-          <ul>
-            <li>מה זה Terminal ולמה כל מתכנת מכיר את המונח</li>
-            <li>Cursor — העורך החכם שתעבוד איתו ברוב הקורס</li>
-            <li>Claude Desktop ושלושת המצבים שלו: Chat · Cowork · Code</li>
-            <li>התקנה חכמה: Cursor מתקין את הכל בשבילך, בלי טרמינל</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="lesson-row" onclick="toggleLesson(3)">
-        <div class="lesson-num">03</div>
-        <div class="lesson-info">
-          <h4>GitHub — בית הקוד שלך</h4>
-          <p>איפה הקוד שלך גר, איך לדחוף אותו לענן, ואיך לפרסם אתר חינמי תוך 5 דקות.</p>
-        </div>
-        <div class="lesson-toggle">+</div>
-      </div>
-      <div class="lesson-detail" id="lesson-3">
-        <div class="lesson-detail-inner">
-          <h5>במה נעסוק</h5>
-          <ul>
-            <li>Git לעומת GitHub — מה ההבדל ולמה אתה צריך את שניהם</li>
-            <li>שלושת הפעולות שתעשה כל יום: commit, push, pull</li>
-            <li>Repository, README, ומה הם אומרים על הפרויקט שלך</li>
-            <li>GitHub Pages — איך להעלות אתר חינמי לאוויר</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="lesson-row" onclick="toggleLesson(4)">
-        <div class="lesson-num">04</div>
-        <div class="lesson-info">
-          <h4>בונים את ה'פנים' — דף נחיתה ראשון</h4>
-          <p>מהרעיון לאתר חי באוויר. אנטומיה של דף נחיתה מקצועי, פרומפט מנצח, ופרסום.</p>
-        </div>
-        <div class="lesson-toggle">+</div>
-      </div>
-      <div class="lesson-detail" id="lesson-4">
-        <div class="lesson-detail-inner">
-          <h5>במה נעסוק</h5>
-          <ul>
-            <li>אנטומיה של דף נחיתה מקצועי — Hero, About, CTA, Footer</li>
-            <li>הפרומפט המנצח: איך לבקש מ-Claude לבנות דף נחיתה לעסק שלך</li>
-            <li>החלפת תוכן, צבעים, ותמונות — בלי לעבוד עם קוד</li>
-            <li>פרסום ב-GitHub Pages — אתר חי באוויר עם URL לשיתוף</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="lesson-row" onclick="toggleLesson(5)">
-        <div class="lesson-num">05</div>
-        <div class="lesson-info">
-          <h4>ה'מוח' של האתר — חיבור ל-Google Sheets</h4>
-          <p>הופכים אתר מ"דף יפה" למערכת חיה — עם טופס לידים מחובר לגיליון.</p>
-        </div>
-        <div class="lesson-toggle">+</div>
-      </div>
-      <div class="lesson-detail" id="lesson-5">
-        <div class="lesson-detail-inner">
-          <h5>במה נעסוק</h5>
-          <ul>
-            <li>למה Google Sheets זה בסיס הנתונים הכי פשוט בעולם</li>
-            <li>Apps Script — השרת החינמי של גוגל שמחבר את הכל</li>
-            <li>חיבור טופס באתר ל-Sheet — לידים נכנסים אוטומטית</li>
-            <li>אוטומציה: התראה במייל בכל ליד חדש</li>
-          </ul>
-        </div>
-      </div>
-
-      </div>
+<!-- ================= 06 המחיר ================= -->
+<section class="ch wrap" id="price">
+  <div class="ch-head center rv">
+    <span class="n">06</span>
+    <div>
+      <h2>כמה זה עולה.</h2>
+      <p>מחיר גלוי, בלי ספירות לאחור. מי שנרשם לרשימה לפני פרסום התאריך, המחיר ננעל לו.</p>
     </div>
-
-    <div class="syllabus-full" id="syllabus-advanced" hidden>
-      <div class="syllabus-full-head">
-        <span class="sub-divider-text">סילבוס מלא · קורס מתקדם</span>
-      </div>
-      <div class="syllabus-list">
-      <div class="lesson-row" onclick="toggleLesson(6)">
-        <div class="lesson-num">01</div>
-        <div class="lesson-info">
-          <h4>הפרויקט שלך — אפיון ומפת דרכים</h4>
-          <p>בוחרים פרויקט אישי — אתר, סוכן או אוטומציה — ובונים מפת דרכים ברורה לביצוע.</p>
-        </div>
-        <div class="lesson-toggle">+</div>
-      </div>
-      <div class="lesson-detail" id="lesson-6">
-        <div class="lesson-detail-inner">
-          <h5>במה נעסוק</h5>
-          <ul>
-            <li>שלושת סוגי הפרויקטים — ואיך לבחור את שלך</li>
-            <li>מסע האפיון: מרעיון מעורפל לתכולה ברורה</li>
-            <li>כתיבת מסמך אפיון (spec) יחד עם Claude</li>
-            <li>פירוק לאבני דרך — מתחילים מ-MVP</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="lesson-row" onclick="toggleLesson(7)">
-        <div class="lesson-num">02</div>
-        <div class="lesson-info">
-          <h4>בונים סוכן AI — מהתיאוריה לסוכן עובד</h4>
-          <p>הוראות, כלים, חיבור לערוץ ובדיקות — סוכן ראשוני שעובד מול משתמשים אמיתיים.</p>
-        </div>
-        <div class="lesson-toggle">+</div>
-      </div>
-      <div class="lesson-detail" id="lesson-7">
-        <div class="lesson-detail-inner">
-          <h5>במה נעסוק</h5>
-          <ul>
-            <li>האנטומיה של סוכן: הוראות, כלים, זיכרון, לולאה</li>
-            <li>כתיבת System Prompt — הלב של הסוכן</li>
-            <li>מתן כלים לסוכן — שייתן לו לפעול, לא רק לדבר</li>
-            <li>חיבור לערוץ ובדיקות לפני שמשחררים</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="lesson-row" onclick="toggleLesson(8)">
-        <div class="lesson-num">03</div>
-        <div class="lesson-info">
-          <h4>אוטומציות אישיות — הצוות הסודי שלך</h4>
-          <p>חמש אוטומציות שכל אחד יכול לבנות. עוזר בוקר, מעקב הוצאות, ועוד.</p>
-        </div>
-        <div class="lesson-toggle">+</div>
-      </div>
-      <div class="lesson-detail" id="lesson-8">
-        <div class="lesson-detail-inner">
-          <h5>במה נעסוק</h5>
-          <ul>
-            <li>האנטומיה של כל אוטומציה: Trigger → Steps → Output</li>
-            <li>5 דוגמאות פרקטיות: עוזר בוקר, מעקב הוצאות, ימי הולדת, משלוחים, סיכום קבוצות</li>
-            <li>איך להבין מה כדאי לאוטמט בחיים שלך</li>
-            <li>המשימה: לבנות בעצמך עוזר בוקר אישי</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="lesson-row" onclick="toggleLesson(9)">
-        <div class="lesson-num">04</div>
-        <div class="lesson-info">
-          <h4>חיבור למערכות אמיתיות</h4>
-          <p>מחברים את הפרויקט לעולם — תשלומים, קביעת תורים, ו-APIs.</p>
-        </div>
-        <div class="lesson-toggle">+</div>
-      </div>
-      <div class="lesson-detail" id="lesson-9">
-        <div class="lesson-detail-inner">
-          <h5>במה נעסוק</h5>
-          <ul>
-            <li>מה זה API — איך שתי מערכות מדברות זו עם זו</li>
-            <li>חיבור תשלומים: מהחשבון ועד הקופה</li>
-            <li>מערכת תורים והזמנות, מחוברת ליומן</li>
-            <li>אבטחת מפתחות — מה אסור לחשוף לעולם</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="lesson-row" onclick="toggleLesson(10)">
-        <div class="lesson-num">05</div>
-        <div class="lesson-info">
-          <h4>השקה וצמיחה</h4>
-          <p>מעלים את הפרויקט לאוויר, מלטשים את הפרטים האחרונים, ומביאים משתמשים ראשונים.</p>
-        </div>
-        <div class="lesson-toggle">+</div>
-      </div>
-      <div class="lesson-detail" id="lesson-10">
-        <div class="lesson-detail-inner">
-          <h5>במה נעסוק</h5>
-          <ul>
-            <li>צ'קליסט לפני השקה — מה בודקים</li>
-            <li>פריסת פרויקט דינמי על שרת אמיתי</li>
-            <li>מעקב וניטור — לדעת שהכל עובד אחרי ההשקה</li>
-            <li>צמיחה: איך מביאים את המשתמשים הראשונים</li>
-          </ul>
-        </div>
-      </div>
-      </div>
+  </div>
+  <div class="plans rv">
+    <div class="plan main">
+      <span class="label acc"><bdi>Starter</bdi> · המחזור הקרוב</span>
+      <div class="amount"><b><span data-p="starterEarly">990</span></b><small>₪</small></div>
+      <div class="sub">מחיר הרשמה מוקדמת · בכרטיס אשראי או בביט</div>
+      <ul>
+        <li>5 מפגשים חיים בזום, בקבוצה קטנה</li>
+        <li>הקלטות, מצגות וספריית פרומפטים באזור האישי</li>
+        <li>קבוצת וואטסאפ עם מענה ישיר ממאיר</li>
+        <li>אתר אמיתי שלכם, באוויר, עם טופס שעובד</li>
+      </ul>
+      <p class="note">המחיר המלא, <span class="nw"><span data-p="starterFull">1,290</span> ₪</span>, נכנס לתוקף עם פרסום התאריך.</p>
+      <a href="#seat" class="btn acc">לשמור לי מקום <span class="ar">←</span></a>
     </div>
+    <details class="mx" open><summary>עוד מסלולים: קורס הסוכנים ושני הקורסים</summary>
+    <div class="plans-more">
+    <div class="plan">
+      <span class="label">קורס הסוכנים</span>
+      <div class="amount"><b><span data-p="agentsEarly">1,090</span></b><small>₪</small></div>
+      <div class="sub">לבוגרי Starter ולנרשמים מוקדם · מחיר מלא <span class="nw"><span data-p="agentsFull">1,390</span> ₪</span></div>
+      <ul>
+        <li>5 מפגשים: אפיון, סוכן, אוטומציות, חיבורים, השקה</li>
+        <li>סוכן שפועל מול לקוחות, על הפרויקט שלכם</li>
+        <li>הקלטות, אזור אישי וקבוצת וואטסאפ</li>
+      </ul>
+    </div>
+    <div class="plan">
+      <span class="label">שני הקורסים</span>
+      <div class="amount"><b><span data-p="bundleEarly">1,890</span></b><small>₪</small></div>
+      <div class="sub">במקום <span class="nw"><span data-p="bundleSum">2,080</span> ₪</span> בנפרד</div>
+      <ul>
+        <li>10 מפגשים, מאתר ראשון ועד סוכן שעובד</li>
+        <li>אותה קבוצה, אותו מנחה, רצף אחד</li>
+      </ul>
+    </div>
+    </div>
+    </details>
+  </div>
+  <details class="mx" open><summary>תשלום, ביטול ושיעור פרטי</summary>
+  <div class="price-foot rv">
+    <p><b>שיעור פרטי 1-על-1</b><span class="nw"><span data-p="private">390</span> ₪ ל-60 דקות</span> בזום, או 4 שיעורים ב-<span class="nw"><span data-p="privatePack">1,390</span> ₪</span>. על הפרויקט שלכם, בקצב שלכם.</p>
+    <p><b>ביטול והחזר</b>ביטול עד 14 יום מההרשמה ולפני תחילת הקורס: החזר מלא. אחר כך לפי <a href="https://ai-lab.co.il/terms.html" target="_blank" rel="noopener">תקנון AI Lab</a>.</p>
+    <p><b>איך משלמים</b>בכרטיס אשראי או בביט, בתשלום אחד. התשלום רק אחרי שנקבע תאריך.</p>
+  </div>
+  </details>
+</section>
 
-    <div class="mid-cta reveal">
-      <a href="#register" class="btn-primary">מוכנים? שריינו את מקומכם ←</a>
+<!-- ================= 07 למי ================= -->
+<section class="ch wrap" id="fit">
+  <div class="ch-head rv">
+    <span class="n">07</span>
+    <div>
+      <h2>למי זה מתאים, ולמי לא.</h2>
+      <p>גיל 18 ומעלה, בלי שום ידע קודם.<span class="dsk-only"> בעלי עסקים ועצמאים, שכירים ומנהלים, גמלאים שרוצים להישאר רלוונטיים, וכל מי שמרגיש שהעולם רץ קדימה.</span></p>
+    </div>
+  </div>
+  <div class="fit">
+    <div class="yes">
+      <h3>זה בשבילכם אם</h3>
+      <ul>
+        <li>אתם בטוחים שאתם "לא טכניים", ורוצים שמישהו יעשה לכם סדר בראש.</li>
+        <li>משתמשים ב-ChatGPT או Claude מדי פעם, ומרגישים שיש שם הרבה יותר.</li>
+        <li>יש לכם עסק, עמותה, תחביב או רעיון שהייתם רוצים לקדם.</li>
+        <li>מעדיפים ללמוד בעשייה, בקבוצה קטנה, עם מישהו שעוצר ומסביר.</li>
+        <li>אתם מעל 50 ושואלים אם זה בשבילכם. כן. גם בני 60 פלוס עוברים את הקורס.</li>
+      </ul>
+    </div>
+    <div class="no">
+      <details class="mx" open><summary>למי זה פחות מתאים</summary>
+      <h3>פחות אם</h3>
+      <ul>
+        <li>אתם כבר מתכנתים ומחפשים קורס פיתוח.</li>
+        <li>מחפשים הרצאה על "מה זה AI" בלי לבנות כלום.</li>
+        <li>אין לכם מחשב, רק טלפון.</li>
+      </ul>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- ============ TESTIMONIALS ============ -->
-<section class="testimonials-section" id="testimonials">
-  <div class="container">
-    <div class="tt-head reveal">
-      <span class="tt-badge">סטודנטים מספרים</span>
-      <h2>מה אומרים אנשים <em>שעברו את המסלול</em></h2>
-      <p>אנשים בני 30-65, ממקצועות שונים, שעברו את הקורס וראו תוצאה אמיתית בעבודה ובבית.</p>
+<!-- ================= 08 המנחה ================= -->
+<section class="ch wrap" id="who">
+  <div class="who">
+    <div class="portrait rv">
+      <img src="meir.jpg" alt="מאיר לביא" loading="lazy">
+      <div class="cap"><b>מאיר לביא</b><span>מייסד AI Lab · מנחה הקורס</span></div>
     </div>
-  </div>
-
-  <div class="testimonials">
-    <div class="testimonials-row">
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"הגעתי לקורס בלי לדעת מה זה Claude. אחרי הקורס הבסיסי בניתי דף נחיתה לעסק שלי בעצמי. דבר שלא חשבתי שיקרה אי פעם."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">ר</div>
-          <div>
-            <div class="testimonial-author-name">רחל גולן</div>
-            <div class="testimonial-author-role">מורה לאנגלית · 42</div>
-          </div>
-        </div>
+    <div>
+      <div class="ch-head rv" style="margin-bottom:28px">
+        <span class="n">08</span>
+        <h2>מנחה אחד, שעוצר כשמישהו <span class="nw">לא הבין.</span></h2>
       </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"כל יום אני חוסך לפחות שעה בעבודה. AI הפך לחלק מהשגרה. ההסברים של מאיר היו ברורים גם לי שאני לא טכני."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">ד</div>
-          <div>
-            <div class="testimonial-author-name">דני לוי</div>
-            <div class="testimonial-author-role">בעל סוכנות ביטוח · 51</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"חיפשתי קורס שלא יזרוק עליי קוד מההתחלה. זה בדיוק מה שמצאתי. הקצב מצוין למתחילים, והקהילה תומכת."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">מ</div>
-          <div>
-            <div class="testimonial-author-name">מיכל אבני</div>
-            <div class="testimonial-author-role">מנהלת חשבונות · 38</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"בניתי אוטומציה שכל בוקר שולחת לי סיכום של היום. זה נשמע קסם, אבל זה פשוט וכיף לבנות. הקורס פתח לי את הראש."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">י</div>
-          <div>
-            <div class="testimonial-author-name">יוסי שמש</div>
-            <div class="testimonial-author-role">יועץ עסקי · 47</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"בגיל 60+ חששתי שזה לא בשבילי. טעיתי. הקצב התאים, ועכשיו אני זה שמסביר לנכדים מה זה Claude."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">א</div>
-          <div>
-            <div class="testimonial-author-name">אסתר רוזן</div>
-            <div class="testimonial-author-role">פנסיונרית, מורה לשעבר · 63</div>
-          </div>
-        </div>
-      </div>
-      <!-- Duplicate for seamless loop -->
-      <div class="testimonial-card" aria-hidden="true">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"הגעתי לקורס בלי לדעת מה זה Claude. אחרי הקורס הבסיסי בניתי דף נחיתה לעסק שלי בעצמי."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">ר</div>
-          <div>
-            <div class="testimonial-author-name">רחל גולן</div>
-            <div class="testimonial-author-role">מורה לאנגלית · 42</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card" aria-hidden="true">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"כל יום אני חוסך לפחות שעה בעבודה. AI הפך לחלק מהשגרה."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">ד</div>
-          <div>
-            <div class="testimonial-author-name">דני לוי</div>
-            <div class="testimonial-author-role">בעל סוכנות ביטוח · 51</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testimonials-row reverse">
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"מאיר עוצר לוודא שכולם הבינו. אין מצב שתישאר מאחור. הקצב מותאם גם לאנשים שלוקח להם זמן לקלוט."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">ש</div>
-          <div>
-            <div class="testimonial-author-name">שירה כהן</div>
-            <div class="testimonial-author-role">מעצבת גרפית · 35</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"חיפשתי קורס שיתן לי כלים פרקטיים, לא תיאוריה. זה בדיוק זה. כבר ביום הראשון התחלתי להשתמש בכלים בעבודה."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">ע</div>
-          <div>
-            <div class="testimonial-author-name">עומר אדלר</div>
-            <div class="testimonial-author-role">איש מכירות · 44</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"האזור האישי שמרתי בו כל מה שלמדנו — מסודר ומובנה. אפשר לחזור בכל זמן. זה נכס יותר משווה את ההשקעה."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">ת</div>
-          <div>
-            <div class="testimonial-author-name">תמר רובינשטיין</div>
-            <div class="testimonial-author-role">עורכת דין · 39</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"הקהילה שווה את הקורס לבדה. אנשים תומכים, עוזרים, ומשתפים מה הם בונים. למדתי מהם לא פחות מהשיעורים."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">נ</div>
-          <div>
-            <div class="testimonial-author-name">נדב פרידמן</div>
-            <div class="testimonial-author-role">יזם · 33</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"חשבתי שזה יהיה מסובך. בפועל — כל שיעור הסביר רעיון אחד, פשוט וברור. מסיים את הקורס עם תחושה שאני שולט."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">ה</div>
-          <div>
-            <div class="testimonial-author-name">הילה גרינברג</div>
-            <div class="testimonial-author-role">מנכ"לית עמותה · 56</div>
-          </div>
-        </div>
-      </div>
-      <!-- Duplicate -->
-      <div class="testimonial-card" aria-hidden="true">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"מאיר עוצר לוודא שכולם הבינו. הקצב מותאם גם לאנשים שלוקח להם זמן לקלוט."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">ש</div>
-          <div>
-            <div class="testimonial-author-name">שירה כהן</div>
-            <div class="testimonial-author-role">מעצבת גרפית · 35</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card" aria-hidden="true">
-        <div class="testimonial-stars">★★★★★</div>
-        <p>"חיפשתי קורס שיתן לי כלים פרקטיים, לא תיאוריה. זה בדיוק זה."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">ע</div>
-          <div>
-            <div class="testimonial-author-name">עומר אדלר</div>
-            <div class="testimonial-author-role">איש מכירות · 44</div>
-          </div>
-        </div>
-      </div>
+      <p><b>יזם, משקיע וסמנכ"ל פיתוח עסקי לשעבר בחברות הייטק.</b> בנה מוצרים, ניהל שותפויות, השקיע בסטארטאפים. היום מנחה מבוגרים לעבוד עם AI, בקצב שלהם, בלי תיאוריה מיותרת.</p>
+      <details class="mx" open><summary>עוד על מאיר</summary>
+      <p>ב-AI Lab הוא מלמד ילדים, נוער ומבוגרים לעבוד עם AI, ומעל 100 אתרים של תלמידים כבר עלו לאוויר. הגישה פשוטה: מאיר מדגים בשידור חי, אתם חוזרים על הצעד על הפרויקט שלכם, ולא ממשיכים לפני שהצעד הקודם עובד אצל כולם. בקבוצה קטנה יש זמן לזה.</p>
+      <p class="tags">יזם · משקיע · האוניברסיטה העברית · הייטק · מנחה AI למבוגרים</p>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- ============ INSTRUCTOR ============ -->
-<section class="instructor-section" id="instructor">
-  <div class="container">
-    <div class="section-title reveal">
-      <span class="kicker">מי ילמד אותך</span>
-      <h2>אדם אחד. <em>תוצאות אמיתיות</em></h2>
+<!-- ================= 09 המלצות ================= -->
+<section class="ch wrap" id="quotes">
+  <div class="ch-head rv">
+    <span class="n">09</span>
+    <div>
+      <h2>מה אומרים משתתפים.</h2>
+      <p>בוגרי Starter, ממקצועות שונים, בגילאי 33 עד 63.</p>
     </div>
-    <div class="instructor-card reveal">
-      <div class="instructor-avatar">
-        <img src="meir.jpg" alt="מאיר לביא — מרצה הקורס" loading="lazy">
-      </div>
-      <div class="instructor-info">
-        <h3>מאיר לביא</h3>
-        <div class="title">יזם · משקיע · מנחה AI</div>
-        <p>סמנכ"ל פיתוח עסקי לשעבר בחברות הייטק. בנה מוצרים, ניהל שותפויות, השקיע בסטארטאפים. היום מנחה מבוגרים לעבוד עם AI — בלי תיאוריה מיותרת, רק כלים שיוצאים איתם מהשיעור הראשון.</p>
-
-
-        <div class="instructor-tags">
-          <span>יזם</span>
-          <span>משקיע</span>
-          <span>האוניברסיטה העברית</span>
-          <span>הייטק</span>
-          <span>מנחה</span>
-        </div>
-      </div>
+  </div>
+  <div class="qwrap rv">
+    <div class="qrail" id="qrail" aria-label="המלצות משתתפים">
+      <figure class="qcard"><blockquote>הגעתי לקורס בלי לדעת מה זה Claude. אחרי הקורס הבסיסי בניתי דף נחיתה לעסק שלי בעצמי. דבר שלא חשבתי שיקרה אי פעם.</blockquote><figcaption><b>רחל גולן</b><span>מורה לאנגלית · 42</span></figcaption></figure>
+      <figure class="qcard"><blockquote>כל יום אני חוסך לפחות שעה בעבודה. AI הפך לחלק מהשגרה. ההסברים של מאיר היו ברורים גם לי שאני לא טכני.</blockquote><figcaption><b>דני לוי</b><span>בעל סוכנות ביטוח · 51</span></figcaption></figure>
+      <figure class="qcard"><blockquote>חיפשתי קורס שלא יזרוק עליי קוד מההתחלה. זה בדיוק מה שמצאתי. הקצב מצוין למתחילים, והקהילה תומכת.</blockquote><figcaption><b>מיכל אבני</b><span>מנהלת חשבונות · 38</span></figcaption></figure>
+      <figure class="qcard"><blockquote>בניתי אוטומציה שכל בוקר שולחת לי סיכום של היום. זה נשמע קסם, אבל זה פשוט וכיף לבנות. הקורס פתח לי את הראש.</blockquote><figcaption><b>יוסי שמש</b><span>יועץ עסקי · 47</span></figcaption></figure>
+      <figure class="qcard"><blockquote>בגיל 60+ חששתי שזה לא בשבילי. טעיתי. הקצב התאים, ועכשיו אני זה שמסביר לנכדים מה זה Claude.</blockquote><figcaption><b>אסתר רוזן</b><span>פנסיונרית, מורה לשעבר · 63</span></figcaption></figure>
+      <figure class="qcard"><blockquote>מאיר עוצר לוודא שכולם הבינו. אין מצב שתישאר מאחור. הקצב מותאם גם לאנשים שלוקח להם זמן לקלוט.</blockquote><figcaption><b>שירה כהן</b><span>מעצבת גרפית · 35</span></figcaption></figure>
+      <figure class="qcard"><blockquote>חיפשתי קורס שיתן לי כלים פרקטיים, לא תיאוריה. זה בדיוק זה. כבר ביום הראשון התחלתי להשתמש בכלים בעבודה.</blockquote><figcaption><b>עומר אדלר</b><span>איש מכירות · 44</span></figcaption></figure>
+      <figure class="qcard"><blockquote>האזור האישי שמרתי בו כל מה שלמדנו — מסודר ומובנה. אפשר לחזור בכל זמן. זה נכס יותר משווה את ההשקעה.</blockquote><figcaption><b>תמר רובינשטיין</b><span>עורכת דין · 39</span></figcaption></figure>
+      <figure class="qcard"><blockquote>הקהילה שווה את הקורס לבדה. אנשים תומכים, עוזרים, ומשתפים מה הם בונים. למדתי מהם לא פחות מהשיעורים.</blockquote><figcaption><b>נדב פרידמן</b><span>יזם · 33</span></figcaption></figure>
+      <figure class="qcard"><blockquote>חשבתי שזה יהיה מסובך. בפועל — כל שיעור הסביר רעיון אחד, פשוט וברור. מסיים את הקורס עם תחושה שאני שולט.</blockquote><figcaption><b>הילה גרינברג</b><span>מנכ"לית עמותה · 56</span></figcaption></figure>
     </div>
+    <div class="qnav"><button type="button" class="qbtn" data-dir="prev" aria-label="הקודם">→</button><button type="button" class="qbtn" data-dir="next" aria-label="הבא">←</button></div>
+    <div class="qdots" id="qdots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   </div>
 </section>
 
-<!-- ============ PRIVATE LESSONS ============ -->
-<section class="problem" id="private">
-  <div class="container">
-    <div class="section-title reveal">
-      <span class="kicker">לימוד אישי</span>
-      <h2>שיעורים פרטיים <em>1-על-1</em></h2>
-      <p>לא מתאים לך קבוצה? רוצה להתקדם בקצב שלך, על הפרויקט שלך? שיעורים פרטיים אונליין עם מאיר — בדיוק על מה שאתה צריך.</p>
+<!-- ================= 10 מקום (ירוק) ================= -->
+<section class="ch wrap" id="seat">
+  <div class="seat">
+    <div>
+      <div class="ch-head rv" style="margin-bottom:10px"><span class="n">10</span></div>
+      <h2 class="rv">המחזור הקרוב.</h2>
+      <div class="status"><i></i>הרשמה מוקדמת פתוחה. קבוצה קטנה, התאריך נקבע לפי ההרשמות.</div>
+      <p><b>בלי תשלום עכשיו.</b> משאירים שם וטלפון, ומאיר חוזר אליכם בוואטסאפ לשיחת היכרות. מי שברשימה מקבל את התאריך לפני כולם, ומחיר ההרשמה המוקדמת, <span class="nw"><span data-p="starterEarly">990</span> ₪</span>, נעול לו.</p>
+      <details class="mx" open><summary>מה קורה אחרי שמשאירים פרטים</summary>
+      <ol class="steps">
+        <li><span class="n">01</span><span>משאירים פרטים כאן, חצי דקה.</span></li>
+        <li><span class="n">02</span><span>מאיר חוזר אליכם תוך 24 שעות ל-15 דקות היכרות עם הקורס, ללא עלות וללא התחייבות. בודקים יחד אם זה מתאים.</span></li>
+        <li><span class="n">03</span><span>כשהקבוצה מתגבשת, אתם הראשונים לקבל תאריך ומקום. הקבוצה קטנה, ומי שנרשם מוקדם נכנס ראשון.</span></li>
+      </ol>
+      <div class="private">
+        <p>מעדיפים 1-על-1? שיעורים פרטיים בזום, <span class="nw"><span data-p="private">390</span> ₪ ל-60 דקות</span>, על הפרויקט שלכם.</p>
+        <a href="https://wa.me/972546500795?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%91%D7%A9%D7%99%D7%A2%D7%95%D7%A8%D7%99%D7%9D%20%D7%A4%D7%A8%D7%98%D7%99%D7%99%D7%9D%201-%D7%A2%D7%9C-1%20%D7%91-AI.%20%D7%90%D7%A4%D7%A9%D7%A8%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%3F" target="_blank" rel="noopener">לדבר על שיעור פרטי</a>
+      </div>
+      </details>
     </div>
-
-    <div class="problem-grid reveal">
-      <div class="problem-card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div>
-        <h3>מותאם אישית אליך</h3>
-        <p>בונים יחד תוכנית לפי המטרה שלך — אתר, אוטומציה, סוכן AI לעסק, או סתם להבין איך לעבוד עם הכלים. בלי חומר מיותר.</p>
-      </div>
-      <div class="problem-card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
-        <h3>בקצב ובזמן שלך</h3>
-        <p>שיעורים אונליין בזום, בשעות שנוחות לך. מתקדמים מהר או לאט — אתה קובע. כל שיעור מוקלט ונשאר אצלך.</p>
-      </div>
-      <div class="problem-card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
-        <h3>על הפרויקט האמיתי שלך</h3>
-        <p>לא תרגילים תיאורטיים — עובדים על משהו אמיתי שלך, ויוצאים מכל שיעור עם תוצאה שאפשר להשתמש בה.</p>
-      </div>
-    </div>
-
-    <div class="reveal" style="text-align:center; margin-top:36px;">
-      <a class="btn-whatsapp" href="https://wa.me/972546500795?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%95%D7%A0%D7%99%D7%99%D7%9F%20%D7%91%D7%A9%D7%99%D7%A2%D7%95%D7%A8%D7%99%D7%9D%20%D7%A4%D7%A8%D7%98%D7%99%D7%99%D7%9D%201-%D7%A2%D7%9C-1%20%D7%91-AI.%20%D7%90%D7%A4%D7%A9%D7%A8%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%3F" target="_blank" rel="noopener">דברו איתי על שיעור פרטי בוואטסאפ ←</a>
-      <p class="cta-sub" style="margin-top:14px;">או <a href="#register" style="color:var(--brand);">השאירו פרטים</a> ונחזור אליכם לתיאום שיחת היכרות קצרה.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section class="faq-section" id="faq">
-  <div class="container">
-    <div class="section-title reveal">
-      <span class="kicker">שאלות נפוצות</span>
-      <h2>כל מה ש<em>חששתם לשאול</em></h2>
-      <p>אם השאלה שלכם לא כאן — שלחו הודעה בוואטסאפ ותקבלו תשובה אישית באותו היום.</p>
-    </div>
-
-    <div class="faq-list reveal">
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">אנחנו לא טכניים בכלל. הקורס מתאים לנו?</button>
-        <div class="faq-answer">
-          כן, וזה בדיוק קהל היעד. הקורס נבנה לאנשים בלי רקע טכני — נסביר כל מושג חדש, נראה כל פעולה צעד-צעד. אנשים בני 60+ עוברים את הקורס ומסיימים עם כלים אמיתיים.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">כמה זמן ביום צריך להקדיש?</button>
-        <div class="faq-answer">
-          השיעור עצמו 45-55 דקות, פעם בשבוע. בנוסף שיעורי בית של כשעה (אופציונליים — מי שעוקב לאט יותר יכול לעשות אותם בקצב שלו). סה"כ ~2-3 שעות בשבוע.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">מה אם נפספס שיעור?</button>
-        <div class="faq-answer">
-          כל שיעור מוקלט ועולה לאזור האישי תוך 24 שעות. בנוסף, המצגת המלאה זמינה לעיון בכל עת. אפשר לחזור על שיעור גם חודש אחרי שעבר.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">האם יש תמיכה בזמן הקורס?</button>
-        <div class="faq-answer">
-          כן. יש קבוצת WhatsApp עם תמיכה ישירה ממאיר. אפשר לשאול כל שאלה. בנוסף, תוך כדי השיעורים בזום יש זמן ייעודי לשאלות.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">איזה מנויים בתשלום צריך?</button>
-        <div class="faq-answer">
-          רק שניים: <strong>Claude Pro</strong> (חיוני) ב-$20 לחודש, ו-<strong>Cursor</strong> (מספיק בגרסה החינמית). שאר הכלים — GitHub, Google Sheets, Apps Script — חינמיים לחלוטין.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">איזה מחשב צריך?</button>
-        <div class="faq-answer">
-          Mac (M1 ומעלה) או Windows 10+ עם 16GB RAM ומעלה, מעבד i5 דור 10+ או שווה ערך. רוב המחשבים האישיים מ-5 השנים האחרונות עומדים בדרישות.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">האם יש המשך אחרי הקורס?</button>
-        <div class="faq-answer">
-          כן. הקהילה ממשיכה לאחר הקורס — סטודנטים שעברו את Starter ממשיכים לבנות יחד, לשתף, ולהיעזר. בנוסף, יש קורסים מתקדמים יותר לאלו שרוצים להעמיק.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">איך נדע שהקורס מתאים לנו?</button>
-        <div class="faq-answer">
-          השאירו פרטים — נחזור אליכם, נתאם שיחה קצרה (15 דקות), ונבדוק יחד אם הקורס מתאים. אם לא — נכוון אתכם לאן שכן מתאים.
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">אפשר שיעורים פרטיים במקום קבוצה?</button>
-        <div class="faq-answer">
-          בהחלט. יש אפשרות לשיעורים פרטיים 1-על-1 אונליין, מותאמים אישית למטרה ולקצב שלך — עובדים על הפרויקט האמיתי שלך. <a href="#private">פרטים בסקשן השיעורים הפרטיים</a> או שלחו הודעה בוואטסאפ.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ REGISTER ============ -->
-<section class="cta-section" id="register">
-  <div class="container">
-    <span class="kicker reveal" style="justify-content:center;">הרשמה למחזור הבא</span>
-    <h2 class="reveal">מוכנים לקחת את <em>הצעד הראשון</em>?</h2>
-    <p class="cta-sub reveal">השאירו פרטים — נחזור אליכם תוך 24 שעות לשיחת היכרות קצרה (15 דקות). נבדוק התאמה, נענה על שאלות, ואם זה לא מתאים — נכוון אתכם הלאה. בלי לחץ.</p>
-
-    <form class="cta-form reveal" id="contactForm" onsubmit="return submitForm(event)">
+    <form class="form" id="leadForm" onsubmit="return submitLead(event)">
       <input type="hidden" name="access_key" value="9ba5abaf-d501-44db-a33d-d5028c89e0ef">
-      <input type="hidden" name="subject" value="פנייה חדשה — AI Lab Starter">
-      <input type="hidden" name="from_name" value="AI Lab Starter — אתר תדמית">
-      <div class="form-group">
-        <label for="name">שם מלא</label>
-        <input type="text" id="name" name="name" placeholder="הכניסו את השם שלכם" required>
+      <input type="hidden" name="subject" value="הרשמה מוקדמת — AI Lab Starter, המחזור הקרוב">
+      <input type="hidden" name="from_name" value="AI Lab Starter — אתר">
+      <div class="fh"><b>לשמור לי מקום</b><span>הרשמה מוקדמת · <b><span class="nw"><span data-p="starterEarly">990</span> ₪</span></b></span></div>
+      <div class="field"><label for="name">שם</label><input type="text" id="name" name="name" placeholder="איך קוראים לכם?" required autocomplete="name"></div>
+      <div class="field"><label for="phone">טלפון (וואטסאפ)</label><input type="tel" id="phone" name="phone" placeholder="050-0000000" required autocomplete="tel" dir="ltr" style="text-align:right"></div>
+      <div class="field"><label for="email">אימייל (לא חובה)</label><input type="email" id="email" name="email" placeholder="name@example.com" autocomplete="email" dir="ltr" style="text-align:right"></div>
+      <div class="field"><label for="goal">מה מעניין אתכם? (לא חובה)</label>
+        <select id="goal" name="goal">
+          <option value="">עדיין לא יודעים, וזה בסדר</option>
+          <option>Starter: אתר אמיתי באוויר</option>
+          <option>שני הקורסים: Starter + הסוכנים</option>
+          <option>קורס הסוכנים בלבד</option>
+          <option>שיעורים פרטיים 1-על-1</option>
+        </select>
       </div>
-      <div class="form-group">
-        <label for="phone">מספר טלפון</label>
-        <input type="tel" id="phone" name="phone" placeholder="050-1234567" required>
-      </div>
-      <div class="form-group">
-        <label for="email">אימייל</label>
-        <input type="email" id="email" name="email" placeholder="your@email.com" required>
-      </div>
-      <div class="form-buttons">
-        <button type="submit" class="btn-primary">שלחו פנייה ←</button>
-        <button type="button" class="btn-whatsapp" onclick="sendWhatsApp()">שלחו בוואטסאפ</button>
-      </div>
-      <div class="form-success" id="formSuccess">
-        ✓ הפנייה התקבלה. נחזור אליכם תוך 24 שעות.
-      </div>
+      <button type="submit" class="btn acc">לשמור לי מקום <span class="ar">←</span></button>
+      <div class="alt"><span>הפרטים נשארים אצל מאיר בלבד.</span><a href="#" onclick="leadWhatsApp();return false;">או ישר בוואטסאפ</a></div>
+      <div class="ok" id="formOk">הפרטים התקבלו. מאיר חוזר אליכם תוך 24 שעות.</div>
     </form>
   </div>
 </section>
 
-<!-- ============ GUIDES / BLOG FUNNEL ============ -->
-<section class="problem" id="guides">
-  <div class="container">
-    <div class="section-title reveal">
-      <span class="kicker">להעמקה</span>
-      <h2>מדריכים <em>בעברית</em> שכדאי לקרוא</h2>
-      <p>לפני שמתחילים — כמה מדריכים חינמיים מהבלוג שלנו, שיעזרו לך להבין על מה כל הסיפור.</p>
+<!-- ================= FAQ ================= -->
+<section class="ch wrap" id="faq">
+  <div class="ch-head center rv"><span class="n">?</span><h2>שאלות ששואלים אותנו.</h2></div>
+  <div class="faq">
+    <details><summary>אנחנו לא טכנולוגיים בכלל. באמת שזה מתאים לנו?<i></i></summary><div class="a">כן, וזה בדיוק קהל היעד. מספיק שאתם יודעים להשתמש בגוגל ובזום. כל מושג מוסבר בעברית פשוטה, כל פעולה מודגמת צעד אחר צעד, ואת הכלים מתקינים יחד במפגש. גם בני 60 פלוס עוברים את הקורס.</div></details>
+    <details><summary>צריך לדעת לתכנת?<i></i></summary><div class="a">לא. בקורס לא כותבים שורת קוד. ה-AI כותב, ואתם מתארים בעברית מה צריך ובודקים את התוצאה על המסך.</div></details>
+    <details><summary>מה זה סוכן AI, ואיפה לומדים את זה?<i></i></summary><div class="a">סוכן הוא עוזר שרץ לבד בזמן קבוע, לפי הוראות שלכם, ומחובר לכלים שלכם: גיליון, מייל, יומן. זה הנושא של קורס הסוכנים, הצעד הבא אחרי Starter: חמישה מפגשים שבהם בונים סוכן על הפרויקט שלכם, מאפיון ועד השקה.</div></details>
+    <details><summary>כמה זה עולה, ואיך משלמים?<i></i></summary><div class="a"><span class="nw"><span data-p="starterEarly">990</span> ₪</span> בהרשמה מוקדמת (המחיר המלא <span class="nw"><span data-p="starterFull">1,290</span> ₪</span>). בכרטיס אשראי או בביט, בתשלום אחד. משלמים רק אחרי שנקבע תאריך, ומי שברשימה המחיר נעול לו.</div></details>
+    <details><summary>איך יודעים שזה מתאים לנו לפני שמשלמים?<i></i></summary><div class="a">פגישת היכרות של 15 דקות עם מאיר, ללא עלות וללא התחייבות: מספרים מה אתם רוצים לבנות, שומעים איך הקורס עובד, ומחליטים. משלמים רק אחרי שנקבע תאריך. ביטול עד 14 יום מההרשמה ולפני תחילת הקורס מזכה בהחזר מלא, והמדיניות המלאה ב<a href="https://ai-lab.co.il/terms.html" target="_blank" rel="noopener">תקנון</a>.</div></details>
+    <div class="faq-more" id="faqMore">
+    <details><summary>מה אם נפספס מפגש?<i></i></summary><div class="a">כל מפגש מוקלט ועולה לאזור האישי תוך 24 שעות. המצגת המלאה זמינה בכל עת, ואפשר לחזור על מפגש גם חודש אחרי.</div></details>
+    <details><summary>איזה מנויים צריך חוץ מהקורס?<i></i></summary><div class="a">מנוי אחד: Claude Pro, <bdi dir="ltr">$20</bdi> לחודש, ואפשר לבטל אחרי הקורס. Cursor מספיק בגרסה החינמית, ושאר הכלים (GitHub, Google Sheets, Apps Script) חינמיים.</div></details>
+    <details><summary>איזה מחשב צריך?<i></i></summary><div class="a">Mac (M1 ומעלה) או Windows 10 ומעלה עם 16GB זיכרון. רוב המחשבים מחמש השנים האחרונות מתאימים. על טלפון בלבד אי אפשר.</div></details>
+    <details><summary>כמה זמן זה דורש בשבוע?<i></i></summary><div class="a">מפגש של 45 עד 55 דקות, ועוד כשעה תרגול למי שרוצה. בסך הכל שעתיים עד שלוש בשבוע.</div></details>
+    <details><summary>מי מלמד?<i></i></summary><div class="a">מאיר לביא, מייסד AI Lab. יזם ומשקיע, סמנכ"ל פיתוח עסקי לשעבר בהייטק, ומי שמלמד ב-AI Lab ילדים, נוער ומבוגרים לעבוד עם AI. הוא מנחה את כל המפגשים בעצמו.</div></details>
+    <details><summary>מה בונים בקורס?<i></i></summary><div class="a">אתר אמיתי שלכם: דף נחיתה, טופס שמזרים כל פנייה לגיליון, והתראה במייל על כל ליד. בכתובת חיה שאפשר לשלוח ללקוחות. האתר נשאר שלכם, וכך גם ההקלטות, המצגות וספריית הפרומפטים באזור האישי.</div></details>
+    <details><summary>איך נדע שזה מתאים לנו?<i></i></summary><div class="a">משאירים פרטים, ומאיר חוזר אליכם לשיחת היכרות של 15 דקות, חינם. אם זה לא מתאים, הוא יגיד, ויכוון למה שכן.</div></details>
+    <details><summary>יש גם שיעורים פרטיים?<i></i></summary><div class="a">כן. שיעור פרטי 1-על-1 בזום, <span class="nw"><span data-p="private">390</span> ₪</span> ל-60 דקות, או 4 שיעורים ב-<span class="nw"><span data-p="privatePack">1,390</span> ₪</span>. על הפרויקט שלכם, בקצב שלכם.</div></details>
     </div>
-
-    <div class="problem-grid reveal">
-      <a class="problem-card" href="https://ai-lab.co.il/blog/ai-course-for-adults.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5L2 10l10 5l10-5z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg></div>
-        <h3>קורס AI למבוגרים — אף פעם לא מאוחר</h3>
-        <p>למה דווקא עכשיו זה הזמן הנכון להתחיל, ואיך בוחרים קורס AI טוב למבוגרים. קראו עוד ←</p>
-      </a>
-      <a class="problem-card" href="https://ai-lab.co.il/blog/what-is-claude.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 14.5l.7 1.8l1.8.7l-1.8.7l-.7 1.8l-.7-1.8l-1.8-.7l1.8-.7z"/></svg></div>
-        <h3>מה זה Claude? מדריך למתחילים</h3>
-        <p>הכלי המרכזי שעובדים איתו בקורס — מה הוא יודע לעשות ואיך מתחילים. קראו עוד ←</p>
-      </a>
-      <a class="problem-card" href="https://ai-lab.co.il/blog/build-website-with-ai.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 4 9a15 15 0 0 1-4 9a15 15 0 0 1-4-9a15 15 0 0 1 4-9z"/></svg></div>
-        <h3>איך בונים אתר עם בינה מלאכותית</h3>
-        <p>בדיוק מה שתעשה בקורס — לבנות אתר אמיתי בלי לכתוב קוד. קראו עוד ←</p>
-      </a>
-      <a class="problem-card" href="https://ai-lab.co.il/blog/how-to-choose-ai-course.html" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M16 8l-2.5 5.5L8 16l2.5-5.5z"/></svg></div>
-        <h3>איך לבחור קורס בינה מלאכותית 2026</h3>
-        <p>7 שאלות שכדאי לשאול לפני שנרשמים לכל קורס AI. קראו עוד ←</p>
-      </a>
-    </div>
-
-    <div class="reveal" style="text-align:center; margin-top:36px;">
-      <a class="btn-secondary" href="https://ai-lab.co.il/blog/" target="_blank" rel="noopener">לכל המדריכים בבלוג ←</a>
-    </div>
+    <button type="button" class="faq-btn" id="faqBtn">עוד שאלות</button>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>AI Lab <span class="footer-tag">STARTER</span></h4>
-        <p>קורס בינה מלאכותית למתחילים. ללא רקע טכני. עם תוצאות אמיתיות.</p>
-        <p style="margin-top:10px;">מופעל ע"י מאיר לביא · MEIR LAVI</p>
-        <div class="footer-social">
-          <a href="https://www.instagram.com/ai.lab.il" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
-          <a href="https://www.tiktok.com/@ai.labisrael" target="_blank" rel="noopener" aria-label="TikTok">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13.2a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-.81-.07 4.86 4.86 0 01-.38-4.56z"/></svg>
-          </a>
-          <a href="https://www.facebook.com/share/18CXmH7Zum/" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-          <a href="https://www.linkedin.com/in/meirlavi" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>יצירת קשר</h4>
-        <a href="tel:054-6500795">054-6500795</a>
-        <a href="mailto:laviemb@gmail.com">laviemb@gmail.com</a>
-        <a href="https://wa.me/972546500795" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="https://chat.whatsapp.com/LpbKfD25gYF6Tx2K9Lj5WG" target="_blank" rel="noopener">קבוצת WhatsApp</a>
-      </div>
-      <div class="footer-col">
-        <h4>מפת אתר</h4>
-        <a href="#about">על הקורס</a>
-        <a href="#program">סילבוס מלא</a>
-        <a href="#portal-showcase">האזור האישי</a>
-        <a href="#instructor">על המרצה</a>
-        <a href="#faq">שאלות נפוצות</a>
-        <a href="#register">הרשמה</a>
-        <a href="./login.html">כניסה לאזור אישי</a>
-      </div>
-      <div class="footer-col">
-        <h4>קורסים נוספים</h4>
-        <a class="footer-kids-cta" href="https://ai-lab.co.il" target="_blank" rel="noopener">
-          <span class="footer-kids-eyebrow">לילדים ונוער</span>
-          <span class="footer-kids-title">AI Lab Kids</span>
-          <span class="footer-kids-sub">קורס יזמות ובינה מלאכותית לגילי 9-18 ←</span>
-        </a>
-      </div>
+<footer class="wrap">
+  <div class="foot">
+    <div>
+      <div class="brand">AI Lab <small>STARTER</small></div>
+      <p>קורס AI מעשי למבוגרים ומתחילים, חי בזום, בלי רקע טכני. בונים אתר אמיתי. מנחה: מאיר לביא.</p>
     </div>
-    <div class="footer-bottom">
-      <div>© <span id="year"></span> AI Lab · כל הזכויות שמורות · MEIR LAVI</div>
-      <div>STARTER · v1.0</div>
+    <div>
+      <h4>יצירת קשר</h4>
+      <a href="tel:054-6500795">054-6500795</a>
+      <a href="mailto:laviemb@gmail.com">laviemb@gmail.com</a>
+      <a href="https://wa.me/972546500795" target="_blank" rel="noopener">וואטסאפ</a>
+      <a href="https://chat.whatsapp.com/LpbKfD25gYF6Tx2K9Lj5WG" target="_blank" rel="noopener">קבוצת הקהילה</a>
     </div>
+    <details class="mx foot-more" open><summary>עוד קישורים</summary>
+    <div class="foot-more-grid">
+    <div>
+      <h4>מדריכים בחינם</h4>
+      <a href="https://ai-lab.co.il/blog/ai-course-for-adults.html" target="_blank" rel="noopener">קורס AI למבוגרים: אף פעם לא מאוחר</a>
+      <a href="https://ai-lab.co.il/blog/what-is-claude.html" target="_blank" rel="noopener">מה זה Claude?</a>
+      <a href="https://ai-lab.co.il/blog/build-website-with-ai.html" target="_blank" rel="noopener">איך בונים אתר עם AI</a>
+      <a href="https://ai-lab.co.il/blog/how-to-choose-ai-course.html" target="_blank" rel="noopener">איך לבחור קורס AI</a>
+    </div>
+    <div>
+      <h4>עוד</h4>
+      <a href="./login.html">כניסה לאזור האישי</a>
+      <a href="https://ai-lab.co.il" target="_blank" rel="noopener">AI Lab לילדים ונוער, <span class="nw">גילאי 9 עד 17</span></a>
+      <a href="https://www.instagram.com/ai.lab.il" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.tiktok.com/@ai.labisrael" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.facebook.com/share/18CXmH7Zum/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.linkedin.com/in/meirlavi" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    </div>
+    </details>
+  </div>
+  <div class="foot-b">
+    <div>© <span id="year"></span> AI Lab · מאיר לביא</div>
+    <div class="mono">STARTER / 2026</div>
   </div>
 </footer>
 
-<!-- Floating WhatsApp -->
-<a href="https://wa.me/972546500795?text=%D7%94%D7%99%D7%99%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A9%D7%90%D7%9C%D7%94%20%D7%A2%D7%9C%20%D7%94%D7%A7%D7%95%D7%A8%D7%A1"
-   target="_blank" rel="noopener"
-   class="wa-float" aria-label="שלחו הודעה בוואטסאפ">
-  <span class="wa-float-label">יש שאלה? דברו איתנו ←</span>
-  <span class="wa-float-btn" aria-hidden="true">
-    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.47-.149-.669.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/>
-    </svg>
-  </span>
-</a>
+<!-- בר ניווט תחתון (מובייל) -->
+<nav class="mbar" id="mbar" aria-label="ניווט מהיר">
+  <a href="#price" class="mb"><svg class="line" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>המחיר</span></a>
+  <a href="#seat" class="mb primary">לשמור לי מקום</a>
+  <a href="https://wa.me/972546500795?text=%D7%94%D7%99%D7%99%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A9%D7%90%D7%9C%D7%94%20%D7%A2%D7%9C%20%D7%94%D7%A7%D7%95%D7%A8%D7%A1" target="_blank" rel="noopener" class="mb"><svg class="fill" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.47-.149-.669.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg><span>וואטסאפ</span></a>
+</nav>
 
-<script src="./script.js"></script>
+<script>
+/* ============ מחירים: משנים כאן בלבד, הדף מתעדכן לבד ============ */
+const PRICES = {
+  starterEarly: 990,    // Starter, הרשמה מוקדמת
+  starterFull: 1290,    // Starter, מחיר מלא אחרי פרסום התאריך
+  agentsEarly: 1090,    // קורס הסוכנים, בוגרים / מוקדם
+  agentsFull: 1390,     // קורס הסוכנים, מחיר מלא
+  bundleEarly: 1890,    // שני הקורסים, מוקדם
+  private: 390,         // שיעור פרטי 60 דק'
+  privatePack: 1390     // 4 שיעורים פרטיים
+};
+PRICES.bundleSum = PRICES.starterEarly + PRICES.agentsEarly;
+(function () {
+  const fmt = (n) => n.toLocaleString('en-US');
+  document.querySelectorAll('[data-p]').forEach(el => { const v = PRICES[el.dataset.p]; if (v != null) el.textContent = fmt(v); });
+})();
+
+/* ============ בסיס: מצב סטטי, Lenis, ScrollTrigger ============ */
+(function(){ const m = { '#program':'#meets', '#register':'#seat', '#about':'#diff', '#private':'#seat', '#instructor':'#who', '#portal-showcase':'#how', '#testimonials':'#quotes', '#guides':'#faq' }; const t = m[location.hash]; if (t) history.replaceState(null, '', t); })();
+window.STATIC = /static/.test(location.search);
+window.REDUCE = window.STATIC || matchMedia('(prefers-reduced-motion: reduce)').matches;
+window.HERO = { p: window.STATIC ? 1 : 0, active: true };
+if (window.STATIC) document.documentElement.classList.add('static');
+if (window.REDUCE) document.documentElement.classList.add('reduce');
+
+(function () {
+  const R = window.REDUCE;
+  gsap.registerPlugin(ScrollTrigger);
+  document.documentElement.classList.add('gs');
+
+  let lenis = null;
+  if (!R && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({ autoRaf: false, lerp: 0.085, wheelMultiplier: 0.95 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((t) => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href'); if (id.length < 2) return;
+    const el = document.querySelector(id); if (!el) return;
+    e.preventDefault();
+    if (lenis) lenis.scrollTo(el, { offset: 0, duration: 1.4 }); else el.scrollIntoView({ behavior: 'smooth' });
+  }));
+
+  if (location.hash && document.querySelector(location.hash)) setTimeout(() => { const el = document.querySelector(location.hash); if (lenis) lenis.scrollTo(el, { immediate: true }); else el.scrollIntoView(); }, 300);
+  const nav = document.getElementById('nav');
+  ScrollTrigger.create({ start: 40, end: 'max', onToggle: (st) => nav.classList.toggle('scrolled', st.isActive) });
+
+  // ---- hero ----
+  const hs = [1, 2, 3].map(i => document.getElementById('hs' + i));
+  const hint = document.getElementById('hint');
+  const heroCopy = document.getElementById('heroCopy');
+  if (!R) {
+    gsap.set(hs, { autoAlpha: 0 }); gsap.set(hs[0], { autoAlpha: 1 });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#hero', start: 'top top', end: '+=190%', pin: true, scrub: 1.1, anticipatePin: 1,
+        onUpdate: (st) => { window.HERO.p = st.progress; },
+        onToggle: (st) => { window.HERO.active = st.isActive; }
+      }
+    });
+    tl.to(hint, { autoAlpha: 0, duration: .06 }, 0)
+      .to(heroCopy, { y: -28, duration: 1, ease: 'none' }, 0)
+      .to(hs[0], { autoAlpha: 0, y: -44, duration: .14, ease: 'power2.in' }, .18)
+      .fromTo(hs[1], { autoAlpha: 0, y: 44 }, { autoAlpha: 1, y: 0, duration: .16, ease: 'power2.out' }, .30)
+      .to(hs[1], { autoAlpha: 0, y: -44, duration: .14, ease: 'power2.in' }, .56)
+      .fromTo(hs[2], { autoAlpha: 0, y: 44 }, { autoAlpha: 1, y: 0, duration: .18, ease: 'power2.out' }, .66)
+      .to({}, { duration: .16 });
+  } else {
+    gsap.set(hs, { autoAlpha: 0 }); gsap.set(hs[2], { autoAlpha: 1 }); if (hint) hint.style.display = 'none';
+  }
+
+  // ---- 02 ----
+  document.querySelectorAll('.scrub').forEach(el => {
+    const words = el.textContent.trim().split(/\s+/);
+    const accFrom = words.findIndex(w => w.includes(':'));
+    el.innerHTML = words.map((w, i) => `<span class="w${accFrom >= 0 && i > accFrom ? ' acc' : ''}">${w}</span>`).join(' ');
+    const ws = el.querySelectorAll('.w');
+    if (R || matchMedia('(max-width: 760px)').matches) return;
+    gsap.to(ws, { opacity: 1, stagger: .06, duration: .5, ease: 'none',
+      scrollTrigger: { trigger: el, start: 'top 80%', end: 'bottom 40%', scrub: true } });
+  });
+  const seg = document.getElementById('seg'), cols = document.getElementById('cols');
+  if (seg) seg.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    const course = b.dataset.t === 'course';
+    seg.classList.toggle('course', course); cols.classList.toggle('course', course);
+    seg.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+  }));
+
+  // ---- 03 ----
+  const numEl = document.getElementById('bigNum');
+  const meets = gsap.utils.toArray('.meet');
+  function setNum(i) {
+    const t = String(i + 1).padStart(2, '0');
+    if (numEl.textContent === t) return;
+    numEl.textContent = t;
+    if (R) return;
+    gsap.fromTo(numEl, { '--wd': 62.5, opacity: .25, y: 40 }, { '--wd': 100, opacity: 1, y: 0, duration: .8, ease: 'power3.out', overwrite: true });
+  }
+  if (!R) meets.forEach((row, i) => ScrollTrigger.create({ trigger: row, start: 'top 60%', end: 'bottom 60%', onEnter: () => setNum(i), onEnterBack: () => setNum(i) }));
+  const list = document.getElementById('meetList'), dots = document.querySelectorAll('#dots i');
+  if (list && dots.length) list.addEventListener('scroll', () => {
+    const w = list.firstElementChild.getBoundingClientRect().width + 12;
+    const i = Math.min(dots.length - 1, Math.round(Math.abs(list.scrollLeft) / w));
+    dots.forEach((d, k) => d.classList.toggle('on', k === i));
+  }, { passive: true });
+
+  // ---- 09: מסילת ההמלצות ----
+  const qr = document.getElementById('qrail');
+  if (qr) {
+    const step = () => qr.firstElementChild.getBoundingClientRect().width + 14;
+    document.querySelectorAll('.qbtn').forEach(b => b.addEventListener('click', () => qr.scrollBy({ left: (b.dataset.dir === 'next' ? -1 : 1) * step(), behavior: 'smooth' })));
+    const qd = document.querySelectorAll('#qdots i'); if (qd[0]) qd[0].classList.add('on');
+    qr.addEventListener('scroll', () => { const i = Math.min(qd.length - 1, Math.round(Math.abs(qr.scrollLeft) / step())); qd.forEach((d, k) => d.classList.toggle('on', k === i)); }, { passive: true });
+  }
+
+  // ---- rail ----
+  const rail = document.getElementById('rail'), railLinks = rail.querySelectorAll('a');
+  gsap.utils.toArray('.ch').forEach(sec => {
+    ScrollTrigger.create({ trigger: sec, start: 'top 50%', end: 'bottom 50%',
+      onToggle: (st) => { if (st.isActive) { railLinks.forEach(a => a.classList.toggle('on', a.dataset.ch === sec.id)); rail.classList.toggle('inv', sec.id === 'seat'); } } });
+  });
+
+  // ---- reveals ----
+  if (!R) gsap.utils.toArray('.rv').forEach(el => {
+    gsap.fromTo(el, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 86%', once: true, onEnter: () => el.classList.add('in') } });
+  });
+
+  // ---- cursor + magnetic ----
+  const fine = matchMedia('(pointer:fine)').matches && innerWidth > 760;
+  const cur = document.getElementById('cur');
+  if (fine && cur && !R) {
+    document.documentElement.classList.add('cur-on');
+    const dot = cur.querySelector('i'), ring = cur.querySelector('b');
+    const qx = gsap.quickTo(ring, 'x', { duration: .35, ease: 'power3' }), qy = gsap.quickTo(ring, 'y', { duration: .35, ease: 'power3' });
+    addEventListener('pointermove', (e) => { gsap.set(dot, { x: e.clientX, y: e.clientY }); qx(e.clientX); qy(e.clientY); });
+    document.querySelectorAll('a,button,summary,.btn').forEach(el => {
+      el.addEventListener('pointerenter', () => cur.classList.add('hov'));
+      el.addEventListener('pointerleave', () => cur.classList.remove('hov'));
+    });
+    document.querySelectorAll('.btn').forEach(b => {
+      const mx = gsap.quickTo(b, 'x', { duration: .4, ease: 'power3' }), my = gsap.quickTo(b, 'y', { duration: .4, ease: 'power3' });
+      b.addEventListener('pointermove', (e) => { const r = b.getBoundingClientRect(); mx((e.clientX - r.left - r.width / 2) * .25); my((e.clientY - r.top - r.height / 2) * .35); });
+      b.addEventListener('pointerleave', () => { mx(0); my(0); });
+    });
+  } else if (cur) cur.remove();
+
+  // ---- קיפולים במובייל ----
+  const mq = matchMedia('(max-width: 860px)');
+  const expandAll = /expand/.test(location.search);
+  function applyMx() {
+    document.querySelectorAll('details.mx').forEach(d => {
+      if (!mq.matches || expandAll) d.open = true;
+      else if (!d.dataset.touched) d.open = false;
+    });
+    ScrollTrigger.refresh();
+  }
+  document.querySelectorAll('details.mx').forEach(d => d.addEventListener('toggle', () => { if (mq.matches) d.dataset.touched = '1'; }));
+  applyMx(); mq.addEventListener('change', applyMx);
+  const faqMore = document.getElementById('faqMore'), faqBtn = document.getElementById('faqBtn');
+  if (faqBtn && faqMore) { faqBtn.textContent = 'עוד ' + faqMore.querySelectorAll('details').length + ' שאלות'; faqBtn.addEventListener('click', () => { faqMore.classList.add('open'); faqBtn.classList.add('done'); ScrollTrigger.refresh(); }); if (expandAll) { faqMore.classList.add('open'); faqBtn.classList.add('done'); } }
+  const mbar = document.getElementById('mbar'), leadForm = document.getElementById('leadForm');
+  if (mbar && leadForm && 'IntersectionObserver' in window) new IntersectionObserver((e) => mbar.classList.toggle('hide', e[0].isIntersecting), { threshold: 0.15 }).observe(leadForm);
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
+})();
+
+/* ============ סוכן נראות: בדיקת פריסה אוטומטית (?static=1&audit=1) ============ */
+function runAudit() {
+  const W = innerWidth, H = document.documentElement.scrollHeight, issues = [];
+  const vis = (el) => { if (el.closest('details:not([open])') && !el.closest('summary')) return false; if (el.checkVisibility && !el.checkVisibility({ contentVisibilityAuto: true, opacityProperty: true, visibilityProperty: true })) return false; const cs = getComputedStyle(el); if (cs.display === 'none' || cs.visibility === 'hidden' || parseFloat(cs.opacity) === 0) return false; const r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
+  const path = (el) => { let s = el.tagName.toLowerCase(); if (el.id) s += '#' + el.id; else if (typeof el.className === 'string' && el.className.trim()) s += '.' + el.className.trim().split(/\s+/).slice(0, 2).join('.'); const sec = el.closest('section,footer,header'); return (sec && sec !== el ? (sec.id ? '#' + sec.id : sec.tagName.toLowerCase()) + ' > ' : '') + s; };
+  const txt = (el) => (el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 40);
+  const skip = (el) => el.id === 'auditOut' || !!el.closest('#gl,.cur,.rail,.marq,.mbar,.nav,script,style');
+  const all = Array.from(document.body.querySelectorAll('*')).filter(el => !skip(el) && vis(el));
+  if (document.documentElement.scrollWidth > W + 1) issues.push({ type: 'page-overflow-x', detail: document.documentElement.scrollWidth + ' > ' + W });
+  for (const el of all) { const r = el.getBoundingClientRect(); if ((r.right > W + 1 || r.left < -1) && !(el.closest('.list,.qrail') && el.closest('.list,.qrail') !== el)) issues.push({ type: 'outside-viewport-x', el: path(el), left: Math.round(r.left), right: Math.round(r.right), text: txt(el) }); }
+  for (const el of all) {
+    const cs = getComputedStyle(el); if (!/hidden|clip/.test(cs.overflowX + cs.overflowY)) continue;
+    const cr = el.getBoundingClientRect();
+    for (const d of el.querySelectorAll('*')) { if (skip(d) || !vis(d)) continue; if (!d.textContent.trim() && d.tagName !== 'IMG') continue; const r = d.getBoundingClientRect(); const m = Math.max(cr.left - r.left, r.right - cr.right, cr.top - r.top, r.bottom - cr.bottom); if (m > 2) issues.push({ type: 'clipped', container: path(el), el: path(d), overflowPx: Math.round(m), text: txt(d) }); }
+  }
+  for (const el of all) { const hasText = Array.from(el.childNodes).some(n => n.nodeType === 3 && n.textContent.trim()); if (!hasText) continue; const cs = getComputedStyle(el); if (/auto|scroll/.test(cs.overflowX)) continue; if (el.clientWidth > 0 && el.scrollWidth > el.clientWidth + 2) issues.push({ type: 'text-overflow', el: path(el), scrollW: el.scrollWidth, clientW: el.clientWidth, text: txt(el) }); }
+  const textEls = all.filter(el => /^(H1|H2|H3|H4|P|LI|SPAN|B|SMALL|A|BUTTON|LABEL|SUMMARY|DIV|OL|UL)$/.test(el.tagName) && Array.from(el.childNodes).some(n => n.nodeType === 3 && n.textContent.trim()));
+  const rects = textEls.map(el => ({ el, r: el.getBoundingClientRect(), o: parseFloat(getComputedStyle(el).opacity) }));
+  for (let i = 0; i < rects.length; i++) for (let j = i + 1; j < rects.length; j++) {
+    const A = rects[i], B = rects[j]; if (A.o < .3 || B.o < .3 || A.el.contains(B.el) || B.el.contains(A.el)) continue;
+    const ox = Math.min(A.r.right, B.r.right) - Math.max(A.r.left, B.r.left), oy = Math.min(A.r.bottom, B.r.bottom) - Math.max(A.r.top, B.r.top);
+    if (ox > 4 && oy > 4) issues.push({ type: 'overlap', a: path(A.el), b: path(B.el), ox: Math.round(ox), oy: Math.round(oy), ta: txt(A.el), tb: txt(B.el) });
+  }
+  for (const el of all) {
+    const cs = getComputedStyle(el); const boxed = (cs.borderLeftStyle !== 'none' && parseFloat(cs.borderLeftWidth) > 0) || (cs.borderRightStyle !== 'none' && parseFloat(cs.borderRightWidth) > 0) || (cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && cs.backgroundColor !== 'transparent'); if (!boxed) continue;
+    const cr = el.getBoundingClientRect();
+    for (const d of el.querySelectorAll('h1,h2,h3,b,.ghost,.amount')) { if (!vis(d)) continue; let sc = d.parentElement, scrollInside = false; while (sc && sc !== el) { if (/auto|scroll/.test(getComputedStyle(sc).overflowX)) { scrollInside = true; break; } sc = sc.parentElement; } if (scrollInside) continue; const fs = parseFloat(getComputedStyle(d).fontSize); if (fs < 24) continue; const r = d.getBoundingClientRect(); const hasBg = cs.backgroundColor !== 'rgba(0, 0, 0, 0)' && cs.backgroundColor !== 'transparent'; const side = (st, w) => hasBg || (st !== 'none' && parseFloat(w) > 0); const gaps = []; if (side(cs.borderLeftStyle, cs.borderLeftWidth)) gaps.push(r.left - cr.left); if (side(cs.borderRightStyle, cs.borderRightWidth)) gaps.push(cr.right - r.right); if (side(cs.borderTopStyle, cs.borderTopWidth)) gaps.push(r.top - cr.top); if (side(cs.borderBottomStyle, cs.borderBottomWidth)) gaps.push(cr.bottom - r.bottom); const gap = gaps.length ? Math.min(...gaps) : 99; if (gap < 8) issues.push({ type: 'tight-edge', box: path(el), el: path(d), gapPx: Math.round(gap), text: txt(d) }); }
+  }
+  if (W <= 760) for (const el of all) { if (!/^(A|BUTTON|SUMMARY)$/.test(el.tagName)) continue; const r = el.getBoundingClientRect(); if (r.height < 40 && !el.closest('footer,.alt,.tl-more,.meets-foot,.private,.faq')) issues.push({ type: 'small-tap', el: path(el), h: Math.round(r.height), text: txt(el) }); }
+  for (const el of all) { const fs = parseFloat(getComputedStyle(el).fontSize); if (fs < 11 && el.textContent.trim() && !el.closest('.mono,.n,.foot-b,.brand,.logo')) issues.push({ type: 'tiny-font', el: path(el), fs, text: txt(el) }); }
+  const pre = document.createElement('pre'); pre.id = 'auditOut'; pre.style.cssText = 'position:absolute;left:0;top:0;opacity:0;pointer-events:none';
+  pre.textContent = '@@AUDIT ' + W + 'x' + H + ' ' + JSON.stringify(issues) + ' AUDIT@@'; document.body.appendChild(pre);
+}
+if (/audit/.test(location.search)) addEventListener('load', () => setTimeout(runAudit, 1200));
+
+/* ============ טופס ============ */
+async function submitLead(e) {
+  e.preventDefault();
+  const form = e.target, ok = document.getElementById('formOk'), btn = form.querySelector('button[type="submit"]'), orig = btn.innerHTML;
+  btn.disabled = true; btn.textContent = 'שולח…';
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+    const data = await res.json(); if (!data.success) throw new Error(data.message || 'fail');
+    ok.classList.add('show'); form.reset(); btn.textContent = 'נשלח';
+    setTimeout(() => { btn.disabled = false; btn.innerHTML = orig; }, 3000);
+  } catch (err) { alert('שגיאה בשליחה. נסו שוב, או שלחו הודעה בוואטסאפ.'); btn.disabled = false; btn.innerHTML = orig; }
+  return false;
+}
+function leadWhatsApp() {
+  const name = (document.getElementById('name').value || '').trim(), goal = document.getElementById('goal').value;
+  let msg = 'שלום מאיר! ' + (name ? 'אני ' + name + ', ו' : '') + 'אני רוצה לשמור מקום במחזור הקרוב של AI Lab Starter.';
+  if (goal) msg += ' מה שמעניין אותי: ' + goal + '.';
+  window.open('https://wa.me/972546500795?text=' + encodeURIComponent(msg), '_blank');
+}
+</script>
+
+<script type="module">
+/* ============ ההירו: חלקיקים שמתכנסים מ-AI ל"בונים" ============ */
+import * as THREE from 'three';
+(async function () {
+  const canvas = document.getElementById('gl'); if (!canvas) return;
+  const REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = matchMedia('(max-width: 760px)').matches;
+  const N = isMobile ? 6000 : 14000;
+  let renderer;
+  try { renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true, powerPreference: 'high-performance' }); }
+  catch (e) { canvas.remove(); return; }
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, isMobile ? 1.5 : 2));
+
+  const scene = new THREE.Scene();
+  let W = innerWidth, H = innerHeight;
+  const camera = new THREE.OrthographicCamera(-W / 2, W / 2, H / 2, -H / 2, -2000, 2000);
+  camera.position.z = 500;
+
+  try { await document.fonts.load('900 120px "Noto Serif Hebrew"'); await document.fonts.ready; } catch (e) {}
+
+  function sample(word, cy, frac) {
+    const c = document.createElement('canvas'); c.width = W; c.height = H;
+    const x = c.getContext('2d', { willReadFrequently: true });
+    let px = Math.floor(H * 0.52);
+    const setFont = () => { x.font = `900 ${px}px "Noto Serif Hebrew", serif`; };
+    setFont(); let m = x.measureText(word).width;
+    if (m > W * frac) { px = Math.floor(px * (W * frac) / m); setFont(); }
+    x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(word, W / 2, cy);
+    const d = x.getImageData(0, 0, W, H).data; const pts = []; const step = 2;
+    for (let y = 0; y < H; y += step) for (let xx = 0; xx < W; xx += step) if (d[(y * W + xx) * 4 + 3] > 120) pts.push(xx - W / 2, H / 2 - y);
+    const out = new Float32Array(N * 3); const n = pts.length / 2;
+    for (let i = 0; i < N; i++) {
+      const k = n ? (Math.random() * n | 0) * 2 : 0;
+      out[i * 3] = n ? pts[k] + (Math.random() - .5) * step * 1.4 : (Math.random() - .5) * W;
+      out[i * 3 + 1] = n ? pts[k + 1] + (Math.random() - .5) * step * 1.4 : (Math.random() - .5) * H;
+      out[i * 3 + 2] = (Math.random() - .5) * 60;
+    }
+    return out;
+  }
+  const wordY = () => isMobile ? H * 0.27 : H * 0.40;
+  const geo = new THREE.BufferGeometry();
+  const rand = new Float32Array(N * 3), seed = new Float32Array(N);
+  for (let i = 0; i < N; i++) { rand[i * 3] = (Math.random() - .5) * W * 1.3; rand[i * 3 + 1] = (Math.random() - .5) * H * 1.3; rand[i * 3 + 2] = (Math.random() - .5) * 400; seed[i] = Math.random(); }
+  function buildTargets() {
+    geo.setAttribute('aA', new THREE.BufferAttribute(sample('AI', wordY(), 0.62), 3));
+    geo.setAttribute('aB', new THREE.BufferAttribute(sample('בונים', wordY(), isMobile ? 0.86 : 0.78), 3));
+  }
+  geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(N * 3), 3));
+  geo.setAttribute('aR', new THREE.BufferAttribute(rand, 3));
+  geo.setAttribute('aSeed', new THREE.BufferAttribute(seed, 1));
+  buildTargets();
+
+  const u = {
+    uMix: { value: 0 }, uChaos: { value: 1 }, uTime: { value: 0 }, uSize: { value: isMobile ? 2.4 : 2.1 },
+    uDpr: { value: renderer.getPixelRatio() }, uMouse: { value: new THREE.Vector2(0, 0) },
+    uColA: { value: new THREE.Color('#F1EEE5') }, uColB: { value: new THREE.Color('#10E593') }, uW: { value: W }, uH: { value: H }
+  };
+  const mat = new THREE.ShaderMaterial({
+    uniforms: u, transparent: true, depthWrite: false, depthTest: false, blending: THREE.NormalBlending,
+    vertexShader: `
+      attribute vec3 aA; attribute vec3 aB; attribute vec3 aR; attribute float aSeed;
+      uniform float uMix, uChaos, uTime, uSize, uDpr, uW, uH; uniform vec2 uMouse;
+      varying float vMix; varying float vA;
+      vec3 curl(vec3 p){
+        return vec3(
+          sin(p.y*0.011+uTime*0.55)+sin(p.z*0.017-uTime*0.35),
+          sin(p.z*0.013+uTime*0.45)+sin(p.x*0.009+uTime*0.25),
+          sin(p.x*0.012-uTime*0.6)+sin(p.y*0.015+uTime*0.2));
+      }
+      void main(){
+        vec3 target = mix(aA, aB, uMix);
+        vec3 drift = curl(aR + aSeed*900.0) * (uW*0.06);
+        vec3 chaos = aR + drift;
+        vec3 pos = mix(target, chaos, uChaos);
+        pos += curl(pos*1.7 + aSeed*300.0) * (2.2 + 10.0*uChaos);
+        pos.x += uMouse.x * pos.z * 0.08; pos.y += uMouse.y * pos.z * 0.08;
+        vec4 mv = modelViewMatrix * vec4(pos, 1.0);
+        gl_Position = projectionMatrix * mv;
+        float s = 0.65 + 0.7 * fract(aSeed*7.31);
+        gl_PointSize = uSize * uDpr * s * (1.0 + 0.6*uChaos);
+        vMix = uMix; vA = 0.55 + 0.45*fract(aSeed*3.7);
+      }`,
+    fragmentShader: `
+      precision mediump float; varying float vMix; varying float vA; uniform vec3 uColA, uColB;
+      void main(){
+        vec2 c = gl_PointCoord - 0.5; float d = dot(c,c); if (d > 0.25) discard;
+        float a = smoothstep(0.25, 0.06, d) * vA;
+        gl_FragColor = vec4(mix(uColA, uColB, vMix), a);
+      }`
+  });
+  const points = new THREE.Points(geo, mat); scene.add(points);
+
+  function resize() {
+    W = innerWidth; H = innerHeight;
+    renderer.setSize(W, H, false);
+    camera.left = -W / 2; camera.right = W / 2; camera.top = H / 2; camera.bottom = -H / 2; camera.updateProjectionMatrix();
+    u.uW.value = W; u.uH.value = H;
+    buildTargets();
+  }
+  resize();
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resize, 180); });
+
+  const mouse = new THREE.Vector2(0, 0), mouseT = new THREE.Vector2(0, 0);
+  addEventListener('pointermove', (e) => { mouseT.set((e.clientX / W - .5) * 2, -(e.clientY / H - .5) * 2); }, { passive: true });
+
+  const ease = (t) => 1 - Math.pow(1 - t, 3);
+  const smooth = (t) => t * t * (3 - 2 * t);
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  let intro = 0, last = performance.now(), frames = 0, pS = 0;
+  const STATIC = window.STATIC;
+  if (STATIC || REDUCE) { intro = 1; pS = 1; }
+
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if (intro < 1) intro = Math.min(1, intro + dt / 2.6);
+    pS += (window.HERO.p - pS) * Math.min(1, dt * 6);
+    const t = clamp((pS - 0.10) / 0.64, 0, 1);
+    const mix = smooth(t);
+    const chaosMorph = Math.pow(Math.sin(Math.PI * t), 0.9) * 0.72;
+    const chaosIntro = 1 - ease(intro);
+    u.uMix.value = mix;
+    u.uChaos.value = Math.max(chaosIntro, chaosMorph);
+    u.uTime.value = now / 1000;
+    mouse.lerp(mouseT, 0.06); u.uMouse.value.copy(mouse);
+    const sc = 1 + 0.07 * Math.sin(Math.PI * t);
+    points.scale.set(sc, sc, 1);
+    points.position.y = -pS * H * 0.06;
+    points.rotation.z = mouse.x * 0.012;
+    if (window.HERO.active || STATIC) renderer.render(scene, camera);
+    frames++;
+    if (!(STATIC && frames > 3)) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
