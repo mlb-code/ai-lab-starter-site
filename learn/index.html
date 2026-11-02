@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F8LHTWZEMN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-F8LHTWZEMN');
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#050605">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://starter.ai-lab.co.il/learn/">
+
+  <title>קורס AI מוקלט למבוגרים: Starter ו-Claude Code לעבודה, לומדים לבד | AI Lab Starter</title>
+  <meta name="description" content="שני קורסים מוקלטים בעברית ללמידה עצמית, בלי רקע טכני: Starter (21 שיעורים קצרים, Claude ו-Projects, מסמכים, אקסל, מצגות ואתר) ב-359 ₪, ו-Starter Pro: Claude Code לעבודה (20 שיעורים) ב-490 ₪. שניהם יחד 690 ₪. וידאו, דף עבודה, תרגיל על החומר שלך וסוכן שאלות מתחת לכל סרטון.">
+  <meta name="keywords" content="קורס AI מוקלט, קורס בינה מלאכותית אונליין, קורס Claude, קורס Claude Code למתחילים, קורס AI ללמידה עצמית, קורס AI לשכירים, קורס AI לבעלי עסקים">
+
+  <meta property="og:title" content="קורס AI מוקלט למבוגרים: Starter ו-Claude Code לעבודה | AI Lab Starter">
+  <meta property="og:description" content="לומדים לבד, בקצב שלך. Starter 359 ₪ · Starter Pro: Claude Code לעבודה 490 ₪ · שניהם יחד 690 ₪. בעברית, בלי רקע טכני, עם סוכן שאלות מתחת לכל סרטון.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://starter.ai-lab.co.il/learn/">
+  <meta property="og:locale" content="he_IL">
+  <meta property="og:site_name" content="AI Lab">
+  <meta property="og:image" content="https://starter.ai-lab.co.il/v2-og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="קורס AI מוקלט למבוגרים: Starter ו-Claude Code לעבודה | AI Lab Starter">
+  <meta name="twitter:description" content="לומדים לבד, בקצב שלך. Starter 359 ₪ · Starter Pro: Claude Code לעבודה 490 ₪ · שניהם יחד 690 ₪.">
+  <meta name="twitter:image" content="https://starter.ai-lab.co.il/v2-og-image.jpg">
+  <meta name="geo.region" content="IL">
+  <meta name="author" content="מאיר לביא, AI Lab">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wdth,wght@62.5..100,100..900&family=Noto+Sans+Hebrew:wdth,wght@62.5..100,100..900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Starter — ללמוד לבד, בקצב שלך","description":"קורס AI מוקלט למבוגרים בלי רקע טכני, לשכירים ולבעלי עסקים. 21 שיעורים קצרים (כ-130 דקות) על עבודה יומיומית עם Claude: Projects, מסמכים וכתיבה, אקסל ונתונים, מצגות, אתר משלך, Connectors ומעקב שימוש. וידאו, דף עבודה, תרגיל על החומר שלך, פרומפט להעתקה וסוכן שאלות מתחת לכל סרטון.","provider":{"@type":"EducationalOrganization","name":"AI Lab","url":"https://ai-lab.co.il"},"inLanguage":"he","url":"https://starter.ai-lab.co.il/learn/#c1","educationalLevel":"Beginner","teaches":["עבודה עם Claude","Claude Projects","מסמכים וכתיבה עם AI","אקסל ונתונים עם AI","מצגות עם AI","בניית אתר עם AI","Connectors"],"audience":{"@type":"EducationalAudience","educationalRole":"student","audienceType":"מבוגרים 18+ ללא רקע טכני: שכירים, מנהלים ובעלי עסקים"},"numberOfCredits":0,"offers":{"@type":"Offer","price":"359","priceCurrency":"ILS","availability":"https://schema.org/PreOrder","url":"https://my.ai-lab.co.il/buy/starter-self-paced","category":"Self-paced"},"hasCourseInstance":{"@type":"CourseInstance","courseMode":"online","courseWorkload":"PT2H10M","instructor":{"@type":"Person","name":"מאיר לביא"}}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Course","name":"Starter Pro: Claude Code לעבודה","description":"קורס מוקלט למתקדמים, לבוגרי Starter ולמי שכבר עובד עם Claude: Claude Code על הקבצים והתיקיות שלך, בלי לכתוב קוד. 20 שיעורים (כ-135 דקות): התקנה במק ובווינדוס, מצבי הרשאה, עלות ומכסה, CLAUDE.md, גיבויים, עבודה על עשרות מסמכים וטבלאות, MCP ו-Connectors, Skills, סוכנים, אתר ב-GitHub Pages ואוטומציה שבועית.","provider":{"@type":"EducationalOrganization","name":"AI Lab","url":"https://ai-lab.co.il"},"inLanguage":"he","url":"https://starter.ai-lab.co.il/learn/#c2","educationalLevel":"Intermediate","coursePrerequisites":"Starter (או היכרות בסיסית עם Claude)","teaches":["Claude Code","הרשאות ובטיחות ב-Claude Code","מעקב שימוש ועלות","CLAUDE.md","MCP ו-Connectors","Skills","משימות מתוזמנות","GitHub Pages"],"audience":{"@type":"EducationalAudience","educationalRole":"student","audienceType":"שכירים ובעלי עסקים קטנים, לא מפתחים"},"offers":{"@type":"Offer","price":"490","priceCurrency":"ILS","availability":"https://schema.org/PreOrder","url":"https://my.ai-lab.co.il/buy/starter-claude-code","category":"Self-paced"},"hasCourseInstance":{"@type":"CourseInstance","courseMode":"online","courseWorkload":"PT2H15M","instructor":{"@type":"Person","name":"מאיר לביא"}}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"החבילה: Starter + Starter Pro (Claude Code לעבודה)","description":"שני הקורסים המוקלטים יחד: 41 שיעורים, כ-4.5 שעות, גישה לתמיד.","brand":{"@type":"Brand","name":"AI Lab"},"offers":{"@type":"Offer","price":"690","priceCurrency":"ILS","availability":"https://schema.org/PreOrder","url":"https://my.ai-lab.co.il/buy/starter-bundle"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"צריך לדעת לתכנת?","acceptedAnswer":{"@type":"Answer","text":"לא. בשני הקורסים אתה מתאר בעברית מה צריך, Claude עושה את העבודה, ואתה בודק את התוצאה על המסך ומתקן במילים. גם בקורס Claude Code לא כותבים קוד: עובדים באפליקציית Claude Desktop, והטרמינל מופיע בשיעור אחד קצר, רק כדי שלא יפחיד."}},{"@type":"Question","name":"מה ההבדל בין שני הקורסים?","acceptedAnswer":{"@type":"Answer","text":"Starter הוא הבסיס: Claude בצ'אט, Projects, מסמכים, אקסל, מצגות, אתר ו-Connectors. קובץ אחד, משימה אחת, בלי התקנות. Starter Pro הוא הצעד הבא: Claude Code יושב בתוך תיקייה במחשב שלך ועובד על עשרות קבצים בבת אחת, עם הרשאות, גיבויים, MCP, אוטומציה מתוזמנת ואתר ב-GitHub Pages. מי שלא עבד עם Claude מתחיל ב-Starter."}},{"@type":"Question","name":"למה Claude ולא ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"כי ב-AI Lab עובדים עם כלי אחד לעומק, ו-Claude הוא זה שיש לו Projects, Connectors ליומן, לדרייב ולמייל, ו-Claude Code שעובד על הקבצים במחשב. מי שמכיר ChatGPT ירגיש בבית בדקות: העקרונות דומים, והשיעור הראשון עוסק בהבדלים."}},{"@type":"Question","name":"כמה זמן זה לוקח?","acceptedAnswer":{"@type":"Answer","text":"Starter: 21 שיעורים של 5 עד 8 דקות, כ-130 דקות וידאו. Starter Pro: 20 שיעורים, כ-135 דקות. אחרי כל שיעור יש תרגיל קצר על החומר שלך. בקצב של שיעור ביום מסיימים קורס בשלושה שבועות, ואפשר גם בסוף שבוע אחד."}},{"@type":"Question","name":"Claude Free או Claude Pro?","acceptedAnswer":{"@type":"Answer","text":"Claude Pro, כ-20 דולר לחודש, נרכש ישירות מ-Anthropic ולא כלול במחיר הקורס. Projects, Connectors ו-Claude Code דורשים מנוי בתשלום. אפשר לבטל את המנוי אחרי הקורס."}},{"@type":"Question","name":"אפשר לבטל?","acceptedAnswer":{"@type":"Answer","text":"כן, בתוך 24 שעות מהרכישה, בתנאי שעדיין לא נכנסת לאזור הלמידה ולא צפית בתכני הקורס. אחרי כניסה ראשונה העסקה סופית, כמקובל בתוכן דיגיטלי ובכפוף לחוק הגנת הצרכן. המדיניות המלאה בתנאי השימוש ב-my.ai-lab.co.il/terms/starter."}},{"@type":"Question","name":"מה ההבדל מהקורס החי בזום?","acceptedAnswer":{"@type":"Answer","text":"הקורס החי (2,100 ₪) הוא 5 מפגשים בזום עם מאיר, בקבוצה קטנה, עם קבוצת וואטסאפ ומענה אישי. הגרסה המוקלטת היא אותם נושאים, מפורקים לשיעורים קצרים, בקצב שלך ובזמן שלך, עם סוכן שאלות מתחת לכל סרטון במקום מאיר בשידור חי. מי שרוצה ליווי אישי בוחר בקורס החי; מי שמעדיף ללמוד לבד בוחר כאן."}},{"@type":"Question","name":"לכמה זמן הגישה?","acceptedAnswer":{"@type":"Answer","text":"הסרטונים, דפי העבודה והפרומפטים נשארים באזור האישי לתמיד. סוכן השאלות שמתחת לכל סרטון זמין לשנה מיום הרכישה."}}]}</script>
+
+<style>
+:root{
+  --bg:#050605;--bg-2:#0B0E0D;--fg:#F1EEE5;--fg-2:rgba(241,238,229,.64);--fg-3:rgba(241,238,229,.38);
+  --line:rgba(241,238,229,.16);--line-2:rgba(241,238,229,.32);--acc:#10E593;
+  --serif:'Noto Serif Hebrew',Georgia,serif;--sans:'Noto Sans Hebrew',system-ui,sans-serif;--mono:'Space Mono','Noto Sans Hebrew',monospace;
+  --gutter:clamp(18px,6vw,96px);--ease:cubic-bezier(.2,.7,.2,1);--wd:100;
+}
+@media(min-width:1280px){:root{--gutter:clamp(150px,10.5vw,190px)}}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-weight:400;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%;display:block}
+::selection{background:var(--acc);color:#050605}
+h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.05;letter-spacing:-.01em;color:var(--fg);font-variation-settings:"wdth" var(--wd),"wght" 700;text-wrap:balance}
+p,li,summary{text-wrap:pretty}
+.mono{font-family:var(--mono);direction:ltr;unicode-bidi:isolate;letter-spacing:.14em;text-transform:uppercase;font-size:.68rem}
+.label{font-size:.78rem;font-weight:600;letter-spacing:.06em;color:var(--fg-3)}
+.label.acc{color:var(--acc)}
+em{font-style:normal;color:var(--acc)}
+.wrap{padding-inline:var(--gutter)}
+.nw{white-space:nowrap}
+.num{direction:ltr;unicode-bidi:isolate}
+.dsk-only{display:inline}.mob-only{display:none}
+@media(max-width:760px){.dsk-only{display:none}.mob-only{display:inline}}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:900;display:flex;justify-content:space-between;align-items:center;padding:16px var(--gutter);background:rgba(5,6,5,.72);-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);border-bottom:1px solid var(--line)}
+.nav .logo{font-family:var(--serif);font-weight:700;font-size:1.2rem;display:flex;align-items:baseline;gap:10px;direction:ltr}
+.nav .logo small{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;color:var(--acc)}
+.nav .right{display:flex;align-items:center;gap:22px;font-size:.86rem}
+.nav .right a{opacity:.75;transition:opacity .2s}
+.nav .right a:hover{opacity:1}
+.nav .right a.cta{opacity:1;border-bottom:1px solid var(--acc);padding-bottom:2px}
+@media(max-width:760px){.nav{padding:12px 18px}.nav .right{gap:14px}.nav .right a:not(.cta):not(.keep){display:none}}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:18px 30px;border:1px solid var(--fg);color:var(--fg);font:inherit;font-size:.98rem;font-weight:600;line-height:1;cursor:pointer;border-radius:0;background:transparent;transition:background .25s,color .25s,border-color .25s,transform .15s}
+.btn:hover{background:var(--fg);color:var(--bg)}
+.btn:active{transform:scale(.98)}
+.btn.acc{background:var(--acc);border-color:var(--acc);color:#050605}
+.btn.acc:hover{background:#2BF2A6;border-color:#2BF2A6}
+.btn .ar{display:inline-block;transition:transform .3s}
+.btn:hover .ar{transform:translateX(-5px)}
+@media(max-width:760px){.btn{border-radius:999px;padding:17px 26px;width:100%}}
+
+/* HERO */
+.hero{position:relative;padding:clamp(72px,12vh,140px) var(--gutter) clamp(56px,9vh,96px);overflow:hidden;min-height:60svh;display:flex;align-items:flex-end}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 80% 20%,rgba(16,229,147,.10),transparent 60%),radial-gradient(ellipse 50% 40% at 10% 90%,rgba(16,229,147,.05),transparent 60%)}
+.hero-in{position:relative;max-width:760px}
+.hero .k{display:block;margin-bottom:16px}
+.hero h1{font-size:clamp(2.3rem,5.4vw,5rem);font-variation-settings:"wdth" 82,"wght" 700;margin-bottom:18px}
+.hero p{font-size:clamp(1.04rem,1.35vw,1.22rem);color:var(--fg-2);max-width:600px;font-weight:300;margin-bottom:12px}
+.hero p strong{color:var(--fg);font-weight:500}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.hero .fine{font-size:.84rem;color:var(--fg-3);margin-top:16px}
+@media(max-width:760px){.hero{padding:44px 18px 36px;min-height:0}.hero h1{font-size:clamp(2rem,9vw,2.7rem)}.hero p{font-size:1rem}.hero .ctas{gap:10px}}
+
+/* TLDR strip */
+.tl{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.tl div{padding:24px clamp(14px,2vw,28px);border-inline-start:1px solid var(--line)}
+.tl div:first-child{border-inline-start:0;padding-inline-start:0}
+.tl b{display:block;font-family:var(--serif);font-size:clamp(1.6rem,2.6vw,2.4rem);line-height:1.1;color:var(--acc);font-variation-settings:"wdth" 78,"wght" 700}
+.tl b .sh{font-size:.62em;font-weight:500}
+.tl span{font-size:.9rem;color:var(--fg-2)}
+@media(max-width:760px){.tl{grid-template-columns:1fr 1fr;gap:10px;border:0}.tl div{border:1px solid var(--line)!important;border-radius:18px;padding:14px 14px 12px!important;background:var(--bg-2)}.tl b{font-size:1.5rem}.tl span{font-size:.82rem}}
+
+/* CHAPTERS */
+.ch{position:relative;padding-block:clamp(72px,12vh,140px)}
+.ch-head{position:relative;display:flex;align-items:baseline;gap:22px;margin-bottom:clamp(36px,6vh,64px)}
+.ch-head::before{content:"";position:absolute;top:-26px;inset-inline-start:0;width:56px;height:2px;background:var(--acc)}
+.ch-head .n{order:-1;font-family:var(--mono);color:var(--acc);font-size:.7rem;letter-spacing:.2em}
+.ch-head h2{font-size:clamp(2rem,4.8vw,4.4rem);--wd:76}
+.ch-head p{font-size:clamp(1rem,1.3vw,1.18rem);color:var(--fg-2);max-width:620px;font-weight:300;margin-top:16px}
+.ch-head.center{justify-content:center;text-align:center}
+.ch-head.center::before{inset-inline-start:50%;transform:translateX(50%)}
+.ch-head.center p{margin-inline:auto}
+@media(max-width:760px){.ch{padding-block:48px}.ch-head{flex-direction:column;gap:10px;margin-bottom:22px}.ch-head .n{display:none}.ch-head.center{align-items:center}.ch-head h2{font-size:clamp(1.9rem,8.6vw,2.5rem)}.ch-head p{margin-top:10px;font-size:.98rem}}
+
+/* COURSES */
+.courses{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,32px);align-items:start}
+.course{border:1px solid var(--line);background:var(--bg-2);padding:clamp(24px,3vw,40px);position:relative;display:flex;flex-direction:column;min-width:0}
+.course.pro{border-color:var(--line-2)}
+.course .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.course .tag{font-size:.7rem;font-weight:700;letter-spacing:.08em;color:#050605;background:var(--acc);padding:5px 12px;border-radius:999px;white-space:nowrap}
+.course.pro .tag{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+.course h3{font-size:clamp(1.6rem,2.6vw,2.3rem);--wd:82;margin-bottom:8px}
+.course .lead{color:var(--fg-2);font-size:1.02rem;margin-bottom:18px;min-height:0}
+.course .lead b{color:var(--fg);font-weight:500}
+.course .meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.86rem;color:var(--fg-3);padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.course .meta b{color:var(--fg);font-weight:600}
+.course ul.pts{list-style:none;margin:18px 0 0;display:flex;flex-direction:column;gap:7px}
+.course ul.pts li{position:relative;padding-inline-start:18px;font-size:.98rem;color:var(--fg-2)}
+.course ul.pts li::before{content:"";position:absolute;inset-inline-start:0;top:.75em;width:7px;height:1px;background:var(--acc)}
+.course .amount{display:flex;align-items:baseline;gap:8px;margin-top:24px}
+.course .amount b{font-family:var(--serif);font-weight:700;font-size:clamp(2.6rem,4.6vw,4.2rem);line-height:1;color:var(--acc);font-variation-settings:"wdth" 70,"wght" 700}
+.course .amount small{font-size:1.3rem;color:var(--fg-2)}
+.course .amount span{font-size:.86rem;color:var(--fg-3);margin-inline-start:6px}
+.course .btn{margin-top:18px;width:100%}
+.course .note{margin-top:12px;font-size:.84rem;color:var(--fg-3)}
+/* syllabus */
+.syl{margin-top:18px;border-top:1px solid var(--line)}
+.syl > summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 0;font-weight:600;font-size:.95rem;color:var(--fg);min-height:48px}
+.syl > summary::-webkit-details-marker{display:none}
+.syl > summary i{flex:none;width:28px;height:28px;position:relative}
+.syl > summary i::before,.syl > summary i::after{content:"";position:absolute;left:50%;top:50%;background:var(--acc);transform:translate(-50%,-50%)}
+.syl > summary i::before{width:14px;height:1px}
+.syl > summary i::after{width:1px;height:14px;transition:transform .3s}
+.syl[open] > summary i::after{transform:translate(-50%,-50%) scaleY(0)}
+.mod{padding:10px 0 14px;border-top:1px solid var(--line)}
+.mod h4{font-family:var(--sans);font-weight:600;font-size:.8rem;letter-spacing:.06em;color:var(--acc);margin-bottom:8px}
+.mod ol{list-style:none;display:flex;flex-direction:column;gap:5px}
+.mod li{display:grid;grid-template-columns:30px 1fr;gap:8px;font-size:.93rem;color:var(--fg-2);line-height:1.45}
+.mod li .n{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;color:var(--fg-3);padding-top:5px;direction:ltr}
+.syl .sum{font-size:.84rem;color:var(--fg-3);padding:10px 0 4px}
+@media(max-width:860px){.courses{grid-template-columns:1fr}.course{border-radius:24px;padding:22px 18px 22px}.course h3{font-size:1.6rem}.course .amount b{font-size:2.8rem}}
+
+/* BUNDLE */
+.bundle{margin-top:clamp(16px,2.4vw,32px);border:1px solid var(--acc);background:var(--bg-2);padding:clamp(24px,3vw,40px);position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(20px,4vw,64px);align-items:center}
+.bundle::before{content:"";position:absolute;top:-1px;right:0;left:0;height:3px;background:var(--acc)}
+.bundle .ghost{position:absolute;top:18px;left:22px;font-family:var(--serif);font-weight:900;font-size:2.4rem;line-height:.9;color:var(--acc);opacity:.16;direction:ltr;letter-spacing:-.04em;pointer-events:none}
+.bundle .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;color:#050605;background:var(--acc);padding:5px 12px;border-radius:999px;margin-bottom:16px}
+.bundle h3{font-size:clamp(1.7rem,3vw,2.7rem);--wd:80;margin-bottom:10px}
+.bundle p{color:var(--fg-2);font-size:1.02rem;max-width:560px}
+.bundle p b{color:var(--fg);font-weight:500}
+.bundle .amount{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 12px;margin-bottom:6px}
+.bundle .amount b{font-family:var(--serif);font-weight:700;font-size:clamp(3rem,6vw,5.4rem);line-height:1;color:var(--acc);font-variation-settings:"wdth" 70,"wght" 700}
+.bundle .amount small{font-size:1.4rem;color:var(--fg-2)}
+.bundle .amount s{font-family:var(--serif);font-size:1.5rem;color:var(--fg-3);font-weight:500}
+.bundle .save{font-size:.92rem;color:var(--fg-2);margin-bottom:16px}
+.bundle .save b{color:var(--acc);font-weight:600}
+.bundle .btn{width:100%}
+.bundle .up{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:.92rem;color:var(--fg-2)}
+.bundle .up b{color:var(--fg);font-weight:600}
+.bundle .up a{color:var(--acc);border-bottom:1px solid var(--acc)}
+@media(max-width:860px){.bundle{grid-template-columns:1fr;border-radius:24px;padding:22px 18px 22px;gap:18px}.bundle .ghost{font-size:1.6rem;top:16px;left:18px}.bundle .amount b{font-size:3.2rem}}
+
+/* GET */
+.get{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-inline-start:1px solid var(--line)}
+.get div{padding:clamp(22px,3vw,36px) clamp(18px,2.4vw,32px);border-bottom:1px solid var(--line);border-inline-end:1px solid var(--line)}
+.get svg{width:30px;height:30px;fill:none;stroke:var(--acc);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:16px}
+.get h3{font-family:var(--sans);font-weight:600;font-size:1.08rem;margin-bottom:8px;font-variation-settings:normal}
+.get p{color:var(--fg-2);font-size:.95rem}
+@media(max-width:860px){.get{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.get{grid-template-columns:1fr;border:0;gap:10px}.get div{border:1px solid var(--line)!important;border-radius:20px;background:var(--bg-2);padding:18px 16px}.get svg{margin-bottom:10px}}
+
+/* NEED (what you need) */
+.need{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(24px,4vw,64px);margin-top:clamp(40px,6vh,72px);border-top:1px solid var(--line);padding-top:28px}
+.need h3{font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.06em;color:var(--fg-3);margin-bottom:12px;font-variation-settings:normal}
+.need p{color:var(--fg-2);font-size:1rem}
+.need p b{color:var(--fg);font-weight:500}
+@media(max-width:760px){.need{grid-template-columns:1fr;gap:18px;margin-top:28px;padding-top:20px}}
+
+/* COMPARE live vs recorded */
+.cmp{border-top:1px solid var(--line)}
+.cmp .row{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-size:.98rem;color:var(--fg-2)}
+.cmp .row.h{font-size:.8rem;font-weight:600;letter-spacing:.06em;color:var(--fg-3)}
+.cmp .row.h span:nth-child(2){color:var(--acc)}
+.cmp .row > span:first-child{color:var(--fg)}
+.cmp .row > span:nth-child(2){color:var(--fg)}
+.cmp a{color:var(--acc);border-bottom:1px solid var(--acc)}
+@media(max-width:560px){.cmp .row{grid-template-columns:1fr;gap:4px;padding:14px 0}.cmp .row.h{display:none}.cmp .row > span:first-child{font-weight:600;margin-bottom:2px}.cmp .row > span:nth-child(2)::before{content:"מוקלט: ";color:var(--acc);font-size:.8rem}.cmp .row > span:nth-child(3)::before{content:"חי בזום: ";color:var(--fg-3);font-size:.8rem}}
+
+/* FAQ */
+.faq{max-width:860px;margin-inline:auto;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 0;font-family:var(--serif);font-size:clamp(1.15rem,1.7vw,1.5rem);font-variation-settings:"wdth" 90,"wght" 500;transition:color .25s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--acc)}
+.faq summary i{flex:none;width:28px;height:28px;position:relative}
+.faq summary i::before,.faq summary i::after{content:"";position:absolute;left:50%;top:50%;background:currentColor;transform:translate(-50%,-50%)}
+.faq summary i::before{width:14px;height:1px}
+.faq summary i::after{width:1px;height:14px;transition:transform .3s}
+.faq details[open] summary{color:var(--acc)}
+.faq details[open] summary i::after{transform:translate(-50%,-50%) scaleY(0)}
+.faq .a{padding:0 0 24px;color:var(--fg-2);font-size:1.02rem;max-width:680px}
+.faq .a a{color:var(--acc)}
+@media(max-width:760px){.faq summary{padding:16px 0;font-size:1.08rem}.faq .a{padding-bottom:16px;font-size:.98rem}}
+
+/* SOON: email capture (green block) */
+#soon{background:var(--acc);color:#050605;--fg:#050605;--fg-2:rgba(5,6,5,.72);--fg-3:rgba(5,6,5,.52);--line:rgba(5,6,5,.16);--line-2:rgba(5,6,5,.34);scroll-margin-top:80px}
+#soon .ch-head::before{background:#050605}
+#soon .ch-head .n{color:#050605}
+#soon ::selection{background:#050605;color:var(--acc)}
+.soon{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(30px,6vw,110px);align-items:start}
+.soon h2{font-size:clamp(2.4rem,6vw,6rem);--wd:68;line-height:.98;margin-bottom:18px}
+.soon .status{display:flex;align-items:flex-start;gap:10px;font-size:.92rem;color:var(--fg-2);margin-bottom:22px}
+.soon .status i{width:8px;height:8px;border-radius:50%;flex:none;display:block;margin-top:.55em;background:#050605;animation:blink 2.2s infinite}
+@keyframes blink{50%{opacity:.25}}
+.soon p{color:var(--fg-2);font-size:1.06rem;max-width:520px;margin-bottom:14px;font-weight:300}
+.soon p b{color:var(--fg);font-weight:500}
+.form{background:#050605;color:#F1EEE5;padding:clamp(22px,3vw,40px);--fg:#F1EEE5;--fg-2:rgba(241,238,229,.64);--fg-3:rgba(241,238,229,.38);--line:rgba(241,238,229,.16);--line-2:rgba(241,238,229,.32)}
+.form .fh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.form .fh b{font-family:var(--serif);font-size:1.3rem;font-weight:700}
+.form .fh span{font-size:.82rem;color:var(--fg-3)}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.field label{font-size:.8rem;color:var(--fg-3);font-weight:600;letter-spacing:.04em}
+.field input,.field select{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line-2);color:var(--fg);font:inherit;font-size:1.1rem;padding:10px 0;outline:none;border-radius:0;appearance:none;-webkit-appearance:none;transition:border-color .25s}
+.field input::placeholder{color:var(--fg-3)}
+.field input:focus,.field select:focus{border-color:var(--acc)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23F1EEE5' stroke-width='1.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 2px center;padding-left:28px}
+.field select option{background:#0a0c0a;color:#F1EEE5}
+.form .btn{width:100%;margin-top:8px}
+.form .alt{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;font-size:.84rem;color:var(--fg-3);flex-wrap:wrap}
+.form .alt a{color:var(--fg);border-bottom:1px solid var(--line-2);white-space:nowrap}
+.form .ok{display:none;margin-top:16px;padding:14px;border:1px solid var(--acc);color:var(--acc);font-weight:500;text-align:center;border-radius:12px}
+.form .ok.show{display:block}
+@media(max-width:860px){.soon{grid-template-columns:1fr;gap:26px}.soon h2{font-size:clamp(2.2rem,10vw,3.2rem)}.form{border-radius:24px;padding:20px 16px 18px}.form .btn.acc{border-radius:999px}.field input,.field select{background:#0F1211;border:1px solid var(--line);border-radius:14px;padding:13px 15px;font-size:1.02rem}.field select{background-position:left 14px center;padding-left:40px}}
+
+/* FOOTER */
+footer{padding:64px 0 40px;border-top:1px solid var(--line)}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}
+.foot h4{font-size:.76rem;letter-spacing:.08em;color:var(--fg-3);font-weight:600;margin-bottom:16px;font-variation-settings:normal}
+.foot a{display:block;color:var(--fg-2);font-size:.95rem;padding:3px 0;transition:color .25s}
+.foot a:hover{color:var(--acc)}
+.foot p{color:var(--fg-2);font-size:.95rem;max-width:300px}
+.foot .brand{font-family:var(--serif);font-size:1.4rem;font-weight:700;display:flex;gap:10px;align-items:baseline;direction:ltr;margin-bottom:14px}
+.foot .brand small{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;color:var(--acc)}
+.foot-b{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:.78rem;color:var(--fg-3)}
+@media(max-width:860px){.foot{grid-template-columns:1fr;gap:28px}}
+@media(max-width:760px){footer{padding:44px 0 calc(100px + env(safe-area-inset-bottom))}.foot-b{margin-top:24px}}
+
+/* mobile bottom bar */
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:850;display:none;align-items:center;gap:6px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));background:rgba(5,6,5,.78);-webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);border-top:1px solid var(--line)}
+.mb{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:50px;font-size:.66rem;color:var(--fg-2);border-radius:14px}
+.mb svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mb.primary{flex:1.7;background:var(--acc);color:#050605;border-radius:999px;font-size:.95rem;font-weight:700;min-height:50px}
+@media(max-width:760px){.mbar{display:flex}}
+
+@media(prefers-reduced-motion:reduce){.soon .status i{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a href="../" class="logo">AI Lab <small>STARTER</small></a>
+  <div class="right">
+    <a href="../">הקורס החי בזום</a>
+    <a href="https://my.ai-lab.co.il/" class="keep">אזור אישי</a>
+    <a href="#faq">שאלות</a>
+    <a href="#price" class="cta">הקורסים והמחיר</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero">
+  <div class="hero-in">
+    <span class="k label acc"><bdi>AI Lab Starter</bdi> · גרסה מוקלטת · בעברית</span>
+    <h1>לומדים לבד, <span class="nw">בקצב שלך.</span></h1>
+    <p>שני קורסים מוקלטים על עבודה יומיומית עם Claude: הבסיס, ואחריו Claude Code על הקבצים שלך. שיעורים קצרים, תרגיל על החומר שלך אחרי כל אחד, וסוכן שאלות מתחת לכל סרטון.</p>
+    <p><strong>למי זה:</strong> שכירים ובעלי עסקים, בלי ידע קודם ובלי שורת קוד. <strong>מה צריך:</strong> מחשב רגיל ומנוי Claude Pro.</p>
+    <div class="ctas">
+      <a href="#price" class="btn acc">לקורסים ולמחירים <span class="ar">←</span></a>
+      <a href="#diff" class="btn">מה ההבדל מהקורס החי</a>
+    </div>
+    <p class="fine">מ-<span class="nw">359 ₪</span> לקורס. שניהם יחד ב-<span class="nw">690 ₪</span>. גישה לתמיד.</p>
+  </div>
+</section>
+
+<section class="wrap" aria-label="תכלס">
+  <div class="tl">
+    <div><b>2</b><span>קורסים מוקלטים, בעברית</span></div>
+    <div><b>41</b><span>שיעורים קצרים, 5 עד 8 דקות</span></div>
+    <div><b>~4.5 <span class="sh">שעות</span></b><span>וידאו, ואחרי כל שיעור תרגיל</span></div>
+    <div><b>לתמיד</b><span>הסרטונים ודפי העבודה נשארים</span></div>
+  </div>
+</section>
+
+<!-- ================= COURSES + PRICE ================= -->
+<section class="ch wrap" id="price">
+  <div class="ch-head">
+    <span class="n">01</span>
+    <div>
+      <h2>שני קורסים. בסיס, ומתקדם.</h2>
+      <p>מי שלא עבד עם Claude מתחיל ב-Starter. מי שכבר עובד איתו, ורוצה שהוא יעבוד גם על התיקיות והקבצים במחשב, ממשיך ל-Starter Pro.</p>
+    </div>
+  </div>
+
+  <div class="courses">
+    <!-- קורס 1 -->
+    <article class="course" id="c1">
+      <div class="top"><span class="label acc">קורס 1 · הבסיס</span><span class="tag">מתחילים כאן</span></div>
+      <h3>Starter — ללמוד לבד</h3>
+      <p class="lead">אותם חמישה נושאים של הקורס החי, מפורקים ל-21 שיעורים קצרים: <b>Claude ו-Projects, מסמכים, אקסל, מצגות, אתר משלך</b>, ובסוף Connectors ומעקב אחרי השימוש.</p>
+      <div class="meta"><span><b>21</b> שיעורים</span><span><b>~130</b> דקות</span><span><b>6</b> מודולים</span><span>בלי התקנות</span></div>
+      <ul class="pts">
+        <li>עוזר אישי ב-Claude (Project) שמכיר את העבודה שלך</li>
+        <li>מייל, סיכום מסמך ארוך והצעה בסגנון שלך</li>
+        <li>טבלאות: ניקוי, נוסחאות בשפה פשוטה וגרף</li>
+        <li>מצגת מתוך מסמך, ותמונות לרשתות</li>
+        <li>דף אישי או דף נחיתה לעסק, באוויר</li>
+        <li>Connectors: יומן, דרייב ומייל בתוך Claude</li>
+      </ul>
+      <details class="syl">
+        <summary>הסילבוס המלא: 21 השיעורים<i></i></summary>
+        <div class="mod"><h4>מודול 1 · מתחילים עם Claude</h4><ol>
+          <li><span class="n">01</span><span>מה זה Claude, ולמה דווקא הוא</span></li>
+          <li><span class="n">02</span><span>מה זה Project, ולמה כדאי להתחיל ממנו</span></li>
+          <li><span class="n">03</span><span>מקימים Project עם ההקשר של העבודה שלך</span></li>
+          <li><span class="n">04</span><span>שיחה שזוכרת: דוגמה אמיתית מהעבודה</span></li>
+          <li><span class="n">05</span><span>מה שמים בפרויקט ומה לא (פרטיות ונתונים)</span></li>
+        </ol></div>
+        <div class="mod"><h4>מודול 2 · מסמכים וכתיבה</h4><ol>
+          <li><span class="n">06</span><span>מייל: מטיוטה לנוסח שאפשר לשלוח</span></li>
+          <li><span class="n">07</span><span>סיכום מסמך ארוך ב-3 דקות</span></li>
+          <li><span class="n">08</span><span>הצעה או מסמך מאפס, בסגנון שלך</span></li>
+        </ol></div>
+        <div class="mod"><h4>מודול 3 · אקסל ונתונים</h4><ol>
+          <li><span class="n">09</span><span>מעלים קובץ ושואלים</span></li>
+          <li><span class="n">10</span><span>ניקוי וסידור טבלה</span></li>
+          <li><span class="n">11</span><span>נוסחאות וסיכומים בשפה פשוטה</span></li>
+          <li><span class="n">12</span><span>גרף מהנתונים, ומה הוא אומר</span></li>
+        </ol></div>
+        <div class="mod"><h4>מודול 4 · מצגות ותוכן ויזואלי</h4><ol>
+          <li><span class="n">13</span><span>ממסמך למבנה מצגת</span></li>
+          <li><span class="n">14</span><span>שקפים: תוכן ועיצוב</span></li>
+          <li><span class="n">15</span><span>תמונות ותוכן לרשתות</span></li>
+        </ol></div>
+        <div class="mod"><h4>מודול 5 · אתר משלך</h4><ol>
+          <li><span class="n">16</span><span>מה בונים: דף אישי או דף נחיתה לעסק</span></li>
+          <li><span class="n">17</span><span>בונים את הדף עם Claude</span></li>
+          <li><span class="n">18</span><span>מעלים לאוויר ומשתפים</span></li>
+        </ol></div>
+        <div class="mod"><h4>מודול 6 · הרחבות ומה הלאה</h4><ol>
+          <li><span class="n">19</span><span>Connectors: מחברים יומן, דרייב ומייל ל-Claude</span></li>
+          <li><span class="n">20</span><span>מעקב אחרי השימוש שלך: מכסות, חלונות, ומה עושים כשנגמר</span></li>
+          <li><span class="n">21</span><span>הצצה ל-Claude Code (בונוס)</span></li>
+        </ol></div>
+        <div class="sum">כל שיעור: וידאו, דף עבודה, תרגיל על החומר שלך ופרומפט להעתקה.</div>
+      </details>
+      <div class="amount"><b><span data-p="c1">359</span></b><small>₪</small><span>תשלום חד-פעמי · גישה לתמיד</span></div>
+      <a href="https://my.ai-lab.co.il/buy/starter-self-paced" data-soon="starter-self-paced" data-name="Starter — ללמוד לבד" class="btn acc">לרכישת Starter <span class="ar">←</span></a>
+      <p class="note">דרוש מנוי Claude Pro (כ-<bdi dir="ltr">$20</bdi> לחודש), נרכש ישירות מ-Anthropic ולא כלול במחיר.</p>
+    </article>
+
+    <!-- קורס 2 -->
+    <article class="course pro" id="c2">
+      <div class="top"><span class="label acc">קורס 2 · מתקדם</span><span class="tag">הצעד הבא</span></div>
+      <h3>Starter Pro: <span class="nw">Claude Code לעבודה</span></h3>
+      <p class="lead">Claude שיושב בתוך תיקייה במחשב שלך ועובד על <b>עשרות קבצים בבת אחת</b>: מסמכים, טבלאות, האתר של העסק ואוטומציות קטנות. באפליקציית Claude Desktop, בלי לכתוב קוד, עם שליטה בהרשאות ובעלות.</p>
+      <div class="meta"><span><b>20</b> שיעורים</span><span><b>~135</b> דקות</span><span><b>6</b> מודולים</span><span>מק או ווינדוס</span></div>
+      <ul class="pts">
+        <li>התקנה במק ובווינדוס, והטרמינל ב-3 דקות (רק כדי שלא יפחיד)</li>
+        <li>מצבי הרשאה, גיבויים ו-<bdi dir="ltr">/rewind</bdi>: מה הוא עושה לבד ומה רק באישור</li>
+        <li>מעקב אחרי שימוש ועלות: Pro, Max, חלונות ותקרות</li>
+        <li>20 מסמכים בבת אחת, טבלאות בלי לפתוח אקסל, דוח חודשי שרץ שוב</li>
+        <li>MCP ו-Connectors: יומן, דרייב, מייל ו-GitHub מתוך Claude Code</li>
+        <li>אתר של כמה עמודים ב-GitHub Pages, ואוטומציה שבועית מתוזמנת</li>
+      </ul>
+      <details class="syl">
+        <summary>הסילבוס המלא: 20 השיעורים<i></i></summary>
+        <div class="mod"><h4>מודול 1 · מתחילים</h4><ol>
+          <li><span class="n">01</span><span>מה זה Claude Code, ומתי הוא ולא claude.ai</span></li>
+          <li><span class="n">02</span><span>מתקינים במק ובווינדוס בלי כאב (אפליקציית הדסקטופ)</span></li>
+          <li><span class="n">03</span><span>הטרמינל ב-3 דקות (ולמה כדאי להכיר אותו)</span></li>
+          <li><span class="n">04</span><span>השיחה הראשונה על תיקיית מסמכים אמיתית</span></li>
+        </ol></div>
+        <div class="mod"><h4>מודול 2 · שליטה: הרשאות, עלות, זיכרון</h4><ol>
+          <li><span class="n">05</span><span>מצבי אישור: Manual, Accept edits, Plan, Auto</span></li>
+          <li><span class="n">06</span><span>מעקב אחרי שימוש ועלות: Pro, Max, חלונות ותקרות</span></li>
+          <li><span class="n">07</span><span>CLAUDE.md: הוראות קבועות שהוא קורא בכל פעם</span></li>
+          <li><span class="n">08</span><span>בטיחות וגיבויים: מה לא נותנים לו, ואיך חוזרים אחורה</span></li>
+        </ol></div>
+        <div class="mod"><h4>מודול 3 · עבודה יומיומית על קבצים</h4><ol>
+          <li><span class="n">09</span><span>20 מסמכים בבת אחת: סיכום, חילוץ, טבלה</span></li>
+          <li><span class="n">10</span><span>טבלאות: ניקוי, איחוד וסיכום בלי לפתוח אקסל</span></li>
+          <li><span class="n">11</span><span>הדוח החודשי: בונים "מתכון" שרצים עליו שוב</span></li>
+        </ol></div>
+        <div class="mod"><h4>מודול 4 · הרחבות: MCP, Skills, סוכנים</h4><ol>
+          <li><span class="n">12</span><span>MCP ו-Connectors: מה זה, ומה ההבדל</span></li>
+          <li><span class="n">13</span><span>מחברים שירותים אמיתיים: יומן, דרייב, מייל ו-GitHub</span></li>
+          <li><span class="n">14</span><span>Skills ופקודות <bdi dir="ltr">/</bdi> משלך</span></li>
+          <li><span class="n">15</span><span>סוכנים, משימות ברקע ותזמון</span></li>
+        </ol></div>
+        <div class="mod"><h4>מודול 5 · אתר ואוטומציה</h4><ol>
+          <li><span class="n">16</span><span>בונים אתר אמיתי לעסק: כמה עמודים, בתיקייה</span></li>
+          <li><span class="n">17</span><span>מעלים לאוויר ל-GitHub Pages ומעדכנים בלי לפחד</span></li>
+          <li><span class="n">18</span><span>אוטומציה חוזרת: סיכום שבועי של מיילים ויומן</span></li>
+        </ol></div>
+        <div class="mod"><h4>מודול 6 · סיכום ומסלולים</h4><ol>
+          <li><span class="n">19</span><span>Claude Code בכל מקום: VS Code, הדפדפן, הטלפון</span></li>
+          <li><span class="n">20</span><span>שגרת עבודה: מתי Claude Code, מתי claude.ai, ורשימת בדיקה</span></li>
+        </ol></div>
+        <div class="sum">כל שיעור: וידאו, דף עבודה, תרגיל על התיקייה שלך ופרומפט להעתקה. בלי Git, בלי Node, בלי קוד.</div>
+      </details>
+      <div class="amount"><b><span data-p="c2">490</span></b><small>₪</small><span>תשלום חד-פעמי · גישה לתמיד</span></div>
+      <a href="https://my.ai-lab.co.il/buy/starter-claude-code" data-soon="starter-claude-code" data-name="Starter Pro: Claude Code לעבודה" class="btn acc">לרכישת Starter Pro <span class="ar">←</span></a>
+      <p class="note">מומלץ אחרי Starter. דרוש Claude Pro ואפליקציית Claude Desktop (חינם), במק או בווינדוס.</p>
+    </article>
+  </div>
+
+  <!-- החבילה -->
+  <div class="bundle" id="bundle">
+    <span class="ghost" aria-hidden="true">Starter + Pro</span>
+    <div>
+      <span class="tag">החבילה</span>
+      <h3>שני הקורסים יחד.</h3>
+      <p>מהשיחה הראשונה עם Claude ועד Claude Code שעובד על התיקיות שלך. <b>41 שיעורים, כ-4.5 שעות וידאו</b>, 41 תרגילים על החומר שלך, וסוכן שאלות מתחת לכל סרטון. מסלול אחד, מההתחלה עד הסוף.</p>
+    </div>
+    <div>
+      <div class="amount"><b><span data-p="bundle">690</span></b><small>₪</small><s class="nw"><span data-p="full">849</span> ₪</s></div>
+      <div class="save">במקום <span class="nw"><span data-p="full">849</span> ₪</span> בנפרד · <b>חיסכון של <span class="nw"><span data-p="save">159</span> ₪</span></b></div>
+      <a href="https://my.ai-lab.co.il/buy/starter-bundle" data-soon="starter-bundle" data-name="החבילה: שני הקורסים" class="btn acc">לרכישת החבילה <span class="ar">←</span></a>
+      <p class="up"><b>רכשת כבר את Starter?</b> ההשלמה ל-Starter Pro ב-<span class="nw"><span data-p="upgrade">331</span> ₪</span>, <a href="https://my.ai-lab.co.il/">מהאזור האישי</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= מה מקבלים ================= -->
+<section class="ch wrap" id="get">
+  <div class="ch-head">
+    <span class="n">02</span>
+    <div>
+      <h2>מה מקבלים בכל שיעור.</h2>
+      <p>לא רק סרטון. כל שיעור בנוי כך שבסופו עשית משהו על החומר שלך, לא על דוגמה של מישהו אחר.</p>
+    </div>
+  </div>
+  <div class="get">
+    <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.5v5l4-2.5z"/></svg><h3>וידאו קצר</h3><p>5 עד 8 דקות, מסך מוקלט, מאיר מדגים ומסביר בעברית פשוטה. בלי הקדמות ארוכות.</p></div>
+    <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg><h3>דף עבודה</h3><p>מה ראינו, הצעדים בסדר הנכון, ומה לבדוק בתוצאה. נשאר באזור האישי.</p></div>
+    <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h10M4 17h7"/><path d="m16 15 2 2 4-4"/></svg><h3>תרגיל על החומר שלך</h3><p>המייל שלך, הטבלה שלך, התיקייה שלך. אפשר גם על חומר לדוגמה, למי שמעדיף.</p></div>
+    <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="4" width="12" height="14" rx="2"/><path d="M4 8v10a2 2 0 0 0 2 2h10"/></svg><h3>פרומפט להעתקה</h3><p>הנוסח המדויק מהסרטון, מוכן להדבקה ולהתאמה. ספריית הפרומפטים גדלה משיעור לשיעור.</p></div>
+    <div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg><h3>סוכן שאלות מתחת לכל סרטון</h3><p>נתקעת בדקה 3:40? שואלים שם, והסוכן עונה על בסיס השיעור. זמין לשנה מיום הרכישה.</p></div>
+    <div><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><h3>גישה לתמיד</h3><p>הסרטונים, דפי העבודה והפרומפטים נשארים אצלך באזור האישי ב-my.ai-lab.co.il, בלי תאריך תפוגה.</p></div>
+  </div>
+
+  <div class="need">
+    <div><h3>מה צריך</h3><p><b>מחשב רגיל</b>, Windows או Mac. על טלפון בלבד אי אפשר לתרגל, אבל אפשר לצפות.</p></div>
+    <div><h3>איזה מנוי</h3><p><b>Claude Pro</b>, כ-<bdi dir="ltr">$20</bdi> לחודש, ישירות מ-Anthropic. לא כלול במחיר, ואפשר לבטל אחרי הקורס.</p></div>
+    <div><h3>מה לא צריך</h3><p><b>לא</b> ידע בתכנות, <b>לא</b> ניסיון קודם עם AI, <b>לא</b> תוכנות נוספות בתשלום.</p></div>
+  </div>
+</section>
+
+<!-- ================= מוקלט מול חי ================= -->
+<section class="ch wrap" id="diff">
+  <div class="ch-head">
+    <span class="n">03</span>
+    <div>
+      <h2>מוקלט, או חי בזום?</h2>
+      <p>אותם נושאים, שתי דרכים ללמוד. <a href="../" style="color:var(--acc);border-bottom:1px solid var(--acc)">הקורס החי</a> הוא 5 מפגשים עם מאיר בקבוצה קטנה. כאן לומדים לבד.</p>
+    </div>
+  </div>
+  <div class="cmp">
+    <div class="row h"><span></span><span>מוקלט (כאן)</span><span>חי בזום</span></div>
+    <div class="row"><span>מחיר</span><span><span class="nw">359 ₪</span> / <span class="nw">490 ₪</span> / שניהם <span class="nw">690 ₪</span></span><span><span class="nw">2,100 ₪</span></span></div>
+    <div class="row"><span>מתי לומדים</span><span>מתי שנוח לך, בקצב שלך</span><span>5 מפגשים שבועיים, בתאריך קבוע</span></div>
+    <div class="row"><span>מי מלמד</span><span>מאיר, בסרטונים מוקלטים</span><span>מאיר, בשידור חי, עם שאלות ותשובות</span></div>
+    <div class="row"><span>כשנתקעים</span><span>סוכן שאלות מתחת לכל סרטון</span><span>מאיר במפגש, וקבוצת וואטסאפ</span></div>
+    <div class="row"><span>תוכן</span><span>41 שיעורים קצרים, כולל Claude Code</span><span>5 נושאים, הקלטות ומצגות באזור האישי</span></div>
+    <div class="row"><span>מתאים ל</span><span>מי שמעדיף ללמוד לבד ולחזור על שיעור</span><span>מי שרוצה ליווי אישי וקבוצה</span></div>
+  </div>
+</section>
+
+<!-- ================= נפתח בקרוב: השארת מייל ================= -->
+<section class="ch wrap" id="soon">
+  <div class="soon">
+    <div>
+      <div class="ch-head" style="margin-bottom:10px"><span class="n">04</span></div>
+      <h2>נפתח בקרוב.</h2>
+      <div class="status"><i></i>ההקלטות בעבודה. הרכישה נפתחת בשבועות הקרובים.</div>
+      <p><b>משאירים מייל, ומקבלים הודעה ביום שהקורס נפתח</b>, לפני כולם. בלי תשלום עכשיו, בלי התחייבות.</p>
+      <p>מי שברשימה מקבל גם את מחיר ההשקה.</p>
+    </div>
+    <form class="form" id="soonForm" onsubmit="return submitSoon(event)">
+      <input type="hidden" name="access_key" value="9ba5abaf-d501-44db-a33d-d5028c89e0ef">
+      <input type="hidden" name="subject" id="soonSubject" value="רשימת המתנה — Starter מוקלט">
+      <input type="hidden" name="from_name" value="AI Lab Starter — /learn">
+      <input type="hidden" name="page" value="https://starter.ai-lab.co.il/learn/">
+      <div class="fh"><b>תודיעו לי כשנפתח</b><span id="soonWhich">כל הקורסים</span></div>
+      <div class="field"><label for="semail">אימייל</label><input type="email" id="semail" name="email" placeholder="name@example.com" required autocomplete="email" dir="ltr" style="text-align:right"></div>
+      <div class="field"><label for="sname">שם (לא חובה)</label><input type="text" id="sname" name="name" placeholder="איך קוראים לך?" autocomplete="name"></div>
+      <div class="field"><label for="scourse">מה מעניין אותך</label>
+        <select id="scourse" name="course">
+          <option value="">עדיין לא החלטתי</option>
+          <option value="starter-self-paced">Starter — ללמוד לבד (359 ₪)</option>
+          <option value="starter-claude-code">Starter Pro: Claude Code לעבודה (490 ₪)</option>
+          <option value="starter-bundle">החבילה: שני הקורסים (690 ₪)</option>
+        </select>
+      </div>
+      <button type="submit" class="btn acc">להודיע לי כשנפתח <span class="ar">←</span></button>
+      <div class="alt"><span>המייל נשאר אצל מאיר בלבד.</span><a href="mailto:meir@ai-lab.co.il?subject=%D7%A8%D7%A9%D7%99%D7%9E%D7%AA%20%D7%94%D7%9E%D7%AA%D7%A0%D7%94%20%D7%9C%D7%A7%D7%95%D7%A8%D7%A1%20%D7%94%D7%9E%D7%95%D7%A7%D7%9C%D7%98&body=%D7%94%D7%99%D7%99%20%D7%9E%D7%90%D7%99%D7%A8%2C%20%D7%AA%D7%95%D7%93%D7%99%D7%A2%20%D7%9C%D7%99%20%D7%9B%D7%A9%D7%94%D7%A7%D7%95%D7%A8%D7%A1%20%D7%94%D7%9E%D7%95%D7%A7%D7%9C%D7%98%20%D7%A0%D7%A4%D7%AA%D7%97." id="soonMail">או במייל ישיר</a></div>
+      <div class="ok" id="soonOk">נרשמת. ביום שהקורס נפתח, המייל אצלך.</div>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="ch wrap" id="faq">
+  <div class="ch-head center"><span class="n">?</span><h2>שאלות ששואלים אותנו.</h2></div>
+  <div class="faq">
+    <details><summary>צריך לדעת לתכנת?<i></i></summary><div class="a">לא. בשני הקורסים אתה מתאר בעברית מה צריך, Claude עושה את העבודה, ואתה בודק את התוצאה על המסך ומתקן במילים. גם בקורס Claude Code לא כותבים קוד: עובדים באפליקציית Claude Desktop, והטרמינל מופיע בשיעור אחד קצר, רק כדי שלא יפחיד.</div></details>
+    <details><summary>מה ההבדל בין שני הקורסים?<i></i></summary><div class="a"><b>Starter</b> הוא הבסיס: Claude בצ'אט, Projects, מסמכים, אקסל, מצגות, אתר ו-Connectors. קובץ אחד, משימה אחת, בלי התקנות. <b>Starter Pro</b> הוא הצעד הבא: Claude Code יושב בתוך תיקייה במחשב שלך ועובד על עשרות קבצים בבת אחת, עם הרשאות, גיבויים, MCP, אוטומציה מתוזמנת ואתר ב-GitHub Pages. מי שלא עבד עם Claude מתחיל ב-Starter.</div></details>
+    <details><summary>למה Claude ולא ChatGPT?<i></i></summary><div class="a">כי ב-AI Lab עובדים עם כלי אחד לעומק, ו-Claude הוא זה שיש לו Projects, Connectors ליומן, לדרייב ולמייל, ו-Claude Code שעובד על הקבצים במחשב. מי שמכיר ChatGPT ירגיש בבית בדקות: העקרונות דומים, והשיעור הראשון עוסק בהבדלים.</div></details>
+    <details><summary>כמה זמן זה לוקח?<i></i></summary><div class="a">Starter: 21 שיעורים של 5 עד 8 דקות, כ-130 דקות וידאו. Starter Pro: 20 שיעורים, כ-135 דקות. אחרי כל שיעור יש תרגיל קצר על החומר שלך. בקצב של שיעור ביום מסיימים קורס בשלושה שבועות, ואפשר גם בסוף שבוע אחד.</div></details>
+    <details><summary>Claude Free או Claude Pro?<i></i></summary><div class="a">Claude Pro, כ-<bdi dir="ltr">$20</bdi> לחודש, נרכש ישירות מ-Anthropic ולא כלול במחיר הקורס. Projects, Connectors ו-Claude Code דורשים מנוי בתשלום. אפשר לבטל את המנוי אחרי הקורס.</div></details>
+    <details><summary>אפשר לבטל?<i></i></summary><div class="a">כן, בתוך 24 שעות מהרכישה, בתנאי שעדיין לא נכנסת לאזור הלמידה ולא צפית בתכני הקורס. אחרי כניסה ראשונה העסקה סופית, כמקובל בתוכן דיגיטלי ובכפוף לחוק הגנת הצרכן. המדיניות המלאה ב<a href="https://my.ai-lab.co.il/terms/starter" target="_blank" rel="noopener">תנאי השימוש</a>.</div></details>
+    <details><summary>מה ההבדל מהקורס החי בזום?<i></i></summary><div class="a"><a href="../">הקורס החי</a> (<span class="nw">2,100 ₪</span>) הוא 5 מפגשים בזום עם מאיר, בקבוצה קטנה, עם קבוצת וואטסאפ ומענה אישי. הגרסה המוקלטת היא אותם נושאים, מפורקים לשיעורים קצרים, בקצב שלך ובזמן שלך, עם סוכן שאלות מתחת לכל סרטון במקום מאיר בשידור חי. מי שרוצה ליווי אישי בוחר בקורס החי; מי שמעדיף ללמוד לבד בוחר כאן.</div></details>
+    <details><summary>לכמה זמן הגישה?<i></i></summary><div class="a">הסרטונים, דפי העבודה והפרומפטים נשארים באזור האישי לתמיד. סוכן השאלות שמתחת לכל סרטון זמין לשנה מיום הרכישה.</div></details>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="foot">
+    <div>
+      <div class="brand">AI Lab <small>STARTER</small></div>
+      <p>קורסי AI מעשיים למבוגרים, בעברית, בלי רקע טכני. חי בזום או מוקלט ללמידה עצמית. מנחה: מאיר לביא.</p>
+    </div>
+    <div>
+      <h4>יצירת קשר</h4>
+      <a href="tel:054-6500795">054-6500795</a>
+      <a href="mailto:meir@ai-lab.co.il">meir@ai-lab.co.il</a>
+      <a href="https://wa.me/972546500795?text=%D7%94%D7%99%D7%99%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A9%D7%90%D7%9C%D7%94%20%D7%A2%D7%9C%20%D7%94%D7%A7%D7%95%D7%A8%D7%A1%20%D7%94%D7%9E%D7%95%D7%A7%D7%9C%D7%98" target="_blank" rel="noopener">וואטסאפ</a>
+    </div>
+    <div>
+      <h4>עוד</h4>
+      <a href="../">הקורס החי בזום, 2,100 ₪</a>
+      <a href="https://my.ai-lab.co.il/">כניסה לאזור האישי</a>
+      <a href="https://my.ai-lab.co.il/terms/starter" target="_blank" rel="noopener">תנאי שימוש וביטול</a>
+      <a href="https://ai-lab.co.il" target="_blank" rel="noopener">AI Lab לילדים ונוער, <span class="nw">גילאי 9 עד 17</span></a>
+    </div>
+  </div>
+  <div class="foot-b">
+    <div>© <span id="year"></span> AI Lab · מאיר לביא</div>
+    <div class="mono">STARTER / LEARN / 2026</div>
+  </div>
+</footer>
+
+<nav class="mbar" aria-label="ניווט מהיר">
+  <a href="#price" class="mb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>הקורסים</span></a>
+  <a href="#soon" class="mb primary">תודיעו לי כשנפתח</a>
+  <a href="#faq" class="mb"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5M12 17h.01"/></svg><span>שאלות</span></a>
+</nav>
+
+<script>
+/* ============ מחירים: משנים כאן בלבד ============ */
+const PRICES = { c1: 359, c2: 490, bundle: 690 };
+PRICES.full = PRICES.c1 + PRICES.c2;        // 849
+PRICES.save = PRICES.full - PRICES.bundle;  // 159
+PRICES.upgrade = PRICES.bundle - PRICES.c1; // 331
+(function () {
+  const fmt = (n) => n.toLocaleString('en-US');
+  document.querySelectorAll('[data-p]').forEach(el => { const v = PRICES[el.dataset.p]; if (v != null) el.textContent = fmt(v); });
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+
+/* ============ "נפתח בקרוב": עד ההשקה כפתורי הרכישה מובילים לטופס המייל.
+   ביום ההשקה: LAUNCHED = true, והכפתורים עוברים ישירות ל-my.ai-lab.co.il/buy/<slug>. ============ */
+const LAUNCHED = false;
+document.querySelectorAll('[data-soon]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    if (LAUNCHED) return;
+    e.preventDefault();
+    const slug = a.dataset.soon, name = a.dataset.name || '';
+    const sel = document.getElementById('scourse');
+    if (sel) sel.value = slug;
+    document.getElementById('soonWhich').textContent = name || 'כל הקורסים';
+    document.getElementById('soonSubject').value = 'רשימת המתנה — ' + (name || 'Starter מוקלט');
+    const mail = document.getElementById('soonMail');
+    mail.href = 'mailto:meir@ai-lab.co.il?subject=' + encodeURIComponent('רשימת המתנה — ' + name) + '&body=' + encodeURIComponent('היי מאיר, תודיע לי כש' + name + ' נפתח לרכישה.');
+    document.getElementById('soon').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => document.getElementById('semail').focus({ preventScroll: true }), 600);
+  });
+});
+
+async function submitSoon(e) {
+  e.preventDefault();
+  const form = e.target, ok = document.getElementById('soonOk'), btn = form.querySelector('button[type="submit"]'), orig = btn.innerHTML;
+  btn.disabled = true; btn.textContent = 'שולח…';
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+    const data = await res.json(); if (!data.success) throw new Error(data.message || 'fail');
+    ok.classList.add('show'); btn.textContent = 'נרשמת';
+    setTimeout(() => { btn.disabled = false; btn.innerHTML = orig; }, 4000);
+  } catch (err) { alert('שגיאה בשליחה. נסה שוב, או שלח מייל ל-meir@ai-lab.co.il.'); btn.disabled = false; btn.innerHTML = orig; }
+  return false;
+}
+</script>
+</body>
+</html>

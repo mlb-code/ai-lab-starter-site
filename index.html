@@ -694,6 +694,12 @@ html.static body::after,html.static .marq .track,html.static .hint::after,html.s
 .plan .inst b{color:var(--acc);font-weight:600}
 .hs .price-line .inst{white-space:nowrap}
 #agents{scroll-margin-top:120px}
+/* קישור לגרסה המוקלטת (/learn/) */
+.price-alt{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:22px;padding:18px clamp(18px,2.6vw,40px);border:1px solid var(--line);color:var(--fg-2);font-size:.98rem;transition:border-color .25s}
+.price-alt b{color:var(--fg);font-weight:600}
+.price-alt .ar{color:var(--acc);white-space:nowrap;border-bottom:1px solid var(--acc);flex:none}
+.price-alt:hover{border-color:var(--acc)}
+@media(max-width:860px){.price-alt{flex-direction:column;align-items:flex-start;border-radius:20px;padding:16px 18px;margin-top:16px;background:var(--bg-2)}}
 /* מובייל: הסקשן החדש בסדר הקצר (אחרי המפגשים), ו-#agents הוא עכשיו שורה ולא סקשן */
 @media(max-width:760px){#aud{order:4;background:var(--bg-2);border-radius:32px 32px 0 0}p#agents{background:none;border-radius:0}}
 
@@ -963,6 +969,7 @@ html.static body::after,html.static .marq .track,html.static .hint::after,html.s
     <p><b>ביטול והחזר</b>ביטול עד 14 יום מההרשמה ולפני תחילת הקורס: החזר מלא. אחר כך לפי <a href="https://ai-lab.co.il/terms.html" target="_blank" rel="noopener">תקנון AI Lab</a>.</p>
   </div>
   </details>
+  <a href="./learn/" class="price-alt"><span><b>יש גם גרסה מוקלטת ללמידה עצמית.</b> אותם נושאים בשיעורים קצרים, בקצב שלך, מ-<span class="nw"><span data-p="selfPaced">359</span> ₪</span>. ועוד קורס המשך: Claude Code לעבודה.</span><span class="ar">לגרסה המוקלטת ←</span></a>
 </section>
 
 <!-- ================= 07 למי ================= -->
@@ -1170,7 +1177,8 @@ const PRICES = {
   starter: 2100,        // Starter, מחיר הקורס
   starterInst: 700,     // תשלום אחד מתוך 3 (לאשר מול טרנזילה)
   private: 390,         // שיעור פרטי 60 דק'
-  privatePack: 1390     // 4 שיעורים פרטיים
+  privatePack: 1390,    // 4 שיעורים פרטיים
+  selfPaced: 359        // הגרסה המוקלטת (/learn/), הקורס הראשון
 };
 (function () {
   const fmt = (n) => n.toLocaleString('en-US');
