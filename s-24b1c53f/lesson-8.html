@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>שיעור 08 — דף נחיתה: בונים ומעלים לאוויר | AI Lab</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0d12;--bg-2:#0f131a;--panel:#12171f;--panel-2:#161c25;
+  --line:#232b36;--line-soft:#1b222c;
+  --txt:#dfe4ea;--txt-dim:#98a1ad;--txt-faint:#6d7783;
+  --amber:#d99b3c;--amber-soft:#8a6326;--amber-glow:rgba(217,155,60,.11);
+  --ok:#5f8f6a;--mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:"Heebo",-apple-system,"Segoe UI",Arial,sans-serif;font-weight:300;
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow:hidden;
+  background-image:
+    radial-gradient(1100px 620px at 88% -12%,rgba(217,155,60,.075),transparent 62%),
+    radial-gradient(900px 520px at 6% 108%,rgba(86,116,152,.07),transparent 62%),
+    linear-gradient(180deg,#0d1119 0%,#0a0d12 55%,#080b0f 100%);
+  background-attachment:fixed;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0v64' fill='none' stroke='%23ffffff' stroke-opacity='.032' stroke-width='1'/%3E%3Cpath d='M0 0h1v1H0z' fill='%23d99b3c' fill-opacity='.10'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-position:center;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+}
+h1,h2,h3{font-weight:500;line-height:1.28;margin:0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+button{font-family:"Heebo",sans-serif;cursor:pointer;border-radius:4px;transition:border-color .15s,color .15s,background .15s}
+
+.deck{position:relative;z-index:1;display:flex;flex-direction:column;height:100dvh}
+.tb-back{color:var(--txt-faint);text-decoration:none;border:1px solid var(--line);border-radius:3px;padding:3px 10px;transition:color .15s,border-color .15s;white-space:nowrap}
+.tb-back:hover{color:var(--amber);border-color:var(--amber-soft)}
+.topbar{display:flex;align-items:center;gap:14px;padding:11px 22px;border-bottom:1px solid var(--line);background:rgba(10,13,18,.72);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--txt-faint);flex:none}
+.topbar .b{color:var(--amber)}
+.tb-title{color:var(--txt-dim);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pbar{height:2px;background:var(--line-soft);flex:none}
+.pbar div{height:100%;background:var(--amber);width:0;transition:width .25s ease}
+#stage{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;align-items:stretch;justify-content:center}
+.slide{
+  display:none;flex-direction:column;justify-content:center;justify-content:safe center;
+  width:100%;max-width:1150px;
+  padding:clamp(24px,4.5vh,60px) clamp(20px,4.5vw,58px) clamp(24px,4.5vh,54px);
+  animation:fade .22s ease;
+}
+.slide.active{display:flex}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.kick .n{border:1px solid var(--amber-soft);border-radius:2px;padding:2px 8px;letter-spacing:.1em}
+.slide h2{font-size:clamp(24px,4vw,36px);margin-bottom:8px}
+.rule{height:1px;background:linear-gradient(to left,var(--amber-soft),transparent 65%);margin:16px 0 22px}
+.lead{color:var(--txt-dim);font-size:clamp(15.5px,2vw,18.5px);max-width:66ch;margin:0 0 22px}
+.lead b,.note b{color:var(--txt);font-weight:500}
+
+ul.b{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+ul.b li{position:relative;padding-inline-start:20px;font-size:clamp(15.5px,2vw,18.5px)}
+ul.b li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:6px;height:6px;background:var(--amber-soft);border-radius:1px}
+ul.b li b{font-weight:500;color:#fff}
+ul.b li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
+ul.num{list-style:none;margin:0;padding:0;display:grid;gap:13px;counter-reset:n}
+ul.num li{position:relative;padding-inline-start:38px;font-size:clamp(15px,1.9vw,17.5px);counter-increment:n}
+ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inset-inline-start:0;top:.15em;font-family:var(--mono);font-size:12px;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:1px 5px}
+ul.num li b{font-weight:500;color:#fff}
+ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.card{border:1px solid var(--line);background:rgba(18,23,31,.86);border-radius:4px;padding:16px 17px;min-width:0}
+.card h3{font-size:15.5px;margin-bottom:6px}
+.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.11em;color:var(--amber);display:block;margin-bottom:7px}
+.card p{margin:0;color:var(--txt-dim);font-size:14px}
+.card ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:5px}
+.card ul li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:13px;position:relative}
+.card ul li::before{content:"·";position:absolute;inset-inline-start:2px;color:var(--amber)}
+.card.hi{border-color:var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9)}
+
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.compare .bad{border-color:#4a3030}
+.compare .good{border-color:var(--amber-soft)}
+.compare .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;margin-bottom:8px;display:block}
+.bad .lbl{color:#c07a68}.good .lbl{color:var(--amber)}
+
+/* קופסת "מה עושים עכשיו" */
+.do{border:1px solid var(--line);background:rgba(18,23,31,.9);border-radius:4px;padding:17px 18px 16px;margin-top:6px}
+.do-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.do-h b{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px;font-weight:500}
+.do-h span{font-family:var(--mono);font-size:11px;color:var(--txt-faint)}
+.do-h::after{content:"";flex:1;height:1px;background:var(--line)}
+.check{margin-top:15px;border-top:1px solid var(--line);padding-top:12px}
+.check b{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ok);display:block;margin-bottom:8px}
+.check ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.check li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:19px;position:relative}
+.check li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-size:12px}
+
+.ex{border:1px solid var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9);border-radius:4px;padding:20px 20px 18px;margin-top:4px}
+.ex-top{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:6px}
+.ex-badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px}
+.ex-time{font-family:var(--mono);font-size:11px;color:var(--txt-faint)}
+.model{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;padding:3px 9px;border-radius:2px;border:1px solid var(--line);color:var(--txt-faint)}
+.ex h3{font-size:clamp(17px,2.4vw,20px);width:100%}
+.ex .goal{color:var(--txt-dim);font-size:14.5px;margin:0 0 12px}
+
+.pbox{position:relative;margin:13px 0 0}
+.pbox pre{margin:0;background:rgba(10,13,18,.88);border:1px solid var(--line);border-radius:4px;padding:14px 15px;font-family:"Heebo",sans-serif;font-size:13.5px;line-height:1.6;color:var(--txt-dim);white-space:pre-wrap;overflow-wrap:anywhere;direction:rtl;max-height:40vh;overflow:auto}
+.copy{position:absolute;top:8px;inset-inline-start:8px;background:var(--panel);border:1px solid var(--line);color:var(--txt-faint);font-family:var(--mono);font-size:11px;padding:4px 10px;z-index:2}
+.copy:hover{border-color:var(--amber-soft);color:var(--amber)}
+.copy.done{border-color:#3c5a44;color:var(--ok)}
+.pcap{font-family:var(--mono);font-size:11px;color:var(--txt-faint);letter-spacing:.05em;margin:0 0 6px}
+
+.note{border-inline-start:2px solid var(--amber-soft);padding-inline-start:12px;color:var(--txt-dim);font-size:14px;margin-top:18px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:4px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 11px;text-align:right;vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--amber);font-weight:400;background:var(--panel)}
+.tbl td{color:var(--txt-dim)}
+.tbl td:first-child{color:var(--txt)}
+.tbl .ui{font-family:var(--mono);font-size:11px;color:var(--txt-faint);display:block}
+.tbl b.hl{color:var(--amber);font-weight:500}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.title-slide .big{font-size:clamp(30px,6vw,54px);line-height:1.18;margin:14px 0 18px}
+.title-slide .sub{color:var(--txt-dim);font-size:clamp(16px,2.2vw,20px);max-width:60ch}
+.title-slide .meta{margin-top:26px;font-family:var(--mono);font-size:11.5px;color:var(--txt-faint);letter-spacing:.1em;border-top:1px solid var(--line);padding-top:14px}
+
+.rule-slide .huge{font-size:clamp(26px,5vw,46px);line-height:1.25;margin:20px 0 14px;color:#fff}
+.rule-slide .huge b{color:var(--amber);font-weight:500}
+
+.navbar{flex:none;display:flex;align-items:center;gap:10px;padding:10px 22px 14px;border-top:1px solid var(--line);background:rgba(10,13,18,.72)}
+.navbar button{background:transparent;border:1px solid var(--line);color:var(--txt-dim);font-size:13.5px;padding:7px 17px}
+.navbar button:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.navbar button:disabled{opacity:.32;cursor:default}
+.navbar button:disabled:hover{border-color:var(--line);color:var(--txt-dim);background:transparent}
+.navbar .sp{flex:1}
+.navbar .hint{font-family:var(--mono);font-size:10.5px;color:var(--txt-faint);letter-spacing:.06em}
+@media (max-width:640px){
+  .topbar{padding:9px 14px;gap:9px;font-size:10.5px}
+  .tb-title{display:none}
+  .slide{padding:20px 16px 34px}
+  .navbar{padding:9px 14px 12px}
+  .navbar .hint{display:none}
+  .pbox pre{max-height:44vh}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* תוספות לשיעורים 7–10 */
+.slide p,.slide li,.slide td,.slide h3{overflow-wrap:break-word}
+.slide>*{flex-shrink:0}
+.ph{color:var(--amber);font-weight:500}
+.flow{display:grid;gap:6px;margin-top:4px}
+.flow .card{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:4px 16px;align-items:start}
+.flow .card h3{margin:0}
+.flow .card p{grid-column:2}
+.flow .card .tag{grid-column:1;grid-row:1 / span 2;margin:2px 0 0}
+.flow .arr{text-align:center;color:var(--amber-soft);font-family:var(--mono);font-size:13px;line-height:1}
+@media (max-width:640px){
+  .flow .card{grid-template-columns:minmax(0,1fr)}
+  .flow .card p,.flow .card .tag{grid-column:1;grid-row:auto}
+}
+</style>
+</head>
+<body>
+<div class="deck">
+  <div class="topbar">
+    <span class="b">AI Lab</span><span>· שיעור 08</span>
+    <span class="tb-title">דף נחיתה: בונים ומעלים לאוויר</span>
+    <a class="tb-back" href="index.html">חזרה לפורטל</a>
+    <span class="mono"><span id="cur">1</span> / <span id="tot">17</span></span>
+  </div>
+  <div class="pbar"><div id="pfill"></div></div>
+
+  <main id="stage">
+
+    <!-- 1 -->
+    <section class="slide title-slide active">
+      <div class="kick">שיעור 08 מתוך 10 · חלק ג: האתר של מיקי</div>
+      <h1 class="big">דף נחיתה:<br>בונים ומעלים לאוויר</h1>
+      <p class="sub">בסוף השיעור יש לך דף אחד באוויר, בקישור ציבורי שנפתח בטלפון, ונוהל עדכון של שלוש שורות. Claude Code בונה ומעלה. אתה מחליט, בודק ומאשר.</p>
+      <div class="meta">AI LAB · מאיר לביא · מהקבצים של שיעור 7 לדף חי</div>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide">
+      <div class="kick">מה נעשה היום</div>
+      <h2>חמישה דברים, בסדר הזה</h2>
+      <div class="rule"></div>
+      <p class="lead">זה התהליך משיעור 6, בגדול: <b>תדריך, בנייה, בדיקה, תיקון, שמירה</b>. הפעם על הדף האמיתי שלך, ובסוף הוא גם עולה לאוויר.</p>
+      <ul class="num">
+        <li><b>תדריך</b>: מטרה אחת, קהל אחד, פעולה אחת. <span>Claude מראיין, אתה עונה.</span></li>
+        <li><b>בנייה</b>: Claude Code כותב את הדף, ואתה רואה אותו מיד בדפדפן.</li>
+        <li><b>תיקון ובדיקה</b>: חלק אחרי חלק, ואז ברוחב של טלפון.</li>
+        <li><b>העלאה ל-GitHub Pages</b>: בקשה אחת, כמה אישורים, קישור. <span>Claude מריץ את הפקודות, אתה לא לומד git.</span></li>
+        <li><b>נוהל עדכון</b> של שלוש שורות, כדי שתוכל לשנות לבד.</li>
+      </ul>
+      <p class="note"><b>אם בשיעור 7 החלטנו לתקן את האתר הקיים:</b> אותו תהליך בדיוק, רק שהבנייה היא עריכה של עמודים קיימים, והשמירה היא דרך הניהול של האתר. נתאים בשיעור.</p>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide">
+      <div class="kick">חלק 1 · תיאוריה</div>
+      <h2>מה זה דף נחיתה</h2>
+      <div class="rule"></div>
+      <p class="lead">עמוד אחד, עם מטרה אחת. מי שמגיע אליו צריך להבין בתוך כמה שניות מה מוצע, ולמי, ומה עושים עכשיו.</p>
+      <div class="compare">
+        <div class="card bad"><span class="lbl mono">אתר מלא</span><ul>
+          <li>הרבה עמודים, הרבה תפריטים</li>
+          <li>המבקר מחפש לבד מה מעניין אותו</li>
+          <li>הרבה דברים לתחזק ולבדוק</li>
+          <li>טוב כשיש הרבה מה להציג</li></ul></div>
+        <div class="card good"><span class="lbl mono">דף נחיתה</span><ul>
+          <li>עמוד אחד, מלמעלה למטה</li>
+          <li>אומר דבר אחד, ברור</li>
+          <li>פעולה אחת: לפנות</li>
+          <li>אפשר לבנות ולהעלות בשיעור אחד, ולשנות בכל רגע</li></ul></div>
+      </div>
+      <p class="note"><b>למה דף נחיתה עכשיו:</b> הוא נותן לאתר חיים מהר, בלי לחכות לגישות ובלי לפרק את מה שקיים. מכאן אפשר להתרחב בהמשך.</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide">
+      <div class="kick">חלק 1 · המבנה</div>
+      <h2>החלקים של הדף, מלמעלה למטה</h2>
+      <div class="rule"></div>
+      <p class="lead">רוב התוכן כבר כתוב, מהשיעור הקודם. היום מסדרים אותו בעמוד אחד.</p>
+      <ul class="num">
+        <li><b>פתיחה</b><span>משפט אחד: מה מוצע, ולמי. ומתחתיו כפתור הפעולה.</span></li>
+        <li><b>איך הטיפול עובד</b><span>שלושה או ארבעה צעדים, מתוך <span class="mono">איך-הטיפול-עובד</span> בשפת האתר.</span></li>
+        <li><b>למי זה מתאים, ולמי לא</b><span>במילים שלך, כמו שאישרת בשיעור 7.</span></li>
+        <li><b>שאלות נפוצות</b><span>ארבע או חמש מתוך עשר השאלות.</span></li>
+        <li><b>יצירת קשר</b><span>אותו כפתור שוב, ושורה: "המידע בדף כללי, ואינו מחליף התייעצות עם רופא". בנוסח שאתה מאשר.</span></li>
+      </ul>
+      <p class="note"><b>מה לא שמים בדף הזה:</b> המלצות של מטופלים, תמונות "לפני ואחרי", מספרים על הצלחה. גם אם יש לך כאלה. בתחום הבריאות יש לזה כללים, וזה לא הדף להתחיל בו.</p>
+    </section>
+
+    <!-- 5 -->
+    <section class="slide">
+      <div class="kick">חלק 1 · החלטה</div>
+      <h2>הפעולה האחת: ומי עונה</h2>
+      <div class="rule"></div>
+      <p class="lead">פעם, מי שפנה קיבל שיחה ממומחה. היום צריך להחליט שני דברים: <b>איך פונים</b>, ו<b>מי עונה, ותוך כמה זמן</b>. את השני מחליטים לפני שהדף עולה.</p>
+      <div class="scroll"><table class="tbl">
+        <tr><th>האפשרות</th><th>מה טוב בה</th><th>ממה נזהרים</th></tr>
+        <tr><td>מייל</td><td>פשוט, לא מחייב לענות מיד</td><td>לבדוק את התיבה. מייל שאף אחד לא קורא, גרוע מבלי מייל</td></tr>
+        <tr><td>וואטסאפ</td><td>נוח לרוב האנשים בטלפון</td><td>מספר שאתה מוכן שיהיה ציבורי</td></tr>
+        <tr><td>טלפון</td><td>מוכר, כמו פעם</td><td>מישהו צריך לענות. אחרת זה המצב של היום</td></tr>
+        <tr><td>טופס באתר</td><td>מסודר</td><td><b class="hl">לא היום.</b> טופס שאוסף מידע רפואי זה מידע רגיש, ובאירופה חלים עליו כללי פרטיות מחמירים</td></tr>
+      </table></div>
+      <p class="note">ליד הכפתור כדאי שורה קצרה: "בפנייה הראשונה אין צורך לשלוח פרטים רפואיים". ככה פחות מידע רגיש מגיע אליך מלכתחילה.</p>
+    </section>
+
+    <!-- 6 -->
+    <section class="slide">
+      <div class="kick">חלק 1 · התרגיל</div>
+      <div class="ex">
+        <div class="ex-top"><span class="ex-badge mono">עושים ביחד</span><span class="ex-time mono">10 דקות</span><span class="model mono">OPUS</span>
+          <h3>התדריך: Claude מראיין אותך</h3></div>
+        <p class="goal">לפני שבונים, כותבים מה בונים. תדריך טוב חוסך חצי מהתיקונים.</p>
+        <ul class="num">
+          <li>ב-Cursor, בתיקיית הפרויקט, שיחה חדשה בלוח של Claude Code.</li>
+          <li>מדביק את הבקשה, ועונה על השאלות אחת אחת.</li>
+          <li>מאשר לו לכתוב את <span class="mono">תדריך-דף-נחיתה.md</span>, וקורא.</li>
+        </ul>
+        <div class="pbox"><p class="pcap">הבקשה — להעתקה</p><button class="copy" type="button">העתקה</button><pre>אני רוצה לבנות דף נחיתה של עמוד אחד לאתר שלי, ב[שפת האתר].
+קרא קודם את הקבצים איך-הטיפול-עובד ו-שאלות-ותשובות (הגרסה ב[שפת האתר]), ואת דוח-מצב-האתר.md.
+
+אחר כך ראיין אותי כדי לכתוב תדריך. שאלה אחת בכל פעם, וחכה לתשובה. שאל על: מה המטרה של הדף, מי יגיע אליו ומאיזו מדינה, מה הפעולה האחת שאני רוצה שיעשה (מייל, וואטסאפ או טלפון), מי עונה לפניות ותוך כמה זמן, ואיזה סגנון וצבעים מתאימים.
+
+אחרי 6 עד 8 שאלות, כתוב בעברית את הקובץ תדריך-דף-נחיתה.md: מטרה, קהל, פעולה אחת, החלקים של הדף לפי הסדר, ואיזה טקסט מהקבצים נכנס לכל חלק.
+אל תמציא המלצות, מספרים או טענות רפואיות. מה שחסר: [להשלים].</pre></div>
+        <div class="check"><b>מה בודקים בתדריך</b><ul>
+          <li>פעולה אחת, לא שלוש</li>
+          <li>כל הטקסט הרפואי מגיע מהקבצים שאישרת, לא מתוספות שלו</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="slide">
+      <div class="kick">חלק 2 · לפני הבנייה</div>
+      <h2>מה חייב להיות בבקשה לבנייה</h2>
+      <div class="rule"></div>
+      <p class="lead">חמישה דברים. כל אחד מונע בעיה שקורית כמעט תמיד כשהוא חסר.</p>
+      <ul class="b">
+        <li><b>השפה והכיוון</b><span>הדף ב<span class="ph">[שפת האתר]</span>. באיטלקית או באנגלית הכיוון משמאל לימין. בלי זה, הכול מתהפך.</span></li>
+        <li><b>קודם לטלפון</b><span>רוב המבקרים יגיעו מהטלפון. בודקים שם קודם.</span></li>
+        <li><b>קובץ אחד, בלי ספריות ובלי תמונות מהאינטרנט</b><span>כדי שיהיה פשוט להעלות ולעדכן.</span></li>
+        <li><b>כפתור פעולה אמיתי</b><span>הקישור האמיתי למייל, לוואטסאפ או לטלפון. למעלה ולמטה.</span></li>
+        <li><b>[להשלים] במקום המצאות</b><span>ובסוף, רשימה של מה שחסר. טקסט מומצא בדף רפואי זה הדבר הראשון שנזהרים ממנו.</span></li>
+      </ul>
+    </section>
+
+    <!-- 8 -->
+    <section class="slide">
+      <div class="kick">חלק 2 · דוגמה חיה</div>
+      <h2>Claude Code בונה את הדף</h2>
+      <div class="rule"></div>
+      <p class="lead">אני עושה על המסך שלך, צעד אחרי צעד. אחר כך אתה עושה את התיקונים.</p>
+      <div class="do">
+        <div class="do-h"><b>מה אני עושה על המסך</b><span>10 דקות</span></div>
+        <ul class="num">
+          <li>באותה תיקייה, שיחה חדשה. מדביק את הבקשה שלמטה.</li>
+          <li>Claude כותב קודם מה הוא מתכוון לעשות. <b>קוראים</b>, ורק אז מאשרים לו ליצור את התיקייה <span class="mono">site</span> ואת הקובץ.</li>
+          <li>כותב לו: "תפתח לי את הדף בדפדפן". הדף נפתח, מהמחשב, עוד לא באוויר.</li>
+          <li>עוברים על הדף מלמעלה למטה, ורושמים מה לשנות.</li>
+        </ul>
+        <div class="pbox"><p class="pcap">הבקשה — להעתקה</p><button class="copy" type="button">העתקה</button><pre>קרא את תדריך-דף-נחיתה.md, ובנה ממנו דף נחיתה של עמוד אחד, בקובץ site/index.html:
+- השפה: [שפת האתר]. כיוון הכתיבה מתאים לשפה.
+- מתאים קודם כול לטלפון, וגם למחשב. בלי גלילה הצידה.
+- כל העיצוב בתוך הקובץ. בלי ספריות, בלי גופנים מבחוץ ובלי תמונות מהאינטרנט.
+- צבעים: [צבע ראשי] ו[צבע הדגשה], על רקע [בהיר / כהה].
+- כפתור הפעולה: [הקישור למייל, לוואטסאפ או לטלפון], למעלה ולמטה בדף.
+- הטקסט הרפואי רק מהקבצים שאישרתי. אל תוסיף טענות, מספרים או המלצות. מה שחסר: [להשלים].
+- אל תיגע בשום קובץ אחר בתיקייה.
+בסוף כתוב לי רשימה של כל ה-[להשלים] שנשארו בדף.</pre></div>
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section class="slide">
+      <div class="kick">חלק 3 · תיקון</div>
+      <h2>מתקנים חלק אחרי חלק</h2>
+      <div class="rule"></div>
+      <p class="lead">בקשה אחת, שינוי אחד. ככה רואים בדיוק מה השתנה, ואם משהו התקלקל, יודעים מה.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>10 דקות</span></div>
+        <ul class="num">
+          <li>בוחר דבר אחד לשנות, וכותב אותו במשפט אחד.</li>
+          <li>מאשר את השינוי, ומרענן את הדף בדפדפן.</li>
+          <li>חוזר על זה לפחות שלוש פעמים. כל פעם דבר אחד.</li>
+        </ul>
+        <div class="pbox"><p class="pcap">דוגמאות — בוחרים אחת בכל פעם</p><button class="copy" type="button">העתקה</button><pre>הכותרת בפתיחה ארוכה מדי. תקצר אותה לשורה אחת, באותה משמעות.
+
+או: תזיז את "שאלות נפוצות" אחרי "איך הטיפול עובד".
+
+או: הכפתור לא בולט מספיק. תגדיל אותו, ותן לו את צבע ההדגשה.
+
+או: תחליף את [להשלים] בחלק יצירת הקשר בטקסט הזה: [הטקסט שלך].
+
+או: משהו התקלקל. תחזיר את מה שהיה לפני השינוי האחרון.</pre></div>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>השתנה רק מה שביקשת. אם הוא שינה עוד משהו, אומרים לו</li>
+          <li>אחרי כל שינוי: הכפתור עדיין עובד?</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="slide">
+      <div class="kick">חלק 3 · בדיקה</div>
+      <h2>בדיקה בטלפון, לפני שמעלים</h2>
+      <div class="rule"></div>
+      <p class="lead">גם לפני שהדף באוויר, אפשר לראות איך הוא ייראה בטלפון. ואחרי שהוא עולה, בודקים שוב בטלפון שלך, באמת.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>5 דקות</span></div>
+        <ul class="num">
+          <li>מבקש מ-Claude: <b>"תבדוק את site/index.html ברוחב של טלפון, 390 פיקסלים. יש גלילה הצידה? משהו נחתך?"</b></li>
+          <li>בדפדפן, מקטינים את החלון עד שהוא צר כמו טלפון, ומסתכלים בעצמך.</li>
+          <li>עוברים על רשימת הבדיקה שלמטה.</li>
+        </ul>
+        <div class="check"><b>רשימת הבדיקה</b><ul>
+          <li>אין גלילה הצידה, שום דבר לא נחתך</li>
+          <li>הכפתור פותח מייל, וואטסאפ או חיוג, לכתובת או למספר הנכונים</li>
+          <li>אין [להשלים] ואין [לבדיקת רופא] בדף</li>
+          <li>אין פרטים שלא התכוונת לפרסם</li>
+          <li>כל משפט רפואי: קראת ואישרת</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 11 -->
+    <section class="slide">
+      <div class="kick">חלק 4 · תיאוריה</div>
+      <h2>GitHub Pages: מה עולה, ומה לא</h2>
+      <div class="rule"></div>
+      <p class="lead">GitHub שומר את הקבצים ואת כל הגרסאות שלהם. Pages הופך אותם לאתר בקישור ציבורי, בחינם. אבל בחשבון החינמי המאגר ציבורי: <b>כל אחד יכול לראות את כל הקבצים במאגר, לא רק את הדף.</b></p>
+      <div class="compare">
+        <div class="card good"><span class="lbl mono">עולה</span><ul>
+          <li>הקובץ index.html</li>
+          <li>תמונות שיש לך זכות עליהן, מכווצות</li>
+          <li>רק מה שבתיקייה site</li></ul></div>
+        <div class="card bad"><span class="lbl mono">לא עולה, אף פעם</span><ul>
+          <li>מפתחות (API Keys) וסיסמאות</li>
+          <li>פרטי מטופלים, בשום צורה</li>
+          <li>התדריך, דוח המצב, טיוטות וקבצי הסוכן</li>
+          <li>כל מסמך פנימי</li></ul></div>
+      </div>
+      <p class="note"><b>הכלל:</b> מה שלא היית תולה על הדלת של הקליניקה, לא נכנס לתיקייה site. בגלל זה הדף בתיקייה נפרדת, וכל השאר נשאר בחוץ.</p>
+    </section>
+
+    <!-- 12 -->
+    <section class="slide">
+      <div class="kick">חלק 4 · דוגמה חיה</div>
+      <h2>בקשה אחת: מאגר, העלאה, קישור</h2>
+      <div class="rule"></div>
+      <p class="lead">אתה לא מקליד אף פקודה. Claude Code מריץ אותן, ואתה מאשר כל אחת. בשיעור 6 חיברנו את GitHub, אז הוא מתחיל בבדיקה שהחיבור עדיין עובד.</p>
+      <div class="do">
+        <div class="do-h"><b>מה קורה על המסך</b><span>10 דקות</span></div>
+        <ul class="num">
+          <li>מדביקים את הבקשה. Claude בודק את החיבור ל-GitHub, ובודק מה יש בתיקייה site.</li>
+          <li>מופיעות בקשות אישור, אחת אחרי השנייה. בכל אחת שורה טכנית באנגלית, ומעליה הסבר שלו. <b>git</b>, <b>commit</b>, <b>push</b>: זה שמירת גרסאות. Claude מטפל בזה.</li>
+          <li>בקשה שלא מבינים? לא מאשרים. שואלים: "מה הפעולה הזו עושה?"</li>
+          <li>בסוף הוא כותב קישור. בדרך כלל לוקח דקה או שתיים עד שהדף עולה, לפעמים עד עשר. דף שגיאה? מחכים ומרעננים.</li>
+        </ul>
+        <div class="pbox"><p class="pcap">הבקשה — להעתקה</p><button class="copy" type="button">העתקה</button><pre>בדוק קודם שאתה מחובר לחשבון GitHub שלי. אם לא, תסביר לי מה חסר, ואל תמשיך.
+אחר כך בדוק שבתיקייה site יש רק מה שצריך לעלות לאוויר. אם יש שם משהו אחר, תגיד לי ואל תעלה אותו.
+פתח מהתיקייה site מאגר חדש וציבורי ב-GitHub בשם [שם-המאגר], העלה אותו, והפעל GitHub Pages.
+שאל אותי לפני כל פעולה ב-GitHub, והסבר במשפט מה היא עושה.
+בסוף תן לי את הקישור, ובדוק שהדף נפתח בו.</pre></div>
+        <div class="check"><b>שים לב</b><ul>
+          <li>הקישור בנוי ככה: שם המשתמש שלך, אחריו github.io, ואחריו שם המאגר</li>
+          <li>שם המאגר באנגלית, בלי רווחים. הוא יופיע בקישור, אז בוחרים משהו קריא</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 13 -->
+    <section class="slide">
+      <div class="kick">חלק 4 · התרגיל</div>
+      <div class="ex">
+        <div class="ex-top"><span class="ex-badge mono">אתה עושה</span><span class="ex-time mono">10 דקות</span><span class="model mono">OPUS</span>
+          <h3>הדף שלך באוויר, בטלפון שלך</h3></div>
+        <p class="goal">ראית איך זה נעשה. עכשיו אתה מאשר את הצעדים בעצמך, ואני רק מסתכל.</p>
+        <ul class="num">
+          <li>מעתיק את בקשת ההעלאה מהשקף הקודם, ובוחר שם למאגר.</li>
+          <li>מאשר כל פעולה, אחרי שקראת את ההסבר.</li>
+          <li>שולח את הקישור לעצמך בוואטסאפ, ופותח אותו בטלפון.</li>
+          <li>לוחץ על הכפתור בטלפון: נפתח המייל, הוואטסאפ או החיוג הנכון?</li>
+          <li>מעתיק את הקישור לכרטיס "האתר של מיקי" בפורטל, ושולח לי.</li>
+        </ul>
+        <div class="check"><b>הצלחה נראית ככה</b><ul>
+          <li>הקישור נפתח בטלפון, בלי גלילה הצידה</li>
+          <li>הכפתור עובד</li>
+          <li>במאגר ב-GitHub יש רק את הקבצים של site</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 14 -->
+    <section class="slide">
+      <div class="kick">חלק 5 · נוהל עדכון</div>
+      <h2>שלוש שורות, כל פעם שמשנים</h2>
+      <div class="rule"></div>
+      <p class="lead">דף באוויר זה לא הסוף. תמיד יש מה לעדכן. זה הנוהל, ואותו שומרים בתיקייה, כדי שגם שיחה חדשה תדע איך מעלים.</p>
+      <div class="grid2">
+        <div class="card hi"><span class="tag mono">הנוהל</span><h3>משנים, בודקים, מעלים</h3><ul>
+          <li><b>1.</b> "תשנה בדף: [מה לשנות]"</li>
+          <li><b>2.</b> "תפתח לי את הדף בדפדפן", ובודקים, גם ברוחב של טלפון</li>
+          <li><b>3.</b> "תעלה את הגרסה החדשה"</li></ul></div>
+        <div class="card"><span class="tag mono">ואם משהו נשבר</span><h3>חוזרים אחורה</h3><p>"תחזיר את האתר לגרסה הקודמת". GitHub שומר כל גרסה. Claude מראה רשימה עם תאריכים, ואתה בוחר לאיזו לחזור.</p></div>
+      </div>
+      <div class="pbox"><p class="pcap">שומרים את הנוהל בתיקייה — להעתקה</p><button class="copy" type="button">העתקה</button><pre>תוסיף לקובץ CLAUDE.md בתיקייה הזו (צור אותו אם הוא לא קיים) חלק בשם "העלאת הדף":
+הדף נמצא ב-site/index.html, והוא עולה למאגר [שם-המאגר] ב-GitHub Pages.
+לפני כל העלאה: לפתוח את הדף בדפדפן ולחכות לאישור שלי. לבדוק שאין [להשלים] ואין [לבדיקת רופא]. להעלות רק את מה שבתיקייה site.</pre></div>
+    </section>
+
+    <!-- 15 -->
+    <section class="slide">
+      <div class="kick">שאלות שעולות תמיד</div>
+      <h2>חמש שאלות, חמש תשובות קצרות</h2>
+      <div class="rule"></div>
+      <div class="scroll"><table class="tbl">
+        <tr><th>השאלה</th><th>התשובה הקצרה</th></tr>
+        <tr><td>זה עולה כסף?</td><td>GitHub Pages חינמי במאגר ציבורי, וזה מה שעשינו</td></tr>
+        <tr><td>מאגר ציבורי: מישהו יכול לשנות לי את הדף?</td><td>לא. כולם יכולים לראות את הקבצים, אבל רק אתה, או מי שתיתן לו הרשאה, יכול לשנות</td></tr>
+        <tr><td>אפשר שהדף יהיה בכתובת של האתר שלי?</td><td>כן, משנים הגדרה אצל מי שמחזיק בדומיין. <b class="hl">אבל זהירות:</b> אם הדומיין מוביל היום לאתר הישן, השינוי מעביר אותו לדף החדש. מחליטים על זה יחד, לא לבד</td></tr>
+        <tr><td>Claude אומר שהוא לא מחובר ל-GitHub</td><td>מבקשים ממנו לבדוק את החיבור ולהסביר מה חסר. אם זה לא מסתדר, מביאים לשיעור</td></tr>
+        <tr><td>אני צריך ללמוד git?</td><td>לא. Claude מריץ את הפקודות. אתה צריך רק לקרוא מה הוא מבקש לאשר</td></tr>
+      </table></div>
+    </section>
+
+    <!-- 16 -->
+    <section class="slide">
+      <div class="kick">סיכום</div>
+      <h2>מה היה לנו, ומה עד הפעם הבאה</h2>
+      <div class="rule"></div>
+      <div class="grid2">
+        <div class="card"><span class="tag mono">מה בנינו היום</span><h3>דף באוויר</h3><ul>
+          <li>תדריך של עמוד אחד</li>
+          <li>דף נחיתה ב-site/index.html</li>
+          <li>קישור ציבורי ב-GitHub Pages, שנפתח בטלפון</li>
+          <li>נוהל עדכון של שלוש שורות, שמור בתיקייה</li></ul></div>
+        <div class="card hi"><span class="tag mono">המשימה לשבוע · 30 דקות</span><h3>להראות, לעדכן, להכין</h3><ul>
+          <li>לשלוח את הקישור לאדם אחד שאתה סומך עליו, ולשאול: "מה לא ברור בדף?"</li>
+          <li>לעשות עדכון אחד לפי הנוהל, משינוי ועד "תעלה את הגרסה החדשה"</li>
+          <li>לכתוב חמישה דברים שאסור שהסוכן יגיד לפונה. אנחנו מתחילים מהם בשיעור הבא</li></ul></div>
+      </div>
+      <p class="note">הבקשות של השיעור נמצאות בפורטל, ב<b>"ספריית הבקשות"</b>, עם כפתור העתקה.</p>
+    </section>
+
+    <!-- 17 -->
+    <section class="slide title-slide">
+      <div class="kick">בשיעור הבא</div>
+      <h1 class="big">הסוכן שעונה לפונים:<br>תכנון ובדיקה</h1>
+      <p class="sub">מה הסוכן יודע ומה אסור לו, ההוראות, עשר שיחות מדומות ב-Cursor, ואיך זה היה מתחבר לאתר: השלבים, העלויות, והסיכונים.</p>
+      <div class="meta">AI LAB · מאיר לביא · <a class="tb-back" href="index.html" style="margin-inline-start:8px">חזרה לפורטל</a></div>
+    </section>
+
+  </main>
+
+  <div class="navbar">
+    <button id="prev" type="button">הקודם</button>
+    <button id="next" type="button">הבא</button>
+    <span class="sp"></span>
+    <span class="hint mono">חצים במקלדת · מקש רווח</span>
+    <button id="fs" type="button">מסך מלא</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')),i=0;
+  document.getElementById('tot').textContent=slides.length;
+  var cur=document.getElementById('cur'),fill=document.getElementById('pfill'),
+      prev=document.getElementById('prev'),next=document.getElementById('next'),stage=document.getElementById('stage');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
+    cur.textContent=i+1;
+    fill.style.width=((i+1)/slides.length*100)+'%';
+    prev.disabled=(i===0); next.disabled=(i===slides.length-1);
+    stage.scrollTop=0;
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  prev.onclick=function(){show(i-1)}; next.onclick=function(){show(i+1)};
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='BUTTON'&&(e.key===' '||e.key==='Enter'))return;
+    if(e.key==='ArrowLeft'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(i+1)}
+    else if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1)}
+    else if(e.key==='Home'){show(0)} else if(e.key==='End'){show(slides.length-1)}
+  });
+  var x0=null;
+  stage.addEventListener('touchstart',function(e){x0=e.changedTouches[0].clientX},{passive:true});
+  stage.addEventListener('touchend',function(e){
+    if(x0===null)return; var d=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(d)>60) show(d<0?i+1:i-1);
+  },{passive:true});
+  document.getElementById('fs').onclick=function(){
+    if(document.fullscreenElement){document.exitFullscreen()}
+    else{document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}
+  };
+  [].forEach.call(document.querySelectorAll('.copy'),function(b){
+    b.onclick=function(){
+      var t=b.parentNode.querySelector('pre').textContent, done=function(){
+        b.textContent='הועתק ✓';b.classList.add('done');
+        setTimeout(function(){b.textContent='העתקה';b.classList.remove('done')},1700);
+      };
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,function(){leg(t,done)})}
+      else{leg(t,done)}
+    };
+  });
+  function leg(t,done){
+    var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';
+    document.body.appendChild(a);a.focus();a.setSelectionRange(0,t.length);
+    try{document.execCommand('copy');done()}catch(e){}
+    document.body.removeChild(a);
+  }
+  var h=parseInt(location.hash.replace('#',''),10);
+  show(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>

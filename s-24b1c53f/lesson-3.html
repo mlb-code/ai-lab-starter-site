@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>שיעור 03 — מיילים ומסמכים: מטיוטה לנוסח | AI Lab</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0d12;--bg-2:#0f131a;--panel:#12171f;--panel-2:#161c25;
+  --line:#232b36;--line-soft:#1b222c;
+  --txt:#dfe4ea;--txt-dim:#98a1ad;--txt-faint:#6d7783;
+  --amber:#d99b3c;--amber-soft:#8a6326;--amber-glow:rgba(217,155,60,.11);
+  --ok:#5f8f6a;--mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:"Heebo",-apple-system,"Segoe UI",Arial,sans-serif;font-weight:300;
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow:hidden;
+  background-image:
+    radial-gradient(1100px 620px at 88% -12%,rgba(217,155,60,.075),transparent 62%),
+    radial-gradient(900px 520px at 6% 108%,rgba(86,116,152,.07),transparent 62%),
+    linear-gradient(180deg,#0d1119 0%,#0a0d12 55%,#080b0f 100%);
+  background-attachment:fixed;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0v64' fill='none' stroke='%23ffffff' stroke-opacity='.032' stroke-width='1'/%3E%3Cpath d='M0 0h1v1H0z' fill='%23d99b3c' fill-opacity='.10'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-position:center;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+}
+h1,h2,h3{font-weight:500;line-height:1.28;margin:0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+button{font-family:"Heebo",sans-serif;cursor:pointer;border-radius:4px;transition:border-color .15s,color .15s,background .15s}
+
+.deck{position:relative;z-index:1;display:flex;flex-direction:column;height:100dvh}
+.tb-back{color:var(--txt-faint);text-decoration:none;border:1px solid var(--line);border-radius:3px;padding:3px 10px;transition:color .15s,border-color .15s;white-space:nowrap}
+.tb-back:hover{color:var(--amber);border-color:var(--amber-soft)}
+.topbar{display:flex;align-items:center;gap:14px;padding:11px 22px;border-bottom:1px solid var(--line);background:rgba(10,13,18,.72);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--txt-faint);flex:none}
+.topbar .b{color:var(--amber)}
+.tb-title{color:var(--txt-dim);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pbar{height:2px;background:var(--line-soft);flex:none}
+.pbar div{height:100%;background:var(--amber);width:0;transition:width .25s ease}
+#stage{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;align-items:stretch;justify-content:center}
+.slide{
+  display:none;flex-direction:column;justify-content:center;justify-content:safe center;
+  width:100%;max-width:1150px;
+  padding:clamp(24px,4.5vh,60px) clamp(20px,4.5vw,58px) clamp(24px,4.5vh,54px);
+  animation:fade .22s ease;
+}
+.slide.active{display:flex}
+.slide>*{flex-shrink:0}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.kick .n{border:1px solid var(--amber-soft);border-radius:2px;padding:2px 8px;letter-spacing:.1em}
+.slide h2{font-size:clamp(24px,4vw,36px);margin-bottom:8px}
+.rule{height:1px;background:linear-gradient(to left,var(--amber-soft),transparent 65%);margin:16px 0 22px}
+.lead{color:var(--txt-dim);font-size:clamp(15.5px,2vw,18.5px);max-width:66ch;margin:0 0 22px}
+.lead b,.note b{color:var(--txt);font-weight:500}
+
+ul.b{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+ul.b li{position:relative;padding-inline-start:20px;font-size:clamp(15.5px,2vw,18.5px)}
+ul.b li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:6px;height:6px;background:var(--amber-soft);border-radius:1px}
+ul.b li b{font-weight:500;color:#fff}
+ul.b li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
+ul.num{list-style:none;margin:0;padding:0;display:grid;gap:13px;counter-reset:n}
+ul.num li{position:relative;padding-inline-start:38px;font-size:clamp(15px,1.9vw,17.5px);counter-increment:n}
+ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inset-inline-start:0;top:.15em;font-family:var(--mono);font-size:12px;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:1px 5px}
+ul.num li b{font-weight:500;color:#fff}
+ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.card{border:1px solid var(--line);background:rgba(18,23,31,.86);border-radius:4px;padding:16px 17px;min-width:0}
+.card h3{font-size:15.5px;margin-bottom:6px}
+.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.11em;color:var(--amber);display:block;margin-bottom:7px}
+.card p{margin:0;color:var(--txt-dim);font-size:14px}
+.card ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:5px}
+.card ul li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:13px;position:relative}
+.card ul li::before{content:"·";position:absolute;inset-inline-start:2px;color:var(--amber)}
+.card.hi{border-color:var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9)}
+
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.compare .bad{border-color:#4a3030}
+.compare .good{border-color:var(--amber-soft)}
+.compare .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;margin-bottom:8px;display:block}
+.bad .lbl{color:#c07a68}.good .lbl{color:var(--amber)}
+
+/* קופסת "מה עושים עכשיו" */
+.do{border:1px solid var(--line);background:rgba(18,23,31,.9);border-radius:4px;padding:17px 18px 16px;margin-top:6px}
+.do-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.do-h b{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px;font-weight:500}
+.do-h span{font-family:var(--mono);font-size:11px;color:var(--txt-faint)}
+.do-h::after{content:"";flex:1;height:1px;background:var(--line)}
+.check{margin-top:15px;border-top:1px solid var(--line);padding-top:12px}
+.check b{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ok);display:block;margin-bottom:8px}
+.check ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.check li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:19px;position:relative}
+.check li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-size:12px}
+
+.ex{border:1px solid var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9);border-radius:4px;padding:20px 20px 18px;margin-top:4px}
+.ex-top{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:6px}
+.ex-badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px}
+.ex-time{font-family:var(--mono);font-size:11px;color:var(--txt-faint)}
+.model{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;padding:3px 9px;border-radius:2px;border:1px solid var(--line);color:var(--txt-faint)}
+.ex h3{font-size:clamp(17px,2.4vw,20px);width:100%}
+.ex .goal{color:var(--txt-dim);font-size:14.5px;margin:0 0 12px}
+
+.pbox{position:relative;margin:13px 0 0}
+.pbox pre{margin:0;background:rgba(10,13,18,.88);border:1px solid var(--line);border-radius:4px;padding:14px 15px;font-family:"Heebo",sans-serif;font-size:13.5px;line-height:1.6;color:var(--txt-dim);white-space:pre-wrap;overflow-wrap:anywhere;direction:rtl;max-height:40vh;overflow:auto}
+.copy{position:absolute;top:8px;inset-inline-start:8px;background:var(--panel);border:1px solid var(--line);color:var(--txt-faint);font-family:var(--mono);font-size:11px;padding:4px 10px;z-index:2}
+.copy:hover{border-color:var(--amber-soft);color:var(--amber)}
+.copy.done{border-color:#3c5a44;color:var(--ok)}
+.pcap{font-family:var(--mono);font-size:11px;color:var(--txt-faint);letter-spacing:.05em;margin:0 0 6px}
+
+.note{border-inline-start:2px solid var(--amber-soft);padding-inline-start:12px;color:var(--txt-dim);font-size:14px;margin-top:18px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:4px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 11px;text-align:right;vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--amber);font-weight:400;background:var(--panel)}
+.tbl td{color:var(--txt-dim)}
+.tbl td:first-child{color:var(--txt)}
+.tbl .ui{font-family:var(--mono);font-size:11px;color:var(--txt-faint);display:block}
+.tbl b.hl{color:var(--amber);font-weight:500}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.title-slide .big{font-size:clamp(30px,6vw,54px);line-height:1.18;margin:14px 0 18px}
+.title-slide .sub{color:var(--txt-dim);font-size:clamp(16px,2.2vw,20px);max-width:60ch}
+.title-slide .meta{margin-top:26px;font-family:var(--mono);font-size:11.5px;color:var(--txt-faint);letter-spacing:.1em;border-top:1px solid var(--line);padding-top:14px}
+
+.rule-slide .huge{font-size:clamp(26px,5vw,46px);line-height:1.25;margin:20px 0 14px;color:#fff}
+.rule-slide .huge b{color:var(--amber);font-weight:500}
+
+.navbar{flex:none;display:flex;align-items:center;gap:10px;padding:10px 22px 14px;border-top:1px solid var(--line);background:rgba(10,13,18,.72)}
+.navbar button{background:transparent;border:1px solid var(--line);color:var(--txt-dim);font-size:13.5px;padding:7px 17px}
+.navbar button:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.navbar button:disabled{opacity:.32;cursor:default}
+.navbar button:disabled:hover{border-color:var(--line);color:var(--txt-dim);background:transparent}
+.navbar .sp{flex:1}
+.navbar .hint{font-family:var(--mono);font-size:10.5px;color:var(--txt-faint);letter-spacing:.06em}
+@media (max-width:640px){
+  .topbar{padding:9px 14px;gap:9px;font-size:10.5px}
+  .tb-title{display:none}
+  .slide{padding:20px 16px 34px}
+  .navbar{padding:9px 14px 12px}
+  .navbar .hint{display:none}
+  .pbox pre{max-height:44vh}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="deck">
+  <div class="topbar">
+    <span class="b">AI Lab</span><span>· שיעור 03</span>
+    <span class="tb-title">מיילים ומסמכים: מטיוטה לנוסח</span>
+    <a class="tb-back" href="index.html">חזרה לפורטל</a>
+    <span class="mono"><span id="cur">1</span> / <span id="tot">17</span></span>
+  </div>
+  <div class="pbar"><div id="pfill"></div></div>
+
+  <main id="stage">
+
+    <!-- 1 -->
+    <section class="slide title-slide active">
+      <div class="kick">שיעור 03 מתוך 10 · קורס פרטי</div>
+      <h1 class="big">מיילים ומסמכים:<br>מטיוטה לנוסח</h1>
+      <p class="sub">בסוף השיעור כתבת עם Claude מייל אמיתי מתוך נקודות, כיוונת את הטון ובדקת אותו לפני שליחה, סיכמת מסמך ארוך ושאלת עליו שאלות, ושמרת בתיק העבודה שלך תבנית מייל קבועה. הכול ב-Cursor, בתיקייה miki.</p>
+      <div class="meta">AI LAB · מאיר לביא · שיעור 03 · חלק א</div>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide">
+      <div class="kick">מה נעשה היום</div>
+      <h2>חמישה דברים, בסדר הזה</h2>
+      <div class="rule"></div>
+      <p class="lead">היום עובדים על דברים פשוטים ויומיומיים: מיילים ומסמכים. זה הבסיס, וזה גם המקום שבו Claude חוסך הכי הרבה זמן כבר מהשבוע הראשון.</p>
+      <ul class="num">
+        <li><b>מייל מנקודות לנוסח</b>: ארבעה דברים שכל בקשה צריכה. <span>ושתי גרסאות לבחירה.</span></li>
+        <li><b>מכווננים טון, ובודקים לפני ששולחים</b>. <span>ומה עושים כשהמייל באנגלית או באיטלקית.</span></li>
+        <li><b>מסמך ארוך</b>: מכניסים לתיקייה, מסכמים, ושואלים עליו. <span>ובודקים שלא המציא.</span></li>
+        <li><b>מסמך בסגנון שלך</b>: Claude שואל קודם, כותב אחר כך. <span>הדגמה שלי.</span></li>
+        <li><b>תבנית מייל קבועה</b> בתוך תיק העבודה. <span>למיילים שחוזרים.</span></li>
+      </ul>
+      <p class="note"><b>הכול קורה בתיקייה miki.</b> ככה ההוראות שכתבת בשיעור הקודם עובדות בשבילך בכל בקשה, בלי שתסביר שוב.</p>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide">
+      <div class="kick">פתיחה · 5 דקות</div>
+      <h2>פותחים מהמקום הנכון</h2>
+      <div class="rule"></div>
+      <p class="lead">קודם השבוע שעבר, ואז מוודאים שאנחנו בתיקייה הנכונה.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>5 דקות</span></div>
+        <ul class="num">
+          <li>ספר לי: מה עשית בתיקייה השבוע, ואיזו שורה הוספת ל-<span class="ltr mono">CLAUDE.md</span>.</li>
+          <li>ב-Cursor: File, ואז Open Recent, ובוחרים <span class="ltr mono">miki</span>.</li>
+          <li>פותחים שיחה חדשה בלוח של Claude Code. משימה חדשה = שיחה חדשה.</li>
+        </ul>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>בסרגל הקבצים רואים את <span class="ltr mono">CLAUDE.md</span> ואת <span class="ltr mono">about.md</span></li>
+          <li>הבאת שניים או שלושה מיילים שאתה צריך לשלוח. בלי פרטי מטופלים</li></ul></div>
+      </div>
+      <p class="note">הטעות הכי נפוצה: לעבוד בתיקייה אחרת, ואז "הוא שכח אותי". הוא לא שכח, הוא פשוט לא רואה את ההוראות.</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide">
+      <div class="kick">חלק 1 · מייל</div>
+      <h2>ארבעה דברים בכל בקשה למייל</h2>
+      <div class="rule"></div>
+      <p class="lead">לא צריך לכתוב מייל טוב. צריך להגיד ל-Claude ארבעה דברים, גם אם הם מבולגנים.</p>
+      <div class="grid2">
+        <div class="card"><span class="tag mono">01</span><h3>למי</h3><p>חברת האחסון של האתר, עמית, ספק, מישהו שפנה אליך. כל אחד מקבל טון אחר.</p></div>
+        <div class="card"><span class="tag mono">02</span><h3>מה המטרה</h3><p>מה אתה רוצה שיקרה אחרי שיקרא. שיענה, שיאשר, שיבין, שיחכה.</p></div>
+        <div class="card"><span class="tag mono">03</span><h3>מה חייב להיות</h3><p>הנקודות שלך, כמו שהן בראש. Claude מסדר אותן.</p></div>
+        <div class="card"><span class="tag mono">04</span><h3>טון ואורך</h3><p>"מנומס וישיר, עד שש שורות". משפט כזה שווה יותר מ"תכתוב יפה".</p></div>
+      </div>
+      <p class="note"><b>שתי גרסאות, ובוחרים.</b> ואם כתבת ב-<span class="ltr mono">CLAUDE.md</span> באיזו שפה לכתוב ובאיזה טון, לא צריך להגיד את זה שוב.</p>
+    </section>
+
+    <!-- 5 -->
+    <section class="slide">
+      <div class="kick">חלק 1 · דוגמה חיה</div>
+      <h2>מנקודות מבולגנות למייל</h2>
+      <div class="rule"></div>
+      <p class="lead">אני מראה, אתה מסתכל. מייל שהרבה בעלי אתרים צריכים לשלוח: לחברת האחסון, על חידוש.</p>
+      <div class="do">
+        <div class="do-h"><b>מה אני עושה על המסך</b><span>5 דקות</span></div>
+        <ul class="num">
+          <li>בתיקיית הדגמה שלי, בשיחה חדשה, כותב נקודות כמו שהן בראש: <b>"חברת האחסון מבקשת לחדש, המחיר עלה, לא בטוח שצריך את החבילה הגדולה, רוצה לדעת מה ההבדל, לפני סוף החודש".</b></li>
+          <li>מוסיף את הבקשה מהשקף הבא, ושולח.</li>
+          <li>מקבל שתי גרסאות, בוחר את הקצרה, ומבקש "פחות רשמי".</li>
+          <li>שואל: "מה במייל הזה עלול להתפרש לא נכון?"</li>
+        </ul>
+        <div class="check"><b>שים לב</b><ul>
+          <li>הוא לא הוסיף מחיר או תאריך שלא כתבתי. אם כן, זו בדיוק הטעות שמחפשים</li>
+          <li>השאלה האחרונה מוצאת דברים שהעין מפספסת, למשל משפט שנשמע כמו הסכמה לחדש</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="slide">
+      <div class="kick">חלק 1 · התרגיל</div>
+      <div class="ex">
+        <div class="ex-top"><span class="ex-badge mono">עושים ביחד</span><span class="ex-time mono">10 דקות</span><span class="model mono">OPUS</span>
+          <h3>מייל אמיתי, מנקודות</h3></div>
+        <p class="goal">מייל שאתה באמת צריך לשלוח השבוע: לחברת האחסון, לעמית, לספק, לבן משפחה. לא מייל למטופל עם פרטים אישיים.</p>
+        <ul class="num">
+          <li>מעתיק את הבקשה, ומשלים את מה שבסוגריים המרובעים.</li>
+          <li>שולח, קורא את שתי הגרסאות, ובוחר אחת.</li>
+          <li>עוד לא שולח. יש עוד שני שקפים של כיוונון ובדיקה.</li>
+        </ul>
+        <div class="pbox"><p class="pcap">הבקשה — להעתקה</p><button class="copy" type="button">העתקה</button><pre>כתוב מייל ל[למי, למשל: חברת האחסון של האתר / עמית / ספק].
+המטרה של המייל: [מה אני רוצה שיקרה אחרי שיקרא].
+הנקודות שחייבות להיות במייל:
+- [נקודה ראשונה]
+- [נקודה שנייה]
+- [נקודה שלישית]
+שפה: [עברית / אנגלית / איטלקית].
+טון: [למשל: מנומס וישיר, בלי מילים גבוהות].
+אורך: עד [מספר] שורות.
+
+תן שתי גרסאות: אחת קצרה ואחת מפורטת יותר. אל תוסיף הבטחות, מועדים או מספרים שלא כתבתי. אחרי שתי הגרסאות, כתוב במשפט אחד מה במייל עלול להתפרש לא נכון אצל מי שיקרא אותו.</pre></div>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>כל הנקודות שלך נמצאות במייל</li>
+          <li>אין מספר, תאריך או הבטחה שלא כתבת</li>
+          <li>הטון מתאים למי שמקבל, לא רק "נשמע טוב"</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="slide">
+      <div class="kick">חלק 2 · טון</div>
+      <h2>מכווננים, באותה שיחה</h2>
+      <div class="rule"></div>
+      <p class="lead">תיקון קצר וספציפי עובד הרבה יותר טוב מ"תשפר את זה". כל תיקון באותה שיחה, והוא זוכר את כל מה שהיה קודם.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>5 דקות</span></div>
+        <ul class="num">
+          <li>בוחר תיקון אחד מהרשימה, ושולח.</li>
+          <li>משווה לגרסה הקודמת. עוד תיקון, אם צריך.</li>
+        </ul>
+        <div class="pbox"><p class="pcap">אפשרויות — בוחרים אחת</p><button class="copy" type="button">העתקה</button><pre>קצר יותר, עד חמש שורות.
+
+או: פחות רשמי, כמו שאני כותב לעמית שאני מכיר שנים.
+
+או: יותר החלטי. בלי "אם אפשר" ובלי התנצלויות.
+
+או: תוסיף [הפרט שחסר], ואל תשנה שום דבר אחר.</pre></div>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>הוא שינה רק את מה שביקשת</li>
+          <li>תיקנת את אותו דבר גם במייל הקודם? זה סימן לשורה ב-<span class="ltr mono">CLAUDE.md</span>. נגיע לזה עוד מעט</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="slide">
+      <div class="kick">חלק 2 · שפות</div>
+      <h2>באנגלית או באיטלקית: איך אתה בודק</h2>
+      <div class="rule"></div>
+      <p class="lead">חלק מהמיילים שלך, וגם האתר, כנראה לא בעברית. Claude כותב טוב בשפות האלה, אבל אתה זה שחותם.</p>
+      <ul class="b">
+        <li><b>תרגום חוזר, רק בשבילך.</b><span>מבקשים מתחת למייל תרגום לעברית, כדי לבדוק שהתוכן נכון, לא רק שהשפה יפה.</span></li>
+        <li><b>מספרים ושמות, בשני הנוסחים.</b><span>תאריך, סכום, שם של חברה. בודקים שהם זהים.</span></li>
+        <li><b>מונחים רפואיים: אתה המומחה.</b><span>מילה נשמעת לא מדויקת? שואלים "למה בחרת במילה הזאת, ומה האפשרויות?".</span></li>
+      </ul>
+      <div class="pbox"><p class="pcap">הבקשה — להעתקה</p><button class="copy" type="button">העתקה</button><pre>תכתוב מתחת למייל תרגום לעברית, רק בשבילי, כדי שאבדוק שהתוכן נכון. אם יש מילה שאפשר להבין ביותר מדרך אחת, סמן אותה.</pre></div>
+    </section>
+
+    <!-- 9 -->
+    <section class="slide rule-slide">
+      <div class="kick">לפני ששולחים · חצי דקה</div>
+      <h2 class="huge"><b>מה שיוצא בשמך,</b><br>עבר את העיניים שלך.</h2>
+      <div class="rule"></div>
+      <p class="lead">רשימת בדיקה קצרה, לפני כל מייל שנכתב עם Claude. ואז מעתיקים לתוכנת המייל, ושולחים אתה.</p>
+      <ul class="b">
+        <li><b>שמות ופרטים</b>: השם של מי שמקבל, שם החברה, מספר הזמנה.<span>Claude כותב את מה שנתת לו. אם נתת שם לא נכון, הוא יכתוב אותו יפה.</span></li>
+        <li><b>מספרים ותאריכים</b>: רק מה שאתה כתבת, או מה שכתוב במסמך.<span>מספר שלא אתה נתת, נמחק.</span></li>
+        <li><b>הבטחות</b>: בתחום רפואי, לא מבטיחים תוצאה ולא מאבחנים במייל.<span>מסבירים באופן כללי, ומזמינים לשיחה.</span></li>
+        <li><b>משפט אישי אחד</b>: משהו שרק אתה היית כותב.<span>ככה המייל נשמע כמוך.</span></li>
+      </ul>
+    </section>
+
+    <!-- 10 -->
+    <section class="slide">
+      <div class="kick">חלק 3 · מסמך ארוך</div>
+      <h2>איך מסמך נכנס לתיקייה</h2>
+      <div class="rule"></div>
+      <p class="lead">ב-claude.ai מעלים קובץ לשיחה. אצלך ב-Cursor שמים אותו בתיקייה, ואומרים ל-Claude לקרוא אותו.</p>
+      <div class="do">
+        <div class="do-h"><b>מה עושים עכשיו</b><span>4 דקות</span></div>
+        <ul class="num">
+          <li>בסרגל הקבצים של Cursor: קליק ימני על miki, New Folder, ושם <span class="ltr mono">docs</span>.</li>
+          <li>גוררים את המסמך מ-Finder לתוך <span class="ltr mono">docs</span> בסרגל הקבצים.</li>
+          <li>בשיחה כותבים @ ומתחילים להקליד את שם הקובץ. בוחרים אותו מהרשימה.</li>
+        </ul>
+      </div>
+      <div class="scroll"><table class="tbl" style="margin-top:14px">
+        <tr><th>סוג הקובץ</th><th>מה עושים</th></tr>
+        <tr><td>PDF</td><td>שמים כמו שהוא. Claude קורא אותו ישר, כולל טבלאות</td></tr>
+        <tr><td>טקסט רגיל</td><td>שמים כמו שהוא</td></tr>
+        <tr><td>Word<span class="ui">docx</span></td><td>הכי פשוט: שומרים קודם כ-PDF (File, ואז Save As, ובוחרים PDF)</td></tr>
+      </table></div>
+      <p class="note"><b>לפני שמכניסים:</b> הרמזור. מסמך עם פרטים של מטופלים לא נכנס לתיקייה, גם לא לרגע.</p>
+    </section>
+
+    <!-- 11 -->
+    <section class="slide">
+      <div class="kick">חלק 3 · התרגיל</div>
+      <div class="ex">
+        <div class="ex-top"><span class="ex-badge mono">עושים ביחד</span><span class="ex-time mono">10 דקות</span><span class="model mono">OPUS</span>
+          <h3>מסכמים מסמך, ושואלים עליו</h3></div>
+        <p class="goal">מסמך ארוך שיש לך: חוזה עם חברת האחסון, תנאי שימוש, הצעה מספק, או מאמר מקצועי על הטיפול. לא תיק רפואי.</p>
+        <ul class="num">
+          <li>שולח את בקשת הסיכום, עם שם הקובץ אחרי @.</li>
+          <li>שואל שתי שאלות משלך, באותה שיחה, עם הבקשה השנייה.</li>
+          <li>בודק תשובה אחת מול המקור. פותח את המסמך ומחפש את המשפט.</li>
+        </ul>
+        <div class="pbox"><p class="pcap">בקשה 1, סיכום — להעתקה</p><button class="copy" type="button">העתקה</button><pre>קרא את @docs/[שם הקובץ] וסכם אותו בשבילי לפי המבנה הזה:
+1. על מה המסמך, במשפט אחד.
+2. חמש הנקודות החשובות ביותר, כל אחת בשורה.
+3. כל התאריכים, הסכומים והמספרים שמופיעים בו, בטבלה: מה, כמה או מתי, ובאיזה עמוד או סעיף.
+4. מה דורש פעולה ממני, ועד מתי.
+5. מה לא ברור או חסר במסמך.
+
+כתוב רק מה שמופיע במסמך. אם משהו לא כתוב בו, כתוב "לא מופיע במסמך". אל תשלים מידע מבחוץ.</pre></div>
+        <div class="pbox"><p class="pcap">בקשה 2, שאלות — להעתקה</p><button class="copy" type="button">העתקה</button><pre>עכשיו שתי שאלות על המסמך:
+1. [שאלה ראשונה]
+2. [שאלה שנייה]
+לכל תשובה, צטט את המשפט מהמסמך שעליו היא מבוססת, וכתוב באיזה עמוד הוא.</pre></div>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>הציטוט באמת נמצא במסמך, במקום שהוא אמר</li>
+          <li>"לא מופיע במסמך" היא תשובה טובה. היא אומרת שהוא לא המציא</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 12 -->
+    <section class="slide">
+      <div class="kick">חלק 4 · דוגמה חיה</div>
+      <h2>מסמך בסגנון שלך: Claude שואל קודם</h2>
+      <div class="rule"></div>
+      <p class="lead">אני מראה, אתה מסתכל. בלי שאלות, Claude מנחש את מה שחסר, והניחושים נראים כמו עובדות. עם שאלות, הוא כותב ממה שאתה אמרת.</p>
+      <div class="do">
+        <div class="do-h"><b>מה אני עושה על המסך</b><span>6 דקות</span></div>
+        <ul class="num">
+          <li>שם ב-<span class="ltr mono">docs</span> מסמך ישן שכתבתי, כדוגמה לסגנון.</li>
+          <li>מדביק את הבקשה שלמטה. Claude מתאר את הסגנון במשפט, ושואל עד חמש שאלות.</li>
+          <li>עונה. הוא כותב טיוטה, ומבקש אישור ליצור קובץ בתיקייה <span class="ltr mono">drafts</span>.</li>
+          <li>פותח את הקובץ ב-Cursor, ומבקש תיקון של חלק אחד: "הפסקה השנייה ארוכה מדי".</li>
+        </ul>
+        <div class="pbox"><p class="pcap">הבקשה — להעתקה, לשבוע</p><button class="copy" type="button">העתקה</button><pre>אני צריך לכתוב [סוג המסמך, למשל: מכתב לשותף לשעבר / עמוד "מי אנחנו" לאתר] עבור [למי].
+זו דוגמה למסמך ישן שכתבתי, לסגנון שלי: @docs/[שם הקובץ]. קודם, תאר במשפט אחד את הסגנון שלו.
+אחר כך, לפני שאתה כותב, שאל אותי עד חמש שאלות על מה שחסר לך. שאל אותן ברשימה אחת, וחכה לתשובות.
+אחרי התשובות, כתוב טיוטה בסגנון של הדוגמה, עם כותרות, ושמור אותה כקובץ בתיקייה drafts. השתמש רק בעובדות ובמספרים שאני נותן. במקום שחסר פרט, כתוב [להשלים] ואל תמציא.</pre></div>
+      </div>
+    </section>
+
+    <!-- 13 -->
+    <section class="slide">
+      <div class="kick">חלק 4 · כלל שני התיקונים</div>
+      <h2>תיקנת פעמיים? זו שורה בהוראות</h2>
+      <div class="rule"></div>
+      <p class="lead">אם ביקשת "קצר יותר" בשלושה מיילים, זה לא תיקון, זה הסגנון שלך. מקומו ב-<span class="ltr mono">CLAUDE.md</span>, כדי שלא תצטרך לבקש שוב.</p>
+      <div class="compare">
+        <div class="card"><span class="lbl mono">ממשיכים באותה שיחה</span><ul>
+          <li>אותה משימה, עוד תיקון</li>
+          <li>גרסה נוספת של אותו מייל</li>
+          <li>שאלה על התשובה האחרונה</li></ul></div>
+        <div class="card good"><span class="lbl mono">פותחים שיחה חדשה</span><ul>
+          <li>משימה אחרת, מייל אחר</li>
+          <li>השיחה ארוכה מאוד, והתשובות מתבלבלות</li>
+          <li>עדכנת את <span class="ltr mono">CLAUDE.md</span> ורוצה לבדוק</li></ul></div>
+      </div>
+      <div class="pbox"><p class="pcap">הבקשה — להעתקה, בסוף שיחה עם תיקונים</p><button class="copy" type="button">העתקה</button><pre>עשינו כמה תיקונים בשיחה הזאת. עבור על השיחה וכתוב לי רשימה של עד חמש שורות שכדאי להוסיף ל-CLAUDE.md, כדי שלא אצטרך לתקן את אותם דברים שוב.
+כל שורה: משפט אחד, בגוף שני ("כתוב...", "אל תציין..."). אל תכלול דברים שנכונים רק למשימה הזאת.
+אל תשנה את הקובץ עד שאבחר אילו שורות להוסיף.</pre></div>
+    </section>
+
+    <!-- 14 -->
+    <section class="slide">
+      <div class="kick">חלק 5 · מה בונים היום</div>
+      <div class="ex">
+        <div class="ex-top"><span class="ex-badge mono">עושים ביחד</span><span class="ex-time mono">8 דקות</span><span class="model mono">OPUS</span>
+          <h3>תבנית מייל קבועה, בתוך תיק העבודה</h3></div>
+        <p class="goal">יש מיילים שחוזרים: תשובה ראשונה למי ששואל על הטיפול, תשובה להצעת שיתוף פעולה, עדכון לחברת האחסון. במקום להתחיל כל פעם מאפס, שומרים תבנית בתיקייה.</p>
+        <ul class="num">
+          <li>בוחר מייל אחד שחוזר אצלך, ומדביק את הבקשה.</li>
+          <li>עונה על השאלות. מאשר את הקובץ החדש ואת השינוי ב-<span class="ltr mono">CLAUDE.md</span>.</li>
+          <li>בודק: שיחה חדשה, ומבקש מייל לפי התבנית על שאלה כללית.</li>
+        </ul>
+        <div class="pbox"><p class="pcap">הבקשה — להעתקה</p><button class="copy" type="button">העתקה</button><pre>אני רוצה תבנית קבועה למייל שחוזר אצלי: [איזה מייל, למשל: תשובה ראשונה למי ששואל על הטיפול].
+שאל אותי עד ארבע שאלות על מה שחייב להיות בו ומה אסור שיהיה בו. שאל אותן ברשימה אחת, וחכה לתשובות.
+אחר כך צור קובץ בתיקייה templates, עם שם קצר באנגלית, ובו:
+1. מתי משתמשים בתבנית.
+2. המבנה: פתיחה, גוף, סיום וחתימה.
+3. משפטים קבועים שתמיד נכנסים, ובמקומות שמשתנים: [להשלים].
+4. מה אסור: לאבחן, להבטיח תוצאה, לתת המלצה למקרה ספציפי.
+ובסוף הוסף ל-CLAUDE.md שורה שאומרת מתי להשתמש בתבנית הזאת, ואיפה היא.</pre></div>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>בשיחה החדשה הוא השתמש בתבנית, בלי שהזכרת את שם הקובץ</li>
+          <li>אין בתבנית שום משפט שמבטיח תוצאה או נשמע כמו אבחון</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 15 -->
+    <section class="slide">
+      <div class="kick">שאלות שעולות תמיד</div>
+      <h2>חמש שאלות, חמש תשובות קצרות</h2>
+      <div class="rule"></div>
+      <div class="scroll"><table class="tbl">
+        <tr><th>השאלה</th><th>התשובה הקצרה</th><th>איפה מרחיבים</th></tr>
+        <tr><td>איך מעבירים את המייל מ-Cursor לתוכנת המייל?</td><td>מסמנים את הנוסח בתשובה ומעתיקים (Cmd+C), ומדביקים בתוכנת המייל. בודקים שהשורות לא נשברו</td><td>השיעור הזה</td></tr>
+        <tr><td>Claude יכול לשלוח את המייל בעצמו?</td><td>לא מכאן. בתיקייה הוא כותב, אתה שולח. חיבור למייל קיים, ונלמד אותו בתיאוריה</td><td>שיעור 4</td></tr>
+        <tr><td>איך אני יודע שהוא לא המציא?</td><td>מבקשים "רק ממה שכתבתי" או "רק מהמסמך", ומבקשים ציטוט. ובודקים מספר אחד מול המקור</td><td>השיעור הזה</td></tr>
+        <tr><td>ומסמך סרוק, תמונה של דף?</td><td>לרוב הוא קורא גם סריקה, אבל טעויות קריאה נפוצות יותר. בודקים מספרים פעמיים</td><td>שיעור 4</td></tr>
+        <tr><td>כמה ארוך יכול להיות מסמך?</td><td>עשרות עמודים, בלי בעיה. ספר שלם: עדיף פרק אחרי פרק</td><td>שיעור 4</td></tr>
+      </table></div>
+      <p class="note">שאלה רפואית של פונה מסוים? Claude מנסח הסבר כללי. התשובה האישית היא שלך, בשיחה.</p>
+    </section>
+
+    <!-- 16 -->
+    <section class="slide">
+      <div class="kick">סיכום</div>
+      <h2>מה היה לנו, ומה עד הפעם הבאה</h2>
+      <div class="rule"></div>
+      <div class="grid2">
+        <div class="card"><span class="tag mono">מה למדנו</span><h3>חמישה דברים</h3><ul>
+          <li>מייל: למי, מטרה, נקודות, טון ואורך. שתי גרסאות</li>
+          <li>לפני ששולחים: שמות, מספרים, הבטחות, משפט אישי</li>
+          <li>מסמך נכנס לתיקייה <span class="ltr mono">docs</span>, ומסמנים אותו ב-@</li>
+          <li>Claude שואל קודם, כותב אחר כך</li>
+          <li>תיקנת פעמיים? שורה ב-<span class="ltr mono">CLAUDE.md</span></li></ul></div>
+        <div class="card hi"><span class="tag mono">המשימה לשבוע · חצי שעה</span><h3>שלושה מיילים ומסמך אחד</h3><ul>
+          <li>שלושה מיילים אמיתיים שנשלחו השבוע, שנכתבו בתיקייה: נקודות, נוסח, בדיקה, שליחה</li>
+          <li>סיכום של מסמך אחד, ובדיקה של מספר אחד מול המקור</li>
+          <li>התבנית: להשתמש בה פעם אחת על מייל אמיתי, ולתקן בה שורה אם צריך</li>
+          <li>לשיעור הבא: קובץ אקסל אחד בלי פרטים אישיים (הוצאות האתר, רשימת שאלות שפונים שאלו)</li></ul></div>
+      </div>
+      <p class="note">הבקשות של היום נמצאות בפורטל, ב<b>"ספריית הבקשות"</b>, עם כפתור העתקה.</p>
+    </section>
+
+    <!-- 17 -->
+    <section class="slide title-slide">
+      <div class="kick">בשיעור הבא</div>
+      <h1 class="big">קבצים, Artifacts<br>ו-Connectors</h1>
+      <p class="sub">שואלים שאלות על קובץ נתונים, Claude בונה לך מסמך ראשון שנפתח בדפדפן, ומבינים מה זה חיבור ליומן ולמייל: מה הוא רואה, מה דורש אישור, ולמה זהירות כפולה אצל רופא.</p>
+      <div class="meta">AI LAB · מאיר לביא · <a class="tb-back" href="index.html" style="margin-inline-start:8px">חזרה לפורטל</a></div>
+    </section>
+
+  </main>
+
+  <div class="navbar">
+    <button id="prev" type="button">הקודם</button>
+    <button id="next" type="button">הבא</button>
+    <span class="sp"></span>
+    <span class="hint mono">חצים במקלדת · מקש רווח</span>
+    <button id="fs" type="button">מסך מלא</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')),i=0;
+  document.getElementById('tot').textContent=slides.length;
+  var cur=document.getElementById('cur'),fill=document.getElementById('pfill'),
+      prev=document.getElementById('prev'),next=document.getElementById('next'),stage=document.getElementById('stage');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
+    cur.textContent=i+1;
+    fill.style.width=((i+1)/slides.length*100)+'%';
+    prev.disabled=(i===0); next.disabled=(i===slides.length-1);
+    stage.scrollTop=0;
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  prev.onclick=function(){show(i-1)}; next.onclick=function(){show(i+1)};
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='BUTTON'&&(e.key===' '||e.key==='Enter'))return;
+    if(e.key==='ArrowLeft'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(i+1)}
+    else if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1)}
+    else if(e.key==='Home'){show(0)} else if(e.key==='End'){show(slides.length-1)}
+  });
+  var x0=null;
+  stage.addEventListener('touchstart',function(e){x0=e.changedTouches[0].clientX},{passive:true});
+  stage.addEventListener('touchend',function(e){
+    if(x0===null)return; var d=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(d)>60) show(d<0?i+1:i-1);
+  },{passive:true});
+  document.getElementById('fs').onclick=function(){
+    if(document.fullscreenElement){document.exitFullscreen()}
+    else{document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}
+  };
+  [].forEach.call(document.querySelectorAll('.copy'),function(b){
+    b.onclick=function(){
+      var t=b.parentNode.querySelector('pre').textContent, done=function(){
+        b.textContent='הועתק ✓';b.classList.add('done');
+        setTimeout(function(){b.textContent='העתקה';b.classList.remove('done')},1700);
+      };
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,function(){leg(t,done)})}
+      else{leg(t,done)}
+    };
+  });
+  function leg(t,done){
+    var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';
+    document.body.appendChild(a);a.focus();a.setSelectionRange(0,t.length);
+    try{document.execCommand('copy');done()}catch(e){}
+    document.body.removeChild(a);
+  }
+  var h=parseInt(location.hash.replace('#',''),10);
+  show(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>

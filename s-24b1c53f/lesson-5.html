@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>שיעור 05 — תיאוריה: API, MCP, Connectors וסוכנים | AI Lab</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0d12;--bg-2:#0f131a;--panel:#12171f;--panel-2:#161c25;
+  --line:#232b36;--line-soft:#1b222c;
+  --txt:#dfe4ea;--txt-dim:#98a1ad;--txt-faint:#6d7783;
+  --amber:#d99b3c;--amber-soft:#8a6326;--amber-glow:rgba(217,155,60,.11);
+  --ok:#5f8f6a;--mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:"Heebo",-apple-system,"Segoe UI",Arial,sans-serif;font-weight:300;
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow:hidden;
+  background-image:
+    radial-gradient(1100px 620px at 88% -12%,rgba(217,155,60,.075),transparent 62%),
+    radial-gradient(900px 520px at 6% 108%,rgba(86,116,152,.07),transparent 62%),
+    linear-gradient(180deg,#0d1119 0%,#0a0d12 55%,#080b0f 100%);
+  background-attachment:fixed;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0v64' fill='none' stroke='%23ffffff' stroke-opacity='.032' stroke-width='1'/%3E%3Cpath d='M0 0h1v1H0z' fill='%23d99b3c' fill-opacity='.10'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-position:center;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+}
+h1,h2,h3{font-weight:500;line-height:1.28;margin:0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+button{font-family:"Heebo",sans-serif;cursor:pointer;border-radius:4px;transition:border-color .15s,color .15s,background .15s}
+
+.deck{position:relative;z-index:1;display:flex;flex-direction:column;height:100dvh}
+.tb-back{color:var(--txt-faint);text-decoration:none;border:1px solid var(--line);border-radius:3px;padding:3px 10px;transition:color .15s,border-color .15s;white-space:nowrap}
+.tb-back:hover{color:var(--amber);border-color:var(--amber-soft)}
+.topbar{display:flex;align-items:center;gap:14px;padding:11px 22px;border-bottom:1px solid var(--line);background:rgba(10,13,18,.72);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--txt-faint);flex:none}
+.topbar .b{color:var(--amber)}
+.tb-title{color:var(--txt-dim);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pbar{height:2px;background:var(--line-soft);flex:none}
+.pbar div{height:100%;background:var(--amber);width:0;transition:width .25s ease}
+#stage{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;align-items:stretch;justify-content:center}
+.slide{
+  display:none;flex-direction:column;justify-content:center;justify-content:safe center;
+  width:100%;max-width:1150px;
+  padding:clamp(24px,4.5vh,60px) clamp(20px,4.5vw,58px) clamp(24px,4.5vh,54px);
+  animation:fade .22s ease;
+}
+.slide.active{display:flex}
+.slide>*{flex-shrink:0}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.kick .n{border:1px solid var(--amber-soft);border-radius:2px;padding:2px 8px;letter-spacing:.1em}
+.slide h2{font-size:clamp(24px,4vw,36px);margin-bottom:8px}
+.rule{height:1px;background:linear-gradient(to left,var(--amber-soft),transparent 65%);margin:16px 0 22px}
+.lead{color:var(--txt-dim);font-size:clamp(15.5px,2vw,18.5px);max-width:66ch;margin:0 0 22px}
+.lead b,.note b{color:var(--txt);font-weight:500}
+
+ul.b{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+ul.b li{position:relative;padding-inline-start:20px;font-size:clamp(15.5px,2vw,18.5px)}
+ul.b li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:6px;height:6px;background:var(--amber-soft);border-radius:1px}
+ul.b li b{font-weight:500;color:#fff}
+ul.b li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
+ul.num{list-style:none;margin:0;padding:0;display:grid;gap:13px;counter-reset:n}
+ul.num li{position:relative;padding-inline-start:38px;font-size:clamp(15px,1.9vw,17.5px);counter-increment:n}
+ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inset-inline-start:0;top:.15em;font-family:var(--mono);font-size:12px;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:1px 5px}
+ul.num li b{font-weight:500;color:#fff}
+ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.card{border:1px solid var(--line);background:rgba(18,23,31,.86);border-radius:4px;padding:16px 17px;min-width:0}
+.card h3{font-size:15.5px;margin-bottom:6px}
+.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.11em;color:var(--amber);display:block;margin-bottom:7px}
+.card p{margin:0;color:var(--txt-dim);font-size:14px}
+.card ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:5px}
+.card ul li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:13px;position:relative}
+.card ul li::before{content:"·";position:absolute;inset-inline-start:2px;color:var(--amber)}
+.card.hi{border-color:var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9)}
+
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.compare .bad{border-color:#4a3030}
+.compare .good{border-color:var(--amber-soft)}
+.compare .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;margin-bottom:8px;display:block}
+.bad .lbl{color:#c07a68}.good .lbl{color:var(--amber)}
+
+/* קופסת "מה עושים עכשיו" */
+.do{border:1px solid var(--line);background:rgba(18,23,31,.9);border-radius:4px;padding:17px 18px 16px;margin-top:6px}
+.do-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.do-h b{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px;font-weight:500}
+.do-h span{font-family:var(--mono);font-size:11px;color:var(--txt-faint)}
+.do-h::after{content:"";flex:1;height:1px;background:var(--line)}
+.check{margin-top:15px;border-top:1px solid var(--line);padding-top:12px}
+.check b{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ok);display:block;margin-bottom:8px}
+.check ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.check li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:19px;position:relative}
+.check li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-size:12px}
+
+.ex{border:1px solid var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9);border-radius:4px;padding:20px 20px 18px;margin-top:4px}
+.ex-top{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:6px}
+.ex-badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px}
+.ex-time{font-family:var(--mono);font-size:11px;color:var(--txt-faint)}
+.model{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;padding:3px 9px;border-radius:2px;border:1px solid var(--line);color:var(--txt-faint)}
+.ex h3{font-size:clamp(17px,2.4vw,20px);width:100%}
+.ex .goal{color:var(--txt-dim);font-size:14.5px;margin:0 0 12px}
+
+.pbox{position:relative;margin:13px 0 0}
+.pbox pre{margin:0;background:rgba(10,13,18,.88);border:1px solid var(--line);border-radius:4px;padding:14px 15px;font-family:"Heebo",sans-serif;font-size:13.5px;line-height:1.6;color:var(--txt-dim);white-space:pre-wrap;overflow-wrap:anywhere;direction:rtl;max-height:40vh;overflow:auto}
+.copy{position:absolute;top:8px;inset-inline-start:8px;background:var(--panel);border:1px solid var(--line);color:var(--txt-faint);font-family:var(--mono);font-size:11px;padding:4px 10px;z-index:2}
+.copy:hover{border-color:var(--amber-soft);color:var(--amber)}
+.copy.done{border-color:#3c5a44;color:var(--ok)}
+.pcap{font-family:var(--mono);font-size:11px;color:var(--txt-faint);letter-spacing:.05em;margin:0 0 6px}
+
+.note{border-inline-start:2px solid var(--amber-soft);padding-inline-start:12px;color:var(--txt-dim);font-size:14px;margin-top:18px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:4px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 11px;text-align:right;vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--amber);font-weight:400;background:var(--panel)}
+.tbl td{color:var(--txt-dim)}
+.tbl td:first-child{color:var(--txt)}
+.tbl .ui{font-family:var(--mono);font-size:11px;color:var(--txt-faint);display:block}
+.tbl b.hl{color:var(--amber);font-weight:500}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.title-slide .big{font-size:clamp(30px,6vw,54px);line-height:1.18;margin:14px 0 18px}
+.title-slide .sub{color:var(--txt-dim);font-size:clamp(16px,2.2vw,20px);max-width:60ch}
+.title-slide .meta{margin-top:26px;font-family:var(--mono);font-size:11.5px;color:var(--txt-faint);letter-spacing:.1em;border-top:1px solid var(--line);padding-top:14px}
+
+.rule-slide .huge{font-size:clamp(26px,5vw,46px);line-height:1.25;margin:20px 0 14px;color:#fff}
+.rule-slide .huge b{color:var(--amber);font-weight:500}
+
+.navbar{flex:none;display:flex;align-items:center;gap:10px;padding:10px 22px 14px;border-top:1px solid var(--line);background:rgba(10,13,18,.72)}
+.navbar button{background:transparent;border:1px solid var(--line);color:var(--txt-dim);font-size:13.5px;padding:7px 17px}
+.navbar button:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.navbar button:disabled{opacity:.32;cursor:default}
+.navbar button:disabled:hover{border-color:var(--line);color:var(--txt-dim);background:transparent}
+.navbar .sp{flex:1}
+.navbar .hint{font-family:var(--mono);font-size:10.5px;color:var(--txt-faint);letter-spacing:.06em}
+@media (max-width:640px){
+  .topbar{padding:9px 14px;gap:9px;font-size:10.5px}
+  .tb-title{display:none}
+  .slide{padding:20px 16px 34px}
+  .navbar{padding:9px 14px 12px}
+  .navbar .hint{display:none}
+  .pbox pre{max-height:44vh}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="deck">
+  <div class="topbar">
+    <span class="b">AI Lab</span><span>· שיעור 05</span>
+    <span class="tb-title">תיאוריה: API, MCP, Connectors וסוכנים</span>
+    <a class="tb-back" href="index.html">חזרה לפורטל</a>
+    <span class="mono"><span id="cur">1</span> / <span id="tot">18</span></span>
+  </div>
+  <div class="pbar"><div id="pfill"></div></div>
+
+  <main id="stage">
+
+    <!-- 1 -->
+    <section class="slide title-slide active">
+      <div class="kick">שיעור 05 מתוך 10 · קורס פרטי</div>
+      <h1 class="big">תיאוריה: API, MCP, Connectors וסוכנים</h1>
+      <p class="sub">שיעור של הבנה, לפני שבונים. נעסוק באיך Claude מתחבר לתוכנות ולשירותים אחרים, מה ההבדל בין סוגי החיבורים, מה זה סוכן, מה רץ אצלך ומה בענן, ומה עולה כסף. בסוף תכתוב "מפת חיבורים" משלך, ב-Cursor.</p>
+      <div class="meta">AI LAB · מאיר לביא · חלק ב · שיעור תיאוריה</div>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide">
+      <div class="kick">מה נעשה היום</div>
+      <h2>חמישה דברים, בסדר הזה</h2>
+      <div class="rule"></div>
+      <p class="lead">היום כמעט לא בונים. <b>קודם מבינים, ואז מבצעים.</b> מה שתלמד היום הוא מה שיאפשר לך בשיעור הבא לאשר או לדחות את מה ש-Claude מבקש לעשות, ולדעת למה.</p>
+      <ul class="num">
+        <li><b>API ומפתח API</b>: מה זה, למה מחברים, ואיך שומרים על המפתח. <span>עם השוואה מהעולם שלך.</span></li>
+        <li><b>MCP, Connectors ו-Plugins</b>: מה כל אחד, ומה ההבדל. <span>ה-Connectors משיעור 4 נכנסים פה למקום.</span></li>
+        <li><b>סוכן מול שיחה</b>: מתי Claude רק עונה, ומתי הוא מבצע. <span>ומה רץ במחשב שלך ומה בענן.</span></li>
+        <li><b>עלויות וממה נזהרים</b>: מנוי מול תשלום לפי שימוש, ומה אסור לשלוח. <span>כולל הדגמה על המסך שלי.</span></li>
+        <li><b>מפת החיבורים שלי</b>, ב-Cursor. <span>תרגיל קצר, ומשימה לשבוע.</span></li>
+      </ul>
+      <p class="note"><b>אין צורך לזכור מונחים.</b> כל המילים של היום נמצאות בפורטל, ב"המילים שלנו": הצינור, התקן הכלים, החיבור, סוכן.</p>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide">
+      <div class="kick">חלק 1 · למה זה חשוב</div>
+      <h2>עד היום Claude דיבר. מעכשיו הוא גם פועל</h2>
+      <div class="rule"></div>
+      <p class="lead">בשיעורים 1–3 Claude קרא טקסט שהדבקת, וכתב טקסט בחזרה. בשיעור 4 חיברת Connector, והוא קרא מהיומן או מהמייל. זה ההבדל: <b>בלי חיבור Claude רק מדבר. עם חיבור הוא יכול לפעול.</b></p>
+      <div class="compare">
+        <div class="card bad"><span class="lbl mono">בלי חיבור</span><ul>
+          <li>רואה רק מה שהדבקת או מה שיש בתיקייה</li>
+          <li>כותב טיוטה, ואתה מעתיק אותה למקום אחר</li>
+          <li>לא יודע מה יש לך ביומן, באתר או בתיבת המייל</li>
+          <li>יועץ טוב, אבל רק בטלפון</li></ul></div>
+        <div class="card good"><span class="lbl mono">עם חיבור</span><ul>
+          <li>קורא בעצמו מהשירות: יומן, מייל, תמלול של פגישה</li>
+          <li>יכול גם לעשות שם פעולה: ליצור קובץ, לשמור טיוטה</li>
+          <li>כל פעולה כזאת: לפי ההרשאה שנתת, ובדרך כלל באישור שלך</li>
+          <li>ולכן צריך להבין מה נתת לו, לפני שנותנים</li></ul></div>
+      </div>
+      <p class="note"><b>בעולם שלך:</b> ההבדל בין רופא שנותן חוות דעת בטלפון, לבין רופא שיש לו גישה למערכת של בית החולים. הגישה שימושית מאוד, ובדיוק בגלל זה מגדירים אותה בזהירות.</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide">
+      <div class="kick">חלק 1 · הצינור</div>
+      <h2>API: צינור קבוע בין שתי תוכנות</h2>
+      <div class="rule"></div>
+      <p class="lead">API זו דרך מוסכמת שבה תוכנה אחת מבקשת משהו מתוכנה אחרת, ומקבלת תשובה. בלי מסך, בלי כפתורים. <b>תוכנה מדברת עם תוכנה.</b></p>
+      <div class="grid2">
+        <div class="card hi"><span class="tag mono">ההשוואה</span><h3>טופס הזמנת בדיקה למעבדה</h3><ul>
+          <li>ממלאים טופס בפורמט קבוע: איזו בדיקה, לאיזה מספר</li>
+          <li>לא נכנסים למעבדה ולא נוגעים במכשירים</li>
+          <li>התשובה חוזרת גם היא בפורמט קבוע</li>
+          <li>וכל בדיקה מחויבת בנפרד</li></ul></div>
+        <div class="card"><span class="tag mono">אצלנו</span><h3>מה זה אומר בפועל</h3><ul>
+          <li>האתר שלך שולח ל-Claude שאלה של פונה, ומקבל תשובה. זה API</li>
+          <li>מתחברים עם מפתח (API Key), לא עם שם וסיסמה</li>
+          <li>משלמים לפי שימוש, בנפרד מהמנוי Pro</li>
+          <li>הסוכן שעונה לפונים, בשיעור 9, היה עובד ככה</li></ul></div>
+      </div>
+      <p class="note"><b>הכיוון חשוב:</b> ב-API, <b>אתה מחבר תוכנה שלך ל-Claude</b>. האתר הוא זה שפונה, ו-Claude עונה לו. עוד רגע נראה שב-MCP הכיוון הפוך.</p>
+    </section>
+
+    <!-- 5 -->
+    <section class="slide">
+      <div class="kick">חלק 1 · המפתח</div>
+      <h2>מפתח API הוא כמו החותמת שלך</h2>
+      <div class="rule"></div>
+      <p class="lead">מפתח API הוא שורה ארוכה של אותיות ומספרים. מי שמחזיק אותה יכול להשתמש בשירות בשמך, <b>והחשבון נשלח אליך.</b> בדיוק כמו חותמת עם מספר רישיון: מי שמחזיק אותה יכול לחתום בשמך.</p>
+      <div class="compare">
+        <div class="card bad"><span class="lbl mono">אף פעם</span><ul>
+          <li>לא מדביקים מפתח בשיחה עם Claude</li>
+          <li>לא שולחים במייל או בוואטסאפ. לאף אחד, גם לא לי</li>
+          <li>לא כותבים בקובץ שעולה ל-GitHub או לאתר</li>
+          <li>לא שומרים בקובץ טקסט על שולחן העבודה</li></ul></div>
+        <div class="card good"><span class="lbl mono">כן</span><ul>
+          <li>מפתח נפרד לכל שימוש, עם שם שמסביר למה הוא</li>
+          <li>תקרת הוצאה חודשית באתר של השירות, לפני שמשתמשים</li>
+          <li>כשיש צורך לשמור: בקובץ הגדרות מיוחד (<bdi class="mono">.env</bdi>) שלא עולה לאינטרנט, או במנהל הסיסמאות</li>
+          <li>חושד שדלף? מבטלים אותו באתר של השירות ויוצרים חדש. מפתח מבוטל לא עובד יותר</li></ul></div>
+      </div>
+      <p class="note">בקורס הזה <b>אין צורך לפתוח מפתח API</b>. המנוי Pro מספיק לכל מה שנבנה. אנחנו לומדים את זה כדי שתבין מה מבקשים ממך, אם ספק או סוכנות יבקשו פעם "את המפתח".</p>
+    </section>
+
+    <!-- 6 -->
+    <section class="slide">
+      <div class="kick">חלק 2 · התקן הכלים</div>
+      <h2>MCP: חיבור אחיד שנותן ל-Claude כלים</h2>
+      <div class="rule"></div>
+      <p class="lead">MCP הוא תקן. שפה משותפת שבה שירות אומר ל-Claude: <b>"אלה הכלים שיש לי, וככה משתמשים בהם."</b> לא צריך לזכור מה ראשי התיבות אומרים.</p>
+      <div class="grid2">
+        <div class="card hi"><span class="tag mono">ההשוואה</span><h3>חיבור Luer lock</h3><ul>
+          <li>חיבור אחיד: כל מזרק מתאים לכל קו, מכל יצרן</li>
+          <li>לא צריך מתאם מיוחד לכל מכשיר</li>
+          <li>MCP עושה את זה בין Claude לבין שירותים: יומן, מייל, מערכת הקלטות</li></ul></div>
+        <div class="card"><span class="tag mono">מה זה נותן</span><h3>כלים מוגדרים, לא גישה חופשית</h3><ul>
+          <li>ביומן, למשל: כלי "הצג אירועים" וכלי "צור אירוע"</li>
+          <li>Claude לא "נכנס" לשירות כמו אדם עם עכבר. הוא משתמש רק בכלים שהשירות נותן</li>
+          <li>ולפני כלי שמשנה משהו, הוא מבקש אישור</li></ul></div>
+      </div>
+      <p class="note"><b>ההבדל במשפט אחד:</b> API = <b>אני מחבר תוכנה ל-Claude</b> (האתר פונה אליו). MCP = <b>אני נותן ל-Claude גישה לכלי</b> (Claude פונה לשירות).</p>
+    </section>
+
+    <!-- 7 -->
+    <section class="slide">
+      <div class="kick">חלק 2 · שלוש מילים שמתבלבלות</div>
+      <h2>Connector, שרת MCP ו-Plugin</h2>
+      <div class="rule"></div>
+      <p class="lead">שלוש מילים שתשמע הרבה. כולן קשורות זו לזו, וזה מה שמבלבל.</p>
+      <div class="grid2">
+        <div class="card hi"><span class="tag mono">החיבור · שיעור 4</span><h3>Connector</h3><p>חיבור MCP שמוכן מראש. מחברים בלחיצה, נכנסים לחשבון בדפדפן, בלי פקודות. כשאתה מחובר ל-Claude Code עם החשבון שלך, מה שחיברת בדרך כלל זמין גם שם.</p></div>
+        <div class="card"><span class="tag mono">ידני</span><h3>שרת MCP</h3><p>אותו דבר בדיוק, רק שמוסיפים אותו ידנית, לשירות שאין לו Connector מוכן. זה מה שאני עושה עם ה-Plaud בהדגמה. אצלך: רק אם יהיה צורך, ורק ביחד.</p></div>
+        <div class="card"><span class="tag mono">חבילה</span><h3>Plugin / Extension</h3><p>חבילה מוכנה שמוסיפה לתוכנה יכולות. לפעמים יש בתוכה גם חיבור MCP. דוגמה שכבר יש לך: Claude Code עצמו מותקן בתוך Cursor כתוסף (Extension).</p></div>
+      </div>
+      <p class="note"><b>כלל אצבע:</b> Connector ושרת MCP הם אותו רעיון, ומה שמשתנה זו רק הדרך שבה מחברים. כשיש Connector רשמי, הוא הדרך הבטוחה והפשוטה.</p>
+    </section>
+
+    <!-- 8 -->
+    <section class="slide">
+      <div class="kick">חלק 2 · הכול בטבלה אחת</div>
+      <h2>ארבעה סוגי חיבור, ומה כל אחד</h2>
+      <div class="rule"></div>
+      <div class="scroll"><table class="tbl">
+        <tr><th>החיבור</th><th>מה הוא עושה</th><th>דוגמה אצלך</th><th>ממה נזהרים</th></tr>
+        <tr><td>API<span class="ui">הצינור</span></td><td>תוכנה שלך פונה ל-Claude ומקבלת תשובה</td><td>הסוכן באתר, בשיעור 9. לא בונים אותו בקורס</td><td>המפתח, ותקרת הוצאה</td></tr>
+        <tr><td>MCP<span class="ui">התקן הכלים</span></td><td>Claude מקבל כלים לפעול בשירות אחר</td><td>Claude שולף תמלול מ-Plaud (בהדגמה שלי)</td><td>רק שירותים מוכרים</td></tr>
+        <tr><td>Connector<span class="ui">החיבור</span></td><td>MCP מוכן, מחברים בלחיצה</td><td>היומן או המייל משיעור 4</td><td>אילו פעולות הוא רשאי לעשות בלי לשאול</td></tr>
+        <tr><td>Plugin<span class="ui">תוסף</span></td><td>חבילה שמוסיפה יכולות לתוכנה</td><td>Claude Code בתוך Cursor</td><td>מתקינים רק ממקור מוכר</td></tr>
+      </table></div>
+      <p class="note">לא צריך לדעת להקים אף אחד מהם. צריך לדעת <b>לזהות</b> אותם, כדי שכשמישהו יגיד "נחבר את זה דרך API" תדע מה הוא מבקש, מה זה יעלה, ומה צריך לתת לו.</p>
+    </section>
+
+    <!-- 9 -->
+    <section class="slide">
+      <div class="kick">חלק 3 · סוכן</div>
+      <h2>שיחה מול סוכן</h2>
+      <div class="rule"></div>
+      <p class="lead">סוכן (Agent) הוא Claude שרץ עם כלים, ומבצע משימה שלמה: <b>מתכנן, עושה צעד, בודק מה יצא, וממשיך</b>, עד שהמשימה גמורה. לא רק עונה על שאלה.</p>
+      <div class="compare">
+        <div class="card"><span class="lbl mono" style="color:var(--txt-dim)">שיחה</span><h3>כמו ייעוץ</h3><ul>
+          <li>שאלה אחת, תשובה אחת</li>
+          <li>אתה מבצע את מה שהוא המליץ</li>
+          <li>לא נוגע בשום דבר בעצמו</li></ul></div>
+        <div class="card good"><span class="lbl mono">סוכן</span><h3>כמו מתמחה עם הוראות</h3><ul>
+          <li>מקבל משימה ורשימת כלים מותרים</li>
+          <li>מבצע כמה צעדים בעצמו, ומדווח</li>
+          <li>שואל לפני כל דבר שמשנה, ולא עושה מה שלא קיבל הרשאה אליו</li></ul></div>
+      </div>
+      <p class="note"><b>Claude Code הוא סוכן.</b> ב-Cursor הוא קורא קבצים, כותב, ומריץ פעולות במחשב, ולכן הוא מבקש אישור. זה מה שנפגוש בשיעור הבא. וההרשאות? כמו הרשאות בבית חולים: <b>רק מה שצריך למשימה הזאת</b>.</p>
+    </section>
+
+    <!-- 10 -->
+    <section class="slide">
+      <div class="kick">חלק 3 · מה רץ איפה</div>
+      <h2>מה קורה אצלך במחשב, ומה בענן</h2>
+      <div class="rule"></div>
+      <p class="lead">גם כש-Claude Code עובד על קבצים במק שלך, <b>החשיבה עצמה קורית בשרתים של Anthropic.</b> כמו קליניקה ששולחת דגימה למעבדה חיצונית: מה שנשלח, יצא מהקליניקה.</p>
+      <div class="scroll"><table class="tbl">
+        <tr><th>מה</th><th>איפה זה רץ</th><th>מה זה אומר לך</th></tr>
+        <tr><td>הקבצים והתיקיות שלך</td><td>במק שלך</td><td>נשארים אצלך, עד ש-Claude קורא אותם</td></tr>
+        <tr><td>Cursor ו-Claude Code</td><td>במק שלך</td><td>הם מבצעים את הפעולות על הקבצים, באישור שלך</td></tr>
+        <tr><td>Claude עצמו, המודל</td><td><b class="hl">בענן</b>, אצל Anthropic</td><td>כל מה ש-Claude קורא נשלח לשם לעיבוד: טקסט שהדבקת, וגם קבצים שהוא פותח</td></tr>
+        <tr><td>Connectors ו-MCP</td><td>בשרתים של השירות (גוגל, Plaud)</td><td>Claude מקבל משם רק מה שהכלי מחזיר</td></tr>
+        <tr><td>האתר והסוכן, בהמשך</td><td>בענן: אחסון ושרת</td><td>רצים גם כשהמחשב שלך כבוי, ועולים כסף</td></tr>
+      </table></div>
+    </section>
+
+    <!-- 11 -->
+    <section class="slide rule-slide">
+      <div class="kick">הכלל של השיעור</div>
+      <h2 class="huge"><b>מה ש-Claude קורא, יוצא מהמחשב.</b><br>פרטי מטופלים לא נכנסים לשום כלי.</h2>
+      <div class="rule"></div>
+      <p class="lead">לא ב-Claude, לא ב-Cursor, לא ב-GitHub, ולא בשום שירות שמחובר אליהם. וזה כולל קבצים בתיקייה שפתחת: אם הקובץ שם, Claude יכול לקרוא אותו.</p>
+      <ul class="b">
+        <li><b>לא נכנס:</b> שם, תאריך לידה, טלפון, מייל או תיאור מקרה שאפשר לזהות ממנו מטופל.<span>גם לא "רק לבדיקה", וגם לא בקובץ שנמצא בתיקייה.</span></li>
+        <li><b>לא נכנס:</b> מפתחות API, סיסמאות, קודים שקיבלת ב-SMS.<span>מה שנשלח, אי אפשר להחזיר.</span></li>
+        <li><b>כן נכנס:</b> מידע רפואי כללי, טקסטים מהאתר, שאלות שפונים שאלו בלי מי ששאל.<span>אותו מבחן משיעור 1: אם זה היה נשלח בטעות לאדם זר, היה נזק? אם התשובה לא "לא" ברור, לא מעלים.</span></li>
+      </ul>
+    </section>
+
+    <!-- 12 -->
+    <section class="slide">
+      <div class="kick">חלק 4 · עלויות וגבולות</div>
+      <h2>מנוי מול תשלום לפי שימוש</h2>
+      <div class="rule"></div>
+      <p class="lead">בעולם שלך יש לזה שמות: <b>קפיטציה</b> מול <b>תשלום לפי שירות</b>. גם אצל Claude יש את שני המודלים, וחשוב לדעת באיזה מהם אתה נמצא.</p>
+      <div class="grid2">
+        <div class="card hi"><span class="tag mono">מה שיש לך · כמו קפיטציה</span><h3>מנוי Claude Pro</h3><ul>
+          <li>סכום קבוע בחודש, בלי הפתעות</li>
+          <li>יש מכסה: אם היא נגמרת, מחכים כמה שעות לאיפוס</li>
+          <li>הצ'אט ו-Claude Code ב-Cursor יורדים מאותה מכסה</li>
+          <li>מספיק לכל מה שנעשה בקורס</li></ul></div>
+        <div class="card"><span class="tag mono">כמו תשלום לפי שירות</span><h3>API</h3><ul>
+          <li>משלמים על כל שימוש, לפי כמה טקסט עבר</li>
+          <li>אין "מכסה שנגמרת": יש חשבון שגדל</li>
+          <li>חשבון נפרד, חיוב נפרד מהמנוי</li>
+          <li>לכן: תקרת הוצאה, לפני שמפעילים</li></ul></div>
+      </div>
+      <p class="note"><b>שירותים שעולים כסף תמיד:</b> פרסום ממומן (כל קליק), דומיין, אחסון לשרת של סוכן, שליחת הודעות SMS או וואטסאפ אוטומטיות. כשמישהו מציע "אוטומציה", השאלה הראשונה: <b>מי משלם על כל ריצה, וכמה בחודש</b>.</p>
+    </section>
+
+    <!-- 13 -->
+    <section class="slide">
+      <div class="kick">חלק 4 · דוגמה חיה</div>
+      <h2>שני חיבורים אמיתיים, על המסך שלי</h2>
+      <div class="rule"></div>
+      <p class="lead">אני מראה, אתה מסתכל. לא פותחים כלום אצלך. אלה דברים שאני משתמש בהם כל שבוע.</p>
+      <div class="do">
+        <div class="do-h"><b>מה אני עושה על המסך</b><span>8 דקות</span></div>
+        <ul class="num">
+          <li><b>Plaud → Claude (MCP):</b> מראה הקלטה של שיחת עבודה במכשיר ההקלטה Plaud. <span>הקלטה שלי, בלי פרטים של אחרים.</span></li>
+          <li>ב-Claude Code אני כותב: "תביא את התמלול של השיחה האחרונה ותסכם בחמש שורות". <span>Claude משתמש בכלי של Plaud, ומופיעה בקשת אישור.</span></li>
+          <li>מראה מה כתוב בבקשת האישור: <b>איזה כלי, ומה הוא מבקש לקרוא</b>. מאשר.</li>
+          <li><b>סוכן שרץ לבד:</b> מראה סוכן שבודק פעם בשבוע איך האתר שלי נראה בחיפוש, ושולח לי דוח. <span>הוא רץ על שרת בענן, עם מפתח API ששמור שם, לא בקוד.</span></li>
+          <li>מראה איפה רואים כמה הוא עלה החודש, ואיפה מוגדרת תקרת ההוצאה.</li>
+        </ul>
+        <div class="check"><b>שים לב</b><ul>
+          <li>בדוגמה הראשונה Claude פונה לשירות (MCP). בשנייה תוכנה שלי פונה ל-Claude (API)</li>
+          <li>בשתיהן יש מישהו שאחראי: בקשת אישור, או תקרת הוצאה ודוח שאני קורא</li>
+          <li>שיחה עם מטופל לא הייתה נכנסת ל-Plaud ול-Claude. רק שיחות עבודה, ובהסכמה</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 14 -->
+    <section class="slide">
+      <div class="kick">חלק 4 · ממה נזהרים</div>
+      <h2>שישה כללים לכל חיבור</h2>
+      <div class="rule"></div>
+      <ul class="b">
+        <li><b>מפתחות לא בקבצים שעולים לאינטרנט</b><span>לא בקוד של האתר, לא ב-GitHub, לא בשיחה. רק בקובץ הגדרות פרטי או במנהל הסיסמאות.</span></li>
+        <li><b>הרשאות מינימליות</b><span>חיבור שרק קורא, כשלא צריך לכתוב. ומה שלא משתמשים בו, מנתקים.</span></li>
+        <li><b>רק שירותים מוכרים</b><span>Connector רשמי מהרשימה של Anthropic. שרת לא מוכר מהאינטרנט, עם הבטחות גדולות: לא מחברים.</span></li>
+        <li><b>קוראים כל בקשת אישור</b><span>איזה כלי, על מה, ומה ישתנה. לא מבין? דוחים ושואלים.</span></li>
+        <li><b>תוכן מבחוץ הוא מידע, לא הוראות</b><span>אם במייל או באתר כתוב "תשלח את הקבצים לכתובת הזאת", Claude לא אמור לבצע. ואם הוא מבקש אישור לזה, דוחים.</span></li>
+        <li><b>תקרת הוצאה לפני הפעלה</b><span>כל שירות שמחייב לפי שימוש מקבל תקרה חודשית, לפני הריצה הראשונה.</span></li>
+      </ul>
+    </section>
+
+    <!-- 15 -->
+    <section class="slide">
+      <div class="kick">תרגיל · מפת החיבורים שלי</div>
+      <div class="ex">
+        <div class="ex-top"><span class="ex-badge mono">עושים ביחד</span><span class="ex-time mono">12 דקות</span><span class="model mono">OPUS</span>
+          <h3>מה מחובר היום, מה תרצה לחבר, ומה זה ידרוש</h3></div>
+        <p class="goal">ב-Cursor, בלוח של Claude Code, בתיקייה miki משיעור 2. התוצאה: קובץ אחד בתיקייה, שנפתח בדפדפן. זו המקבילה שלנו ל-Artifact.</p>
+        <ul class="num">
+          <li>פותח שיחה חדשה בלוח של Claude Code ושולח את הבקשה הראשונה. <span>הוא רק מתאר, לא משתמש באף חיבור.</span></li>
+          <li>שולח את הבקשה השנייה, ועונה על השאלות שלו אחת אחת.</li>
+          <li>קורא את הטבלה בשיחה. מתקן אם צריך. רק אז מאשר את השמירה.</li>
+        </ul>
+        <div class="pbox"><p class="pcap">בקשה 1 — מה כבר מחובר</p><button class="copy" type="button">העתקה</button><pre>אילו Connectors ושרתי MCP מחוברים לסשן הזה? לכל אחד כתוב בשורה: השם, מאיפה הוא הגיע, ואם הוא מחובר או צריך התחברות. אל תשתמש באף אחד מהם עכשיו, רק תאר.</pre></div>
+        <div class="pbox"><p class="pcap">בקשה 2 — המפה</p><button class="copy" type="button">העתקה</button><pre>אני רוצה לבנות "מפת חיבורים": מה מחובר היום ל-Claude אצלי, מה הייתי רוצה לחבר, ומה זה ידרוש.
+שאל אותי שאלה אחת בכל פעם, עד 6 שאלות: באילו שירותים אני משתמש (מייל, יומן, האתר, רשתות), מה כבר מחובר, ומה הייתי רוצה ש-Claude יעשה איתם.
+אחר כך כתוב קובץ בשם מפת-החיבורים.html בתיקייה הזו: טבלה אחת בעברית, מימין לשמאל, עם העמודות: השירות · מחובר היום? · מה הייתי רוצה · סוג החיבור (Connector / MCP / API / לא ידוע) · עולה כסף? · ממה נזהרים.
+כללים: אל תבקש ממני מפתחות, סיסמאות או פרטי מטופלים. אם אתה לא בטוח מה חיבור ידרוש, כתוב "לשאול את מאיר" ואל תנחש.
+הראה לי את הטבלה בשיחה לפני שאתה שומר.</pre></div>
+        <div class="check"><b>מה בודקים</b><ul>
+          <li>יש לפחות שורה אחת לאתר שלך, ושורה אחת לסוכן שעונה לפונים</li>
+          <li>בעמודה "סוג החיבור": האם היית מסווג כמוהו? אם לא, זו שאלה טובה לשיעור הבא</li>
+          <li>הוא לא ביקש ממך שום מפתח או סיסמה. אם ביקש, לא נותנים, ואומרים לו לא לבקש</li></ul></div>
+      </div>
+    </section>
+
+    <!-- 16 -->
+    <section class="slide">
+      <div class="kick">שאלות שעולות תמיד</div>
+      <h2>חמש שאלות, חמש תשובות קצרות</h2>
+      <div class="rule"></div>
+      <div class="scroll"><table class="tbl">
+        <tr><th>השאלה</th><th>התשובה הקצרה</th><th>איפה מרחיבים</th></tr>
+        <tr><td>אני צריך לפתוח חשבון API?</td><td>לא בקורס. המנוי Pro מספיק לכל מה שנבנה. API נדרש רק אם מחליטים לחבר סוכן לאתר</td><td>שיעור 9</td></tr>
+        <tr><td>ומה אם מפתח דלף?</td><td>מבטלים אותו מיד באתר של השירות ויוצרים חדש. ובודקים את החיוב של החודש</td><td>כללי עבודה בטוחה, בפורטל</td></tr>
+        <tr><td>Connector מ-claude.ai עובד גם ב-Cursor?</td><td>בדרך כלל כן, כשאתה מחובר ל-Claude Code עם אותו חשבון. בודקים עם בקשה 1 של התרגיל</td><td>התרגיל של היום</td></tr>
+        <tr><td>סוכן יכול לעשות משהו בלי שאדע?</td><td>רק במה שנתת לו כלים והרשאה. לכן הרשאות מינימליות, וקוראים כל בקשת אישור</td><td>שיעור 6</td></tr>
+        <tr><td>"שרת" זה משהו שאני צריך לקנות?</td><td>לא עכשיו. שרת זה מחשב בענן שרץ כל הזמן. הוא נדרש רק לסוכן באתר, ושם הוא עולה כסף</td><td>שיעור 9</td></tr>
+      </table></div>
+      <p class="note">יש שאלה שלא כאן? כותבים אותה לפני השיעור הבא, ומתחילים ממנה.</p>
+    </section>
+
+    <!-- 17 -->
+    <section class="slide">
+      <div class="kick">סיכום</div>
+      <h2>מה היה לנו, ומה עד הפעם הבאה</h2>
+      <div class="rule"></div>
+      <div class="grid2">
+        <div class="card"><span class="tag mono">מה למדנו</span><h3>חמישה דברים</h3><ul>
+          <li>API: תוכנה שלך פונה ל-Claude. מפתח במקום סיסמה, תשלום לפי שימוש</li>
+          <li>MCP: Claude מקבל כלים לפעול בשירות. Connector הוא MCP מוכן</li>
+          <li>סוכן: Claude שמבצע משימה עם כלים. Claude Code הוא סוכן</li>
+          <li>החשיבה קורית בענן, ולכן פרטי מטופלים לא נכנסים</li>
+          <li>כל דבר שמחייב לפי שימוש מקבל תקרה לפני שמפעילים</li></ul></div>
+        <div class="card hi"><span class="tag mono">המשימה לשבוע · 20–30 דקות</span><h3>מפת החיבורים, גמורה</h3><ul>
+          <li>משלים את <b>מפת-החיבורים.html</b>: עוד שורה או שתיים, ופותח אותה בדפדפן</li>
+          <li>בודק איפה האתר שלך יושב: מי בנה אותו, ומי מחזיק את הדומיין. רושם במפה. נצטרך את זה בשיעור 7</li>
+          <li>עובר על "כללי עבודה בטוחה" בפורטל, ומסמן מה לא ברור</li>
+          <li>מביא לשיעור שאלה אחת: "מה זה ידרוש לחבר את..."</li></ul></div>
+      </div>
+      <p class="note">הבקשות של היום נמצאות בפורטל, ב<b>"ספריית הבקשות"</b>, עם כפתור העתקה.</p>
+    </section>
+
+    <!-- 18 -->
+    <section class="slide title-slide">
+      <div class="kick">בשיעור הבא</div>
+      <h1 class="big">Cursor ו-Claude Code:<br>בנייה ראשונה</h1>
+      <p class="sub">מהשיחה לקבצים. פותחים תיקיית פרויקט, כותבים לה קובץ הוראות, ובונים דף HTML ראשון שנפתח בדפדפן. בכל שלב: מה Claude Code עשה, למה, ומה בודקים לפני שמאשרים.</p>
+      <div class="meta">AI LAB · מאיר לביא · <a class="tb-back" href="index.html" style="margin-inline-start:8px">חזרה לפורטל</a></div>
+    </section>
+
+  </main>
+
+  <div class="navbar">
+    <button id="prev" type="button">הקודם</button>
+    <button id="next" type="button">הבא</button>
+    <span class="sp"></span>
+    <span class="hint mono">חצים במקלדת · מקש רווח</span>
+    <button id="fs" type="button">מסך מלא</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')),i=0;
+  document.getElementById('tot').textContent=slides.length;
+  var cur=document.getElementById('cur'),fill=document.getElementById('pfill'),
+      prev=document.getElementById('prev'),next=document.getElementById('next'),stage=document.getElementById('stage');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
+    cur.textContent=i+1;
+    fill.style.width=((i+1)/slides.length*100)+'%';
+    prev.disabled=(i===0); next.disabled=(i===slides.length-1);
+    stage.scrollTop=0;
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
+  }
+  prev.onclick=function(){show(i-1)}; next.onclick=function(){show(i+1)};
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='BUTTON'&&(e.key===' '||e.key==='Enter'))return;
+    if(e.key==='ArrowLeft'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(i+1)}
+    else if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1)}
+    else if(e.key==='Home'){show(0)} else if(e.key==='End'){show(slides.length-1)}
+  });
+  var x0=null;
+  stage.addEventListener('touchstart',function(e){x0=e.changedTouches[0].clientX},{passive:true});
+  stage.addEventListener('touchend',function(e){
+    if(x0===null)return; var d=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(d)>60) show(d<0?i+1:i-1);
+  },{passive:true});
+  document.getElementById('fs').onclick=function(){
+    if(document.fullscreenElement){document.exitFullscreen()}
+    else{document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}
+  };
+  [].forEach.call(document.querySelectorAll('.copy'),function(b){
+    b.onclick=function(){
+      var t=b.parentNode.querySelector('pre').textContent, done=function(){
+        b.textContent='הועתק ✓';b.classList.add('done');
+        setTimeout(function(){b.textContent='העתקה';b.classList.remove('done')},1700);
+      };
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,function(){leg(t,done)})}
+      else{leg(t,done)}
+    };
+  });
+  function leg(t,done){
+    var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';
+    document.body.appendChild(a);a.focus();a.setSelectionRange(0,t.length);
+    try{document.execCommand('copy');done()}catch(e){}
+    document.body.removeChild(a);
+  }
+  var h=parseInt(location.hash.replace('#',''),10);
+  show(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>
