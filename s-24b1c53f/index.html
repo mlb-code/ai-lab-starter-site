@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>הפורטל האישי — מיקי | AI Lab</title>
+<meta name="description" content="פורטל לימוד אישי — קורס פרטי בעבודה עם Claude. AI Lab.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0d12;
+  --bg-2:#0f131a;
+  --panel:#12171f;
+  --panel-2:#161c25;
+  --line:#232b36;
+  --line-soft:#1b222c;
+  --txt:#dfe4ea;
+  --txt-dim:#98a1ad;
+  --txt-faint:#6d7783;
+  --amber:#d99b3c;
+  --amber-soft:#8a6326;
+  --amber-glow:rgba(217,155,60,.12);
+  --ok:#5f8f6a;
+  --radius:4px;
+  --mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:"Heebo",-apple-system,"Segoe UI",Arial,sans-serif;
+  font-weight:300;
+  font-size:16px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(1100px 620px at 88% -8%,rgba(217,155,60,.075),transparent 62%),
+    radial-gradient(900px 520px at 6% 104%,rgba(86,116,152,.07),transparent 62%),
+    linear-gradient(180deg,#0d1119 0%,#0a0d12 55%,#080b0f 100%);
+  background-attachment:fixed;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0v64' fill='none' stroke='%23ffffff' stroke-opacity='.03' stroke-width='1'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+}
+#app{position:relative;z-index:1}
+h1,h2,h3{font-weight:500;line-height:1.35;margin:0}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+button{
+  font-family:"Heebo",sans-serif;cursor:pointer;
+  border-radius:var(--radius);transition:background .15s ease,border-color .15s ease,color .15s ease;
+}
+
+/* ---------- כותרת עליונה ---------- */
+header{
+  border-bottom:1px solid var(--line);
+  background:rgba(10,13,18,.92);
+  backdrop-filter:blur(6px);
+  position:sticky;top:0;z-index:20;
+}
+.hdr{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 0}
+.brand{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--txt-dim);white-space:nowrap}
+.brand b{color:var(--amber);font-weight:500}
+.hdr-name{
+  margin-inline-start:auto;
+  font-family:var(--mono);font-size:12px;color:var(--txt-faint);
+  border-inline-start:1px solid var(--line);padding-inline-start:16px;white-space:nowrap;
+}
+.zoom-btn{
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  border:1px solid var(--amber-soft);color:var(--amber);background:var(--amber-glow);
+  padding:7px 14px;font-size:13.5px;border-radius:var(--radius);
+  transition:background .15s ease,border-color .15s ease;
+}
+.zoom-btn:hover{background:rgba(217,155,60,.22);border-color:var(--amber);text-decoration:none}
+.zoom-btn svg{width:16px;height:16px;fill:currentColor;flex:none}
+
+/* ---------- סקשנים ---------- */
+section{padding:44px 0}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.sec-head h2{font-size:19px;white-space:nowrap}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.14em}
+.sec-head::after{content:"";flex:1;height:1px;background:var(--line)}
+.sec-sub{color:var(--txt-dim);font-size:14.5px;margin:-14px 0 24px;max-width:64ch}
+
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+/* ---------- כרטיסי מידע ---------- */
+.finds{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:12px}
+.find{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);padding:13px 15px}
+.find .f-name{font-family:var(--mono);font-size:12.5px;color:var(--amber);display:block;margin-bottom:7px}
+.find .f-where{font-size:13.5px;color:var(--txt);margin:0 0 5px}
+.find .f-why{font-size:13px;color:var(--txt-faint);margin:0;line-height:1.55}
+
+/* ---------- טבלת מילים ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:9px 12px;text-align:right;vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--amber);font-weight:400;background:var(--panel)}
+.tbl td{color:var(--txt-dim)}
+.tbl td:first-child{color:#fff;font-weight:400;white-space:nowrap}
+.tbl td.ltr-cell{font-family:var(--mono);font-size:12.5px;color:var(--txt);direction:ltr;text-align:right;unicode-bidi:isolate}
+
+.m-warn{border:1px solid var(--line);border-inline-start:2px solid var(--amber);background:var(--panel);border-radius:var(--radius);padding:14px 16px;margin:16px 0 0;font-size:14px;color:var(--txt-dim)}
+.m-warn b{color:var(--txt);font-weight:500}
+
+/* ---------- ספריית בקשות ---------- */
+.prompts{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}
+.prompt{
+  border:1px solid var(--line);background:var(--panel);
+  border-radius:var(--radius);padding:18px 18px 16px;
+  display:flex;flex-direction:column;
+  transition:border-color .18s ease;
+}
+.prompt:hover{border-color:var(--amber-soft)}
+.p-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.p-head h3{font-size:15.5px;flex:1;min-width:140px}
+.cat{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--amber);border:1px solid var(--amber-soft);padding:2px 7px;border-radius:2px;white-space:nowrap}
+.p-rule{height:1px;background:var(--line-soft);margin:0 0 12px}
+textarea{
+  width:100%;min-height:132px;resize:vertical;
+  background:var(--bg-2);border:1px solid var(--line-soft);
+  color:var(--txt-dim);border-radius:var(--radius);
+  padding:11px 12px;font-family:"Heebo",sans-serif;font-size:13px;line-height:1.65;
+  direction:rtl;
+}
+textarea:focus{border-color:var(--amber-soft);outline:none;color:var(--txt)}
+.copy{
+  margin-top:11px;align-self:flex-start;
+  background:transparent;border:1px solid var(--line);color:var(--txt-dim);
+  font-family:var(--mono);font-size:12px;padding:6px 15px;
+}
+.copy:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.copy.done{border-color:#3c5a44;color:var(--ok);background:transparent}
+
+/* ---------- כללי עבודה בטוחה ---------- */
+.safety{
+  border:1px solid var(--amber-soft);
+  background:linear-gradient(180deg,var(--amber-glow),transparent 70%),var(--panel);
+  border-radius:var(--radius);
+  padding:20px 20px 18px;
+}
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.rules li{position:relative;padding-inline-start:26px;font-size:14.5px;line-height:1.65}
+.rules li::before{
+  content:"×";position:absolute;inset-inline-start:0;top:-1px;
+  font-family:var(--mono);color:var(--amber);font-size:14px;
+}
+.rules li.pos::before{content:"✓";color:var(--ok)}
+
+/* ---------- כותרת תחתונה ---------- */
+footer{
+  border-top:1px solid var(--line);margin-top:20px;padding:26px 0 40px;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:12px;color:var(--txt-faint);
+}
+
+/* ---------- כניסה ---------- */
+html{scroll-behavior:smooth}
+section{scroll-margin-top:72px}
+.welcome{padding:40px 0 8px}
+.kicker{font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase}
+.welcome h1{font-size:clamp(27px,4.8vw,36px);margin:8px 0 8px}
+.welcome > p{color:var(--txt-dim);max-width:58ch;margin:0 0 22px;font-size:15.5px}
+.w-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.w-card{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:18px 18px 16px;display:flex;flex-direction:column;gap:3px;color:var(--txt);transition:border-color .18s ease,transform .18s ease,background .18s ease}
+.w-card:hover{border-color:var(--amber-soft);text-decoration:none;transform:translateY(-2px)}
+.w-card.primary{border-color:var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 70%),var(--panel)}
+.w-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--amber);margin-bottom:4px}
+.w-card b{font-size:19px;font-weight:500;color:#fff;line-height:1.3}
+.w-card .sub{color:var(--txt-dim);font-size:13.5px}
+.task{margin-top:14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:16px 18px 12px}
+.task-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.task-h b{font-size:15.5px;font-weight:500;color:#fff}
+.task-h span{margin-inline-start:auto;font-size:11px;color:var(--txt-faint)}
+.task label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line-soft);font-size:14.5px;color:var(--txt);cursor:pointer}
+.task label:first-child{border-top:0}
+.task input{width:19px;height:19px;margin-top:3px;accent-color:var(--amber);flex:none;cursor:pointer}
+.task label:has(input:checked){color:var(--txt-faint);text-decoration:line-through}
+.task-foot{margin:8px 0 0;font-size:12.5px;color:var(--txt-faint)}
+.progress{padding:22px 0 6px}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:12px;color:var(--txt-dim);margin-bottom:10px;gap:10px;flex-wrap:wrap}
+.progress-top b{color:var(--txt);font-weight:500}
+.bar2{height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar2 div{height:100%;background:var(--amber);width:0;transition:width .3s ease}
+.quick{display:flex;gap:8px;flex-wrap:wrap;padding:16px 0 4px;border-bottom:1px solid var(--line-soft)}
+.quick a{font-family:var(--mono);font-size:12px;border:1px solid var(--line);color:var(--txt-dim);padding:6px 13px;border-radius:999px;transition:border-color .15s ease,color .15s ease}
+.quick a:hover{border-color:var(--amber-soft);color:var(--amber);text-decoration:none}
+
+/* ---------- שיעורים ---------- */
+.chap{margin:20px 0 8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.chap:first-child{margin-top:4px}
+.chap .cn{font-size:10.5px;color:var(--amber);letter-spacing:.14em;border:1px solid var(--amber-soft);border-radius:2px;padding:2px 8px;white-space:nowrap}
+.chap h3{font-size:17px;flex:1;font-weight:500;min-width:160px}
+.chap .cs{font-size:11px;color:var(--txt-faint)}
+.unit{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px;transition:border-color .18s ease}
+.unit .st{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--txt-faint);font-family:var(--mono)}
+.unit.done .st{border-color:#3c5a44;color:var(--ok)}
+.unit.next{border-color:var(--amber-soft);background:linear-gradient(90deg,var(--amber-glow),transparent 60%),var(--panel)}
+.unit.next .st{border-color:var(--amber);color:var(--amber);background:var(--amber-glow)}
+.unit.locked{opacity:.55}
+.unit .ut{font-size:15px;color:#fff;line-height:1.4}
+.unit.done .ut{color:var(--txt-dim)}
+.unit.next .ut{font-weight:500}
+.unit .un{font-size:10.5px;color:var(--txt-faint);margin-inline-end:9px}
+.unit .ud{font-size:12.5px;color:var(--txt-faint);margin-top:1px}
+.unit .ub{font-size:12.5px;color:var(--txt-dim);margin-top:4px;border-inline-start:2px solid var(--amber-soft);padding-inline-start:8px}
+.unit .ub b{color:var(--txt);font-weight:500}
+.unit .right{display:flex;align-items:center;gap:12px}
+.unit .um{font-size:11px;color:var(--txt-faint);white-space:nowrap}
+.unit a.go{font-family:var(--mono);font-size:12px;border:1px solid var(--line);color:var(--txt-dim);padding:6px 13px;border-radius:var(--radius);white-space:nowrap;transition:border-color .15s,color .15s,background .15s}
+.unit.next a.go{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.unit a.go:hover{border-color:var(--amber);color:var(--amber);text-decoration:none}
+
+/* ---------- פאנלים מתקפלים ---------- */
+.panel{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);margin-bottom:12px;transition:border-color .18s ease}
+.panel[open]{border-color:var(--amber-soft)}
+.panel > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:16px 18px;font-size:16px;color:#fff;font-weight:400}
+.panel > summary::-webkit-details-marker{display:none}
+.panel > summary::before{content:"+";font-family:var(--mono);color:var(--amber);width:24px;height:24px;border:1px solid var(--amber-soft);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:15px;flex:none;background:var(--bg)}
+.panel[open] > summary::before{content:"–"}
+.panel > summary .ps{color:var(--txt-faint);font-size:12.5px;margin-inline-start:auto;font-family:var(--mono);letter-spacing:.02em;text-align:left}
+.panel > .pb{padding:6px 18px 20px;border-top:1px solid var(--line-soft)}
+.pb-sub{color:var(--txt-dim);font-size:14px;margin:10px 0 16px}
+
+/* ---------- האתר של מיקי: תוצרים ---------- */
+.deliv{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.deliv li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;border:1px solid var(--line);background:var(--bg-2);border-radius:var(--radius);padding:10px 13px}
+.deliv .dn{font-family:var(--mono);font-size:10.5px;color:var(--amber);letter-spacing:.1em;border:1px solid var(--amber-soft);border-radius:2px;padding:2px 7px;white-space:nowrap;margin-top:3px}
+.deliv .dt{font-size:14.5px;color:#fff}
+.deliv .dd{font-size:12.5px;color:var(--txt-faint)}
+.deliv li.pending{opacity:.6}
+
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .hdr{padding:12px 0;gap:10px}
+  .zoom-btn{width:100%;justify-content:center;order:3}
+  .hdr-name{margin-inline-start:auto}
+  section{padding:34px 0}
+  .prompts{grid-template-columns:1fr}
+  .unit{grid-template-columns:24px 1fr}
+  .unit .right{grid-column:2;justify-content:flex-start;margin-top:4px}
+  .panel > summary .ps{display:none}
+  .panel > .pb{padding:6px 14px 18px}
+  .safety{padding:16px 14px 14px}
+  .tbl td:first-child{white-space:normal}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+
+<header>
+  <div class="wrap hdr">
+    <div class="brand"><b>AI Lab</b> · שיעורים פרטיים</div>
+    <div class="hdr-name">מיקי</div>
+    <a class="zoom-btn" href="https://us06web.zoom.us/j/8186142816?pwd=VEtXYVh3Z3IwZWhrZHYvWm5hYWlKQT09" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+      כניסה לשיעור בזום
+    </a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ====== ברוך הבא ====== -->
+  <section class="welcome" id="top">
+    <div class="kicker mono">הפורטל האישי שלך</div>
+    <h1>שלום מיקי</h1>
+    <p>כל מה שצריך לקורס נמצא בדף הזה. מתחילים תמיד מכאן: מה השיעור הבא, ומה המשימה הקטנה עד הפגישה.</p>
+    <div class="w-grid">
+      <a class="w-card primary" id="w-next" href="#lessons"><span class="w-tag" id="w-next-tag">השיעור הבא</span><b id="w-next-title">…</b><span class="sub" id="w-next-sub">פתח ←</span></a>
+      <a class="w-card" href="questionnaire.html"><span class="w-tag">10 דקות</span><b>שאלון היכרות</b><span class="sub">ממלאים אחרי שיעור 1</span></a>
+      <a class="w-card" href="https://us06web.zoom.us/j/8186142816?pwd=VEtXYVh3Z3IwZWhrZHYvWm5hYWlKQT09" target="_blank" rel="noopener"><span class="w-tag">שיעור חי</span><b>כניסה לזום</b><span class="sub">אותו חדר, תמיד</span></a>
+    </div>
+    <div class="task">
+      <div class="task-h"><b>המשימה שלך עד הפגישה הבאה</b><span id="task-count" class="mono"></span></div>
+      <div id="task-list"></div>
+      <p class="task-foot">בערך חצי שעה. <a href="questionnaire.html">השאלון נמצא כאן</a>. הסימונים נשמרים במחשב הזה.</p>
+    </div>
+  </section>
+
+  <div class="progress">
+    <div class="progress-top">
+      <span><b id="prog-done">0</b> מתוך <b id="prog-total">10</b> שיעורים</span>
+      <span id="prog-label"></span>
+    </div>
+    <div class="bar2" aria-hidden="true"><div id="prog-fill"></div></div>
+  </div>
+
+  <nav class="quick" aria-label="קפיצה מהירה">
+    <a href="#lessons">מהלך הקורס</a><a href="#site">האתר של מיקי</a><a href="#words">המילים שלנו</a><a href="#prompts">ספריית הבקשות</a><a href="#safety">כללי עבודה בטוחה</a><a href="#tools">הכלים במחשב שלי</a>
+  </nav>
+
+  <!-- ====== שיעורים ====== -->
+  <section id="lessons">
+    <div class="sec-head"><span class="sec-num mono">01</span><h2>מהלך הקורס</h2></div>
+    <p class="sec-sub">עשרה שיעורים בשלושה חלקים. בכל שיעור בונים דבר אחד, והכול מתקדם לכיוון אחד: האתר שלך.</p>
+    <div id="units"></div>
+  </section>
+
+  <!-- ====== ארגז הכלים ====== -->
+  <section id="toolbox">
+    <div class="sec-head"><span class="sec-num mono">02</span><h2>ארגז הכלים</h2></div>
+    <p class="sec-sub">דברים שחוזרים אליהם. לוחצים על כותרת כדי לפתוח ולסגור.</p>
+
+    <details class="panel" id="site">
+      <summary>האתר של מיקי<span class="ps">מה נבנה, שיעור אחרי שיעור</span></summary>
+      <div class="pb">
+        <p class="pb-sub">זה פרויקט הליבה של הקורס. כל שיעור מוסיף חלק אחד. מה שמוכן יסומן כאן, עם קישור כשיש.</p>
+        <ul class="deliv" id="deliv"></ul>
+      </div>
+    </details>
+
+    <details class="panel" id="words">
+      <summary>המילים שלנו<span class="ps">מילון קצר · מילה אחת לכל דבר</span></summary>
+      <div class="pb">
+        <p class="pb-sub">כשמופיע מונח באנגלית בממשק, זו המשמעות שלו אצלנו. המילים שמסומנות "בהמשך" יגיעו בשיעורים הבאים.</p>
+        <div class="scroll"><table class="tbl">
+          <tr><th>אצלנו אומרים</th><th>בממשק כתוב</th><th>מה זה</th></tr>
+          <tr><td>תיק העבודה</td><td class="ltr-cell">Project</td><td>תיקייה ב-Claude שמכירה אותך ואת האתר. כל שיחה מקצועית נפתחת בתוכה (שיעור 2)</td></tr>
+          <tr><td>פקודת הקבע</td><td class="ltr-cell">Instructions</td><td>מי אתה ואיך אתה רוצה שהוא יכתוב. פועל תמיד, בלי שתבקש (שיעור 2)</td></tr>
+          <tr><td>המסמך בצד</td><td class="ltr-cell">Artifact</td><td>מסמך, דף או טבלה ש-Claude בונה בחלון לצד השיחה, ואפשר להוריד (שיעור 4)</td></tr>
+          <tr><td>המנוע</td><td class="ltr-cell">Model · Opus / Fable</td><td>מי שעונה. Opus לרוב העבודה, Fable לריצות כבדות של כמה שלבים</td></tr>
+          <tr><td>החיבור</td><td class="ltr-cell">Connector</td><td>חיבור של Claude ליומן, למייל או לכלי אחר שלך, כדי שיוכל לקרוא משם (שיעור 4)</td></tr>
+          <tr><td>הצינור</td><td class="ltr-cell">API</td><td>צינור בין שתי תוכנות. מפתח במקום סיסמה, תשלום לפי שימוש (שיעור 5)</td></tr>
+          <tr><td>התקן הכלים</td><td class="ltr-cell">MCP</td><td>הדרך שבה Claude מקבל "כלים" לפעול איתם. ה-Connectors בנויים עליו (שיעור 5)</td></tr>
+          <tr><td>סוכן</td><td class="ltr-cell">Agent</td><td>Claude שרץ עם כלים ומבצע משימה שלמה, לא רק עונה (שיעור 5)</td></tr>
+          <tr><td>בית המלאכה</td><td class="ltr-cell">Cursor</td><td>תוכנה שעובדת על תיקיות וקבצים במחשב. שם בונים את האתר (שיעור 6)</td></tr>
+          <tr><td>הבנאי</td><td class="ltr-cell">Claude Code</td><td>אותו Claude, בתוך Cursor. כותב קבצים ומבצע פעולות במחשב, באישור שלך (שיעור 6)</td></tr>
+          <tr><td>הארכיון</td><td class="ltr-cell">GitHub</td><td>המקום שבו שומרים את הקבצים של האתר, עם היסטוריה. Claude עושה את העבודה הטכנית (שיעור 6)</td></tr>
+          <tr><td>האוויר</td><td class="ltr-cell">GitHub Pages</td><td>השירות שהופך את הקבצים מהארכיון לאתר חי בקישור ציבורי (שיעור 8)</td></tr>
+          <tr><td>להימצא בגוגל</td><td class="ltr-cell">SEO</td><td>מה עושים כדי שהאתר יופיע כשמחפשים את הנושא בגוגל (שיעור 10)</td></tr>
+          <tr><td>להימצא ב-AI</td><td class="ltr-cell">GEO</td><td>אותו דבר, אבל כשאנשים שואלים את Claude או ChatGPT במקום את גוגל (שיעור 10)</td></tr>
+        </table></div>
+      </div>
+    </details>
+
+    <details class="panel" id="prompts">
+      <summary>ספריית הבקשות<span class="ps">כל הבקשות מכל השיעורים · כפתור העתקה</span></summary>
+      <div class="pb">
+        <p class="pb-sub">מעתיקים, מדביקים בשיחה, ומחליפים את מה שבסוגריים המרובעים. הספרייה גדלה בכל שיעור.</p>
+        <div class="prompts" id="prompt-grid"></div>
+      </div>
+    </details>
+
+    <details class="panel" id="safety">
+      <summary>כללי עבודה בטוחה<span class="ps">רופא, אתר רפואי, AI</span></summary>
+      <div class="pb">
+        <div class="safety" style="margin-top:12px">
+          <ul class="rules">
+            <li>אין פרטי מטופלים בשום כלי. לא שם, לא תאריך לידה, לא תיאור מקרה שאפשר לזהות. לא ב-Claude, לא ב-Cursor, לא ב-GitHub.</li>
+            <li class="pos">מידע רפואי כללי בלבד: איך הטיפול עובד, למי הוא מיועד, מה התהליך. כמו שהיית כותב בעמוד ציבורי.</li>
+            <li>הסוכן שנבנה בהמשך לא מאבחן, לא ממליץ על טיפול למקרה ספציפי, ולא מחליף שיחה עם רופא. הוא מסביר ומפנה.</li>
+            <li class="pos">כל מה שעולה לאתר עובר עליך קודם. Claude כותב טיוטה, אתה קורא לפני שמפרסמים.</li>
+            <li>מפתחות (API Keys) וסיסמאות לא מדביקים בשיחה ולא שולחים לאף אחד. גם לא לי.</li>
+            <li class="pos">בספק? לא מעלים, ושואלים אותי בשיעור.</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="panel" id="tools">
+      <summary>הכלים במחשב שלי<span class="ps">כבר מותקנים · כאן לרענון</span></summary>
+      <div class="pb">
+        <p class="pb-sub">שלושה כלים, שלושה תפקידים. בחלק א של הקורס עובדים רק עם הראשון.</p>
+        <div class="finds">
+          <div class="find">
+            <span class="f-name">Claude Desktop</span>
+            <p class="f-where">לכתוב, לסכם, לחשוב ביחד</p>
+            <p class="f-why">מיילים, מסמכים, סיכומים, שאלות על קבצים, Projects. זה הכלי לשיעורים 1–5, ולרוב העבודה היומיומית. אותו חשבון ואותן שיחות כמו ב-claude.ai בדפדפן.</p>
+          </div>
+          <div class="find">
+            <span class="f-name">Cursor + Claude Code</span>
+            <p class="f-where">לבנות ולשנות קבצים במחשב</p>
+            <p class="f-why">כשצריך לבנות דף, לשנות את האתר, לעבוד על תיקייה שלמה. Claude Code רץ בתוכו ומבצע פעולות באישור שלך. לשם נגיע בשיעור 6.</p>
+          </div>
+          <div class="find">
+            <span class="f-name">GitHub</span>
+            <p class="f-where">לשמור ולהעלות לאוויר</p>
+            <p class="f-why">הארכיון של קבצי האתר, עם היסטוריה של כל שינוי. דרך Pages הוא גם מציג את האתר בקישור ציבורי. Claude עושה את החלק הטכני; אתה רק מאשר. שיעורים 6 ו-8.</p>
+          </div>
+        </div>
+        <p class="m-warn"><b>כלל אצבע:</b> רוצה טקסט, סיכום או תשובה? Claude Desktop. רוצה שמשהו ישתנה בקבצים של האתר? Cursor. לא בטוח? מתחילים תמיד ב-Claude Desktop.</p>
+        <p class="m-warn"><b>הערה:</b> שמות הכפתורים בממשק משתנים מדי פעם. אם משהו נקרא אחרת ממה שכתוב כאן, זה כנראה אותו דבר. אל תיתקע על זה.</p>
+      </div>
+    </details>
+  </section>
+
+  <footer>
+    <span>AI Lab · מאיר לביא</span>
+    <a href="https://ai-lab.co.il" target="_blank" rel="noopener">ai-lab.co.il</a>
+  </footer>
+
+</main>
+</div>
+
+<script>
+/* ============================================================
+   הגדרות — כאן משנים
+   ============================================================ */
+const CURRENT_LESSON = 1;   // השיעור הבא / הנוכחי (1-10). שיעורים לפניו נחשבים "הושלמו".
+/* תאריכי השיעורים — למלא כשייקבעו, למשל: { 2:"שבת 15.11 · 21:00" }.
+   כרגע ריק; כשיש תאריך הוא יופיע ליד השיעור. */
+const DATES = {};
+
+const PARTS = {
+  1: { t:"Claude Desktop: הבסיס", s:"שיעורים 1–4" },
+  2: { t:"איך Claude מתחבר לעולם, ואיך בונים", s:"שיעורים 5–6" },
+  3: { t:"האתר של מיקי", s:"שיעורים 7–10" },
+};
+const LESSONS = [
+  { p:1, t:"מה זה Claude, ולמה דווקא הוא",            d:"מה הוא עושה ומה לא · Claude מול ChatGPT · Opus מול Fable · סיור במסך",            b:"בקשה ראשונה על טקסט אמיתי שלך",                         href:"lesson-1.html" },
+  { p:1, t:"Project שמכיר אותך, ומה לא מעלים",        d:"למה שיחה רגילה שוכחת · Project · Instructions · פרטיות רפואית",                   b:"Project \"מיקי\" עם הוראות וקובץ, ורשימת \"לא מעלים\"" },
+  { p:1, t:"מיילים ומסמכים: מטיוטה לנוסח",            d:"מייל מנקודות לנוסח · כיוונון טון · סיכום מסמך ארוך",                             b:"3 מיילים אמיתיים, סיכום מסמך, תבנית מייל קבועה" },
+  { p:1, t:"קבצים, Artifacts ו-Connectors",           d:"אקסל ו-PDF · מסמך שנבנה בצד · מחברים יומן או מייל",                              b:"Connector מחובר, מייל שנענה מתוך Claude, Artifact ראשון" },
+  { p:2, t:"תיאוריה: API, MCP, Connectors וסוכנים",   d:"מה זה API · מה זה MCP · מה ההבדל · מה זה סוכן · ממה נזהרים",                      b:"\"מפת החיבורים שלי\"" },
+  { p:2, t:"Cursor ו-Claude Code: בנייה ראשונה",      d:"מה שונה מ-Desktop · תדריך → בנייה → בדיקה → תיקון → שמירה · GitHub בשתי שורות",   b:"תיקיית פרויקט ודף HTML ראשון שנפתח בדפדפן" },
+  { p:3, t:"האתר: איך הוא בנוי, ומה כותבים מחדש",     d:"פלטפורמה, דומיין, גישות · Claude מנתח · מה שנאמר בטלפון הופך לכתוב",             b:"דוח מצב האתר, עמוד הטיפול ו-10 שאלות ותשובות" },
+  { p:3, t:"דף נחיתה: בונים ומעלים לאוויר",           d:"תדריך של עמוד אחד · Claude Code בונה · בודקים בטלפון · GitHub Pages",            b:"דף חי בקישור ציבורי ונוהל עדכון של 3 שורות" },
+  { p:3, t:"הסוכן שעונה לפונים: תכנון ובדיקה",        d:"מה סוכן יודע ומה אסור לו · בסיס ידע · 10 שיחות מדומות · איך זה היה מתחבר",        b:"\"מסמך הסוכן\" ותרשים \"איך זה מתחבר\"" },
+  { p:3, t:"הפצה והשגרה שלך",                         d:"SEO עם Claude · GEO · מה לבקש מסוכנות · מכסות ושימוש · תוכנית המשך",             b:"תוכנית הפצה של עמוד אחד ו\"דף השגרה\"" },
+];
+
+/* המשימה עד הפגישה הבאה — לפי מספר השיעור הנוכחי */
+const TASKS = {
+  1: [
+    "מילאתי את שאלון ההיכרות ושלחתי למאיר בוואטסאפ",
+    "פתחתי שיחה חדשה ב-Claude Desktop, הדבקתי מייל אמיתי או עמוד מהאתר, וביקשתי: \"סכם לי בשלוש שורות מה חשוב פה\"",
+    "קראתי את התשובה וכתבתי לעצמי משפט אחד: מה היה טוב, ומה הייתי משנה"
+  ]
+};
+
+/* האתר של מיקי — התוצרים לפי שיעור */
+const DELIV = [
+  { n:2,  t:"Project \"מיקי\"",                   d:"הוראות קבועות וקובץ רקע על האתר והטיפול" },
+  { n:3,  t:"תבנית מייל קבועה",                   d:"בתוך ה-Project, לפניות שחוזרות" },
+  { n:5,  t:"מפת החיבורים שלי",                   d:"מה מחובר היום, מה רוצים לחבר, מה זה ידרוש" },
+  { n:6,  t:"תיקיית הפרויקט ודף HTML ראשון",      d:"הבסיס לכל מה שנבנה אחר כך" },
+  { n:7,  t:"דוח מצב האתר",                        d:"פלטפורמה, דומיין, מה עובד ומה לא" },
+  { n:7,  t:"עמוד \"איך הטיפול עובד\" + 10 שאלות ותשובות", d:"מה שהמומחים אמרו בטלפון, כתוב. גם בסיס הידע לסוכן" },
+  { n:8,  t:"דף נחיתה חי בקישור ציבורי",           d:"עם נוהל עדכון של 3 שורות" },
+  { n:9,  t:"מסמך הסוכן",                          d:"הוראות, בסיס ידע, 10 תרחישים שעברו, תרשים \"איך זה מתחבר\"" },
+  { n:10, t:"תוכנית הפצה של עמוד אחד",             d:"SEO, GEO, מה לבקש מסוכנות" },
+  { n:10, t:"דף השגרה",                            d:"5 פעולות קבועות עם Claude" },
+];
+
+(function () {
+  const pad = n => String(n).padStart(2, "0");
+  const DONE = Math.max(0, Math.min(CURRENT_LESSON - 1, LESSONS.length));
+  const box = document.getElementById("units");
+  let part = 0;
+  LESSONS.forEach((u, i) => {
+    const n = i + 1;
+    if (u.p !== part) {
+      part = u.p;
+      const done = LESSONS.filter((x, k) => x.p === part && k < DONE).length;
+      const total = LESSONS.filter(x => x.p === part).length;
+      const h = document.createElement("div"); h.className = "chap";
+      h.innerHTML = `<span class="cn mono">חלק ${["","א","ב","ג"][part]}</span><h3>${PARTS[part].t}</h3><span class="cs mono">${done}/${total}</span>`;
+      box.appendChild(h);
+    }
+    const st = n <= DONE ? "done" : n === CURRENT_LESSON ? "next" : "locked";
+    const row = document.createElement("div"); row.className = "unit " + st;
+    const date = DATES[n] ? `<span class="um mono">${DATES[n]}</span>` : "";
+    row.innerHTML =
+      `<span class="st">${st === "done" ? "✓" : st === "next" ? "◆" : ""}</span>` +
+      `<div><div class="ut"><span class="un mono">${pad(n)}</span>${u.t}</div><div class="ud">${u.d}</div><div class="ub"><b>מה בונים:</b> ${u.b}</div></div>` +
+      `<div class="right">${date}` +
+      (u.href ? `<a class="go" href="${u.href}">${st === "next" ? "פתח את השיעור" : "פתח"}</a>` : `<span class="um mono">בהכנה</span>`) +
+      `</div>`;
+    box.appendChild(row);
+  });
+
+  document.getElementById("prog-done").textContent = DONE;
+  document.getElementById("prog-total").textContent = LESSONS.length;
+  document.getElementById("prog-fill").style.width = (DONE / LESSONS.length * 100) + "%";
+  const cp = LESSONS[CURRENT_LESSON - 1].p;
+  document.getElementById("prog-label").textContent =
+    DONE >= LESSONS.length ? "הקורס הושלם" : `עכשיו בחלק ${["","א","ב","ג"][cp]} — ${PARTS[cp].t}`;
+
+  const nu = LESSONS[CURRENT_LESSON - 1];
+  document.getElementById("w-next-tag").textContent = `השיעור הבא · ${pad(CURRENT_LESSON)}` + (DATES[CURRENT_LESSON] ? ` · ${DATES[CURRENT_LESSON]}` : "");
+  document.getElementById("w-next-title").textContent = nu.t;
+  document.getElementById("w-next-sub").textContent = nu.href ? "פתח את השיעור ←" : "נפתח ביום השיעור";
+  document.getElementById("w-next").href = nu.href || "#lessons";
+
+  const list = document.getElementById("task-list"), count = document.getElementById("task-count");
+  const items = TASKS[CURRENT_LESSON] || [];
+  const key = "miki-tasks-l" + CURRENT_LESSON;
+  let saved = []; try { saved = JSON.parse(localStorage.getItem(key) || "[]"); } catch (e) {}
+  if (!items.length) { list.closest(".task").style.display = "none"; }
+  items.forEach((t, i) => {
+    const l = document.createElement("label"), c = document.createElement("input");
+    c.type = "checkbox"; c.checked = !!saved[i];
+    c.addEventListener("change", () => { saved[i] = c.checked; try { localStorage.setItem(key, JSON.stringify(saved)); } catch (e) {} upd(); });
+    l.appendChild(c); l.appendChild(document.createTextNode(t)); list.appendChild(l);
+  });
+  function upd(){ const d = saved.filter(Boolean).length; count.textContent = d === items.length ? "הכל מוכן ✓" : d + " / " + items.length; }
+  if (items.length) upd();
+
+  /* האתר של מיקי */
+  const dl = document.getElementById("deliv");
+  DELIV.forEach(x => {
+    const li = document.createElement("li");
+    if (x.n >= CURRENT_LESSON) li.className = "pending";
+    li.innerHTML = `<span class="dn">שיעור ${pad(x.n)}</span><div><div class="dt">${x.t}</div><div class="dd">${x.d}</div></div>`;
+    dl.appendChild(li);
+  });
+})();
+
+/* קישור לפאנל מקופל פותח אותו */
+function openTarget() {
+  const el = document.getElementById(location.hash.slice(1));
+  if (el && el.tagName === "DETAILS") el.open = true;
+}
+window.addEventListener("hashchange", openTarget); openTarget();
+
+/* ---------- ספריית הבקשות ---------- */
+const PROMPTS = [
+{
+  title: "סכם לי מה חשוב פה",
+  cat: "שיעור 1",
+  text:
+`סכם לי בשלוש שורות מה חשוב פה. אם יש משהו שמצופה ממני לעשות, כתוב מה ועד מתי.
+
+[כאן מדביקים מייל או עמוד מהאתר. לפני שמדביקים: מוחקים שמות, טלפונים וכל פרט של מטופל]`
+},
+{
+  title: "מה הוא רוצה ממני",
+  cat: "שיעור 1",
+  text:
+`קיבלתי את המייל הזה. תגיד לי בשתי שורות: מה הוא רוצה ממני, ומה אני צריך לענות. אחר כך הצע נוסח תשובה קצר ומנומס, באותה שפה שבה נכתב המייל.
+
+[כאן מדביקים את המייל, בלי פרטים מזהים של אנשים אחרים]`
+},
+{
+  title: "תתקן לי את זה",
+  cat: "שיעור 1",
+  text:
+`תודה. עכשיו תעשה את זה [קצר יותר / פשוט יותר / רשמי יותר / בשפה פשוטה שמתאים למי שלא רופא]. אל תוסיף מידע שלא היה בטקסט המקורי.`
+}
+];
+
+(function () {
+  const grid = document.getElementById("prompt-grid");
+  PROMPTS.forEach(function (p, i) {
+    const card = document.createElement("article");
+    card.className = "prompt";
+
+    const head = document.createElement("div");
+    head.className = "p-head";
+    const h = document.createElement("h3");
+    h.textContent = p.title;
+    const cat = document.createElement("span");
+    cat.className = "cat mono";
+    cat.textContent = p.cat;
+    head.appendChild(h); head.appendChild(cat);
+
+    const rule = document.createElement("div");
+    rule.className = "p-rule";
+
+    const ta = document.createElement("textarea");
+    ta.readOnly = true;
+    ta.id = "p-" + i;
+    ta.value = p.text;
+    ta.setAttribute("aria-label", "טקסט הבקשה: " + p.title);
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "copy";
+    btn.textContent = "העתקה";
+    btn.setAttribute("aria-label", "העתקת הבקשה " + p.title);
+    btn.addEventListener("click", function () { copyPrompt(ta, btn); });
+
+    card.appendChild(head); card.appendChild(rule);
+    card.appendChild(ta); card.appendChild(btn);
+    grid.appendChild(card);
+  });
+})();
+
+/* העתקה ללוח — עובדת גם בטלפון (fallback ל-execCommand) */
+function copyPrompt(ta, btn) {
+  const text = ta.value;
+  const done = function () {
+    btn.textContent = "הועתק ✓";
+    btn.classList.add("done");
+    setTimeout(function () {
+      btn.textContent = "העתקה";
+      btn.classList.remove("done");
+    }, 1800);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(done, function () { legacyCopy(ta, done); });
+  } else {
+    legacyCopy(ta, done);
+  }
+}
+function legacyCopy(ta, done) {
+  const ro = ta.readOnly;
+  ta.readOnly = false;              // iOS לא מסמן שדה readOnly
+  ta.focus();
+  ta.setSelectionRange(0, ta.value.length);
+  try { document.execCommand("copy"); done(); } catch (e) {}
+  ta.readOnly = ro;
+  window.getSelection().removeAllRanges();
+  ta.blur();
+}
+</script>
+</body>
+</html>
