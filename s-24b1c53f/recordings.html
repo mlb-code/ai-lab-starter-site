@@ -312,6 +312,7 @@ section{scroll-margin-top:72px}
 <script src="recordings.js"></script>
 <script>
 const TITLES = [
+  "שיעור הפתיחה של Starter: מה זה Claude, ולמה דווקא הוא",
   "מה זה Claude, ולמה דווקא הוא",
   "Project שמכיר אותך, ומה לא מעלים",
   "מיילים ומסמכים: מטיוטה לנוסח",
@@ -324,12 +325,12 @@ const TITLES = [
   "הפצה והשגרה שלך",
 ];
 /* תאריך השיעור שהוקלט, אופציונלי: { 1:"08.11.2026" } */
-const REC_DATES = { 1:"08.11.2026" };
+const REC_DATES = { 0:"08.11.2026" };
 (function(){
   const box = document.getElementById("recs");
   const pad = n => String(n).padStart(2,"0");
   TITLES.forEach((t,i)=>{
-    const n=i+1, id=(window.RECORDINGS||{})[n];
+    const n=i, id=(window.RECORDINGS||{})[n];
     const d=document.createElement("div"); d.id="l"+n; d.className="rec"+(id?" has":"");
     d.innerHTML = `<div class="rec-h"><span class="un">שיעור ${pad(n)}</span><b>${t}</b>${REC_DATES[n]?`<span class="um">${REC_DATES[n]}</span>`:""}</div>` +
       (id ? `<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&hl=he" title="שיעור ${n}" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`

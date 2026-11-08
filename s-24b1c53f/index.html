@@ -427,16 +427,18 @@ section{scroll-margin-top:72px}
 /* ============================================================
    הגדרות — כאן משנים
    ============================================================ */
-const CURRENT_LESSON = 2;   // השיעור הבא / הנוכחי (1-10). שיעורים לפניו נחשבים "הושלמו".
+const CURRENT_LESSON = 1;   // השיעור הבא / הנוכחי (1-10). שיעורים לפניו נחשבים "הושלמו".
 /* תאריכי השיעורים — למלא כשייקבעו, למשל: { 2:"שבת 15.11 · 21:00" }.
    כרגע ריק; כשיש תאריך הוא יופיע ליד השיעור. */
-const DATES = {};
+const DATES = { 0:"ראשון 08.11" };
 
 const PARTS = {
   1: { t:"Claude: הבסיס, בתוך Cursor", s:"שיעורים 1–4" },
   2: { t:"איך Claude מתחבר לעולם, ואיך בונים", s:"שיעורים 5–6" },
   3: { t:"האתר של מיקי", s:"שיעורים 7–10" },
 };
+/* שיעור 0 = שיעור הפתיחה של Starter, התקיים 08.11. אין לו דף, יש לו הקלטה. */
+const LESSON0 = { t:"שיעור הפתיחה של Starter: מה זה Claude, ולמה דווקא הוא", d:"מה הוא עושה ומה לא · גוגל מול Claude · החשבון · סיור במסך של claude.ai", b:"בקשה ראשונה על טקסט אמיתי שלך" };
 const LESSONS = [
   { p:1, t:"מה זה Claude, ולמה דווקא הוא",            d:"מה הוא עושה ומה לא · Claude מול ChatGPT · Opus מול Fable · סיור במסך",            b:"בקשה ראשונה על טקסט אמיתי שלך",                         href:"lesson-1.html" },
   { p:1, t:"Project שמכיר אותך, ומה לא מעלים",        d:"למה שיחה רגילה שוכחת · Project · Instructions · פרטיות רפואית",                   b:"Project \"מיקי\" עם הוראות וקובץ, ורשימת \"לא מעלים\"", href:"lesson-2.html" },
@@ -493,6 +495,16 @@ const DELIV = [
       const h = document.createElement("div"); h.className = "chap";
       h.innerHTML = `<span class="cn mono">חלק ${["","א","ב","ג"][part]}</span><h3>${PARTS[part].t}</h3><span class="cs mono">${done}/${total}</span>`;
       box.appendChild(h);
+      if (part === 1) {
+        const r0 = document.createElement("div"); r0.className = "unit done";
+        r0.innerHTML =
+          `<span class="st">✓</span>` +
+          `<div><div class="ut"><span class="un mono">00</span>${LESSON0.t}</div><div class="ud">${LESSON0.d}</div><div class="ub"><b>מה בנינו:</b> ${LESSON0.b}</div></div>` +
+          `<div class="right">${DATES[0] ? `<span class="um mono">${DATES[0]}</span>` : ""}` +
+          (RECORDINGS[0] ? `<a class="go rec" href="recordings.html#l0">הקלטה</a>` : `<span class="um mono">הקלטה בקרוב</span>`) +
+          `</div>`;
+        box.appendChild(r0);
+      }
     }
     const st = n <= DONE ? "done" : n === CURRENT_LESSON ? "next" : "locked";
     const row = document.createElement("div"); row.className = "unit " + st;
