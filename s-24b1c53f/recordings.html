@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>הקלטות השיעורים · מיקי · AI Lab</title>
+
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0d12;
+  --bg-2:#0f131a;
+  --panel:#12171f;
+  --panel-2:#161c25;
+  --line:#232b36;
+  --line-soft:#1b222c;
+  --txt:#dfe4ea;
+  --txt-dim:#98a1ad;
+  --txt-faint:#6d7783;
+  --amber:#d99b3c;
+  --amber-soft:#8a6326;
+  --amber-glow:rgba(217,155,60,.12);
+  --ok:#5f8f6a;
+  --radius:4px;
+  --mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:"Heebo",-apple-system,"Segoe UI",Arial,sans-serif;
+  font-weight:300;
+  font-size:16px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(1100px 620px at 88% -8%,rgba(217,155,60,.075),transparent 62%),
+    radial-gradient(900px 520px at 6% 104%,rgba(86,116,152,.07),transparent 62%),
+    linear-gradient(180deg,#0d1119 0%,#0a0d12 55%,#080b0f 100%);
+  background-attachment:fixed;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0v64' fill='none' stroke='%23ffffff' stroke-opacity='.03' stroke-width='1'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+}
+#app{position:relative;z-index:1}
+h1,h2,h3{font-weight:500;line-height:1.35;margin:0}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+button{
+  font-family:"Heebo",sans-serif;cursor:pointer;
+  border-radius:var(--radius);transition:background .15s ease,border-color .15s ease,color .15s ease;
+}
+
+/* ---------- כותרת עליונה ---------- */
+header{
+  border-bottom:1px solid var(--line);
+  background:rgba(10,13,18,.92);
+  backdrop-filter:blur(6px);
+  position:sticky;top:0;z-index:20;
+}
+.hdr{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 0}
+.brand{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--txt-dim);white-space:nowrap}
+.brand b{color:var(--amber);font-weight:500}
+.hdr-name{
+  margin-inline-start:auto;
+  font-family:var(--mono);font-size:12px;color:var(--txt-faint);
+  border-inline-start:1px solid var(--line);padding-inline-start:16px;white-space:nowrap;
+}
+.zoom-btn{
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  border:1px solid var(--amber-soft);color:var(--amber);background:var(--amber-glow);
+  padding:7px 14px;font-size:13.5px;border-radius:var(--radius);
+  transition:background .15s ease,border-color .15s ease;
+}
+.zoom-btn:hover{background:rgba(217,155,60,.22);border-color:var(--amber);text-decoration:none}
+.zoom-btn svg{width:16px;height:16px;fill:currentColor;flex:none}
+.hdr-btns{display:flex;gap:8px;flex-wrap:wrap}
+.rec-btn{border-color:var(--line);color:var(--txt);background:var(--panel)}
+.rec-btn:hover{border-color:var(--amber-soft);background:var(--bg-2)}
+
+/* ---------- סקשנים ---------- */
+section{padding:44px 0}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.sec-head h2{font-size:19px;white-space:nowrap}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.14em}
+.sec-head::after{content:"";flex:1;height:1px;background:var(--line)}
+.sec-sub{color:var(--txt-dim);font-size:14.5px;margin:-14px 0 24px;max-width:64ch}
+
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+
+/* ---------- כרטיסי מידע ---------- */
+.finds{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:12px}
+.find{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);padding:13px 15px}
+.find .f-name{font-family:var(--mono);font-size:12.5px;color:var(--amber);display:block;margin-bottom:7px}
+.find .f-where{font-size:13.5px;color:var(--txt);margin:0 0 5px}
+.find .f-why{font-size:13px;color:var(--txt-faint);margin:0;line-height:1.55}
+
+/* ---------- טבלת מילים ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:9px 12px;text-align:right;vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--amber);font-weight:400;background:var(--panel)}
+.tbl td{color:var(--txt-dim)}
+.tbl td:first-child{color:#fff;font-weight:400;white-space:nowrap}
+.tbl td.ltr-cell{font-family:var(--mono);font-size:12.5px;color:var(--txt);direction:ltr;text-align:right;unicode-bidi:isolate}
+
+.m-warn{border:1px solid var(--line);border-inline-start:2px solid var(--amber);background:var(--panel);border-radius:var(--radius);padding:14px 16px;margin:16px 0 0;font-size:14px;color:var(--txt-dim)}
+.m-warn b{color:var(--txt);font-weight:500}
+
+/* ---------- ספריית בקשות ---------- */
+.prompts{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}
+.prompt{
+  border:1px solid var(--line);background:var(--panel);
+  border-radius:var(--radius);padding:18px 18px 16px;
+  display:flex;flex-direction:column;
+  transition:border-color .18s ease;
+}
+.prompt:hover{border-color:var(--amber-soft)}
+.p-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.p-head h3{font-size:15.5px;flex:1;min-width:140px}
+.cat{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--amber);border:1px solid var(--amber-soft);padding:2px 7px;border-radius:2px;white-space:nowrap}
+.p-rule{height:1px;background:var(--line-soft);margin:0 0 12px}
+textarea{
+  width:100%;min-height:132px;resize:vertical;
+  background:var(--bg-2);border:1px solid var(--line-soft);
+  color:var(--txt-dim);border-radius:var(--radius);
+  padding:11px 12px;font-family:"Heebo",sans-serif;font-size:13px;line-height:1.65;
+  direction:rtl;
+}
+textarea:focus{border-color:var(--amber-soft);outline:none;color:var(--txt)}
+.copy{
+  margin-top:11px;align-self:flex-start;
+  background:transparent;border:1px solid var(--line);color:var(--txt-dim);
+  font-family:var(--mono);font-size:12px;padding:6px 15px;
+}
+.copy:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.copy.done{border-color:#3c5a44;color:var(--ok);background:transparent}
+
+/* ---------- כללי עבודה בטוחה ---------- */
+.safety{
+  border:1px solid var(--amber-soft);
+  background:linear-gradient(180deg,var(--amber-glow),transparent 70%),var(--panel);
+  border-radius:var(--radius);
+  padding:20px 20px 18px;
+}
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.rules li{position:relative;padding-inline-start:26px;font-size:14.5px;line-height:1.65}
+.rules li::before{
+  content:"×";position:absolute;inset-inline-start:0;top:-1px;
+  font-family:var(--mono);color:var(--amber);font-size:14px;
+}
+.rules li.pos::before{content:"✓";color:var(--ok)}
+
+/* ---------- כותרת תחתונה ---------- */
+footer{
+  border-top:1px solid var(--line);margin-top:20px;padding:26px 0 40px;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:12px;color:var(--txt-faint);
+}
+
+/* ---------- כניסה ---------- */
+html{scroll-behavior:smooth}
+section{scroll-margin-top:72px}
+.welcome{padding:40px 0 8px}
+.kicker{font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase}
+.welcome h1{font-size:clamp(27px,4.8vw,36px);margin:8px 0 8px}
+.welcome > p{color:var(--txt-dim);max-width:58ch;margin:0 0 22px;font-size:15.5px}
+.w-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.w-card{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:18px 18px 16px;display:flex;flex-direction:column;gap:3px;color:var(--txt);transition:border-color .18s ease,transform .18s ease,background .18s ease}
+.w-card:hover{border-color:var(--amber-soft);text-decoration:none;transform:translateY(-2px)}
+.w-card.primary{border-color:var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 70%),var(--panel)}
+.w-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--amber);margin-bottom:4px}
+.w-card b{font-size:19px;font-weight:500;color:#fff;line-height:1.3}
+.w-card .sub{color:var(--txt-dim);font-size:13.5px}
+.task{margin-top:14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:16px 18px 12px}
+.task-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.task-h b{font-size:15.5px;font-weight:500;color:#fff}
+.task-h span{margin-inline-start:auto;font-size:11px;color:var(--txt-faint)}
+.task label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line-soft);font-size:14.5px;color:var(--txt);cursor:pointer}
+.task label:first-child{border-top:0}
+.task input{width:19px;height:19px;margin-top:3px;accent-color:var(--amber);flex:none;cursor:pointer}
+.task label:has(input:checked){color:var(--txt-faint);text-decoration:line-through}
+.task-foot{margin:8px 0 0;font-size:12.5px;color:var(--txt-faint)}
+.progress{padding:22px 0 6px}
+.progress-top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--mono);font-size:12px;color:var(--txt-dim);margin-bottom:10px;gap:10px;flex-wrap:wrap}
+.progress-top b{color:var(--txt);font-weight:500}
+.bar2{height:4px;background:var(--line);border-radius:2px;overflow:hidden}
+.bar2 div{height:100%;background:var(--amber);width:0;transition:width .3s ease}
+.quick{display:flex;gap:8px;flex-wrap:wrap;padding:16px 0 4px;border-bottom:1px solid var(--line-soft)}
+.quick a{font-family:var(--mono);font-size:12px;border:1px solid var(--line);color:var(--txt-dim);padding:6px 13px;border-radius:999px;transition:border-color .15s ease,color .15s ease}
+.quick a:hover{border-color:var(--amber-soft);color:var(--amber);text-decoration:none}
+
+/* ---------- שיעורים ---------- */
+.chap{margin:20px 0 8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.chap:first-child{margin-top:4px}
+.chap .cn{font-size:10.5px;color:var(--amber);letter-spacing:.14em;border:1px solid var(--amber-soft);border-radius:2px;padding:2px 8px;white-space:nowrap}
+.chap h3{font-size:17px;flex:1;font-weight:500;min-width:160px}
+.chap .cs{font-size:11px;color:var(--txt-faint)}
+.unit{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:12px 14px;margin-bottom:8px;transition:border-color .18s ease}
+.unit .st{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--txt-faint);font-family:var(--mono)}
+.unit.done .st{border-color:#3c5a44;color:var(--ok)}
+.unit.next{border-color:var(--amber-soft);background:linear-gradient(90deg,var(--amber-glow),transparent 60%),var(--panel)}
+.unit.next .st{border-color:var(--amber);color:var(--amber);background:var(--amber-glow)}
+.unit.locked{opacity:.55}
+.unit .ut{font-size:15px;color:#fff;line-height:1.4}
+.unit.done .ut{color:var(--txt-dim)}
+.unit.next .ut{font-weight:500}
+.unit .un{font-size:10.5px;color:var(--txt-faint);margin-inline-end:9px}
+.unit .ud{font-size:12.5px;color:var(--txt-faint);margin-top:1px}
+.unit .ub{font-size:12.5px;color:var(--txt-dim);margin-top:4px;border-inline-start:2px solid var(--amber-soft);padding-inline-start:8px}
+.unit .ub b{color:var(--txt);font-weight:500}
+.unit .right{display:flex;align-items:center;gap:12px}
+.unit .um{font-size:11px;color:var(--txt-faint);white-space:nowrap}
+.unit a.go{font-family:var(--mono);font-size:12px;border:1px solid var(--line);color:var(--txt-dim);padding:6px 13px;border-radius:var(--radius);white-space:nowrap;transition:border-color .15s,color .15s,background .15s}
+.unit.next a.go{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.unit a.go:hover{border-color:var(--amber);color:var(--amber);text-decoration:none}
+
+/* ---------- פאנלים מתקפלים ---------- */
+.panel{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);margin-bottom:12px;transition:border-color .18s ease}
+.panel[open]{border-color:var(--amber-soft)}
+.panel > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:16px 18px;font-size:16px;color:#fff;font-weight:400}
+.panel > summary::-webkit-details-marker{display:none}
+.panel > summary::before{content:"+";font-family:var(--mono);color:var(--amber);width:24px;height:24px;border:1px solid var(--amber-soft);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:15px;flex:none;background:var(--bg)}
+.panel[open] > summary::before{content:"–"}
+.panel > summary .ps{color:var(--txt-faint);font-size:12.5px;margin-inline-start:auto;font-family:var(--mono);letter-spacing:.02em;text-align:left}
+.panel > .pb{padding:6px 18px 20px;border-top:1px solid var(--line-soft)}
+.pb-sub{color:var(--txt-dim);font-size:14px;margin:10px 0 16px}
+
+/* ---------- האתר של מיקי: תוצרים ---------- */
+.deliv{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.deliv li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;border:1px solid var(--line);background:var(--bg-2);border-radius:var(--radius);padding:10px 13px}
+.deliv .dn{font-family:var(--mono);font-size:10.5px;color:var(--amber);letter-spacing:.1em;border:1px solid var(--amber-soft);border-radius:2px;padding:2px 7px;white-space:nowrap;margin-top:3px}
+.deliv .dt{font-size:14.5px;color:#fff}
+.deliv .dd{font-size:12.5px;color:var(--txt-faint)}
+.deliv li.pending{opacity:.6}
+
+@media (max-width:600px){
+  body{font-size:15.5px}
+  .hdr{padding:12px 0;gap:10px}
+  .hdr-btns{width:100%;order:3}
+  .zoom-btn{flex:1;justify-content:center}
+  .hdr-name{margin-inline-start:auto}
+  section{padding:34px 0}
+  .prompts{grid-template-columns:1fr}
+  .unit{grid-template-columns:24px 1fr}
+  .unit .right{grid-column:2;justify-content:flex-start;margin-top:4px}
+  .panel > summary .ps{display:none}
+  .panel > .pb{padding:6px 14px 18px}
+  .safety{padding:16px 14px 14px}
+  .tbl td:first-child{white-space:normal}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+}
+</style>
+<style>
+.rec-list{display:flex;flex-direction:column;gap:14px}
+.rec{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:16px 18px}
+.rec.has{border-color:var(--amber-soft)}
+.rec-h{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.rec-h .un{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.1em;border:1px solid var(--amber-soft);border-radius:2px;padding:2px 7px}
+.rec-h b{font-size:17px;font-weight:500;color:#fff}
+.rec-h .um{margin-inline-start:auto;font-family:var(--mono);font-size:12px;color:var(--txt-faint)}
+.rec .ud{color:var(--txt-dim);font-size:13.5px}
+.video{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:var(--radius);overflow:hidden;margin-top:12px}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.rec .wait{margin-top:10px;font-size:13px;color:var(--txt-faint);font-family:var(--mono)}
+.back{display:inline-block;margin-bottom:18px;color:var(--txt-dim);font-size:14px}
+</style>
+</head>
+<body>
+<div id="app">
+<header>
+  <div class="wrap hdr">
+    <div class="brand"><b>AI Lab</b> · שיעורים פרטיים</div>
+    <div class="hdr-name">מיקי</div>
+    <div class="hdr-btns">
+    <a class="zoom-btn" href="https://us06web.zoom.us/j/8186142816?pwd=VEtXYVh3Z3IwZWhrZHYvWm5hYWlKQT09" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+      כניסה לשיעור בזום
+    </a>
+    <a class="zoom-btn rec-btn" href="index.html">← חזרה לפורטל</a>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="welcome">
+    <div class="kicker mono">לצפייה חוזרת</div>
+    <h1>הקלטות השיעורים</h1>
+    <p>כל שיעור מוקלט ועולה לכאן יום אחרי. ההקלטות פרטיות: רק מי שיש לו את הקישור הזה רואה אותן. אפשר לצפות גם בטלפון.</p>
+  </section>
+  <section>
+    <div class="rec-list" id="recs"></div>
+  </section>
+  <footer>
+    <div class="mono">AI Lab · שיעורים פרטיים · מאיר לביא · <a href="https://wa.me/972546500795" target="_blank" rel="noopener">וואטסאפ</a></div>
+  </footer>
+</main>
+</div>
+<script src="recordings.js"></script>
+<script>
+const TITLES = [
+  "מה זה Claude, ולמה דווקא הוא",
+  "Project שמכיר אותך, ומה לא מעלים",
+  "מיילים ומסמכים: מטיוטה לנוסח",
+  "קבצים, Artifacts ו-Connectors",
+  "תיאוריה: API, MCP, Connectors וסוכנים",
+  "Cursor ו-Claude Code: בנייה ראשונה",
+  "האתר: איך הוא בנוי, ומה כותבים מחדש",
+  "דף נחיתה: בונים ומעלים לאוויר",
+  "הסוכן שעונה לפונים: תכנון ובדיקה",
+  "הפצה והשגרה שלך",
+];
+/* תאריך השיעור שהוקלט, אופציונלי: { 1:"08.11.2026" } */
+const REC_DATES = { 1:"08.11.2026" };
+(function(){
+  const box = document.getElementById("recs");
+  const pad = n => String(n).padStart(2,"0");
+  TITLES.forEach((t,i)=>{
+    const n=i+1, id=(window.RECORDINGS||{})[n];
+    const d=document.createElement("div"); d.id="l"+n; d.className="rec"+(id?" has":"");
+    d.innerHTML = `<div class="rec-h"><span class="un">שיעור ${pad(n)}</span><b>${t}</b>${REC_DATES[n]?`<span class="um">${REC_DATES[n]}</span>`:""}</div>` +
+      (id ? `<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&hl=he" title="שיעור ${n}" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`
+          : `<div class="wait">${REC_DATES[n] ? "ההקלטה בהעלאה, תופיע כאן בקרוב" : "עוד לא התקיים"}</div>`);
+    box.appendChild(d);
+  });
+  if (location.hash) { const el=document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
+})();
+</script>
+</body>
+</html>

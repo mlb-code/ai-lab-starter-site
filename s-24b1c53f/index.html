@@ -86,6 +86,9 @@ header{
 }
 .zoom-btn:hover{background:rgba(217,155,60,.22);border-color:var(--amber);text-decoration:none}
 .zoom-btn svg{width:16px;height:16px;fill:currentColor;flex:none}
+.hdr-btns{display:flex;gap:8px;flex-wrap:wrap}
+.rec-btn{border-color:var(--line);color:var(--txt);background:var(--panel)}
+.rec-btn:hover{border-color:var(--amber-soft);background:var(--bg-2)}
 
 /* ---------- סקשנים ---------- */
 section{padding:44px 0}
@@ -246,7 +249,8 @@ section{scroll-margin-top:72px}
 @media (max-width:600px){
   body{font-size:15.5px}
   .hdr{padding:12px 0;gap:10px}
-  .zoom-btn{width:100%;justify-content:center;order:3}
+  .hdr-btns{width:100%;order:3}
+  .zoom-btn{flex:1;justify-content:center}
   .hdr-name{margin-inline-start:auto}
   section{padding:34px 0}
   .prompts{grid-template-columns:1fr}
@@ -270,10 +274,16 @@ section{scroll-margin-top:72px}
   <div class="wrap hdr">
     <div class="brand"><b>AI Lab</b> · שיעורים פרטיים</div>
     <div class="hdr-name">מיקי</div>
+    <div class="hdr-btns">
     <a class="zoom-btn" href="https://us06web.zoom.us/j/8186142816?pwd=VEtXYVh3Z3IwZWhrZHYvWm5hYWlKQT09" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4z"/></svg>
       כניסה לשיעור בזום
     </a>
+    <a class="zoom-btn rec-btn" href="recordings.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-2 14.5v-9l7 4.5-7 4.5z"/></svg>
+      הקלטות השיעורים
+    </a>
+    </div>
   </div>
 </header>
 
@@ -288,6 +298,7 @@ section{scroll-margin-top:72px}
       <a class="w-card primary" id="w-next" href="#lessons"><span class="w-tag" id="w-next-tag">השיעור הבא</span><b id="w-next-title">…</b><span class="sub" id="w-next-sub">פתח ←</span></a>
       <a class="w-card" href="questionnaire.html"><span class="w-tag">10 דקות</span><b>שאלון היכרות</b><span class="sub">ממלאים אחרי שיעור 1</span></a>
       <a class="w-card" href="https://us06web.zoom.us/j/8186142816?pwd=VEtXYVh3Z3IwZWhrZHYvWm5hYWlKQT09" target="_blank" rel="noopener"><span class="w-tag">שיעור חי</span><b>כניסה לזום</b><span class="sub">אותו חדר, תמיד</span></a>
+      <a class="w-card" href="recordings.html"><span class="w-tag">לצפייה חוזרת</span><b>הקלטות השיעורים</b><span class="sub">כל שיעור, יום אחרי</span></a>
     </div>
     <div class="task">
       <div class="task-h"><b>המשימה שלך עד הפגישה הבאה</b><span id="task-count" class="mono"></span></div>
@@ -411,11 +422,12 @@ section{scroll-margin-top:72px}
 </main>
 </div>
 
+<script src="recordings.js"></script>
 <script>
 /* ============================================================
    הגדרות — כאן משנים
    ============================================================ */
-const CURRENT_LESSON = 1;   // השיעור הבא / הנוכחי (1-10). שיעורים לפניו נחשבים "הושלמו".
+const CURRENT_LESSON = 2;   // השיעור הבא / הנוכחי (1-10). שיעורים לפניו נחשבים "הושלמו".
 /* תאריכי השיעורים — למלא כשייקבעו, למשל: { 2:"שבת 15.11 · 21:00" }.
    כרגע ריק; כשיש תאריך הוא יופיע ליד השיעור. */
 const DATES = {};
@@ -444,6 +456,12 @@ const TASKS = {
     "מילאתי את שאלון ההיכרות ושלחתי למאיר בוואטסאפ",
     "פתחתי שיחה חדשה ב-Cursor, הדבקתי מייל אמיתי או עמוד מהאתר, וביקשתי: \"סכם לי בשלוש שורות מה חשוב פה\"",
     "קראתי את התשובה וכתבתי לעצמי משפט אחד: מה היה טוב, ומה הייתי משנה"
+  ],
+  2: [
+    "מילאתי את שאלון ההיכרות ושלחתי למאיר בוואטסאפ",
+    "פתחתי שיחה חדשה ב-Cursor, הדבקתי מייל אמיתי או עמוד מהאתר, וביקשתי: \"סכם לי בשלוש שורות מה חשוב פה\"",
+    "צפיתי שוב בהקלטת שיעור 1 (כפתור \"הקלטות השיעורים\" למעלה), 10 דקות מספיקות",
+    "כתבתי לעצמי משפט אחד: מה היה טוב, ומה הייתי משנה"
   ]
 };
 
@@ -483,6 +501,7 @@ const DELIV = [
       `<span class="st">${st === "done" ? "✓" : st === "next" ? "◆" : ""}</span>` +
       `<div><div class="ut"><span class="un mono">${pad(n)}</span>${u.t}</div><div class="ud">${u.d}</div><div class="ub"><b>מה בונים:</b> ${u.b}</div></div>` +
       `<div class="right">${date}` +
+      (RECORDINGS[n] ? `<a class="go rec" href="recordings.html#l${n}">הקלטה</a>` : "") +
       (u.href ? `<a class="go" href="${u.href}">${st === "next" ? "פתח את השיעור" : "פתח"}</a>` : `<span class="um mono">בהכנה</span>`) +
       `</div>`;
     box.appendChild(row);
