@@ -334,7 +334,7 @@ const REC_DATES = { 0:"08.11.2026" };
     const d=document.createElement("div"); d.id="l"+n; d.className="rec"+(id?" has":"");
     d.innerHTML = `<div class="rec-h"><span class="un">שיעור ${pad(n)}</span><b>${t}</b>${REC_DATES[n]?`<span class="um">${REC_DATES[n]}</span>`:""}</div>` +
       (id ? `<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&hl=he" title="שיעור ${n}" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>`
-          : `<div class="wait">${REC_DATES[n] ? "ההקלטה בהעלאה, תופיע כאן בקרוב" : "עוד לא התקיים"}</div>`);
+          : `<div class="wait">${REC_DATES[n] ? "ההקלטה בהעלאה מחדש, תופיע כאן בקרוב" : "עוד לא התקיים"}</div>`);
     box.appendChild(d);
   });
   if (location.hash) { const el=document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
