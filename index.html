@@ -371,7 +371,7 @@ html.reduce .big .w{opacity:1}
 }
 
 /* 06 — המחיר */
-.plans{display:grid;grid-template-columns:1.2fr 2fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plans{display:grid;grid-template-columns:1.15fr 1.25fr 1.25fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 @media(min-width:861px){.plans .plan.main{padding-inline-start:0}.price-foot p:first-child{padding-inline-start:0}}
 .plan{padding:36px clamp(18px,2.6vw,40px) 34px;position:relative}
 .plan+.plan{border-inline-start:1px solid var(--line)}
@@ -387,6 +387,9 @@ html.reduce .big .w{opacity:1}
 .plan li::before{content:"";position:absolute;inset-inline-start:0;top:.75em;width:7px;height:1px;background:var(--acc)}
 .plan .note{margin-top:18px;font-size:.86rem;color:var(--fg-3)}
 .plan .btn{margin-top:22px}
+.plan .plan-more{display:inline-block;margin-top:14px;font-size:.9rem;color:var(--fg-2);border-bottom:1px solid var(--line);transition:color .2s,border-color .2s}
+.plan .plan-more:hover{color:var(--acc);border-color:var(--acc)}
+@media(min-width:861px) and (max-width:1100px){.plans{grid-template-columns:1fr 1fr}.plans .plan:last-child{grid-column:1/-1;border-inline-start:0;border-top:1px solid var(--line)}}
 .price-foot{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:0;margin-top:0;border-bottom:1px solid var(--line)}
 .price-foot p{padding:22px clamp(18px,2.6vw,40px)}
 .price-foot p+p{border-inline-start:1px solid var(--line)}
@@ -727,6 +730,7 @@ html.static body::after,html.static .marq .track,html.static .hint::after,html.s
   <div class="right">
     <a href="./login.html">אזור אישי</a>
     <a href="#price">המחיר</a>
+    <a href="./learn/">מוקלט</a>
     <a href="https://wa.me/972546500795?text=%D7%94%D7%99%D7%99%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A9%D7%90%D7%9C%D7%94%20%D7%A2%D7%9C%20%D7%94%D7%A7%D7%95%D7%A8%D7%A1" target="_blank" rel="noopener">וואטסאפ</a>
     <a href="#seat" class="cta">לשמור לי מקום</a>
   </div>
@@ -935,7 +939,7 @@ html.static body::after,html.static .marq .track,html.static .hint::after,html.s
     <span class="n">06</span>
     <div>
       <h2>כמה זה עולה.</h2>
-      <p>מחיר אחד, גלוי, בלי ספירות לאחור. משלמים רק אחרי שנקבע תאריך.</p>
+      <p>מחירים גלויים, בלי ספירות לאחור. בקורס החי משלמים רק אחרי שנקבע תאריך.</p>
     </div>
   </div>
   <div class="plans rv">
@@ -950,6 +954,18 @@ html.static body::after,html.static .marq .track,html.static .hint::after,html.s
         <li>קבוצת וואטסאפ עם מענה ישיר ממאיר</li>
       </ul>
       <a href="#seat" class="btn acc">לשמור לי מקום <span class="ar">←</span></a>
+    </div>
+    <div class="plan" id="self-paced">
+      <span class="label">מעדיפים ללמוד לבד?</span>
+      <div class="amount"><b><span data-p="selfPaced">359</span></b><small>₪</small></div>
+      <div class="sub">הגרסה המוקלטת · 21 שיעורים קצרים, בקצב שלך</div>
+      <ul>
+        <li>אותם 5 נושאים, בשיעורים של 5 עד 8 דקות</li>
+        <li>סוכן שאלות מתחת לכל סרטון, ופרומפט להעתקה</li>
+        <li>גישה לתמיד, מהמחשב או מהטלפון</li>
+      </ul>
+      <a href="https://my.starter.ai-lab.co.il/buy/starter-self-paced" class="btn acc">לרכישת הגרסה המוקלטת <span class="ar">←</span></a>
+      <a href="./learn/" class="plan-more">מה בקורס המוקלט, ומה בקורס ההמשך ←</a>
     </div>
     <div class="plan">
       <span class="label">מעדיפים 1-על-1?</span>
@@ -969,7 +985,7 @@ html.static body::after,html.static .marq .track,html.static .hint::after,html.s
     <p><b>ביטול והחזר</b>ביטול עד 14 יום מההרשמה ולפני תחילת הקורס: החזר מלא. אחר כך לפי <a href="https://ai-lab.co.il/terms.html" target="_blank" rel="noopener">תקנון AI Lab</a>.</p>
   </div>
   </details>
-  <a href="./learn/" class="price-alt"><span><b>יש גם גרסה מוקלטת ללמידה עצמית.</b> אותם נושאים בשיעורים קצרים, בקצב שלך, מ-<span class="nw"><span data-p="selfPaced">359</span> ₪</span>. ועוד קורס המשך: Claude Code לעבודה.</span><span class="ar">לגרסה המוקלטת ←</span></a>
+  <a href="./learn/#c2" class="price-alt"><span><b>יש גם קורס המשך מוקלט: Starter Pro, Claude Code לעבודה.</b> לבוגרי Starter ולמי שכבר עובד עם Claude, מ-<span class="nw"><span data-p="selfPacedPro">490</span> ₪</span>.</span><span class="ar">לקורס ההמשך ←</span></a>
 </section>
 
 <!-- ================= 07 למי ================= -->
@@ -1178,7 +1194,8 @@ const PRICES = {
   starterInst: 700,     // תשלום אחד מתוך 3 (לאשר מול טרנזילה)
   private: 390,         // שיעור פרטי 60 דק'
   privatePack: 1390,    // 4 שיעורים פרטיים
-  selfPaced: 359        // הגרסה המוקלטת (/learn/), הקורס הראשון
+  selfPaced: 359,       // הגרסה המוקלטת (/learn/), הקורס הראשון
+  selfPacedPro: 490     // קורס ההמשך המוקלט (/learn/#c2)
 };
 (function () {
   const fmt = (n) => n.toLocaleString('en-US');
