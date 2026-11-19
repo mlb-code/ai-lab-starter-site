@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>שיעור 10 · בנייה ראשונה: דף דירה | AI Lab</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0a0d12">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0d12;--bg-2:#0f131a;--panel:#12171f;--panel-2:#161c25;
+  --line:#232b36;--line-soft:#1b222c;
+  --txt:#dfe4ea;--txt-dim:#98a1ad;--txt-faint:#6d7783;
+  --amber:#d99b3c;--amber-soft:#8a6326;--amber-glow:rgba(217,155,60,.11);
+  --ok:#5f8f6a;--warn:#c07a68;--radius:4px;
+  --mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--txt);
+  font-family:"Heebo",-apple-system,"Segoe UI",Arial,sans-serif;font-weight:300;
+  font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(1100px 620px at 88% -8%,rgba(217,155,60,.075),transparent 62%),
+    radial-gradient(900px 520px at 6% 104%,rgba(86,116,152,.07),transparent 62%),
+    linear-gradient(180deg,#0d1119 0%,#0a0d12 55%,#080b0f 100%);
+  background-attachment:fixed;min-height:100vh;overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0v64' fill='none' stroke='%23ffffff' stroke-opacity='.03' stroke-width='1'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+}
+#app{position:relative;z-index:1}
+h1,h2,h3{font-weight:500;line-height:1.35;margin:0}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+button{font-family:"Heebo",sans-serif;cursor:pointer;border-radius:var(--radius);transition:background .15s ease,border-color .15s ease,color .15s ease}
+bdi.code{font-family:var(--mono);font-size:.86em;color:var(--txt);background:var(--bg-2);border:1px solid var(--line-soft);border-radius:3px;padding:0 5px;overflow-wrap:anywhere}
+bdi.kbd{font-family:var(--mono);font-size:.84em;color:var(--txt);border:1px solid var(--line);border-bottom-width:2px;border-radius:3px;padding:0 5px;white-space:nowrap}
+b{font-weight:500;color:var(--txt)}
+
+/* ---------- כותרת עליונה ---------- */
+header{border-bottom:1px solid var(--line);background:rgba(10,13,18,.92);backdrop-filter:blur(6px);position:sticky;top:0;z-index:20}
+.hdr{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0}
+.brand{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--txt-dim);white-space:nowrap}
+.brand b{color:var(--amber);font-weight:500}
+.hdr-name{font-family:var(--mono);font-size:12px;color:var(--txt-faint);border-inline-start:1px solid var(--line);padding-inline-start:12px;white-space:nowrap}
+.hdr-nav{display:flex;gap:8px;flex-wrap:wrap;margin-inline-start:auto}
+.hnav{font-family:var(--mono);font-size:12px;border:1px solid var(--line);color:var(--txt-dim);padding:5px 11px;border-radius:var(--radius);white-space:nowrap;transition:border-color .15s,color .15s}
+.hnav:hover{border-color:var(--amber-soft);color:var(--amber);text-decoration:none}
+.hnav.home{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+
+/* ---------- פתיחה ---------- */
+.hero{padding:40px 0 10px}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--amber)}
+.hero h1{font-size:clamp(28px,5vw,40px);margin:10px 0 10px;color:#fff}
+.hero .lede{color:var(--txt-dim);max-width:62ch;margin:0 0 20px;font-size:16px}
+.build{border:1px solid var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 70%),var(--panel);border-radius:var(--radius);padding:15px 17px;display:grid;gap:4px;max-width:720px}
+.build .bt{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--amber)}
+.build p{margin:0;font-size:15px;color:var(--txt)}
+.quick{display:flex;gap:8px;flex-wrap:wrap;padding:22px 0 4px;border-bottom:1px solid var(--line-soft)}
+.quick a{font-family:var(--mono);font-size:12px;border:1px solid var(--line);color:var(--txt-dim);padding:5px 12px;border-radius:999px;transition:border-color .15s ease,color .15s ease}
+.quick a:hover{border-color:var(--amber-soft);color:var(--amber);text-decoration:none}
+
+/* ---------- סקשנים ---------- */
+section{padding:40px 0;scroll-margin-top:72px}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.sec-head h2{font-size:19px;white-space:nowrap}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.14em}
+.sec-head::after{content:"";flex:1;height:1px;background:var(--line)}
+.sec-sub{color:var(--txt-dim);font-size:14.5px;margin:-12px 0 22px;max-width:64ch}
+
+ul.b{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+ul.b li{position:relative;padding-inline-start:20px;font-size:15.5px}
+ul.b li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;width:6px;height:6px;background:var(--amber-soft);border-radius:1px}
+ul.b li b{color:#fff}
+ul.b li span{display:block;color:var(--txt-dim);font-size:.92em;margin-top:1px}
+ul.num{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:n}
+ul.num li{position:relative;padding-inline-start:38px;font-size:15.5px;counter-increment:n}
+ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inset-inline-start:0;top:.2em;font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:0 5px}
+ul.num li b{color:#fff}
+ul.num li span{display:block;color:var(--txt-dim);font-size:.92em;margin-top:1px}
+
+/* ---------- עושים ביחד ---------- */
+.steps{display:grid;gap:14px}
+.step{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:18px 18px 14px;min-width:0}
+.step-h{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
+.step-n{font-size:12px;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:0 6px;flex:none}
+.step h3{font-size:17px;color:#fff}
+.rows{display:grid}
+.row{display:grid;grid-template-columns:104px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line-soft)}
+.rl{font-family:var(--mono);font-size:11px;letter-spacing:.06em;padding-top:3px}
+.what .rl{color:var(--amber)}.why .rl{color:var(--ok)}.warn .rl{color:var(--warn)}
+.rv{font-size:15px;color:var(--txt-dim);min-width:0}
+.rv ol{margin:6px 0 0;padding-inline-start:22px;display:grid;gap:4px}
+.rv ol li::marker{color:var(--amber);font-family:var(--mono);font-size:12px}
+.rv p{margin:0 0 6px}
+
+/* ---------- בקשות ---------- */
+.pbox{margin:12px 0 2px}
+.pbox-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.pcap{font-size:11px;color:var(--txt-faint);letter-spacing:.05em;flex:1;min-width:0}
+pre{margin:0;background:rgba(10,13,18,.88);border:1px solid var(--line);border-radius:var(--radius);padding:13px 14px;font-family:"Heebo",sans-serif;font-size:13.5px;line-height:1.65;color:var(--txt-dim);white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;direction:rtl;text-align:right;max-width:100%}
+pre[dir="ltr"]{direction:ltr;text-align:left}
+.copy{background:transparent;border:1px solid var(--line);color:var(--txt-dim);font-family:var(--mono);font-size:12px;padding:5px 14px;flex:none}
+.copy:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.copy.done{border-color:#3c5a44;color:var(--ok);background:transparent}
+.prompts{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.prompt{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:16px 16px 14px;display:flex;flex-direction:column;min-width:0;transition:border-color .18s ease}
+.prompt:hover{border-color:var(--amber-soft)}
+.p-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.p-head h3{font-size:15.5px;flex:1;min-width:140px;color:#fff}
+.cat{font-size:10px;letter-spacing:.1em;color:var(--amber);border:1px solid var(--amber-soft);padding:2px 7px;border-radius:2px;white-space:nowrap}
+.p-rule{height:1px;background:var(--line-soft);margin:0 0 12px}
+.prompt pre{flex:1}
+.prompt .copy{margin-top:11px;align-self:flex-start}
+
+/* ---------- משימה ---------- */
+.task{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:16px 18px 12px}
+.task-h{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.task-h b{font-size:15.5px;color:#fff}
+.task-h span{margin-inline-start:auto;font-size:11px;color:var(--txt-faint)}
+.task label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line-soft);font-size:15px;color:var(--txt);cursor:pointer}
+.task label:first-child{border-top:0}
+.task input{width:19px;height:19px;margin-top:4px;accent-color:var(--amber);flex:none;cursor:pointer}
+.task label:has(input:checked){color:var(--txt-faint);text-decoration:line-through}
+.task-foot{margin:8px 0 0;font-size:12.5px;color:var(--txt-faint)}
+
+/* ---------- מילה חדשה ---------- */
+.word{border:1px solid var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 70%),var(--panel);border-radius:var(--radius);padding:20px 20px 18px}
+.w-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.w-term{font-size:24px;color:#fff;font-weight:500}
+.w-ui{font-family:var(--mono);font-size:12px;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:1px 7px}
+.w-def{margin:0 0 10px;font-size:16px;color:var(--txt)}
+.w-ex{margin:0;font-size:14.5px;color:var(--txt-dim);border-inline-start:2px solid var(--amber-soft);padding-inline-start:10px}
+.more-words{margin-top:14px;display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr))}
+.mw{border:1px solid var(--line);background:var(--bg-2);border-radius:var(--radius);padding:10px 13px;font-size:14px;color:var(--txt-dim)}
+.mw b{display:block;color:#fff;font-size:14.5px}
+
+/* ---------- טבלה ---------- */
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:4px;table-layout:auto}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 11px;text-align:right;vertical-align:top;overflow-wrap:anywhere}
+.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--amber);font-weight:400;background:var(--panel)}
+.tbl td{color:var(--txt-dim)}
+.tbl td:first-child{color:var(--txt)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-inline-end:7px;vertical-align:middle}
+.dot.g{background:#5f8f6a}.dot.y{background:#d9b23c}.dot.r{background:#c0584a}
+
+/* ---------- המצגת ---------- */
+.deck-box{position:relative;border:1px solid var(--line);border-radius:var(--radius);background:rgba(10,13,18,.72);display:flex;flex-direction:column;overflow:hidden}
+.deck-box:focus-visible{outline-offset:2px}
+.deck-top{display:flex;align-items:center;gap:12px;padding:9px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--txt-faint)}
+.deck-top .b{color:var(--amber)}
+.deck-top .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--txt-dim)}
+.pbar{height:2px;background:var(--line-soft);flex:none}
+.pbar div{height:100%;background:var(--amber);width:0;transition:width .25s ease}
+.deck-stage{height:clamp(440px,66vh,660px);overflow-y:auto;overflow-x:hidden;display:flex;justify-content:center}
+.slide{display:none;flex-direction:column;justify-content:center;justify-content:safe center;width:100%;max-width:1000px;padding:clamp(22px,4vh,44px) clamp(18px,4vw,46px);animation:fade .22s ease}
+.slide.active{display:flex}
+.slide>*{flex-shrink:0}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--amber);margin-bottom:10px}
+.slide h2{font-size:clamp(22px,3.4vw,32px);margin-bottom:6px;color:#fff}
+.rule{height:1px;background:linear-gradient(to left,var(--amber-soft),transparent 65%);margin:14px 0 18px}
+.lead{color:var(--txt-dim);font-size:clamp(15px,1.9vw,17.5px);max-width:66ch;margin:0 0 18px}
+.slide ul.b li,.slide ul.num li{font-size:clamp(15px,1.8vw,17px)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.card{border:1px solid var(--line);background:rgba(18,23,31,.86);border-radius:var(--radius);padding:14px 15px;min-width:0}
+.card h3{font-size:15.5px;margin-bottom:5px;color:#fff}
+.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.11em;color:var(--amber);display:block;margin-bottom:6px}
+.card p{margin:0;color:var(--txt-dim);font-size:14px}
+.card.hi{border-color:var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9)}
+.card.bad{border-color:#4a3030}.card.good{border-color:var(--amber-soft)}
+.card .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;margin-bottom:8px;display:block}
+.card.bad .lbl{color:var(--warn)}.card.good .lbl{color:var(--amber)}
+.card ul{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:5px}
+.card ul li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:13px;position:relative}
+.card ul li::before{content:"·";position:absolute;inset-inline-start:2px;color:var(--amber)}
+.note{border-inline-start:2px solid var(--amber-soft);padding-inline-start:12px;color:var(--txt-dim);font-size:14px;margin-top:16px}
+.title-slide .big{font-size:clamp(28px,5.4vw,48px);line-height:1.2;margin:10px 0 16px;color:#fff}
+.title-slide .sub{color:var(--txt-dim);font-size:clamp(15.5px,2vw,19px);max-width:60ch;margin:0}
+.title-slide .meta{margin-top:22px;font-family:var(--mono);font-size:11.5px;color:var(--txt-faint);letter-spacing:.08em;border-top:1px solid var(--line);padding-top:12px}
+.rule-slide .huge{font-size:clamp(26px,4.6vw,44px);line-height:1.25;margin:16px 0 12px;color:#fff}
+.rule-slide .huge b{color:var(--amber);font-weight:500}
+.deck-nav{flex:none;display:flex;align-items:center;gap:10px;padding:9px 14px 11px;border-top:1px solid var(--line);background:rgba(10,13,18,.72)}
+.deck-nav button{background:transparent;border:1px solid var(--line);color:var(--txt-dim);font-size:13.5px;padding:6px 16px}
+.deck-nav button:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.deck-nav button:disabled{opacity:.32;cursor:default}
+.deck-nav button:disabled:hover{border-color:var(--line);color:var(--txt-dim);background:transparent}
+.deck-nav .sp{flex:1}
+.deck-nav .hint{font-family:var(--mono);font-size:10.5px;color:var(--txt-faint)}
+.deck-box:fullscreen{border:0;border-radius:0;background:var(--bg)}
+.deck-box:fullscreen .deck-stage{height:auto;flex:1}
+.deck-box:-webkit-full-screen{border:0;border-radius:0;background:var(--bg)}
+.deck-box:-webkit-full-screen .deck-stage{height:auto;flex:1}
+
+/* ---------- ניווט בין שיעורים ---------- */
+.lnav{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch;padding:10px 0 0}
+.lnav a{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:12px 14px;color:var(--txt);display:flex;flex-direction:column;gap:2px;transition:border-color .15s}
+.lnav a:hover{border-color:var(--amber-soft);text-decoration:none}
+.lnav .ld{font-family:var(--mono);font-size:10.5px;color:var(--amber);letter-spacing:.1em}
+.lnav .lt{font-size:14.5px}
+.lnav .home{justify-content:center;text-align:center}
+.lnav .nx{text-align:left}
+footer{border-top:1px solid var(--line);margin-top:30px;padding:22px 0 36px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--txt-faint)}
+
+@media (max-width:640px){
+  body{font-size:15.5px}
+  .hdr{gap:9px}
+  .hdr-nav{width:100%;margin-inline-start:0}
+  .hnav{flex:1;text-align:center}
+  section{padding:32px 0}
+  .sec-head h2{white-space:normal}
+  .row{grid-template-columns:1fr;gap:2px}
+  .step{padding:15px 14px 12px}
+  .deck-top .t{display:none}
+  .deck-nav .hint{display:none}
+  .deck-nav{padding:9px 10px 11px;gap:8px}
+  .deck-nav button{padding:6px 12px}
+  .slide{padding:20px 16px 26px}
+  .deck-stage{height:clamp(440px,70vh,620px)}
+  .lnav{grid-template-columns:1fr 1fr}
+  .lnav .home{grid-column:1 / -1;order:-1}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="app">
+
+<header>
+  <div class="wrap hdr">
+    <div class="brand"><b>AI Lab</b> · שיעור 10 מתוך 12</div>
+    <div class="hdr-name">שמר</div>
+    <nav class="hdr-nav" aria-label="ניווט בין שיעורים">
+      <a class="hnav" href="lesson-9.html">הקודם</a>
+      <a class="hnav home" href="index.html">חזרה לפורטל</a>
+      <a class="hnav" href="lesson-11.html">הבא</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" id="top">
+    <div class="kicker">שיעור 10 מתוך 12 · חלק ד: חיבורים, בנייה ואוטומציה</div>
+    <h1>בנייה ראשונה: דף דירה</h1>
+    <p class="lede">היום Claude בונה, ואתה מנהל את הבנייה. מתוך דף הנתונים של דירה משיעור 5 ומכמה תמונות, הוא בונה דף מצגת שנפתח בדפדפן. לומדים תהליך שחוזר בכל בנייה: תדריך, בנייה, בדיקה, תיקון, שמירה. הדף נשאר אצלך במחשב, ולא עולה לאינטרנט.</p>
+    <div class="build"><span class="bt">מה בונים היום</span><p>דף מצגת לדירה אחת בתיקייה <bdi class="code">דפים</bdi>, שנפתח בדפדפן, וגרסת PDF שלו שאפשר לשלוח אחרי שקראת ואישרת.</p></div>
+    <nav class="quick" aria-label="קפיצה בתוך השיעור">
+      <a href="#learn">היום נלמד</a><a href="#plan">מה נעשה היום</a><a href="#together">עושים ביחד</a><a href="#slides">המצגת</a><a href="#task">המשימה לשבוע</a><a href="#word">מילה חדשה</a><a href="#prompts">ספריית הבקשות</a>
+    </nav>
+  </section>
+
+  <section id="learn">
+    <div class="sec-head"><span class="sec-num">01</span><h2>היום נלמד</h2></div>
+    <ul class="b">
+      <li><b>מה זה דף אינטרנט</b><span>קובץ מסוג HTML שהדפדפן יודע להציג. הוא יכול לחיות רק במחשב שלך, בלי לעלות לאינטרנט.</span></li>
+      <li><b>תהליך בנייה בחמישה שלבים</b><span>תדריך, בנייה, בדיקה, תיקון, שמירה. אותו תהליך לכל דבר שנבנה בהמשך.</span></li>
+      <li><b>תדריך טוב</b><span>למי הדף, מאיזה חומר, מה יש בו, ואיך הוא נראה. ככה Claude לא ממציא.</span></li>
+      <li><b>בדיקה לפני שמשהו יוצא</b><span>כל מספר מול דף הנתונים, תרגום חזרה לעברית, ובדיקה ברוחב של טלפון.</span></li>
+      <li><b>תיקון חלק אחרי חלק</b><span>שינוי אחד בכל בקשה. קל לבדוק, וקל להחזיר.</span></li>
+      <li><b>שמירה כ-PDF</b><span>מה ששולחים ללקוח הוא ה-PDF, ורק אחרי שקראת אותו עד הסוף.</span></li>
+    </ul>
+  </section>
+
+  <section id="plan">
+    <div class="sec-head"><span class="sec-num">02</span><h2>מה נעשה היום</h2></div>
+    <p class="sec-sub">מתחילים במצגת קצרה, ואז בונים ביחד דף אחד, מההתחלה עד ה-PDF.</p>
+    <ul class="num">
+      <li><b>מצגת קצרה</b><span>מה זה דף אינטרנט, התהליך, ומה בודקים.</span></li>
+      <li><b>מכינים חומרים</b><span>דף הנתונים של הדירה משיעור 5, ותיקייה עם שלוש עד חמש תמונות.</span></li>
+      <li><b>Claude קורא ושואל, ואז כותב תדריך</b><span>אתה קורא ומאשר את התדריך לפני הבנייה.</span></li>
+      <li><b>Claude בונה, ופותח בדפדפן</b><span>אתה רואה את הדף כמו שהלקוח יראה.</span></li>
+      <li><b>בודקים ומתקנים</b><span>תיקון אחד בכל פעם.</span></li>
+      <li><b>שומרים כ-PDF</b><span>בתיקייה <bdi class="code">דפים</bdi>.</span></li>
+    </ul>
+  </section>
+
+  <section id="together">
+    <div class="sec-head"><span class="sec-num">03</span><h2>עושים ביחד</h2></div>
+    <p class="sec-sub">לכל צעד שלושה דברים: מה עושים, למה זה חשוב, וממה נזהרים. בכל הבקשות מחליפים את [כינוי לדירה] בשם הקובץ של הדירה מתיקיית <bdi class="code">דירות</bdi>.</p>
+    <div class="steps">
+
+      <article class="step"><div class="step-h"><span class="step-n mono">01</span><h3>מכינים תיקייה לתמונות</h3></div><div class="rows">
+        <div class="row what"><span class="rl">מה עושים</span><div class="rv">בתוך <bdi class="code">דפים</bdi> יוצרים תיקייה בשם <bdi class="code">תמונות-[כינוי לדירה]</bdi>, ב-Finder או בבקשה ל-Claude. גוררים אליה שלוש עד חמש תמונות: הדמיות משיעור 8, צילומים, או תוכנית הדירה.</div></div>
+        <div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">Claude עובד רק עם מה שנמצא בתיקייה. ככה ברור לו, וגם לך, מאיזה חומר הדף בנוי.</div></div>
+        <div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">רק תמונות שמותר לך להשתמש בהן. בלי אנשים, בלי מסמכים ובלי שום פרט של לקוח בתמונה.</div></div>
+      </div></article>
+
+      <article class="step"><div class="step-h"><span class="step-n mono">02</span><h3>Claude קורא את דף הנתונים, ושואל</h3></div><div class="rows">
+        <div class="row what"><span class="rl">מה עושים</span><div class="rv">שיחה חדשה במסלול הקבוע, ואז הבקשה שלמטה. Claude קורא את הקובץ ואת התמונות, ושואל אותך עד חמש שאלות, אחת בכל פעם.</div></div>
+        <div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">הוא מגלה מה חסר לפני הבנייה, ולא אחריה. שאלה עכשיו חוסכת חמישה תיקונים אחר כך.</div></div>
+        <div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">עונים רק במה שנכון היום. "עוד לא ידוע" זו תשובה טובה. מחיר ותנאים: אתה מחליט אם הם בכלל נכנסים לדף.</div></div>
+      </div>
+      <div class="pbox"><div class="pbox-h"><span class="pcap mono">קריאה ושאלות · להעתקה</span><button class="copy" type="button">העתקה</button></div><pre>קרא את הקובץ [כינוי לדירה].md בתיקייה דירות, ואת התמונות בתיקייה דפים/תמונות-[כינוי לדירה].
+אני רוצה לבנות מזה דף מצגת לדירה, ללקוח דובר אנגלית.
+לפני שאתה בונה משהו: שאל אותי עד 5 שאלות, אחת בכל פעם, על מה שחסר או לא ברור. אל תכתוב שום קובץ עדיין.</pre></div></article>
+
+      <article class="step"><div class="step-h"><span class="step-n mono">03</span><h3>התדריך: Claude כותב, אתה מאשר</h3></div><div class="rows">
+        <div class="row what"><span class="rl">מה עושים</span><div class="rv">מדביקים את הבקשה שלמטה. Claude מראה לך את התדריך בשיחה. קוראים, מתקנים במילים שלך, ורק אז מאשרים שמירה.</div></div>
+        <div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">התדריך הוא ההוראות לבנייה, כמו בריף לאדריכלית. אם הוא ברור, הבנייה מדויקת. והדירה הבאה תהיה מהירה, כי התדריך כבר מוכן.</div></div>
+        <div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">בודקים שכתוב בו "כל מספר ועובדה רק מתוך דף הנתונים", ושהדמיה מסומנת כהדמיה. שתי השורות האלה הן מה שמונע המצאות.</div></div>
+      </div>
+      <div class="pbox"><div class="pbox-h"><span class="pcap mono">התדריך · להעתקה</span><button class="copy" type="button">העתקה</button></div><pre>כתוב תדריך לבניית הדף, בעברית, בקובץ דפים/תדריך-דף-דירה.md. כלול:
+- למי הדף: לקוח דובר אנגלית, בלי שם.
+- שפה: אנגלית ברמה גבוהה, בקול שלי, לפי הקובץ "הקול שלי באנגלית" בתיקייה מיילים.
+- חלקים: כותרת, תיאור קצר, הנתונים העיקריים, מה מיוחד בדירה, תמונות, ומשפט סיום שמזמין לדבר איתי.
+- מראה: שקט, יוקרתי, הרבה רווח, תמונות גדולות. נראה טוב גם בטלפון, וגם כשמדפיסים ל-PDF.
+- כללים: כל מספר וכל עובדה רק מתוך דף הנתונים. לא להוסיף תכונות, הבטחות או סופרלטיבים שלא כתובים שם. כל הדמיה מסומנת "Artist's impression". בלי שמות של לקוחות. מחיר רק אם אמרתי במפורש.
+הראה לי את התדריך בשיחה לפני שאתה שומר.</pre></div></article>
+
+      <article class="step"><div class="step-h"><span class="step-n mono">04</span><h3>בנייה, ופתיחה בדפדפן</h3></div><div class="rows">
+        <div class="row what"><span class="rl">מה עושים</span><div class="rv">מדביקים את בקשת הבנייה. מופיעים שני חלונות אישור: כתיבת קובץ אחד בתיקייה <bdi class="code">דפים</bdi>, ופקודה שפותחת אותו בדפדפן. קוראים, ומאשרים.</div></div>
+        <div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">בפעם הראשונה אתה רואה את הדף כמו שהלקוח יראה אותו. מכאן העבודה היא שלך: להסתכל ולהגיד מה לשנות.</div></div>
+        <div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">בבנייה Claude רק קורא מהתיקייה <bdi class="code">דירות</bdi>, וכותב רק בתיקייה <bdi class="code">דפים</bdi>. אם הוא מבקש לשנות משהו ב-<bdi class="code">דירות</bdi>, לוחצים "לא".</div></div>
+      </div>
+      <div class="pbox"><div class="pbox-h"><span class="pcap mono">הבנייה · להעתקה</span><button class="copy" type="button">העתקה</button></div><pre>בנה את הדף לפי דפים/תדריך-דף-דירה.md, בקובץ HTML אחד: דפים/[כינוי לדירה].html.
+השתמש רק בתמונות מהתיקייה דפים/תמונות-[כינוי לדירה]. אל תשנה שום קובץ בתיקייה דירות.
+כשסיימת, פתח את הדף בדפדפן, וספר לי בשלוש שורות מה עשית ומה לא היה ברור לך.</pre></div></article>
+
+      <article class="step"><div class="step-h"><span class="step-n mono">05</span><h3>בדיקה: Claude בודק, ואתה בודק</h3></div><div class="rows">
+        <div class="row what"><span class="rl">מה עושים</span><div class="rv">מדביקים את בקשת הבדיקה. Claude משווה כל מספר לדף הנתונים ומתרגם את הדף לעברית. אחר כך אתה עובר על הדף בעיניים, ומצמצם את חלון הדפדפן לרוחב צר, כמו טלפון.</div></div>
+        <div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">שתי בדיקות: Claude מוצא אי-התאמות מהר, ואתה יודע מה נכון באמת. ניסוח יפה יכול להסתיר מספר לא נכון.</div></div>
+        <div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">"Claude בדק" לא מחליף את הקריאה שלך. אתה מכיר את הדירה, הוא לא. ואם יש הדמיה, בודקים שהסימון שלה מופיע.</div></div>
+      </div>
+      <div class="pbox"><div class="pbox-h"><span class="pcap mono">הבדיקה · להעתקה</span><button class="copy" type="button">העתקה</button></div><pre>בדוק את דפים/[כינוי לדירה].html מול הקובץ [כינוי לדירה].md בתיקייה דירות:
+1. רשימה של כל מספר ועובדה בדף, וליד כל אחד: מופיע בדף הנתונים, או לא.
+2. כל משפט שמבטיח משהו, או מתאר משהו שלא כתוב בדף הנתונים.
+3. תרגום של כל הטקסט בדף לעברית, כדי שאקרא בדיוק מה כתוב.
+אל תתקן כלום עדיין. רק תראה לי.</pre></div></article>
+
+      <article class="step"><div class="step-h"><span class="step-n mono">06</span><h3>תיקון אחד בכל פעם, ושמירה כ-PDF</h3></div><div class="rows">
+        <div class="row what"><span class="rl">מה עושים</span><div class="rv">לכל תיקון, בקשה אחת (למטה). בודקים בדפדפן, ורק אז התיקון הבא. כשהדף מוכן: בדפדפן <bdi class="kbd" dir="ltr">Cmd + P</bdi>, ובחלון ההדפסה בוחרים לשמור כ-PDF, בתיקייה <bdi class="code">דפים</bdi>.</div></div>
+        <div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">תיקונים קטנים קל לבדוק, וקל להחזיר. ה-PDF הוא מה שיוצא החוצה, ולכן הוא הגרסה שקוראים עד הסוף.</div></div>
+        <div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">לפני ששולחים: פותחים את ה-PDF עצמו וקוראים אותו. הדף לא עולה לאינטרנט. ואם שולחים ללקוח, אתה שולח, מהמייל שלך.</div></div>
+      </div>
+      <div class="pbox"><div class="pbox-h"><span class="pcap mono">תיקון אחד · להעתקה</span><button class="copy" type="button">העתקה</button></div><pre>בדף דפים/[כינוי לדירה].html, רק בחלק [איזה חלק, למשל: הכותרת העליונה]: [מה לשנות, למשל: יותר קצרה, בלי סימן קריאה].
+אל תיגע בשום חלק אחר. אחרי השינוי, פתח שוב את הדף בדפדפן.</pre></div></article>
+
+    </div>
+  </section>
+
+  <section id="slides">
+    <div class="sec-head"><span class="sec-num">04</span><h2>המצגת</h2></div>
+    <p class="sec-sub">מה שאני מראה בזום. אפשר לדפדף בכפתורים, בחצים במקלדת (אחרי לחיצה על המצגת), או בהחלקה בטלפון.</p>
+    <div class="deck-box" id="deck" tabindex="0" aria-label="מצגת השיעור" aria-roledescription="מצגת">
+      <div class="deck-top"><span class="b">AI Lab</span><span>· שיעור 10</span><span class="t">בנייה ראשונה: דף דירה</span><span class="mono"><span id="cur">1</span> / <span id="tot">1</span></span></div>
+      <div class="pbar"><div id="pfill"></div></div>
+      <div class="deck-stage" id="stage"><section class="slide title-slide active">
+  <div class="kick">שיעור 10 מתוך 12 · חלק ד</div>
+  <h1 class="big">בנייה ראשונה:<br>דף דירה</h1>
+  <p class="sub">Claude בונה, אתה מנהל את הבנייה. מדף נתונים ותמונות, לדף שנפתח בדפדפן ול-PDF.</p>
+  <div class="meta">AI LAB · מאיר לביא · שיעור 10</div>
+</section><section class="slide">
+  <div class="kick">מה זה דף אינטרנט</div>
+  <h2>קובץ שהדפדפן יודע להציג</h2>
+  <div class="rule"></div>
+  <p class="lead">דף אינטרנט הוא קובץ עם הסיומת html. בתוכו כתוב מה יש בדף: כותרות, טקסט, תמונות וצבעים. <b>הדפדפן (Safari או Chrome) קורא את הקובץ, ומציג דף.</b></p>
+  <div class="grid2">
+    <div class="card good"><span class="lbl">במחשב שלך · היום</span><ul>
+      <li>הקובץ יושב בתיקייה דפים</li>
+      <li>רק אתה רואה אותו</li>
+      <li>נפתח בלחיצה כפולה, או ב"תפתח בדפדפן"</li>
+      <li>ללקוח שולחים PDF, אחרי שבדקת</li></ul></div>
+    <div class="card"><span class="lbl" style="color:var(--txt-dim)">באינטרנט · לא היום</span><ul>
+      <li>הדף עולה לשרת ומקבל כתובת</li>
+      <li>כל מי שיש לו את הכתובת, רואה</li>
+      <li>אפשרות לשלב ב', עם בדיקות נוספות</li></ul></div>
+  </div>
+  <p class="note"><b>למה לא באינטרנט?</b> כי דף באוויר הוא פרסום. קודם לומדים לבנות ולבדוק, במקום שבו טעות לא מזיקה.</p>
+</section><section class="slide">
+  <div class="kick">התהליך</div>
+  <h2>חמישה שלבים, בכל בנייה</h2>
+  <div class="rule"></div>
+  <ul class="num">
+    <li><b>תדריך</b><span>מה בונים, למי, מאיזה חומר, ואיך זה נראה. Claude כותב, אתה מאשר.</span></li>
+    <li><b>בנייה</b><span>Claude כותב את הקובץ ושומר בתיקייה דפים.</span></li>
+    <li><b>בדיקה</b><span>פותחים בדפדפן, ועוברים לפי רשימה.</span></li>
+    <li><b>תיקון</b><span>שינוי אחד בכל בקשה. בודקים, וממשיכים.</span></li>
+    <li><b>שמירה</b><span>PDF לשליחה, והתדריך נשמר לדירה הבאה.</span></li>
+  </ul>
+  <p class="note">זה בדיוק הסבב מול האדריכלית: בריף, תוכנית, הערות, תיקון ואישור. רק שכאן סבב לוקח דקות.</p>
+</section><section class="slide">
+  <div class="kick">תדריך טוב</div>
+  <h2>ארבע שאלות לפני שבונים</h2>
+  <div class="rule"></div>
+  <div class="grid2">
+    <div class="card"><span class="tag">למי</span><h3>סוג הלקוח, בלי שם</h3><p>לקוח דובר אנגלית. זה קובע את השפה ואת הטון.</p></div>
+    <div class="card hi"><span class="tag">מאיזה חומר</span><h3>רק דף הנתונים והתמונות</h3><p>שום פרט שלא כתוב שם. זה הכלל שמונע המצאות.</p></div>
+    <div class="card"><span class="tag">מה בדף</span><h3>חלקים, בסדר</h3><p>כותרת, תיאור קצר, נתונים, מה מיוחד, תמונות, ומשפט סיום.</p></div>
+    <div class="card"><span class="tag">איך זה נראה</span><h3>שלוש מילים</h3><p>למשל: שקט, יוקרתי, מדויק. כמו הפרויקטים שלך.</p></div>
+  </div>
+  <div class="pbox"><div class="pbox-h"><span class="pcap mono">דוגמה לסדר החלקים בדף באנגלית</span></div><pre dir="ltr">Residence [name]
+Key facts: floor · size · rooms · views
+What makes it special
+Gallery (renders marked "Artist's impression")
+Let's talk</pre></div>
+</section><section class="slide">
+  <div class="kick">בזמן הבנייה</div>
+  <h2>מה Claude עושה, ומה אתה מאשר</h2>
+  <div class="rule"></div>
+  <ul class="b">
+    <li><b>קורא</b><span>את דף הנתונים בתיקייה דירות, ואת התמונות.</span></li>
+    <li><b>כותב קובץ אחד</b><span>בתיקייה דפים. חלון אישור: איזה קובץ, ואיפה.</span></li>
+    <li><b>פותח בדפדפן</b><span>חלון אישור לפקודה שפותחת את הדף. היא לא משנה כלום.</span></li>
+    <li><b>מדווח</b><span>מה עשה, ומה לא היה ברור לו. את זה קוראים.</span></li>
+  </ul>
+  <p class="note"><b>כלל הבנייה:</b> קוראים מהתיקייה דירות, וכותבים רק בתיקייה דפים. בקשה לשנות משהו אחר? "לא".</p>
+</section><section class="slide">
+  <div class="kick">בדיקה</div>
+  <h2>שש בדיקות לפני שמשהו יוצא</h2>
+  <div class="rule"></div>
+  <ul class="num">
+    <li><b>כל מספר</b> זהה לדף הנתונים: קומה, שטח, חדרים, כיוונים.</li>
+    <li><b>אין תוספות</b> שלא כתובות בדף הנתונים, גם אם הן נשמעות טוב.</li>
+    <li><b>הדמיה מסומנת</b> "Artist's impression", כלומר הדמיה להמחשה.</li>
+    <li><b>האנגלית</b>: Claude מתרגם חזרה לעברית, ואתה קורא.</li>
+    <li><b>בטלפון</b>: מצמצמים את חלון הדפדפן לרוחב צר, והכול נקרא.</li>
+    <li><b>אין שם של לקוח</b>, ואין פרט שלא היית רוצה שיגיע לאדם זר.</li>
+  </ul>
+</section><section class="slide">
+  <div class="kick">תיקון</div>
+  <h2>חלק אחרי חלק</h2>
+  <div class="rule"></div>
+  <div class="grid2">
+    <div class="card bad"><span class="lbl">בקשה אחת גדולה</span><ul>
+      <li>"תשפר את כל הדף"</li>
+      <li>קשה לדעת מה השתנה</li>
+      <li>תיקון אחד שובר משהו אחר</li></ul></div>
+    <div class="card good"><span class="lbl">תיקון אחד בכל פעם</span><ul>
+      <li>"את הכותרת העליונה: יותר קצרה"</li>
+      <li>בודקים בדפדפן, ורק אז הבא בתור</li>
+      <li>התקלקל? "תחזיר את החלק הזה למה שהיה"</li></ul></div>
+  </div>
+  <p class="note">אפשר גם לצלם את החלק במסך (<bdi class="kbd" dir="ltr">Cmd + Shift + 4</bdi>), להוסיף את התמונה לשיחה, ולכתוב: "החלק הזה, תתקן ככה".</p>
+</section><section class="slide">
+  <div class="kick">שמירה ושליחה</div>
+  <h2>PDF, ואתה שולח</h2>
+  <div class="rule"></div>
+  <div class="grid2">
+    <div class="card hi"><span class="tag">שמירה כ-PDF</span><h3>Cmd + P בדפדפן</h3><p>בחלון ההדפסה בוחרים לשמור כ-PDF, ושומרים בתיקייה דפים. פותחים את ה-PDF וקוראים אותו עד הסוף.</p></div>
+    <div class="card"><span class="tag">לדירה הבאה</span><h3>אותו תדריך</h3><p>דף נתונים אחר, תיקיית תמונות אחרת, ואותו תדריך בדיוק. בנייה של דקות.</p></div>
+  </div>
+</section><section class="slide rule-slide">
+  <div class="kick">הכלל של היום</div>
+  <h2 class="huge"><b>Claude בונה.</b><br>אתה בודק, ואתה שולח.</h2>
+  <div class="rule"></div>
+  <ul class="b">
+    <li><b>כל מספר עובר עליך</b><span>ניסוח יפה לא מחליף נתון נכון.</span></li>
+    <li><b>הדף נשאר במחשב</b><span>מה שיוצא החוצה הוא PDF שקראת, ממך.</span></li>
+  </ul>
+</section><section class="slide title-slide">
+  <div class="kick">בשיעור הבא</div>
+  <h1 class="big">השגרה<br>הראשונה שלך</h1>
+  <p class="sub">נוהל אחד שכתוב ב-CLAUDE.md ורץ בבקשה אחת: "אחרי שיחה". להכין: כמה שורות על שיחה אמיתית עם לקוח מהשבוע, בלי שם הלקוח.</p>
+  <div class="meta">AI LAB · מאיר לביא · <a href="lesson-11.html">לשיעור 11</a></div>
+</section></div>
+      <div class="deck-nav">
+        <button id="prev" type="button">הקודם</button>
+        <button id="next" type="button">הבא</button>
+        <span class="sp"></span>
+        <span class="hint">חצים במקלדת</span>
+        <button id="fs" type="button">מסך מלא</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="task">
+    <div class="sec-head"><span class="sec-num">05</span><h2>המשימה לשבוע</h2></div>
+    <p class="sec-sub">בערך 25 דקות, מתי שנוח לך במהלך השבוע.</p>
+    <div class="task">
+      <div class="task-h"><b>המשימה עד השיעור הבא</b><span id="task-count" class="mono"></span></div>
+      <div id="task-list" data-key="shemer-lesson10-tasks"><label><input type="checkbox"><span>סיימתי את הדף של הדירה מהשיעור, ושמרתי ממנו PDF בתיקייה דפים</span></label><label><input type="checkbox"><span>קראתי את ה-PDF מההתחלה עד הסוף, ובדקתי כל מספר מול דף הנתונים</span></label><label><input type="checkbox"><span>בניתי דף לדירה השנייה, עם הבקשה "דירה שנייה, אותו תדריך" מהספרייה</span></label><label><input type="checkbox"><span>רשמתי תיקון אחד שלא הצלחתי לבקש, כדי להביא לשיעור</span></label></div>
+      <p class="task-foot">רוצה לשלוח דף ללקוח? רק את ה-PDF, רק אחרי שקראת אותו, ומהמייל שלך. הסימונים נשמרים במחשב הזה בלבד.</p>
+    </div>
+  </section>
+
+  <section id="word">
+    <div class="sec-head"><span class="sec-num">06</span><h2>מילה חדשה</h2></div>
+    <div class="word">
+      <div class="w-top"><span class="w-term">דף אינטרנט</span><span class="w-ui">HTML</span></div>
+      <p class="w-def">קובץ שבו כתוב מה יש בדף: כותרות, טקסט, תמונות וצבעים. הדפדפן קורא אותו ומציג דף, גם בלי שהוא עולה לאינטרנט.</p>
+      <p class="w-ex">"אני לא כותב HTML. Claude כותב, ואני מסתכל על הדף ואומר מה לשנות."</p>
+    </div>
+    <div class="more-words">
+      <div class="mw"><b>דפדפן</b>התוכנה שמציגה דפי אינטרנט. במק: Safari, או Chrome אם התקנת.</div>
+      <div class="mw"><b>תדריך</b>ההוראות לבנייה: למי, מאיזה חומר, מה בדף, ואיך הוא נראה.</div>
+      <div class="mw"><b>PDF</b>קובץ שנראה אותו דבר בכל מחשב ובכל טלפון. זה מה ששולחים.</div>
+      <div class="mw"><b>Artist's impression</b>הדמיה להמחשה. מסמנים כך כל תמונה שהיא לא צילום.</div>
+    </div>
+  </section>
+
+  <section id="prompts">
+    <div class="sec-head"><span class="sec-num">07</span><h2>ספריית הבקשות של השיעור</h2></div>
+    <p class="sec-sub">מעתיקים, מדביקים בלוח של Claude, ומחליפים את מה שבסוגריים המרובעים. [כינוי לדירה] הוא שם הקובץ של הדירה בתיקייה דירות.</p>
+    <div class="prompts"><article class="prompt"><div class="p-head"><h3>קריאה ושאלות לפני בנייה</h3><span class="cat mono">שיעור 10</span></div><div class="p-rule"></div><pre>קרא את הקובץ [כינוי לדירה].md בתיקייה דירות, ואת התמונות בתיקייה דפים/תמונות-[כינוי לדירה].
+אני רוצה לבנות מזה דף מצגת לדירה, ללקוח דובר אנגלית.
+לפני שאתה בונה משהו: שאל אותי עד 5 שאלות, אחת בכל פעם, על מה שחסר או לא ברור. אל תכתוב שום קובץ עדיין.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>תדריך לדף דירה</h3><span class="cat mono">שיעור 10</span></div><div class="p-rule"></div><pre>כתוב תדריך לבניית הדף, בעברית, בקובץ דפים/תדריך-דף-דירה.md. כלול:
+- למי הדף: לקוח דובר אנגלית, בלי שם.
+- שפה: אנגלית ברמה גבוהה, בקול שלי, לפי הקובץ "הקול שלי באנגלית" בתיקייה מיילים.
+- חלקים: כותרת, תיאור קצר, הנתונים העיקריים, מה מיוחד בדירה, תמונות, ומשפט סיום שמזמין לדבר איתי.
+- מראה: שקט, יוקרתי, הרבה רווח, תמונות גדולות. נראה טוב גם בטלפון, וגם כשמדפיסים ל-PDF.
+- כללים: כל מספר וכל עובדה רק מתוך דף הנתונים. לא להוסיף תכונות, הבטחות או סופרלטיבים שלא כתובים שם. כל הדמיה מסומנת "Artist's impression". בלי שמות של לקוחות. מחיר רק אם אמרתי במפורש.
+הראה לי את התדריך בשיחה לפני שאתה שומר.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>דף דירה מתוך דף הנתונים</h3><span class="cat mono">שיעור 10</span></div><div class="p-rule"></div><pre>בנה את הדף לפי דפים/תדריך-דף-דירה.md, בקובץ HTML אחד: דפים/[כינוי לדירה].html.
+השתמש רק בתמונות מהתיקייה דפים/תמונות-[כינוי לדירה]. אל תשנה שום קובץ בתיקייה דירות.
+כשסיימת, פתח את הדף בדפדפן, וספר לי בשלוש שורות מה עשית ומה לא היה ברור לך.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>בדיקה מול דף הנתונים</h3><span class="cat mono">שיעור 10</span></div><div class="p-rule"></div><pre>בדוק את דפים/[כינוי לדירה].html מול הקובץ [כינוי לדירה].md בתיקייה דירות:
+1. רשימה של כל מספר ועובדה בדף, וליד כל אחד: מופיע בדף הנתונים, או לא.
+2. כל משפט שמבטיח משהו, או מתאר משהו שלא כתוב בדף הנתונים.
+3. תרגום של כל הטקסט בדף לעברית, כדי שאקרא בדיוק מה כתוב.
+אל תתקן כלום עדיין. רק תראה לי.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>תיקון אחד בכל פעם</h3><span class="cat mono">שיעור 10</span></div><div class="p-rule"></div><pre>בדף דפים/[כינוי לדירה].html, רק בחלק [איזה חלק, למשל: הכותרת העליונה]: [מה לשנות, למשל: יותר קצרה, בלי סימן קריאה].
+אל תיגע בשום חלק אחר. אחרי השינוי, פתח שוב את הדף בדפדפן.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>להחזיר אחורה</h3><span class="cat mono">שיעור 10</span></div><div class="p-rule"></div><pre>השינוי האחרון לא טוב. תחזיר את [החלק] בדף דפים/[כינוי לדירה].html בדיוק למה שהיה לפני הבקשה הקודמת, ואל תשנה שום דבר נוסף. אחר כך פתח שוב בדפדפן.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>מוכן לשליחה?</h3><span class="cat mono">שיעור 10</span></div><div class="p-rule"></div><pre>אני עומד לשמור את דפים/[כינוי לדירה].html כ-PDF ולשלוח ללקוח. תבדוק פעם אחרונה: שגיאות כתיב באנגלית, נתון שלא מופיע בדף הנתונים, הדמיה בלי סימון, או שם של אדם. אחר כך תסביר לי בשלושה צעדים איך שומרים את הדף כ-PDF במק. אל תשלח כלום.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>דירה שנייה, אותו תדריך</h3><span class="cat mono">שיעור 10</span></div><div class="p-rule"></div><pre>בנה דף לדירה נוספת, לפי אותו תדריך בדיוק: דפים/תדריך-דף-דירה.md.
+הנתונים: הקובץ [כינוי לדירה השנייה].md בתיקייה דירות. התמונות: דפים/תמונות-[כינוי לדירה השנייה].
+שמור בשם דפים/[כינוי לדירה השנייה].html, ופתח בדפדפן. אל תשנה את הדף של הדירה הראשונה.</pre><button class="copy" type="button">העתקה</button></article></div>
+  </section>
+
+  <nav class="lnav" aria-label="שיעור קודם ושיעור הבא">
+    <a class="pv" href="lesson-9.html"><span class="ld">הקודם</span><span class="lt">שיעור 09 · תיאוריה: איך Claude מתחבר לעולם</span></a>
+    <a class="home" href="index.html"><span class="ld">הפורטל</span><span class="lt">חזרה לפורטל</span></a>
+    <a class="nx" href="lesson-11.html"><span class="ld">הבא</span><span class="lt">שיעור 11 · השגרה הראשונה שלך</span></a>
+  </nav>
+
+  <footer>
+    <span>AI Lab · מאיר לביא</span>
+    <span>שיעור 10 · בנייה ראשונה: דף דירה</span>
+  </footer>
+
+</main>
+</div>
+<script>
+(function(){
+  /* ---------- המצגת בתוך הדף ---------- */
+  var box=document.getElementById('deck');
+  if(box){
+    var slides=[].slice.call(box.querySelectorAll('.slide')),i=0,
+        cur=document.getElementById('cur'),fill=document.getElementById('pfill'),
+        prev=document.getElementById('prev'),next=document.getElementById('next'),
+        stage=document.getElementById('stage');
+    document.getElementById('tot').textContent=slides.length;
+    function show(n){
+      i=Math.max(0,Math.min(slides.length-1,n));
+      slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
+      cur.textContent=i+1;
+      fill.style.width=((i+1)/slides.length*100)+'%';
+      prev.disabled=(i===0); next.disabled=(i===slides.length-1);
+      stage.scrollTop=0;
+    }
+    prev.onclick=function(){show(i-1)}; next.onclick=function(){show(i+1)};
+    box.addEventListener('keydown',function(e){
+      if(e.target.tagName==='BUTTON'&&(e.key===' '||e.key==='Enter'))return;
+      if(e.key==='ArrowLeft'||e.key==='PageDown'){e.preventDefault();show(i+1)}
+      else if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1)}
+      else if(e.key==='Home'){e.preventDefault();show(0)}
+      else if(e.key==='End'){e.preventDefault();show(slides.length-1)}
+    });
+    var x0=null,y0=null;
+    stage.addEventListener('touchstart',function(e){x0=e.changedTouches[0].clientX;y0=e.changedTouches[0].clientY},{passive:true});
+    stage.addEventListener('touchend',function(e){
+      if(x0===null)return;
+      var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0; x0=null;
+      if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5) show(dx<0?i+1:i-1);
+    },{passive:true});
+    var fsb=document.getElementById('fs'),req=box.requestFullscreen||box.webkitRequestFullscreen;
+    if(!req){fsb.hidden=true}
+    else{
+      fsb.onclick=function(){
+        var fe=document.fullscreenElement||document.webkitFullscreenElement;
+        if(fe){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}
+        else{try{var p=req.call(box);if(p&&p.catch)p.catch(function(){})}catch(err){}}
+        box.focus();
+      };
+    }
+    show(0);
+  }
+
+  /* ---------- העתקה ללוח, עובדת גם בטלפון ---------- */
+  [].forEach.call(document.querySelectorAll('.copy'),function(b){
+    b.addEventListener('click',function(){
+      var holder=b.closest('.pbox,.prompt'); if(!holder)return;
+      var t=holder.querySelector('pre').textContent;
+      var done=function(){
+        b.textContent='הועתק ✓';b.classList.add('done');
+        setTimeout(function(){b.textContent='העתקה';b.classList.remove('done')},1800);
+      };
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,function(){leg(t,done)})}
+      else{leg(t,done)}
+    });
+  });
+  function leg(t,done){
+    var a=document.createElement('textarea');
+    a.value=t;a.setAttribute('readonly','');
+    a.style.position='fixed';a.style.top='0';a.style.right='0';a.style.width='1px';a.style.height='1px';a.style.opacity='0';
+    document.body.appendChild(a);a.focus();a.setSelectionRange(0,t.length);
+    try{document.execCommand('copy');done()}catch(e){}
+    document.body.removeChild(a);
+  }
+
+  /* ---------- המשימה לשבוע: הסימונים נשמרים במחשב הזה ---------- */
+  var list=document.getElementById('task-list');
+  if(list){
+    var key=list.getAttribute('data-key'),count=document.getElementById('task-count'),
+        boxes=[].slice.call(list.querySelectorAll('input[type=checkbox]')),saved=[];
+    try{saved=JSON.parse(localStorage.getItem(key)||'[]')||[]}catch(e){saved=[]}
+    boxes.forEach(function(c,k){
+      c.checked=!!saved[k];
+      c.addEventListener('change',function(){
+        saved[k]=c.checked;
+        try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){}
+        upd();
+      });
+    });
+    function upd(){
+      var d=boxes.filter(function(c){return c.checked}).length;
+      count.textContent=d===boxes.length?'הכל מוכן ✓':d+' / '+boxes.length;
+    }
+    upd();
+  }
+})();
+</script>
+</body>
+</html>
