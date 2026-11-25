@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+  <script defer src="assets/track.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-F8LHTWZEMN"></script>
   <script>
@@ -451,6 +452,8 @@ details[open]>summary .plus::after{transform:rotate(0)}
   .qgrid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;margin-inline:calc(-1 * var(--gutter));padding-inline:var(--gutter);scroll-padding-inline:var(--gutter);padding-bottom:4px}
   .qgrid::-webkit-scrollbar{display:none}
   .qcard{flex:0 0 min(84%,340px);scroll-snap-align:start;padding:24px}
+  /* בטלפון: 4 המלצות (רחל, דני, אסתר, נדב; טווח הגילאים 33–63 נשמר) */
+  .qcard:nth-child(3),.qcard:nth-child(5),.qcard:nth-child(6),.qcard:nth-child(7),.qcard:nth-child(9){display:none}
   .who{grid-template-columns:1fr;gap:28px}
   .who__img{max-width:240px}
   .foot__g{grid-template-columns:1fr 1fr}
@@ -1033,15 +1036,18 @@ async function submitLead(e) {
   try {
     const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
     const data = await res.json(); if (!data.success) throw new Error(data.message || 'fail');
+    try { window.alTrack && window.alTrack('generate_lead', { form_id: 'leadForm', track: (form.goal && form.goal.value) || 'not_set' }); } catch (_) {}
     ok.classList.add('show'); form.reset(); btn.textContent = 'נשלח';
     setTimeout(() => { btn.disabled = false; btn.innerHTML = orig; }, 3000);
-  } catch (err) { alert('שגיאה בשליחה. נסו שוב, או שלחו הודעה בוואטסאפ.'); btn.disabled = false; btn.innerHTML = orig; }
+  } catch (err) { try { window.alTrack && window.alTrack('form_error', { form_id: 'leadForm', error: String((err && err.message) || err).slice(0, 80) }); } catch (_) {}
+    alert('שגיאה בשליחה. נסו שוב, או שלחו הודעה בוואטסאפ.'); btn.disabled = false; btn.innerHTML = orig; }
   return false;
 }
 function leadWhatsApp() {
   const name = (document.getElementById('name').value || '').trim(), goal = document.getElementById('goal').value;
   let msg = 'שלום מאיר! ' + (name ? 'אני ' + name + ', ו' : '') + 'אני רוצה לשמור מקום במחזור הקרוב של AI Lab Starter.';
   if (goal) msg += ' מה שמעניין אותי: ' + goal + '.';
+  try { window.alTrack && window.alTrack('whatsapp_click', { cta_section: 'seat', cta_label: 'או ישר בוואטסאפ' }); } catch (_) {}
   window.open('https://wa.me/972546500795?text=' + encodeURIComponent(msg), '_blank');
 }
 </script>
