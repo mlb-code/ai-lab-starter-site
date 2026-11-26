@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>שיעור 02 · איך מבקשים מ-Claude | AI Lab</title>
+<title>שיעור 02 מתוך 13 · המק שלך ובית המלאכה | AI Lab</title>
 <meta name="robots" content="noindex,nofollow">
 <meta name="theme-color" content="#0a0d12">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,548 +15,550 @@
   --line:#232b36;--line-soft:#1b222c;
   --txt:#dfe4ea;--txt-dim:#98a1ad;--txt-faint:#6d7783;
   --amber:#d99b3c;--amber-soft:#8a6326;--amber-glow:rgba(217,155,60,.11);
-  --ok:#5f8f6a;--warn:#c07a68;--radius:4px;
-  --mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
+  --ok:#5f8f6a;--mono:"IBM Plex Mono","SF Mono",Menlo,Consolas,monospace;
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
-html{scroll-behavior:smooth}
+html,body{margin:0;padding:0;height:100%}
 body{
   background:var(--bg);color:var(--txt);
   font-family:"Heebo",-apple-system,"Segoe UI",Arial,sans-serif;font-weight:300;
-  font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow:hidden;
   background-image:
-    radial-gradient(1100px 620px at 88% -8%,rgba(217,155,60,.075),transparent 62%),
-    radial-gradient(900px 520px at 6% 104%,rgba(86,116,152,.07),transparent 62%),
+    radial-gradient(1100px 620px at 88% -12%,rgba(217,155,60,.075),transparent 62%),
+    radial-gradient(900px 520px at 6% 108%,rgba(86,116,152,.07),transparent 62%),
     linear-gradient(180deg,#0d1119 0%,#0a0d12 55%,#080b0f 100%);
-  background-attachment:fixed;min-height:100vh;overflow-x:hidden;
+  background-attachment:fixed;
 }
 body::before{
   content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0v64' fill='none' stroke='%23ffffff' stroke-opacity='.03' stroke-width='1'/%3E%3C/svg%3E"),
-    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0v64' fill='none' stroke='%23ffffff' stroke-opacity='.032' stroke-width='1'/%3E%3Cpath d='M0 0h1v1H0z' fill='%23d99b3c' fill-opacity='.10'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-position:center;
 }
-#app{position:relative;z-index:1}
-h1,h2,h3{font-weight:500;line-height:1.35;margin:0}
-a{color:var(--amber);text-decoration:none}
-a:hover{text-decoration:underline}
-:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);
+}
+h1,h2,h3{font-weight:500;line-height:1.28;margin:0}
 .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
-.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
-button{font-family:"Heebo",sans-serif;cursor:pointer;border-radius:var(--radius);transition:background .15s ease,border-color .15s ease,color .15s ease}
-bdi.code{font-family:var(--mono);font-size:.86em;color:var(--txt);background:var(--bg-2);border:1px solid var(--line-soft);border-radius:3px;padding:0 5px;white-space:nowrap}
-bdi.fname{font-weight:400;color:var(--txt);background:var(--bg-2);border:1px solid var(--line-soft);border-radius:3px;padding:0 5px;white-space:nowrap}
-bdi.kbd{font-family:var(--mono);font-size:.84em;color:var(--txt);border:1px solid var(--line);border-bottom-width:2px;border-radius:3px;padding:0 5px;white-space:nowrap}
-b{font-weight:500;color:var(--txt)}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+button{font-family:"Heebo",sans-serif;cursor:pointer;border-radius:4px;transition:border-color .15s,color .15s,background .15s}
 
-/* ---------- כותרת עליונה ---------- */
-header{border-bottom:1px solid var(--line);background:rgba(10,13,18,.92);backdrop-filter:blur(6px);position:sticky;top:0;z-index:20}
-.hdr{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0}
-.brand{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--txt-dim);white-space:nowrap}
-.brand b{color:var(--amber);font-weight:500}
-.hdr-name{font-family:var(--mono);font-size:12px;color:var(--txt-faint);border-inline-start:1px solid var(--line);padding-inline-start:12px;white-space:nowrap}
-.hdr-nav{display:flex;gap:8px;flex-wrap:wrap;margin-inline-start:auto}
-.hnav{font-family:var(--mono);font-size:12px;border:1px solid var(--line);color:var(--txt-dim);padding:5px 11px;border-radius:var(--radius);white-space:nowrap;transition:border-color .15s,color .15s}
-.hnav:hover{border-color:var(--amber-soft);color:var(--amber);text-decoration:none}
-.hnav.home{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
-
-/* ---------- פתיחה ---------- */
-.hero{padding:40px 0 10px}
-.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--amber)}
-.hero h1{font-size:clamp(28px,5vw,40px);margin:10px 0 10px;color:#fff}
-.hero .lede{color:var(--txt-dim);max-width:62ch;margin:0 0 20px;font-size:16px}
-.build{border:1px solid var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 70%),var(--panel);border-radius:var(--radius);padding:15px 17px;display:grid;gap:4px;max-width:720px}
-.build .bt{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:var(--amber)}
-.build p{margin:0;font-size:15px;color:var(--txt)}
-.quick{display:flex;gap:8px;flex-wrap:wrap;padding:22px 0 4px;border-bottom:1px solid var(--line-soft)}
-.quick a{font-family:var(--mono);font-size:12px;border:1px solid var(--line);color:var(--txt-dim);padding:5px 12px;border-radius:999px;transition:border-color .15s ease,color .15s ease}
-.quick a:hover{border-color:var(--amber-soft);color:var(--amber);text-decoration:none}
-
-/* ---------- סקשנים ---------- */
-section{padding:40px 0;scroll-margin-top:72px}
-.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px}
-.sec-head h2{font-size:19px;white-space:nowrap}
-.sec-num{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.14em}
-.sec-head::after{content:"";flex:1;height:1px;background:var(--line)}
-.sec-sub{color:var(--txt-dim);font-size:14.5px;margin:-12px 0 22px;max-width:64ch}
-
-ul.b{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-ul.b li{position:relative;padding-inline-start:20px;font-size:15.5px}
-ul.b li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;width:6px;height:6px;background:var(--amber-soft);border-radius:1px}
-ul.b li b{color:#fff}
-ul.b li span{display:block;color:var(--txt-dim);font-size:.92em;margin-top:1px}
-ul.num{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:n}
-ul.num li{position:relative;padding-inline-start:38px;font-size:15.5px;counter-increment:n}
-ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inset-inline-start:0;top:.2em;font-family:var(--mono);font-size:12px;line-height:1.5;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:0 5px}
-ul.num li b{color:#fff}
-ul.num li span{display:block;color:var(--txt-dim);font-size:.92em;margin-top:1px}
-
-/* ---------- עושים ביחד ---------- */
-.steps{display:grid;gap:14px}
-.step{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:18px 18px 14px;min-width:0}
-.step-h{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
-.step-n{font-size:12px;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:0 6px;flex:none}
-.step h3{font-size:17px;color:#fff}
-.rows{display:grid}
-.row{display:grid;grid-template-columns:104px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line-soft)}
-.rl{font-family:var(--mono);font-size:11px;letter-spacing:.06em;padding-top:3px}
-.what .rl{color:var(--amber)}.why .rl{color:var(--ok)}.warn .rl{color:var(--warn)}
-.rv{font-size:15px;color:var(--txt-dim);min-width:0}
-.rv ol{margin:6px 0 0;padding-inline-start:22px;display:grid;gap:4px}
-.rv ol li::marker{color:var(--amber);font-family:var(--mono);font-size:12px}
-.rv p{margin:0 0 6px}
-
-/* ---------- בקשות ---------- */
-.pbox{margin:12px 0 2px}
-.pbox-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.pcap{font-size:11px;color:var(--txt-faint);letter-spacing:.05em;flex:1;min-width:0}
-pre{margin:0;background:rgba(10,13,18,.88);border:1px solid var(--line);border-radius:var(--radius);padding:13px 14px;font-family:"Heebo",sans-serif;font-size:13.5px;line-height:1.65;color:var(--txt-dim);white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;direction:rtl;text-align:right;max-width:100%}
-pre[dir="ltr"]{direction:ltr;text-align:left}
-.copy{background:transparent;border:1px solid var(--line);color:var(--txt-dim);font-family:var(--mono);font-size:12px;padding:5px 14px;flex:none}
-.copy:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
-.copy.done{border-color:#3c5a44;color:var(--ok);background:transparent}
-.prompts{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
-.prompt{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:16px 16px 14px;display:flex;flex-direction:column;min-width:0;transition:border-color .18s ease}
-.prompt:hover{border-color:var(--amber-soft)}
-.p-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
-.p-head h3{font-size:15.5px;flex:1;min-width:140px;color:#fff}
-.cat{font-size:10px;letter-spacing:.1em;color:var(--amber);border:1px solid var(--amber-soft);padding:2px 7px;border-radius:2px;white-space:nowrap}
-.p-rule{height:1px;background:var(--line-soft);margin:0 0 12px}
-.prompt pre{flex:1}
-.prompt .copy{margin-top:11px;align-self:flex-start}
-
-/* ---------- משימה ---------- */
-.task{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:16px 18px 12px}
-.task-h{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
-.task-h b{font-size:15.5px;color:#fff}
-.task-h span{margin-inline-start:auto;font-size:11px;color:var(--txt-faint)}
-.task label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line-soft);font-size:15px;color:var(--txt);cursor:pointer}
-.task label:first-child{border-top:0}
-.task input{width:19px;height:19px;margin-top:4px;accent-color:var(--amber);flex:none;cursor:pointer}
-.task label:has(input:checked){color:var(--txt-faint);text-decoration:line-through}
-.task-foot{margin:8px 0 0;font-size:12.5px;color:var(--txt-faint)}
-
-/* ---------- מילה חדשה ---------- */
-.word{border:1px solid var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 70%),var(--panel);border-radius:var(--radius);padding:20px 20px 18px}
-.w-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
-.w-term{font-size:24px;color:#fff;font-weight:500}
-.w-ui{font-family:var(--mono);font-size:12px;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:1px 7px}
-.w-def{margin:0 0 10px;font-size:16px;color:var(--txt)}
-.w-ex{margin:0;font-size:14.5px;color:var(--txt-dim);border-inline-start:2px solid var(--amber-soft);padding-inline-start:10px}
-.more-words{margin-top:14px;display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr))}
-.mw{border:1px solid var(--line);background:var(--bg-2);border-radius:var(--radius);padding:10px 13px;font-size:14px;color:var(--txt-dim)}
-.mw b{display:block;color:#fff;font-size:14.5px}
-
-/* ---------- טבלה ---------- */
-.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:4px;table-layout:auto}
-.tbl th,.tbl td{border:1px solid var(--line);padding:8px 11px;text-align:right;vertical-align:top;overflow-wrap:anywhere}
-.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--amber);font-weight:400;background:var(--panel)}
-.tbl td{color:var(--txt-dim)}
-.tbl td:first-child{color:var(--txt)}
-.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-inline-end:7px;vertical-align:middle}
-.dot.g{background:#5f8f6a}.dot.y{background:#d9b23c}.dot.r{background:#c0584a}
-
-/* ---------- המצגת ---------- */
-.deck-box{position:relative;border:1px solid var(--line);border-radius:var(--radius);background:rgba(10,13,18,.72);display:flex;flex-direction:column;overflow:hidden}
-.deck-box:focus-visible{outline-offset:2px}
-.deck-top{display:flex;align-items:center;gap:12px;padding:9px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--txt-faint)}
-.deck-top .b{color:var(--amber)}
-.deck-top .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--txt-dim)}
+.deck{position:relative;z-index:1;display:flex;flex-direction:column;height:100dvh}
+.tb-back{color:var(--txt-faint);text-decoration:none;border:1px solid var(--line);border-radius:3px;padding:3px 10px;transition:color .15s,border-color .15s;white-space:nowrap}
+.tb-back:hover{color:var(--amber);border-color:var(--amber-soft)}
+.topbar{display:flex;align-items:center;gap:14px;padding:11px 22px;border-bottom:1px solid var(--line);background:rgba(10,13,18,.72);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--txt-faint);flex:none}
+.topbar .b{color:var(--amber)}
+.tb-title{color:var(--txt-dim);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pbar{height:2px;background:var(--line-soft);flex:none}
 .pbar div{height:100%;background:var(--amber);width:0;transition:width .25s ease}
-.deck-stage{height:clamp(440px,66vh,660px);overflow-y:auto;overflow-x:hidden;display:flex;justify-content:center}
-.slide{display:none;flex-direction:column;justify-content:center;justify-content:safe center;width:100%;max-width:1000px;padding:clamp(22px,4vh,44px) clamp(18px,4vw,46px);animation:fade .22s ease}
+#stage{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;align-items:stretch;justify-content:center}
+.slide{
+  display:none;flex-direction:column;justify-content:center;justify-content:safe center;
+  width:100%;max-width:1150px;
+  padding:clamp(24px,4.5vh,60px) clamp(20px,4.5vw,58px) clamp(24px,4.5vh,54px);
+  animation:fade .22s ease;
+}
 .slide.active{display:flex}
 .slide>*{flex-shrink:0}
 @keyframes fade{from{opacity:0}to{opacity:1}}
-.kick{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--amber);margin-bottom:10px}
-.slide h2{font-size:clamp(22px,3.4vw,32px);margin-bottom:6px;color:#fff}
-.rule{height:1px;background:linear-gradient(to left,var(--amber-soft),transparent 65%);margin:14px 0 18px}
-.lead{color:var(--txt-dim);font-size:clamp(15px,1.9vw,17.5px);max-width:66ch;margin:0 0 18px}
-.slide ul.b li,.slide ul.num li{font-size:clamp(15px,1.8vw,17px)}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
-.card{border:1px solid var(--line);background:rgba(18,23,31,.86);border-radius:var(--radius);padding:14px 15px;min-width:0}
-.card h3{font-size:15.5px;margin-bottom:5px;color:#fff}
-.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.11em;color:var(--amber);display:block;margin-bottom:6px}
+
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--amber);text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.kick .n{border:1px solid var(--amber-soft);border-radius:2px;padding:2px 8px;letter-spacing:.1em}
+.slide h2{font-size:clamp(24px,4vw,36px);margin-bottom:8px}
+.rule{height:1px;background:linear-gradient(to left,var(--amber-soft),transparent 65%);margin:16px 0 22px}
+.lead{color:var(--txt-dim);font-size:clamp(15.5px,2vw,18.5px);max-width:66ch;margin:0 0 22px}
+.lead b,.note b{color:var(--txt);font-weight:500}
+
+ul.b{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+ul.b li{position:relative;padding-inline-start:20px;font-size:clamp(15.5px,2vw,18.5px)}
+ul.b li::before{content:"";position:absolute;inset-inline-start:0;top:.7em;width:6px;height:6px;background:var(--amber-soft);border-radius:1px}
+ul.b li b{font-weight:500;color:#fff}
+ul.b li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
+ul.num{list-style:none;margin:0;padding:0;display:grid;gap:13px;counter-reset:n}
+ul.num li{position:relative;padding-inline-start:38px;font-size:clamp(15px,1.9vw,17.5px);counter-increment:n}
+ul.num li::before{content:counter(n,decimal-leading-zero);position:absolute;inset-inline-start:0;top:.15em;font-family:var(--mono);font-size:12px;color:var(--amber);border:1px solid var(--amber-soft);border-radius:2px;padding:1px 5px}
+ul.num li b{font-weight:500;color:#fff}
+ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.card{border:1px solid var(--line);background:rgba(18,23,31,.86);border-radius:4px;padding:16px 17px;min-width:0}
+.card h3{font-size:15.5px;margin-bottom:6px}
+.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.11em;color:var(--amber);display:block;margin-bottom:7px}
 .card p{margin:0;color:var(--txt-dim);font-size:14px}
-.card.hi{border-color:var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9)}
-.card.bad{border-color:#4a3030}.card.good{border-color:var(--amber-soft)}
-.card .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;margin-bottom:8px;display:block}
-.card.bad .lbl{color:var(--warn)}.card.good .lbl{color:var(--amber)}
-.card ul{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:5px}
+.card ul{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:5px}
 .card ul li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:13px;position:relative}
 .card ul li::before{content:"·";position:absolute;inset-inline-start:2px;color:var(--amber)}
-.note{border-inline-start:2px solid var(--amber-soft);padding-inline-start:12px;color:var(--txt-dim);font-size:14px;margin-top:16px}
-.title-slide .big{font-size:clamp(28px,5.4vw,48px);line-height:1.2;margin:10px 0 16px;color:#fff}
-.title-slide .sub{color:var(--txt-dim);font-size:clamp(15.5px,2vw,19px);max-width:60ch;margin:0}
-.title-slide .meta{margin-top:22px;font-family:var(--mono);font-size:11.5px;color:var(--txt-faint);letter-spacing:.08em;border-top:1px solid var(--line);padding-top:12px}
-.rule-slide .huge{font-size:clamp(26px,4.6vw,44px);line-height:1.25;margin:16px 0 12px;color:#fff}
+.card.hi{border-color:var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9)}
+
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.compare .bad{border-color:#4a3030}
+.compare .good{border-color:var(--amber-soft)}
+.compare .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;margin-bottom:8px;display:block}
+.bad .lbl{color:#c07a68}.good .lbl{color:var(--amber)}
+
+/* קופסת "מה עושים עכשיו" */
+.do{border:1px solid var(--line);background:rgba(18,23,31,.9);border-radius:4px;padding:17px 18px 16px;margin-top:6px}
+.do-h{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.do-h b{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px;font-weight:500}
+.do-h span{font-family:var(--mono);font-size:11px;color:var(--txt-faint)}
+.do-h::after{content:"";flex:1;height:1px;background:var(--line)}
+.check{margin-top:15px;border-top:1px solid var(--line);padding-top:12px}
+.check b{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--ok);display:block;margin-bottom:8px}
+.check ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.check li{font-size:13.5px;color:var(--txt-dim);padding-inline-start:19px;position:relative}
+.check li::before{content:"✓";position:absolute;inset-inline-start:0;color:var(--ok);font-size:12px}
+
+.ex{border:1px solid var(--amber-soft);background:linear-gradient(180deg,var(--amber-glow),transparent 60%),rgba(18,23,31,.9);border-radius:4px;padding:20px 20px 18px;margin-top:4px}
+.ex-top{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:6px}
+.ex-badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;color:#12100b;background:var(--amber);padding:3px 9px;border-radius:2px}
+.ex-time{font-family:var(--mono);font-size:11px;color:var(--txt-faint)}
+.model{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;padding:3px 9px;border-radius:2px;border:1px solid var(--line);color:var(--txt-faint)}
+.ex h3{font-size:clamp(17px,2.4vw,20px);width:100%}
+.ex .goal{color:var(--txt-dim);font-size:14.5px;margin:0 0 12px}
+
+.pbox{position:relative;margin:13px 0 0}
+.pbox pre{margin:0;background:rgba(10,13,18,.88);border:1px solid var(--line);border-radius:4px;padding:14px 15px;font-family:"Heebo",sans-serif;font-size:13.5px;line-height:1.6;color:var(--txt-dim);white-space:pre-wrap;overflow-wrap:anywhere;direction:rtl;max-height:40vh;overflow:auto}
+.copy{position:absolute;top:8px;inset-inline-start:8px;background:var(--panel);border:1px solid var(--line);color:var(--txt-faint);font-family:var(--mono);font-size:11px;padding:4px 10px;z-index:2}
+.copy:hover{border-color:var(--amber-soft);color:var(--amber)}
+.copy.done{border-color:#3c5a44;color:var(--ok)}
+.pcap{font-family:var(--mono);font-size:11px;color:var(--txt-faint);letter-spacing:.05em;margin:0 0 6px}
+
+.note{border-inline-start:2px solid var(--amber-soft);padding-inline-start:12px;color:var(--txt-dim);font-size:14px;margin-top:18px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:4px}
+.tbl th,.tbl td{border:1px solid var(--line);padding:8px 11px;text-align:right;vertical-align:top}
+.tbl th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--amber);font-weight:400;background:var(--panel)}
+.tbl td{color:var(--txt-dim)}
+.tbl td:first-child{color:var(--txt)}
+.tbl .ui{font-family:var(--mono);font-size:11px;color:var(--txt-faint);display:block}
+.tbl b.hl{color:var(--amber);font-weight:500}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+.title-slide .big{font-size:clamp(30px,6vw,54px);line-height:1.18;margin:14px 0 18px}
+.title-slide .sub{color:var(--txt-dim);font-size:clamp(16px,2.2vw,20px);max-width:60ch}
+.title-slide .meta{margin-top:26px;font-family:var(--mono);font-size:11.5px;color:var(--txt-faint);letter-spacing:.1em;border-top:1px solid var(--line);padding-top:14px}
+
+.rule-slide .huge{font-size:clamp(26px,5vw,46px);line-height:1.25;margin:20px 0 14px;color:#fff}
 .rule-slide .huge b{color:var(--amber);font-weight:500}
-.deck-nav{flex:none;display:flex;align-items:center;gap:10px;padding:9px 14px 11px;border-top:1px solid var(--line);background:rgba(10,13,18,.72)}
-.deck-nav button{background:transparent;border:1px solid var(--line);color:var(--txt-dim);font-size:13.5px;padding:6px 16px}
-.deck-nav button:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
-.deck-nav button:disabled{opacity:.32;cursor:default}
-.deck-nav button:disabled:hover{border-color:var(--line);color:var(--txt-dim);background:transparent}
-.deck-nav .sp{flex:1}
-.deck-nav .hint{font-family:var(--mono);font-size:10.5px;color:var(--txt-faint)}
-.deck-box:fullscreen{border:0;border-radius:0;background:var(--bg)}
-.deck-box:fullscreen .deck-stage{height:auto;flex:1}
-.deck-box:-webkit-full-screen{border:0;border-radius:0;background:var(--bg)}
-.deck-box:-webkit-full-screen .deck-stage{height:auto;flex:1}
 
-/* ---------- ניווט בין שיעורים ---------- */
-.lnav{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch;padding:10px 0 0}
-.lnav a{border:1px solid var(--line);background:var(--panel);border-radius:var(--radius);padding:12px 14px;color:var(--txt);display:flex;flex-direction:column;gap:2px;transition:border-color .15s}
-.lnav a:hover{border-color:var(--amber-soft);text-decoration:none}
-.lnav .ld{font-family:var(--mono);font-size:10.5px;color:var(--amber);letter-spacing:.1em}
-.lnav .lt{font-size:14.5px}
-.lnav .home{justify-content:center;text-align:center}
-.lnav .nx{text-align:left}
-footer{border-top:1px solid var(--line);margin-top:30px;padding:22px 0 36px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:12px;color:var(--txt-faint)}
-
+.navbar{flex:none;display:flex;align-items:center;gap:10px;padding:10px 22px 14px;border-top:1px solid var(--line);background:rgba(10,13,18,.72)}
+.navbar button{background:transparent;border:1px solid var(--line);color:var(--txt-dim);font-size:13.5px;padding:7px 17px}
+.navbar button:hover{border-color:var(--amber-soft);color:var(--amber);background:var(--amber-glow)}
+.navbar button:disabled{opacity:.32;cursor:default}
+.navbar button:disabled:hover{border-color:var(--line);color:var(--txt-dim);background:transparent}
+.navbar .sp{flex:1}
+.navbar .hint{font-family:var(--mono);font-size:10.5px;color:var(--txt-faint);letter-spacing:.06em}
 @media (max-width:640px){
-  body{font-size:15.5px}
-  .hdr{gap:9px}
-  .hdr-nav{width:100%;margin-inline-start:0}
-  .hnav{flex:1;text-align:center}
-  section{padding:32px 0}
-  .sec-head h2{white-space:normal}
-  .row{grid-template-columns:1fr;gap:2px}
-  .step{padding:15px 14px 12px}
-  .deck-top .t{display:none}
-  .deck-nav .hint{display:none}
-  .deck-nav{padding:9px 10px 11px;gap:8px}
-  .deck-nav button{padding:6px 12px}
-  .slide{padding:20px 16px 26px}
-  .deck-stage{height:clamp(440px,70vh,620px)}
-  .lnav{grid-template-columns:1fr 1fr}
-  .lnav .home{grid-column:1 / -1;order:-1}
+  .topbar{padding:9px 14px;gap:9px;font-size:10.5px}
+  .tb-title{display:none}
+  .slide{padding:20px 16px 34px}
+  .navbar{padding:9px 14px 12px}
+  .navbar .hint{display:none}
+  .pbox pre{max-height:44vh}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* המשימה לשבוע: תיבות סימון שנשמרות במחשב הזה */
+.tasks{display:grid;margin-top:2px}
+.tasks label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line-soft);font-size:clamp(15px,1.9vw,17px);color:var(--txt);cursor:pointer}
+.tasks label:first-child{border-top:0;padding-top:2px}
+.tasks input{width:19px;height:19px;margin-top:4px;accent-color:var(--amber);flex:none;cursor:pointer}
+.tasks label:has(input:checked) span{color:var(--txt-faint);text-decoration:line-through}
+/* כפתור ההעתקה לא מסתיר את הכותרת של התיבה */
+.pbox .pcap{padding-inline-start:100px}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-inline-end:7px;vertical-align:middle}
+.dot.g{background:#5f8f6a}.dot.y{background:#d9b23c}.dot.r{background:#c0584a}
 </style>
 </head>
 <body>
-<div id="app">
-
-<header>
-  <div class="wrap hdr">
-    <div class="brand"><b>AI Lab</b> · שיעור 02 מתוך 12</div>
-    <div class="hdr-name">שמר</div>
-    <nav class="hdr-nav" aria-label="ניווט בין שיעורים">
-      <a class="hnav" href="lesson-1.html">הקודם</a>
-      <a class="hnav home" href="index.html">חזרה לפורטל</a>
-      <a class="hnav" href="lesson-3.html">הבא</a>
-    </nav>
+<div class="deck">
+  <div class="topbar">
+    <span class="b">AI Lab</span><span>· שיעור 02 מתוך 13</span>
+    <span class="tb-title">המק שלך ובית המלאכה</span>
+    <a class="tb-back" href="index.html">חזרה לפורטל</a>
+    <span class="mono"><span id="cur">1</span> / <span id="tot">20</span></span>
   </div>
-</header>
+  <div class="pbar"><div id="pfill"></div></div>
 
-<main class="wrap">
+  <main id="stage">
 
-  <section class="hero" id="top">
-    <div class="kicker">שיעור 02 מתוך 12 · חלק א: הבסיס</div>
-    <h1>איך מבקשים מ-Claude</h1>
-    <p class="lede">בקשה טובה היא לא עניין של כישרון. יש לה שלושה חלקים: הקשר, מטרה וצורה. היום מתרגלים אותם על חומר אמיתי שלך, ושומרים חמש תוצאות כקבצים.</p>
-    <div class="build"><span class="bt">מה בונים היום</span><p>חמש בקשות על חומר אמיתי שלך: סיכום, ניסוח, קיצור, רשימה וטבלה. כל תוצאה שמורה כקובץ בתיקייה <bdi class="fname">מסמכים</bdi>.</p></div>
-    <nav class="quick" aria-label="קפיצה בתוך השיעור">
-      <a href="#learn">היום נלמד</a><a href="#plan">מה נעשה היום</a><a href="#together">עושים ביחד</a><a href="#task">המשימה לשבוע</a><a href="#word">מילה חדשה</a><a href="#slides">המצגת</a><a href="#prompts">ספריית הבקשות</a>
-    </nav>
-  </section>
+    <!-- 1 -->
+    <section class="slide title-slide active">
+      <div class="kick">שיעור 02 מתוך 13 · חלק א: הבסיס</div>
+      <h1 class="big">המק שלך<br>ובית המלאכה</h1>
+      <p class="sub">היום מתרגלים את המק, בקצב שלך, ונכנסים ל-Cursor באותה דרך בכל פעם. בסוף השיעור יש לך קובץ ראשון שנוצר מבקשה שלך, ואתה יודע לפתוח אותו לבד.</p>
+      <p class="note"><b>מה בונים היום:</b> מסלול הכניסה בעל פה, וקובץ ראשון בשם <bdi>על-עצמי.md</bdi> בתוך <bdi class="mono">Shemer AI</bdi>, שנוצר ונפתח.</p>
+      <div class="meta">AI LAB · מאיר לביא · שיעור 02 · חלק א</div>
+    </section>
 
-  <section id="learn">
-    <div class="sec-head"><span class="sec-num">01</span><h2>היום נלמד</h2></div>
-    <ul class="b"><li><b>שלושה חלקים בכל בקשה</b><span>הקשר: מה Claude צריך לדעת. מטרה: מה אתה רוצה שיקרה. צורה: איך התוצאה תיראה.</span></li><li><b>לתקן במקום להתחיל מחדש</b><span>תיקון קצר באותה שיחה עובד יותר טוב מבקשה חדשה מאפס.</span></li><li><b>חלון האישור</b><span>החלון שבו Claude שואל אם מותר לו לעשות פעולה במחשב. הכלל: לא מאשרים מה שלא מבינים.</span></li><li><b>מודלים, בשורה אחת</b><span>מודל הוא "המוח" שעונה לך. אצלך מוגדר Opus, החזק מביניהם.</span></li><li><b>מתי ממשיכים באותה שיחה, ומתי פותחים שיחה חדשה</b><span>ולמה שיחה ארוכה מדי מתחילה להתבלבל.</span></li></ul>
-  </section>
+    <!-- 2 -->
+    <section class="slide">
+      <div class="kick">היום נלמד</div>
+      <h2>שבעה דברים שתשתמש בהם כל יום</h2>
+      <div class="rule"></div>
+      <ul class="num">
+        <li><b>המק, למי שבא מווינדוס</b> <span>Finder הוא החלון של התיקיות והקבצים, כמו "סייר הקבצים". Dock היא שורת הסמלים בתחתית המסך, כמו שורת המשימות. Spotlight הוא החיפוש של המק.</span></li>
+        <li><b>Cmd במקום Ctrl</b> <span>Cmd (Command) הוא המקש שליד מקש הרווח. ברוב הקיצורים הוא עושה את מה ש-Ctrl עשה בווינדוס.</span></li>
+        <li><b>החלפת שפה וצילום מסך</b> <span>שני דברים קטנים שתשתמש בהם כל יום.</span></li>
+        <li><b>מסלול הכניסה ל-Cursor</b> <span>Cursor היא התוכנה שבה אנחנו עובדים. נכנסים אליה באותה דרך בכל פעם, בארבעה צעדים.</span></li>
+        <li><b>ארבעת האזורים במסך, ואיפה כותבים ל-Claude</b> <span>המסך נראה עמוס. בפועל צריך רק שניים מהם.</span></li>
+        <li><b>קובץ ראשון</b> <span>Claude יוצר קובץ במחשב שלך, ואתה פותח אותו בעצמך.</span></li>
+        <li><b>לצרף קובץ למייל</b> <span>איך מוצאים קובץ ב-Finder ומצרפים אותו למייל ב-Outlook, בשתי דרכים.</span></li>
+      </ul>
+    </section>
 
-  <section id="plan">
-    <div class="sec-head"><span class="sec-num">02</span><h2>מה נעשה היום</h2></div>
-    <p class="sec-sub">מביאים לשיעור את שלושת הטקסטים מהמשימה של השבוע: מייל מלקוח, נקודות מפגישה ורשימת משימות. בלי שמות מלאים ובלי טלפונים.</p>
-    <ul class="num"><li><b>חוזרים על המשימה מהשבוע</b><span>נכנסים במסלול הקבוע, ופותחים את <bdi class="fname">על-עצמי.md</bdi>.</span></li><li><b>בקשה בלי הקשר מול בקשה עם הקשר</b><span>על אותו טקסט, ומשווים.</span></li><li><b>חמש בקשות על החומר שלך</b><span>סיכום, ניסוח, קיצור, רשימה וטבלה.</span></li><li><b>מתקנים תוצאה אחת עד שהיא נכונה</b><span>בתיקונים קצרים, באותה שיחה.</span></li><li><b>חלון האישור ושמירה כקבצים</b><span>חמש התוצאות נשמרות בתיקייה <bdi class="fname">מסמכים</bdi>.</span></li></ul>
-  </section>
+    <!-- 3 -->
+    <section class="slide">
+      <div class="kick">מה נעשה היום</div>
+      <h2>שישה דברים, בסדר הזה</h2>
+      <div class="rule"></div>
+      <p class="lead">אין לחץ של זמן. מה שלא נספיק, נמשיך בשיעור הבא.</p>
+      <ul class="num">
+        <li><b>סיור קצר במק</b> <span>Finder, Dock ו-Spotlight, והתיקייה <bdi class="mono">Shemer AI</bdi> בתוך "מסמכים".</span></li>
+        <li><b>קיצורי מקלדת</b> <span>העתקה, הדבקה, ביטול, סגירה אמיתית, החלפת שפה וצילום מסך.</span></li>
+        <li><b>נכנסים ל-Cursor במסלול הקבוע</b> <span>ומכירים את ארבעת האזורים במסך.</span></li>
+        <li><b>בקשה ראשונה</b> <span>Claude יוצר את הקובץ <bdi>על-עצמי.md</bdi>, ואתה פותח אותו.</span></li>
+        <li><b>מצרפים קובץ למייל</b> <span>מייל לעצמך ב-Outlook, עם הקובץ שיצרנו.</span></li>
+        <li><b>סוגרים, ונכנסים שוב לבד</b> <span>בפעם השנייה בלי עזרה שלי.</span></li>
+      </ul>
+      <p class="note">בשיעור הקודם עבדנו עם Claude בדפדפן, ב-<bdi class="mono">claude.ai</bdi>. היום עוברים לבית המלאכה: Cursor, עם Claude Code בתוכו.</p>
+    </section>
 
-  <section id="together">
-    <div class="sec-head"><span class="sec-num">03</span><h2>עושים ביחד</h2></div>
-    <p class="sec-sub">לכל צעד: מה עושים, למה זה חשוב, וממה נזהרים. כל הבקשות של היום נמצאות גם בספרייה בסוף הדף.</p>
-    <div class="steps"><article class="step"><div class="step-h"><span class="step-n mono">01</span><h3>נכנסים, ומביאים את החומר</h3></div><div class="rows"><div class="row what"><span class="rl">מה עושים</span><div class="rv">מסלול הכניסה, ואז New Session. את הטקסטים שהבאת מדביקים ישר בשיחה עם <bdi class="kbd" dir="ltr">Cmd + V</bdi>. מסמך שמור (PDF או Word) גוררים מ-Finder לתוך התיקייה <bdi class="fname">מסמכים</bdi> ברשימת הקבצים של Cursor.</div></div><div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">Claude עובד רק על מה שנתת לו. מה שלא נמצא בשיחה או בתיקייה, הוא לא יודע.</div></div><div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">לפני שמדביקים, מוחקים שם מלא, טלפון וכתובת מייל של הלקוח, וכותבים במקומם "הלקוח". את הכלל המלא, הרמזור, נלמד בשיעור 3.</div></div></div></article><article class="step"><div class="step-h"><span class="step-n mono">02</span><h3>בקשה בלי הקשר מול בקשה עם הקשר</h3></div><div class="rows"><div class="row what"><span class="rl">מה עושים</span><div class="rv">על אותו מייל שולחים קודם רק את המילה "תסכם". אחר כך, בשיחה חדשה, את הבקשה שלמטה, עם הקשר, מטרה וצורה. משווים בין שתי התשובות.</div></div><div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">Claude לא יודע מה יש לך בראש. כשחסר לו משהו, הוא מנחש. הקשר, מטרה וצורה מורידים את הניחושים.</div></div><div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">בקשה ארוכה היא לא בהכרח בקשה טובה. שלוש או ארבע שורות ברורות מספיקות.</div></div></div><div class="pbox"><div class="pbox-h"><span class="pcap mono">סיכום מייל, עם הקשר, מטרה וצורה · להעתקה</span><button class="copy" type="button">העתקה</button></div><pre>זה מייל שקיבלתי מלקוח. את השם שלו החלפתי ב&quot;הלקוח&quot;.
-[להדביק כאן את המייל]
+    <!-- 4 -->
+    <section class="slide">
+      <div class="kick">מווינדוס למק</div>
+      <h2>מה משתנה, ומה נשאר</h2>
+      <div class="rule"></div>
+      <div class="scroll"><table class="tbl">
+        <tr><th>בווינדוס</th><th>במק</th></tr>
+        <tr><td>סייר הקבצים</td><td>Finder</td></tr>
+        <tr><td>שורת המשימות</td><td>Dock</td></tr>
+        <tr><td>חיפוש בתפריט התחל</td><td>Spotlight · <bdi dir="ltr">Cmd + רווח</bdi></td></tr>
+        <tr><td><bdi dir="ltr">Ctrl + C</bdi></td><td><bdi dir="ltr">Cmd + C</bdi></td></tr>
+        <tr><td>X למעלה מימין</td><td>נקודה אדומה למעלה משמאל (סוגרת רק את החלון)</td></tr>
+        <tr><td><bdi dir="ltr">Alt + F4</bdi></td><td><bdi dir="ltr">Cmd + Q</bdi></td></tr>
+      </table></div>
+    </section>
 
-הקשר: אני יזם נדל&quot;ן, והלקוח מתעניין בדירה בפרויקט שלי.
-מטרה: להבין מהר מה הוא רוצה ממני.
-צורה: בעברית, שלוש נקודות קצרות: מה הוא שואל, מה הוא מבקש שאעשה, ומה לא ברור במייל.</pre></div></article><article class="step"><div class="step-h"><span class="step-n mono">03</span><h3>ניסוח, מתוך נקודות</h3></div><div class="rows"><div class="row what"><span class="rl">מה עושים</span><div class="rv">נותנים ל-Claude נקודות בעברית, כמו שהן בראש, ומבקשים הודעה מסודרת. למשל לאדריכלית, למנהל הפרויקט או לספק.</div></div><div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">זו כנראה הבקשה שתשתמש בה הכי הרבה. אתה יודע מה להגיד, ו-Claude מסדר את זה.</div></div><div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">בודקים שהוא לא הוסיף פרט שלא היה אצלך: תאריך, מספר או הבטחה. אם הוסיף, מוחקים.</div></div></div><div class="pbox"><div class="pbox-h"><span class="pcap mono">ניסוח הודעה · להעתקה</span><button class="copy" type="button">העתקה</button></div><pre>אני צריך לשלוח הודעה ל[למי, למשל: האדריכלית / מנהל הפרויקט / ספק].
-הנקודות שלי, כמו שהן בראש:
-- [נקודה]
-- [נקודה]
-- [נקודה]
-מטרה: [מה אני רוצה שיקרה אחרי שיקרא].
-צורה: בעברית, מנומס וישיר, עד שש שורות. אל תוסיף תאריכים, מספרים או הבטחות שלא כתבתי.</pre></div></article><article class="step"><div class="step-h"><span class="step-n mono">04</span><h3>קיצור, רשימה וטבלה</h3></div><div class="rows"><div class="row what"><span class="rl">מה עושים</span><div class="rv">שלוש בקשות קצרות, אחת אחרי השנייה: טקסט ארוך הופך לשלוש שורות. רשימת משימות מבולגנת הופכת לרשימה לפי דחיפות. כמה פניות שקיבלת הופכות לטבלה. את הבקשות המוכנות תמצא בספרייה למטה.</div></div><div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">אותו חומר יכול לצאת בהרבה צורות. מה שקובע הוא הצורה שביקשת.</div></div><div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">בטבלת פניות כותבים "פונה 1", "פונה 2", או אות. לא שם ולא טלפון.</div></div></div></article><article class="step"><div class="step-h"><span class="step-n mono">05</span><h3>לתקן במקום להתחיל מחדש</h3></div><div class="rows"><div class="row what"><span class="rl">מה עושים</span><div class="rv">בוחרים תוצאה אחת שלא יצאה מדויקת, וכותבים תיקון קצר באותה שיחה. למשל: "קצר יותר", "פחות רשמי", או "תוסיף את..., ואל תשנה שום דבר אחר".</div></div><div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">באותה שיחה Claude זוכר את כל מה שהיה בה. תיקון ממוקד חוסך את כל ההסבר מחדש.</div></div><div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">"תשפר את זה" לא אומר לו כלום. אומרים בדיוק מה לשנות, ומתקנים דבר אחד בכל פעם.</div></div></div><div class="pbox"><div class="pbox-h"><span class="pcap mono">תיקון ממוקד · להעתקה</span><button class="copy" type="button">העתקה</button></div><pre>זה כמעט טוב. תשנה רק את [מה, למשל: הפסקה השנייה / הפתיחה], כך שתהיה [קצרה יותר / פחות רשמית / יותר ישירה].
-אל תשנה שום דבר אחר.</pre></div></article><article class="step"><div class="step-h"><span class="step-n mono">06</span><h3>חלון האישור, ושמירה כקובץ</h3></div><div class="rows"><div class="row what"><span class="rl">מה עושים</span><div class="rv">מבקשים: "שמור את התוצאה כקובץ בתיקייה מסמכים". Claude מציג חלון: מה הוא רוצה לעשות ובאיזה קובץ. קוראים. אם הכל ברור, מאשרים. אם לא, בוחרים "לא" וכותבים לו מה לעשות אחרת. חוזרים על זה לכל אחת מחמש התוצאות.</div></div><div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">זה המקום שבו אתה שולט. Claude לא יוצר, לא משנה ולא מוחק קובץ בלי שאישרת.</div></div><div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">לא מאשרים מה שלא מבינים. לא ברור? כותבים לו "תסביר לי במילים פשוטות מה אתה רוצה לעשות ולמה". ובינתיים לא בוחרים באפשרות "אל תשאל שוב".</div></div></div><div class="pbox"><div class="pbox-h"><span class="pcap mono">שמירה כקובץ · להעתקה</span><button class="copy" type="button">העתקה</button></div><pre>שמור את התוצאה האחרונה כקובץ בתיקייה מסמכים, בשם שיעור-2-[סוג, למשל: סיכום].md.
-אחרי שתשמור, תגיד לי בשורה אחת מה שמרת ואיפה.</pre></div></article><article class="step"><div class="step-h"><span class="step-n mono">07</span><h3>המודל, ומתי פותחים שיחה חדשה</h3></div><div class="rows"><div class="row what"><span class="rl">מה עושים</span><div class="rv">מסתכלים למטה בלוח של Claude, על בורר המודל, ובודקים שכתוב Opus. אחר כך פותחים New Session לבקשה הבאה, ורואים שהשיחה הקודמת נשמרה ברשימת השיחות.</div></div><div class="row why"><span class="rl">למה זה חשוב</span><div class="rv">יש שלושה מודלים עיקריים: Haiku מהיר וקל, Sonnet באמצע, Opus הכי חזק. אצלך מוגדר Opus, ולא צריך לבחור בכל פעם.</div></div><div class="row warn"><span class="rl">ממה נזהרים</span><div class="rv">שיחה ארוכה מדי מתחילה להתבלבל. משימה חדשה, נושא חדש, או תשובות מוזרות? פותחים New Session.</div></div></div></article></div>
-  </section>
-
-  <section id="task">
-    <div class="sec-head"><span class="sec-num">04</span><h2>המשימה לשבוע</h2></div>
-    <p class="sec-sub">בערך 25 דקות, בשתיים-שלוש ישיבות קצרות במהלך השבוע.</p>
-    <div class="task">
-      <div class="task-h"><b>המשימה עד השיעור הבא</b><span id="task-count" class="mono"></span></div>
-      <div id="task-list" data-key="shemer-lesson2-tasks"><label><input type="checkbox"><span>כתבתי השבוע שתי בקשות על חומר אמיתי, כל אחת עם הקשר, מטרה וצורה</span></label><label><input type="checkbox"><span>תיקנתי לפחות תוצאה אחת באותה שיחה, בתיקון קצר וממוקד, במקום להתחיל מחדש</span></label><label><input type="checkbox"><span>כשהופיע חלון אישור, קראתי מה כתוב בו לפני שלחצתי</span></label><label><input type="checkbox"><span>פתחתי בתיקייה מסמכים את חמשת הקבצים מהשיעור, ובדקתי שכולם שם</span></label><label><input type="checkbox"><span>רשמתי לעצמי שלושה דברים שחשוב ש-Claude יידע עליי ועל איך אני כותב, לקראת השיעור הבא</span></label></div>
-      <p class="task-foot">לא הספקת הכל? מביאים לשיעור את מה שיש. הסימונים נשמרים במחשב הזה בלבד.</p>
-    </div>
-  </section>
-
-  <section id="word">
-    <div class="sec-head"><span class="sec-num">05</span><h2>מילה חדשה</h2></div>
-    <div class="word">
-  <div class="w-top"><span class="w-term">בקשה</span><span class="w-ui">Prompt</span></div>
-  <p class="w-def">מה שאתה כותב ל-Claude. בקשה טובה כוללת שלושה חלקים: הקשר, מטרה וצורה.</p>
-  <p class="w-ex">"הבקשה הייתה קצרה מדי, אז הוא ניחש. הוספתי הקשר, והתשובה יצאה בדיוק."</p>
-</div>
-<div class="more-words">
-  <div class="mw"><b>הקשר</b>מה Claude צריך לדעת כדי להבין את הבקשה: מי, מה קרה, ולמה.</div>
-  <div class="mw"><b>חלון האישור</b>החלון שבו Claude שואל אם מותר לו לעשות פעולה במחשב.</div>
-  <div class="mw"><b>מודל</b>"המוח" שעונה. אצלך Opus.</div>
-  <div class="mw"><b>New Session</b>שיחה חדשה ונקייה, למשימה חדשה.</div>
-</div>
-  </section>
-
-  <section id="slides">
-    <div class="sec-head"><span class="sec-num">06</span><h2>המצגת</h2></div>
-    <p class="sec-sub">מה שאני מראה בזום. אפשר לדפדף בכפתורים, בחצים במקלדת (אחרי לחיצה על המצגת), או בהחלקה בטלפון.</p>
-    <div class="deck-box" id="deck" tabindex="0" aria-label="מצגת השיעור" aria-roledescription="מצגת">
-      <div class="deck-top"><span class="b">AI Lab</span><span>· שיעור 02</span><span class="t">איך מבקשים מ-Claude</span><bdi class="mono" dir="ltr"><span id="cur">1</span> / <span id="tot">1</span></bdi></div>
-      <div class="pbar"><div id="pfill"></div></div>
-      <div class="deck-stage" id="stage"><section class="slide title-slide active">
-  <div class="kick">שיעור 02 מתוך 12 · חלק א: הבסיס</div>
-  <h1 class="big">איך מבקשים<br>מ-Claude</h1>
-  <p class="sub">בקשה טובה היא לא כישרון. יש לה שלושה חלקים, ומתרגלים אותם על החומר שלך.</p>
-  <div class="meta">AI LAB · מאיר לביא · שיעור 02</div>
-</section><section class="slide">
-  <div class="kick">הבסיס</div>
-  <h2>שלושה חלקים בכל בקשה</h2>
-  <div class="rule"></div>
-  <div class="grid2">
-    <div class="card"><span class="tag">01 · הקשר</span><h3>מה הוא צריך לדעת</h3><p>"זה מייל מלקוח שמתעניין בדירה בפרויקט שלי."</p></div>
-    <div class="card"><span class="tag">02 · מטרה</span><h3>מה אתה רוצה שיקרה</h3><p>"להבין מהר מה הוא רוצה ממני."</p></div>
-    <div class="card"><span class="tag">03 · צורה</span><h3>איך התוצאה תיראה</h3><p>"בעברית, שלוש נקודות קצרות."</p></div>
-  </div>
-  <p class="note">לא צריך לכתוב יפה. צריך לכתוב ברור. גם נקודות מבולגנות עובדות.</p>
-</section><section class="slide">
-  <div class="kick">השוואה</div>
-  <h2>אותו מייל, שתי בקשות</h2>
-  <div class="rule"></div>
-  <div class="grid2">
-    <div class="card bad"><span class="lbl">בלי הקשר</span><ul>
-      <li>"תסכם"</li>
-      <li>הוא מנחש מה חשוב לך</li>
-      <li>מקבלים סיכום כללי, ארוך או קצר מדי</li></ul></div>
-    <div class="card good"><span class="lbl">עם הקשר, מטרה וצורה</span><ul>
-      <li>"זה מייל מלקוח... להבין מה הוא רוצה... שלוש נקודות"</li>
-      <li>הוא יודע מה לחפש</li>
-      <li>מקבלים בדיוק את מה שצריך כדי להחליט</li></ul></div>
-  </div>
-</section><section class="slide">
-  <div class="kick">חמש צורות</div>
-  <h2>אותו חומר, חמש תוצאות</h2>
-  <div class="rule"></div>
-  <table class="tbl">
-    <tr><th>צורה</th><th>מתי משתמשים</th></tr>
-    <tr><td>סיכום</td><td>מייל או מסמך ארוך שאין זמן לקרוא</td></tr>
-    <tr><td>ניסוח</td><td>יש נקודות בראש, צריך הודעה מסודרת</td></tr>
-    <tr><td>קיצור</td><td>טקסט טוב, אבל ארוך מדי</td></tr>
-    <tr><td>רשימה</td><td>הרבה דברים בראש, בלי סדר</td></tr>
-    <tr><td>טבלה</td><td>כמה פריטים עם אותם פרטים, כמו פניות</td></tr>
-  </table>
-</section><section class="slide">
-  <div class="kick">תיקון</div>
-  <h2>לתקן, לא להתחיל מחדש</h2>
-  <div class="rule"></div>
-  <div class="grid2">
-    <div class="card bad"><span class="lbl">לא עובד</span><ul>
-      <li>"תשפר את זה"</li>
-      <li>"זה לא טוב"</li>
-      <li>לפתוח שיחה חדשה ולהסביר הכל שוב</li></ul></div>
-    <div class="card good"><span class="lbl">עובד</span><ul>
-      <li>"קצר יותר, עד חמש שורות"</li>
-      <li>"פחות רשמי, כמו לעמית שאני מכיר שנים"</li>
-      <li>"תשנה רק את הפתיחה. את השאר תשאיר"</li></ul></div>
-  </div>
-</section><section class="slide">
-  <div class="kick">חלון האישור</div>
-  <h2>Claude שואל, אתה מחליט</h2>
-  <div class="rule"></div>
-  <ul class="num">
-    <li><b>Claude רוצה לעשות פעולה במחשב</b><span>ליצור קובץ, לשנות קובץ, או להריץ פקודה.</span></li>
-    <li><b>מופיע חלון שמתאר מה בדיוק</b><span>איזה קובץ, ומה ישתנה בו.</span></li>
-    <li><b>קוראים, ובוחרים</b><span>כן, או לא ולהסביר לו מה לעשות אחרת.</span></li>
-  </ul>
-  <p class="note"><b>שמות הכפתורים משתנים לפעמים.</b> הרעיון נשאר: הוא שואל, ואתה מאשר. בינתיים לא בוחרים "אל תשאל שוב".</p>
-</section><section class="slide rule-slide">
-  <div class="kick">כלל לקורס</div>
-  <h2 class="huge"><b>לא מאשרים</b><br>מה שלא מבינים.</h2>
-  <div class="rule"></div>
-  <ul class="b">
-    <li><b>לא ברור מה הוא רוצה לעשות?</b><span>"תסביר לי במילים פשוטות מה אתה רוצה לעשות ולמה."</span></li>
-    <li><b>עדיין לא ברור?</b><span>לוחצים "לא", מצלמים מסך, ושולחים לי.</span></li>
-  </ul>
-</section><section class="slide">
-  <div class="kick">שיחה ומודל</div>
-  <h2>באותה שיחה, או שיחה חדשה</h2>
-  <div class="rule"></div>
-  <div class="grid2">
-    <div class="card"><span class="lbl" style="color:var(--amber)">ממשיכים באותה שיחה</span><ul>
-      <li>עוד תיקון לאותה תוצאה</li>
-      <li>שאלה על התשובה האחרונה</li>
-      <li>גרסה נוספת של אותו טקסט</li></ul></div>
-    <div class="card good"><span class="lbl">פותחים New Session</span><ul>
-      <li>משימה חדשה, נושא חדש</li>
-      <li>השיחה ארוכה מאוד, והתשובות מתבלבלות</li>
-      <li>רוצים להתחיל נקי</li></ul></div>
-  </div>
-  <p class="note"><b>מודל בשורה אחת:</b> Haiku מהיר, Sonnet באמצע, Opus החזק. אצלך Opus, קבוע.</p>
-</section><section class="slide title-slide">
-  <div class="kick">בשיעור הבא</div>
-  <h1 class="big">Claude שמכיר אותך,<br>ומה לא מכניסים</h1>
-  <p class="sub">Claude מראיין אותך וכותב קובץ CLAUDE.md, כדי שכל שיחה חדשה כבר תדע מי אתה. ורמזור פשוט: מה מותר להכניס לכלי, ומה לא.</p>
-  <div class="meta">AI LAB · מאיר לביא · <a href="lesson-3.html">לשיעור 03</a></div>
-</section></div>
-      <div class="deck-nav">
-        <button id="prev" type="button">הקודם</button>
-        <button id="next" type="button">הבא</button>
-        <span class="sp"></span>
-        <span class="hint">חצים במקלדת</span>
-        <button id="fs" type="button">מסך מלא</button>
+    <!-- 5 -->
+    <section class="slide">
+      <div class="kick">עושים ביחד · צעד 01 מתוך 08</div>
+      <h2>Finder, Dock ו-Spotlight</h2>
+      <div class="rule"></div>
+      <p class="lead"><b>מה עושים:</b> פותחים את <b>Finder</b> מהסמל הראשון ב-Dock (הפרצוף הכחול). בצד יש "מסמכים", "הורדות" ו"שולחן העבודה". נכנסים ל"מסמכים" ורואים שם את <bdi class="mono">Shemer AI</bdi>. אחר כך לוחצים <bdi dir="ltr">Cmd + רווח</bdi>, מקלידים Cursor, ו-Enter.</p>
+      <div class="compare">
+        <div class="card good"><span class="lbl mono">למה זה חשוב</span><p>אלה שלושת הדברים שתשתמש בהם כל יום. Spotlight הוא הדרך הכי מהירה לפתוח כל תוכנה או קובץ, בלי לחפש סמלים.</p></div>
+        <div class="card bad"><span class="lbl mono">ממה נזהרים</span><p>לא מזיזים את <bdi class="mono">Shemer AI</bdi> ולא משנים לה את השם. Cursor ו-Claude מכירים אותה בשם הזה ובמקום הזה.</p></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="prompts">
-    <div class="sec-head"><span class="sec-num">07</span><h2>ספריית הבקשות של השיעור</h2></div>
-    <p class="sec-sub">מעתיקים, מדביקים בלוח של Claude, ומחליפים את מה שבסוגריים המרובעים. בלי שמות מלאים של לקוחות ובלי טלפונים.</p>
-    <div class="prompts"><article class="prompt"><div class="p-head"><h3>סיכום מייל מלקוח</h3><span class="cat mono">סיכום</span></div><div class="p-rule"></div><pre>זה מייל שקיבלתי מלקוח. את השם שלו החלפתי ב&quot;הלקוח&quot;.
-[להדביק כאן את המייל]
+    <!-- 6 -->
+    <section class="slide">
+      <div class="kick">עושים ביחד · צעד 02 מתוך 08</div>
+      <h2>Cmd במקום Ctrl, וסגירה אמיתית</h2>
+      <div class="rule"></div>
+      <p class="lead"><b>מה עושים:</b> מתרגלים: <bdi dir="ltr">Cmd + C</bdi> מעתיק, <bdi dir="ltr">Cmd + V</bdi> מדביק, <bdi dir="ltr">Cmd + Z</bdi> מבטל. לחיצה ימנית: נוגעים בשתי אצבעות על משטח המגע. סגירה של תוכנה עד הסוף: <bdi dir="ltr">Cmd + Q</bdi>.</p>
+      <div class="compare">
+        <div class="card good"><span class="lbl mono">למה זה חשוב</span><p>הכפתורים של החלון נמצאים במק למעלה משמאל, לא מימין. הנקודה האדומה סוגרת רק את החלון, והתוכנה ממשיכה לרוץ ברקע. נקודה קטנה מתחת לסמל ב-Dock אומרת שהתוכנה עדיין פתוחה.</p></div>
+        <div class="card bad"><span class="lbl mono">ממה נזהרים</span><p><bdi dir="ltr">Cmd + Q</bdi> סוגר את כל התוכנה שפתוחה מולך. בזמן השיעור בודקים קודם שאתה לא בתוך Zoom, אחרת השיחה שלנו נסגרת.</p></div>
+      </div>
+    </section>
 
-הקשר: אני יזם נדל&quot;ן, והלקוח מתעניין בדירה בפרויקט שלי.
-מטרה: להבין מהר מה הוא רוצה ממני.
-צורה: בעברית, שלוש נקודות קצרות: מה הוא שואל, מה הוא מבקש שאעשה, ומה לא ברור במייל.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>ניסוח הודעה מנקודות</h3><span class="cat mono">ניסוח</span></div><div class="p-rule"></div><pre>אני צריך לשלוח הודעה ל[למי, למשל: האדריכלית / מנהל הפרויקט / ספק].
-הנקודות שלי, כמו שהן בראש:
-- [נקודה]
-- [נקודה]
-- [נקודה]
-מטרה: [מה אני רוצה שיקרה אחרי שיקרא].
-צורה: בעברית, מנומס וישיר, עד שש שורות. אל תוסיף תאריכים, מספרים או הבטחות שלא כתבתי.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>קיצור לשלוש שורות</h3><span class="cat mono">קיצור</span></div><div class="p-rule"></div><pre>קצר את הטקסט הזה לשלוש שורות, בלי לאבד את הנקודה העיקרית. שמור על המילים שלי איפה שאפשר.
-[להדביק כאן את הטקסט]</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>רשימה לפי דחיפות</h3><span class="cat mono">רשימה</span></div><div class="p-rule"></div><pre>אלה הדברים שבראש שלי השבוע, בלי סדר:
-[להדביק או להקליד כאן]
+    <!-- 7 -->
+    <section class="slide">
+      <div class="kick">עושים ביחד · צעד 03 מתוך 08</div>
+      <h2>החלפת שפה וצילום מסך</h2>
+      <div class="rule"></div>
+      <p class="lead"><b>מה עושים:</b> מחליפים עברית ואנגלית במקש <b>fn</b> עם סמל הגלובוס (בפינה השמאלית התחתונה של המקלדת), או ב-<bdi dir="ltr">Control + רווח</bdi>. צילום מסך: <bdi dir="ltr">Cmd + Shift + 3</bdi> מצלם את כל המסך. <bdi dir="ltr">Cmd + Shift + 4</bdi> ואז גוררים, מצלם רק חלק. הצילום נשמר בשולחן העבודה.</p>
+      <div class="compare">
+        <div class="card good"><span class="lbl mono">למה זה חשוב</span><p>צילום מסך הוא הדרך הכי מהירה להראות לי בוואטסאפ איפה נתקעת. בהמשך נראה ש-Claude יודע לקרוא גם תמונות.</p></div>
+        <div class="card bad"><span class="lbl mono">ממה נזהרים</span><p>אם מקש הגלובוס לא מחליף שפה, מגדירים את זה ביחד ב"הגדרות המערכת", בחלק של המקלדת. לא משנים לבד הגדרות מקלדת באמצע עבודה. ואם Zoom מבקש הרשאה לשתף מסך, מאשרים ב"הגדרות המערכת" ופותחים את Zoom מחדש.</p></div>
+      </div>
+    </section>
 
-סדר אותם ברשימה לפי דחיפות: היום, השבוע, יכול לחכות.
-ליד כל משימה, משפט אחד: מה הצעד הבא.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>פניות בטבלה</h3><span class="cat mono">טבלה</span></div><div class="p-rule"></div><pre>אלה פרטים על כמה פניות שקיבלתי. במקום שמות כתבתי &quot;פונה 1&quot;, &quot;פונה 2&quot;.
-[להדביק כאן]
+    <!-- 8 -->
+    <section class="slide">
+      <div class="kick">קיצורים</div>
+      <h2>שישה קיצורים שמספיקים להתחלה</h2>
+      <div class="rule"></div>
+      <div class="grid2">
+        <div class="card"><span class="tag"><bdi dir="ltr">Cmd + C</bdi> · <bdi dir="ltr">Cmd + V</bdi></span><h3>העתקה והדבקה</h3><p>בדיוק כמו Ctrl בווינדוס.</p></div>
+        <div class="card"><span class="tag"><bdi dir="ltr">Cmd + Z</bdi></span><h3>ביטול</h3><p>טעית? חוזרים צעד אחורה.</p></div>
+        <div class="card hi"><span class="tag"><bdi dir="ltr">Cmd + רווח</bdi></span><h3>Spotlight</h3><p>פותח כל תוכנה או קובץ. מקלידים שם, ו-Enter.</p></div>
+        <div class="card"><span class="tag">fn · גלובוס</span><h3>החלפת שפה</h3><p>עברית ואנגלית. או <bdi dir="ltr">Control + רווח</bdi>.</p></div>
+        <div class="card"><span class="tag"><bdi dir="ltr">Cmd + Shift + 4</bdi></span><h3>צילום של חלק מהמסך</h3><p>נשמר בשולחן העבודה. שולחים לי בוואטסאפ.</p></div>
+        <div class="card"><span class="tag"><bdi dir="ltr">Cmd + Q</bdi></span><h3>סגירה אמיתית</h3><p>סוגר את כל התוכנה. לא בזמן Zoom.</p></div>
+      </div>
+    </section>
 
-סדר את זה בטבלה עם העמודות: פונה, מתי פנה, מה הוא מחפש, מה הצעד הבא.
-אם חסר פרט, כתוב &quot;לא ידוע&quot; ואל תנחש.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>תיקון ממוקד</h3><span class="cat mono">תיקון</span></div><div class="p-rule"></div><pre>זה כמעט טוב. תשנה רק את [מה, למשל: הפסקה השנייה / הפתיחה], כך שתהיה [קצרה יותר / פחות רשמית / יותר ישירה].
-אל תשנה שום דבר אחר.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>שמירה כקובץ</h3><span class="cat mono">קבצים</span></div><div class="p-rule"></div><pre>שמור את התוצאה האחרונה כקובץ בתיקייה מסמכים, בשם שיעור-2-[סוג, למשל: סיכום].md.
-אחרי שתשמור, תגיד לי בשורה אחת מה שמרת ואיפה.</pre><button class="copy" type="button">העתקה</button></article><article class="prompt"><div class="p-head"><h3>לפני שמאשרים</h3><span class="cat mono">חלון האישור</span></div><div class="p-rule"></div><pre>לפני שאתה ממשיך: תסביר לי במילים פשוטות מה אתה רוצה לעשות עכשיו, באיזה קובץ, ולמה.
-אל תבצע כלום עד שאגיד כן.</pre><button class="copy" type="button">העתקה</button></article></div>
-  </section>
+    <!-- 9 -->
+    <section class="slide">
+      <div class="kick">שתי דרכים לעבוד עם AI</div>
+      <h2>לשאול, או לתת לו לעשות</h2>
+      <div class="rule"></div>
+      <div class="compare">
+        <div class="card bad"><span class="lbl mono">לשאול AI</span><ul>
+          <li>כותבים שאלה, מקבלים טקסט</li>
+          <li>מעתיקים, מדביקים, ומסדרים לבד</li>
+          <li>כל פעם מסבירים מההתחלה</li></ul></div>
+        <div class="card good"><span class="lbl mono">AI שעושה · Claude Code ב-Cursor</span><ul>
+          <li>יוצר קבצים ותיקיות במחשב שלך</li>
+          <li>קורא את מה שכבר יש בתיקייה</li>
+          <li>בונה דברים: מייל, מסמך, טבלה, ובהמשך דף</li></ul></div>
+      </div>
+      <p class="note"><b>מכאן והלאה, רוב העבודה בקורס היא בכלי אחד:</b> Cursor, עם Claude Code בתוכו. את <bdi class="mono">claude.ai</bdi> כבר הכרת בשיעור הקודם, וזה אותו Claude ואותו חשבון.</p>
+    </section>
 
-  <nav class="lnav" aria-label="שיעור קודם ושיעור הבא">
-    <a class="pv" href="lesson-1.html"><span class="ld">הקודם</span><span class="lt">שיעור 01 · המק שלך ובית המלאכה</span></a>
-    <a class="home" href="index.html"><span class="ld">הפורטל</span><span class="lt">חזרה לפורטל</span></a>
-    <a class="nx" href="lesson-3.html"><span class="ld">הבא</span><span class="lt">שיעור 03 · Claude שמכיר אותך, ומה לא מכניסים</span></a>
-  </nav>
+    <!-- 10 -->
+    <section class="slide">
+      <div class="kick">הכי חשוב היום · צעד 04 מתוך 08</div>
+      <h2>מסלול הכניסה, כל פעם אותו דבר</h2>
+      <div class="rule"></div>
+      <ul class="num">
+        <li><b>פותחים את Cursor</b> <span>מה-Dock, או <bdi dir="ltr">Cmd + רווח</bdi> ומקלידים Cursor.</span></li>
+        <li><b>פותחים את התיקייה <bdi class="mono">Shemer AI</bdi></b> <span>מתוך "מסמכים".</span></li>
+        <li><b>לוחצים על הכפתור של Claude</b> <span>לא על ה-AI של Cursor.</span></li>
+        <li><b>לוחצים New Session</b> <span>כלומר שיחה חדשה. המודל Opus כבר מוגדר.</span></li>
+      </ul>
+      <p class="note">Claude Code הוא Claude שיושב בתוך Cursor. הוא לא רק עונה, הוא גם יוצר ומשנה קבצים במחשב, באישור שלך.</p>
+      <div class="compare" style="margin-top:16px">
+        <div class="card good"><span class="lbl mono">למה זה חשוב</span><p>Claude רואה רק את מה שיש בתיקייה שפתחת. פתחת תיקייה אחרת? הוא לא יראה את הקבצים שלך. בשיעור 4 זה יהיה עוד יותר חשוב.</p></div>
+        <div class="card bad"><span class="lbl mono">ממה נזהרים</span><p>אם Cursor נפתח במסך של ה-AI של Cursor עצמו (חלון צ'אט גדול באמצע), זה לא Claude. עוברים למסך העבודה הרגיל ופותחים את Claude מהכפתור שלו. ואם Cursor שואל אם לסמוך על התיקייה (Trust), עונים כן. זו התיקייה שלך.</p></div>
+      </div>
+    </section>
 
-  <footer>
-    <span>AI Lab · מאיר לביא</span>
-    <span>שיעור 02 · איך מבקשים מ-Claude</span>
-  </footer>
+    <!-- 11 -->
+    <section class="slide">
+      <div class="kick">עושים ביחד · צעד 05 מתוך 08</div>
+      <h2>ארבעה אזורים במסך, שניים חשובים</h2>
+      <div class="rule"></div>
+      <div class="grid2">
+        <div class="card hi"><span class="tag">01 · בצד</span><h3>רשימת הקבצים</h3><p>מה יש בתוך <bdi class="mono">Shemer AI</bdi>. לוחצים על קובץ כדי לפתוח.</p></div>
+        <div class="card"><span class="tag">02 · באמצע</span><h3>אזור העריכה</h3><p>כאן נפתח קובץ כשלוחצים עליו, ואפשר גם להקליד בו.</p></div>
+        <div class="card hi"><span class="tag">03 · Claude</span><h3>הלוח של Claude</h3><p>כאן כותבים לו, וכאן הוא עונה ומבקש אישור.</p></div>
+        <div class="card"><span class="tag">04 · למטה</span><h3>הטרמינל</h3><p>חלון שבו מקלידים פקודות למחשב. Claude משתמש בו בשבילך, ואתה לא צריך לגעת בו.</p></div>
+      </div>
+      <p class="note"><b>למה זה חשוב:</b> כשאתה יודע מה כל אזור, המסך מפסיק להיראות עמוס. בפועל אתה צריך שניים: הלוח של Claude ורשימת הקבצים.</p>
+      <p class="note"><b>ממה נזהרים:</b> ל-Cursor יש AI משלו, עם חלון צ'אט משלו. אנחנו לא משתמשים בו. כותבים רק בלוח של Claude. קופצת חלונית פרסום? סוגרים ב-X.</p>
+    </section>
 
-</main>
+    <!-- 12 -->
+    <section class="slide">
+      <div class="kick">עושים ביחד · צעד 06 מתוך 08</div>
+      <h2>בקשה ראשונה: הקובץ על-עצמי.md</h2>
+      <div class="rule"></div>
+      <p class="lead"><b>מה עושים:</b> בשיחה החדשה מעתיקים את הבקשה (בשקף הבא), ממלאים את הסוגריים ושולחים. Claude ישאל אם מותר לו ליצור קובץ. קוראים מה הוא כותב, ומאשרים. הקובץ מופיע ברשימת הקבצים. לוחצים עליו, והוא נפתח באמצע. הסיומת md אומרת שזה קובץ טקסט פשוט, ש-Claude קורא וכותב בקלות.</p>
+      <div class="compare">
+        <div class="card good"><span class="lbl mono">למה זה חשוב</span><p>זה ההבדל בין "לשאול AI" ל"AI שעושה". לא קיבלת רק תשובה בצ'אט. קיבלת קובץ אמיתי במחשב, שאפשר לפתוח, לתקן ולהשתמש בו שוב.</p></div>
+        <div class="card bad"><span class="lbl mono">ממה נזהרים</span><p>בקובץ הזה כותבים רק עליך ועל סוג העבודה. בלי שמות של לקוחות, בלי שמות של שותפים, ובלי מספרים של עסקאות.</p></div>
+      </div>
+    </section>
+
+    <!-- 13 -->
+    <section class="slide">
+      <div class="kick">עושים ביחד · צעד 06 · הבקשה</div>
+      <h2>מעתיקים, ממלאים את הסוגריים, ושולחים</h2>
+      <div class="rule"></div>
+      <div class="pbox"><p class="pcap">הבקשה הראשונה · להעתקה</p><button class="copy" type="button">העתקה</button><pre>צור בתיקייה הזאת קובץ חדש בשם על-עצמי.md.
+כתוב בו בעברית פשוטה, עד עשר שורות עליי, רק לפי מה שאני כותב כאן:
+- מה אני עושה: [למשל: יזם נדל&quot;ן, פרויקטים למגורים]
+- כמה שנים אני בתחום: [מספר]
+- עם מי אני מדבר הרבה: [למשל: לקוחות דוברי אנגלית, אדריכלית, מנהל פרויקט]
+- מה הייתי רוצה ש-AI יעשה בשבילי: [שניים או שלושה דברים]
+אל תוסיף פרטים שלא כתבתי. כשתסיים, תגיד לי בשורה אחת איפה הקובץ נמצא.</pre></div>
+      <div class="check"><b>מה בודקים</b><ul>
+        <li>Claude שאל לפני שיצר את הקובץ, וקראת מה הוא כותב לפני שאישרת</li>
+        <li>הקובץ <bdi>על-עצמי.md</bdi> מופיע ברשימת הקבצים, ונפתח באמצע כשלוחצים עליו</li></ul></div>
+    </section>
+
+    <!-- 14 -->
+    <section class="slide rule-slide">
+      <div class="kick">הכלל של הקורס</div>
+      <p class="huge"><b>AI מכין.</b><br>אתה שולח.</p>
+      <div class="rule"></div>
+      <ul class="b">
+        <li><b>שום דבר לא יוצא ללקוח בלי שקראת ואישרת</b><span>Claude כותב טיוטה. אתה מחליט ושולח.</span></li>
+        <li><b>Claude שואל לפני שהוא יוצר או משנה קובץ</b><span>קוראים מה הוא מבקש, ורק אז מאשרים.</span></li>
+      </ul>
+    </section>
+
+    <!-- 15 -->
+    <section class="slide">
+      <div class="kick">עושים ביחד · צעד 07 מתוך 08</div>
+      <h2>מצרפים קובץ למייל</h2>
+      <div class="rule"></div>
+      <ul class="num">
+        <li><b>פותחים את Outlook וכותבים מייל חדש, לעצמך.</b></li>
+        <li><b>לוחצים על סמל האטב ("צרף קובץ")</b> <span>נפתח חלון של Finder. נכנסים ל"מסמכים", ואז ל-<bdi class="mono">Shemer AI</bdi>, ובוחרים את הקובץ שיצרנו.</span></li>
+        <li><b>דרך שנייה: גוררים</b> <span>פותחים את Finder ליד המייל, וגוררים את הקובץ לתוך המייל.</span></li>
+        <li><b>שולחים, ובודקים שהקובץ הגיע.</b></li>
+      </ul>
+      <div class="compare" style="margin-top:16px">
+        <div class="card good"><span class="lbl mono">למה זה חשוב</span><p>זו הפעולה שאתה עושה הכי הרבה ביום. ברגע שהיא זורמת במק, אפשר לעבוד ממנו באמת.</p></div>
+        <div class="card bad"><span class="lbl mono">ממה נזהרים</span><p>רוב הקבצים שלך עדיין במחשב השני. עד שנעביר אותם, מתרגלים על קבצים שנמצאים במק. ולפני שליחה ללקוח, פותחים את הקובץ המצורף ומוודאים שזה הקובץ הנכון.</p></div>
+      </div>
+    </section>
+
+    <!-- 16 -->
+    <section class="slide">
+      <div class="kick">עושים ביחד · צעד 08 מתוך 08</div>
+      <h2>סוגרים, ונכנסים שוב לבד</h2>
+      <div class="rule"></div>
+      <p class="lead"><b>מה עושים:</b> סוגרים את Cursor עם <bdi dir="ltr">Cmd + Q</bdi>. פותחים שוב, הפעם לבד, במסלול הכניסה. פותחים את <bdi>על-עצמי.md</bdi> מרשימת הקבצים. אחר כך כותבים ל-Claude את הבקשה שלמטה, ורואים שהקובץ נמצא שם באמת.</p>
+      <div class="pbox"><p class="pcap">פתח לי ב-Finder · להעתקה</p><button class="copy" type="button">העתקה</button><pre>פתח לי את התיקייה Shemer AI ב-Finder, כדי שאראה את הקבצים שיש בה.</pre></div>
+      <div class="compare" style="margin-top:16px">
+        <div class="card good"><span class="lbl mono">למה זה חשוב</span><p>המטרה של היום היא לא לזכור הכל. היא לדעת להיכנס לבד. מה שעשית פעם אחת לבד, נשאר.</p></div>
+        <div class="card bad"><span class="lbl mono">ממה נזהרים</span><p>נתקעת? לא לוחצים על כל כפתור שרואים. מצלמים מסך ושולחים לי בוואטסאפ.</p></div>
+      </div>
+    </section>
+
+    <!-- 17 -->
+    <section class="slide">
+      <div class="kick">מילים חדשות</div>
+      <h2>בית המלאכה, ועוד שש מילים</h2>
+      <div class="rule"></div>
+      <div class="card hi" style="margin-bottom:14px"><span class="tag">בית המלאכה · Cursor</span><p>התוכנה שבה עובדים עם Claude על תיקיות וקבצים אמיתיים במחשב שלך. Claude Code יושב בתוכה.</p><p style="margin-top:6px">"פותחים את בית המלאכה, פותחים את Shemer AI, ומבקשים מ-Claude."</p></div>
+      <div class="grid2">
+        <div class="card"><h3>Finder</h3><p>החלון של התיקיות והקבצים במק.</p></div>
+        <div class="card"><h3>Dock</h3><p>שורת הסמלים בתחתית המסך.</p></div>
+        <div class="card"><h3>Spotlight</h3><p>החיפוש של המק. <bdi dir="ltr">Cmd + רווח</bdi>.</p></div>
+        <div class="card"><h3>Claude Code</h3><p>Claude בתוך Cursor. יוצר ומשנה קבצים, באישור שלך.</p></div>
+        <div class="card"><h3>New Session</h3><p>שיחה חדשה עם Claude.</p></div>
+        <div class="card"><h3>טרמינל</h3><p>חלון פקודות למחשב. Claude משתמש בו בשבילך.</p></div>
+      </div>
+    </section>
+
+    <!-- 18 -->
+    <section class="slide">
+      <div class="kick">ספריית הבקשות של השיעור</div>
+      <h2>עוד ארבע בקשות, להעתקה</h2>
+      <div class="rule"></div>
+      <p class="lead">מעתיקים, מדביקים בלוח של Claude, ומחליפים את מה שבסוגריים המרובעים. בלי שמות מלאים של לקוחות ובלי טלפונים. הבקשה הראשונה ו"פתח לי ב-Finder" נמצאות בצעדים 06 ו-08.</p>
+      <div class="pbox"><p class="pcap">סידור תתי-התיקיות</p><button class="copy" type="button">העתקה</button><pre>בדוק אם בתוך Shemer AI יש את התיקיות האלה: מיילים, דירות, מסמכים, תוכניות, הדמיות, דפים.
+מה שחסר, צור. אל תמחק, אל תזיז ואל תשנה שום דבר שכבר קיים.
+בסוף כתוב לי רשימה קצרה של מה שיש עכשיו בתיקייה.</pre></div>
+      <div class="pbox"><p class="pcap">תסביר לי מה עשית</p><button class="copy" type="button">העתקה</button><pre>תסביר לי בשלוש שורות פשוטות, בלי מילים טכניות, מה עשית עכשיו ואיפה זה נמצא במחשב.</pre></div>
+      <div class="pbox"><p class="pcap">הוספה לקובץ, בלי לשנות</p><button class="copy" type="button">העתקה</button><pre>פתח את על-עצמי.md והוסף בסוף שתי שורות על איך אני אוהב לעבוד: [למשל: קצר ולעניין, בערבים, הרבה מהבית].
+אל תשנה שום דבר שכבר כתוב בקובץ.</pre></div>
+      <div class="pbox"><p class="pcap">עזרה במק, למי שבא מווינדוס</p><button class="copy" type="button">העתקה</button><pre>אני עובר מווינדוס למק. בווינדוס הייתי עושה [מה, למשל: Alt + Tab כדי לעבור בין חלונות].
+איך עושים את זה במק? תסביר בשלושה צעדים קצרים.
+אל תשנה שום הגדרה במחשב, רק תסביר.</pre></div>
+    </section>
+
+    <!-- 19 -->
+    <section class="slide">
+      <div class="kick">המשימה לשבוע</div>
+      <h2>בערך 20 דקות, מתי שנוח לך</h2>
+      <div class="rule"></div>
+      <div class="do">
+        <div class="do-h"><b>המשימה עד השיעור הבא</b><span id="task-count" class="mono"></span></div>
+        <div class="tasks" id="task-list" data-key="shemer-lesson2-tasks">
+          <label><input type="checkbox"><span>שלחתי לעצמי מייל מהמק עם קובץ מצורף, ובדקתי שהוא נפתח</span></label>
+          <label><input type="checkbox"><span>נכנסתי ל-Cursor לבד שלוש פעמים השבוע, במסלול הכניסה, בלי להסתכל בדף</span></label>
+          <label><input type="checkbox"><span>פתחתי את על-עצמי.md, הוספתי בעצמי שורה אחת, ושמרתי עם <bdi dir="ltr">Cmd + S</bdi></span></label>
+          <label><input type="checkbox"><span>ביקשתי מ-Claude להוסיף לקובץ שתי שורות על איך אני אוהב לעבוד, ובדקתי שהוא לא הוסיף דברים שלא אמרתי</span></label>
+          <label><input type="checkbox"><span>צילמתי מסך של Cursor עם הקובץ פתוח, ושלחתי למאיר בוואטסאפ</span></label>
+          <label><input type="checkbox"><span>הכנתי לשיעור הבא שלושה טקסטים אמיתיים, בלי שמות וטלפונים: מייל מלקוח, נקודות מפגישה, ורשימת משימות מבולגנת</span></label>
+        </div>
+      </div>
+      <p class="note">נתקעת באמצע? זה בסדר. שולחים לי הודעה בוואטסאפ, או מביאים לשיעור. הסימונים נשמרים במחשב הזה בלבד.</p>
+    </section>
+
+    <!-- 20 -->
+    <section class="slide title-slide">
+      <div class="kick">בשיעור הבא · שיעור 03</div>
+      <h1 class="big">איך מבקשים<br>מ-Claude</h1>
+      <p class="sub">שלושה חלקים בכל בקשה טובה: הקשר, מטרה וצורה. מתרגלים על חומר אמיתי שלך, ושומרים חמש תוצאות כקבצים.</p>
+      <div class="meta">AI LAB · מאיר לביא · שיעור 02 · המק שלך ובית המלאכה</div>
+    </section>
+  </main>
+
+  <div class="navbar">
+    <button id="prev" type="button">הקודם</button>
+    <button id="next" type="button">הבא</button>
+    <span class="sp"></span>
+    <span class="hint mono">חצים במקלדת · מקש רווח</span>
+    <button id="fs" type="button">מסך מלא</button>
+  </div>
 </div>
+
 <script>
 (function(){
-  /* ---------- המצגת בתוך הדף ---------- */
-  var box=document.getElementById('deck');
-  if(box){
-    var slides=[].slice.call(box.querySelectorAll('.slide')),i=0,
-        cur=document.getElementById('cur'),fill=document.getElementById('pfill'),
-        prev=document.getElementById('prev'),next=document.getElementById('next'),
-        stage=document.getElementById('stage');
-    document.getElementById('tot').textContent=slides.length;
-    function show(n){
-      i=Math.max(0,Math.min(slides.length-1,n));
-      slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
-      cur.textContent=i+1;
-      fill.style.width=((i+1)/slides.length*100)+'%';
-      prev.disabled=(i===0); next.disabled=(i===slides.length-1);
-      stage.scrollTop=0;
-    }
-    prev.onclick=function(){show(i-1)}; next.onclick=function(){show(i+1)};
-    box.addEventListener('keydown',function(e){
-      if(e.target.tagName==='BUTTON'&&(e.key===' '||e.key==='Enter'))return;
-      if(e.key==='ArrowLeft'||e.key==='PageDown'){e.preventDefault();show(i+1)}
-      else if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1)}
-      else if(e.key==='Home'){e.preventDefault();show(0)}
-      else if(e.key==='End'){e.preventDefault();show(slides.length-1)}
-    });
-    var x0=null,y0=null;
-    stage.addEventListener('touchstart',function(e){x0=e.changedTouches[0].clientX;y0=e.changedTouches[0].clientY},{passive:true});
-    stage.addEventListener('touchend',function(e){
-      if(x0===null)return;
-      var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0; x0=null;
-      if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5) show(dx<0?i+1:i-1);
-    },{passive:true});
-    var fsb=document.getElementById('fs'),req=box.requestFullscreen||box.webkitRequestFullscreen;
-    if(!req){fsb.hidden=true}
-    else{
-      fsb.onclick=function(){
-        var fe=document.fullscreenElement||document.webkitFullscreenElement;
-        if(fe){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}
-        else{try{var p=req.call(box);if(p&&p.catch)p.catch(function(){})}catch(err){}}
-        box.focus();
-      };
-    }
-    show(0);
+  var slides=[].slice.call(document.querySelectorAll('.slide')),i=0;
+  document.getElementById('tot').textContent=slides.length;
+  var cur=document.getElementById('cur'),fill=document.getElementById('pfill'),
+      prev=document.getElementById('prev'),next=document.getElementById('next'),stage=document.getElementById('stage');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
+    cur.textContent=i+1;
+    fill.style.width=((i+1)/slides.length*100)+'%';
+    prev.disabled=(i===0); next.disabled=(i===slides.length-1);
+    stage.scrollTop=0;
+    if(location.hash!=='#'+(i+1)) history.replaceState(null,'','#'+(i+1));
   }
-
-  /* ---------- העתקה ללוח, עובדת גם בטלפון ---------- */
+  prev.onclick=function(){show(i-1)}; next.onclick=function(){show(i+1)};
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='BUTTON'&&(e.key===' '||e.key==='Enter'))return;
+    if(e.key==='ArrowLeft'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(i+1)}
+    else if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1)}
+    else if(e.key==='Home'){show(0)} else if(e.key==='End'){show(slides.length-1)}
+  });
+  var x0=null;
+  stage.addEventListener('touchstart',function(e){x0=e.changedTouches[0].clientX},{passive:true});
+  stage.addEventListener('touchend',function(e){
+    if(x0===null)return; var d=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(d)>60) show(d<0?i+1:i-1);
+  },{passive:true});
+  document.getElementById('fs').onclick=function(){
+    if(document.fullscreenElement){document.exitFullscreen()}
+    else{document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}
+  };
   [].forEach.call(document.querySelectorAll('.copy'),function(b){
-    b.addEventListener('click',function(){
-      var holder=b.closest('.pbox,.prompt'); if(!holder)return;
-      var t=holder.querySelector('pre').textContent;
-      var done=function(){
+    b.onclick=function(){
+      var t=b.parentNode.querySelector('pre').textContent, done=function(){
         b.textContent='הועתק ✓';b.classList.add('done');
-        setTimeout(function(){b.textContent='העתקה';b.classList.remove('done')},1800);
+        setTimeout(function(){b.textContent='העתקה';b.classList.remove('done')},1700);
       };
       if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,function(){leg(t,done)})}
       else{leg(t,done)}
-    });
+    };
   });
   function leg(t,done){
-    var a=document.createElement('textarea');
-    a.value=t;a.setAttribute('readonly','');
-    a.style.position='fixed';a.style.top='0';a.style.right='0';a.style.width='1px';a.style.height='1px';a.style.opacity='0';
+    var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';
     document.body.appendChild(a);a.focus();a.setSelectionRange(0,t.length);
     try{document.execCommand('copy');done()}catch(e){}
     document.body.removeChild(a);
   }
-
-  /* ---------- המשימה לשבוע: הסימונים נשמרים במחשב הזה ---------- */
-  var list=document.getElementById('task-list');
-  if(list){
-    var key=list.getAttribute('data-key'),count=document.getElementById('task-count'),
-        boxes=[].slice.call(list.querySelectorAll('input[type=checkbox]')),saved=[];
-    try{saved=JSON.parse(localStorage.getItem(key)||'[]')||[]}catch(e){saved=[]}
-    boxes.forEach(function(c,k){
-      c.checked=!!saved[k];
-      c.addEventListener('change',function(){
-        saved[k]=c.checked;
-        try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){}
-        upd();
-      });
+  var h=parseInt(location.hash.replace('#',''),10);
+  show(isNaN(h)?0:h-1);
+})();
+</script>
+<script>
+(function(){
+  /* המשימה לשבוע: הסימונים נשמרים במחשב הזה, כמערך של מספרי הסעיפים שסומנו */
+  var list=document.getElementById('task-list'); if(!list)return;
+  var key=list.getAttribute('data-key'),count=document.getElementById('task-count'),
+      boxes=[].slice.call(list.querySelectorAll('input[type=checkbox]')),saved=[];
+  try{saved=JSON.parse(localStorage.getItem(key)||'[]');if(!Array.isArray(saved))saved=[]}catch(e){saved=[]}
+  boxes.forEach(function(c,k){
+    c.checked=saved.indexOf(k)>-1;
+    c.addEventListener('change',function(){
+      saved=[];boxes.forEach(function(b,j){if(b.checked)saved.push(j)});
+      try{localStorage.setItem(key,JSON.stringify(saved))}catch(e){}
+      upd();
     });
-    function upd(){
-      var d=boxes.filter(function(c){return c.checked}).length;
-      count.textContent=d===boxes.length?'הכל מוכן ✓':d+' / '+boxes.length;
-    }
-    upd();
+  });
+  function upd(){
+    var d=boxes.filter(function(c){return c.checked}).length;
+    if(count)count.textContent=d===boxes.length?'הכל מוכן ✓':d+' / '+boxes.length;
   }
+  /* רווח או Enter על תיבת סימון מסמנים אותה, ולא מעבירים שקף */
+  document.addEventListener('keydown',function(e){
+    if(e.target.tagName==='INPUT'&&(e.key===' '||e.key==='Enter'))e.stopImmediatePropagation();
+  },true);
+  upd();
 })();
 </script>
 </body>
