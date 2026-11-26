@@ -315,7 +315,7 @@ section,details{scroll-margin-top:72px}
     <div class="w-grid">
       <a class="w-card primary" id="w-next" href="#lessons"><span class="w-tag" id="w-next-tag">המפגש הבא</span><b id="w-next-title">…</b><span class="sub" id="w-next-sub">פתח ←</span><span class="w-where" id="w-next-where" hidden></span></a>
       <a class="w-card" href="questionnaire.html"><span class="w-tag">10 דקות</span><b>שאלון היכרות</b><span class="sub">ממלאים לפני או אחרי מפגש 0</span></a>
-      <a class="w-card" href="https://us06web.zoom.us/j/8186142816?pwd=VEtXYVh3Z3IwZWhrZHYvWm5hYWlKQT09" target="_blank" rel="noopener"><span class="w-tag">שיעורים 1 עד 12</span><b>כניסה לזום</b><span class="sub">אותו חדר, תמיד</span></a>
+      <a class="w-card" href="https://us06web.zoom.us/j/8186142816?pwd=VEtXYVh3Z3IwZWhrZHYvWm5hYWlKQT09" target="_blank" rel="noopener"><span class="w-tag">שיעורים 1 עד 13</span><b>כניסה לזום</b><span class="sub">אותו חדר, תמיד</span></a>
       <a class="w-card" href="recordings.html"><span class="w-tag">לצפייה חוזרת</span><b>הקלטות השיעורים</b><span class="sub">כל שיעור בזום, אחרי השיעור</span></a>
     </div>
     <div class="task">
@@ -340,7 +340,7 @@ section,details{scroll-margin-top:72px}
   <!-- ====== שיעורים ====== -->
   <section id="lessons">
     <div class="sec-head"><span class="sec-num mono">01</span><h2>מהלך הקורס</h2></div>
-    <p class="sec-sub">מפגש התקנות אחד אצלך, ואחריו שנים-עשר שיעורים בזום בארבעה חלקים. בכל שיעור בונים דבר אחד, מתוך העבודה האמיתית שלך.</p>
+    <p class="sec-sub">מפגש התקנות אחד אצלך, ואחריו שלושה-עשר שיעורים בזום בארבעה חלקים. בכל שיעור בונים דבר אחד, מתוך העבודה האמיתית שלך.</p>
     <div id="units"></div>
   </section>
 
@@ -519,10 +519,10 @@ const DATES = { 0:"שלישי 24.11 · 19:00", 1:"חמישי 26.11 · 19:00" };
 
 const LETTERS = ["", "א", "ב", "ג", "ד"];
 const PARTS = {
-  1: { t:"הבסיס",                     s:"שיעורים 1 עד 3" },
-  2: { t:"העבודה היומיומית",          s:"שיעורים 4 עד 6" },
-  3: { t:"תוכניות והדמיות",           s:"שיעורים 7 ו-8" },
-  4: { t:"חיבורים, בנייה ואוטומציה",  s:"שיעורים 9 עד 12" },
+  1: { t:"הבסיס",                     s:"שיעורים 1 עד 4" },
+  2: { t:"העבודה היומיומית",          s:"שיעורים 5 עד 7" },
+  3: { t:"תוכניות והדמיות",           s:"שיעורים 8 ו-9" },
+  4: { t:"חיבורים, בנייה ואוטומציה",  s:"שיעורים 10 עד 13" },
 };
 /* מפגש 0: פרונטלי, אצלך. בלי כתובת בדף. */
 const LESSON0 = {
@@ -533,6 +533,7 @@ const LESSON0 = {
   href:"lesson-0.html"
 };
 const LESSONS = [
+  { p:1, t:"שיעור הפתיחה של Starter: מה זה Claude, ולמה דווקא הוא", d:"עוזר שכותבים לו · גוגל מול Claude · מה הוא לא יודע · Free מול Pro · סיור במסך של claude.ai", b:"בקשה ראשונה על מייל אמיתי שלך: סיכום בשלוש שורות, ותיקון אחד", href:"starter-1.html" },
   { p:1, t:"המק שלך ובית המלאכה",                       d:"Finder, Dock וחיפוש · Command במקום Ctrl · החלפת שפה וצילום מסך · המסלול לכניסה · ארבעת האזורים במסך", b:"המסלול לכניסה בעל פה, וקובץ ראשון שנוצר ונפתח (על-עצמי.md)", href:"lesson-1.html" },
   { p:1, t:"איך מבקשים מ-Claude",                       d:"בקשה טובה: הקשר, מטרה, צורה · לתקן במקום להתחיל מחדש · חלון האישור · מתי פותחים שיחה חדשה",       b:"חמש בקשות על חומר אמיתי שלך, שמורות כקבצים", href:"lesson-2.html" },
   { p:1, t:"Claude שמכיר אותך, ומה לא מכניסים",         d:"למה Claude שוכח בין שיחות · CLAUDE.md: Claude מראיין אותך · רמזור המידע",                          b:"קובץ CLAUDE.md ורשימת \"לא מכניסים\" אישית", href:"lesson-3.html" },
@@ -637,7 +638,7 @@ const DELIV = [
   document.getElementById("prog-fill").style.width = (DONE / TOTAL * 100) + "%";
   const label = document.getElementById("prog-label");
   if (CURRENT_LESSON === 0) label.textContent = "עכשיו: מפגש 0 · התקנות והיכרות";
-  else if (DONE >= TOTAL) label.textContent = "שנים-עשר השיעורים הושלמו";
+  else if (DONE >= TOTAL) label.textContent = "שלושה-עשר השיעורים הושלמו";
   else { const cp = LESSONS[CURRENT_LESSON - 1].p; label.textContent = `עכשיו בחלק ${LETTERS[cp]} · ${PARTS[cp].t}`; }
 
   /* כרטיס "המפגש הבא" */
@@ -659,7 +660,7 @@ const DELIV = [
     card.href = nu.href || "#lessons";
   } else {
     tag.textContent = "סיימנו את שלב א'";
-    title.textContent = "שנים-עשר השיעורים הושלמו";
+    title.textContent = "שלושה-עשר השיעורים הושלמו";
     sub.textContent = "את השלב הבא קובעים ביחד";
     card.href = "#mine";
   }
