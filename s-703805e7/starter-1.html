@@ -166,7 +166,7 @@ ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
     <span class="b">AI Lab</span><span>· שיעור 01</span>
     <span class="tb-title">שיעור הפתיחה של Starter: מה זה Claude, ולמה דווקא הוא</span>
     <a class="tb-back" href="index.html">חזרה לפורטל</a>
-    <span class="mono"><span id="cur">1</span> / <span id="tot">12</span></span>
+    <span class="mono"><span id="cur">1</span> / <span id="tot">20</span></span>
   </div>
   <div class="pbar"><div id="pfill"></div></div>
 
@@ -176,16 +176,17 @@ ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
     <section class="slide title-slide active">
       <div class="kick">שיעור 01 · שיעור הפתיחה של Starter</div>
       <h1 class="big">מה זה Claude,<br>ולמה דווקא הוא</h1>
-      <p class="sub">זה השיעור הראשון בקורס Starter, ואני לא מניח שאתה יודע משהו מראש. נבין מה Claude עושה בעבודה, במה הוא שונה מחיפוש בגוגל, מה הוא לא יודע, ואיפה כל דבר נמצא במסך. בסוף שולחים לו בקשה ראשונה על טקסט אמיתי שלך.</p>
+      <p class="sub">זה השיעור הראשון בקורס Starter, ואני לא מניח שאתה יודע משהו מראש. קודם עושים סדר בראש: מי השחקנים בעולם ה-AI, ומה כל אחד עושה הכי טוב. אחר כך נבין מה Claude עושה בעבודה, במה הוא שונה מחיפוש בגוגל, מה הוא לא יודע, ואיפה כל דבר נמצא במסך. בסוף שולחים לו בקשה ראשונה על טקסט אמיתי שלך.</p>
       <div class="meta">AI LAB · מאיר לביא · שיעור 01 · חלק א</div>
     </section>
 
     <!-- 2 -->
     <section class="slide">
       <div class="kick">מה נעשה היום</div>
-      <h2>ארבעה דברים, בסדר הזה</h2>
+      <h2>חמישה דברים, בסדר הזה</h2>
       <div class="rule"></div>
       <ul class="num">
+        <li><b>מפת השחקנים</b>: מי נגד מי בעולם ה-AI, ומה כל אחד עושה הכי טוב. <span>לפני שנכנסים ל-Claude.</span></li>
         <li><b>מה זה Claude</b>: כותבים לו בעברית מה צריך, והוא כותב, מסכם, מנתח קבצים ובונה דברים. <span>עם דוגמה חיה.</span></li>
         <li><b>מה מיוחד בו, ומה הוא לא</b>: טקסטים ארוכים, Projects, Artifacts ועברית טובה. <span>וגם: הוא לא מכיר את העבודה שלך עד שתספר, ויכול לטעות.</span></li>
         <li><b>החשבון</b>: Free מול Pro, ולמה אצלך כבר יש Pro. <span>ומה עם פרטיות.</span></li>
@@ -194,9 +195,101 @@ ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
       <p class="note"><b>לפני שמתחילים:</b> משאירים פתוחים רק את הזום ואת Chrome. נכנסים ל-<bdi class="mono">claude.ai</bdi> ובודקים שאתה מחובר.</p>
     </section>
 
+
+    <!-- מפת השחקנים (מתוך מצגת Starter: מי נגד מי) -->
+    <section class="slide">
+      <div class="kick">חלק 1 · מי נגד מי</div>
+      <h2>עולם ה-AI הוא לא ישות אחת</h2>
+      <div class="rule"></div>
+      <p class="lead">בשנים האחרונות העולם השתנה מקצה לקצה. מה שפעם דרש צוות, משרד וחודשים, היום אדם אחד עושה בימים בודדים.</p>
+      <p class="lead">אבל לפני שמתחילים, דבר אחד יסודי: <b class="hl">AI זה לא כלי אחד.</b> זה ג'ונגל של חברות, מודלים וכלים, וכל אחד מתאים למשימה אחרת.</p>
+      <p class="note">כשאומרים "AI" מתכוונים בדרך כלל למודלי שפה גדולים: <bdi class="mono">Large Language Models</bdi>, או בקיצור <bdi class="mono">LLMs</bdi>. השיעור הזה הוא המצפן, לפני שבונים.</p>
+    </section>
+
+    <section class="slide">
+      <div class="kick">חלק 1 · השוק</div>
+      <h2>ארבעה שחקנים שצריך להכיר</h2>
+      <div class="rule"></div>
+      <div class="scroll"><table class="tbl">
+        <tr><th>החברה</th><th>הכלי</th><th>במה הוא מוביל</th></tr>
+        <tr><td><b class="hl">Anthropic</b></td><td>Claude</td><td>כתיבה, ניתוח מסמכים ארוכים וקוד. <b class="hl">הכלי הראשי שלנו</b></td></tr>
+        <tr><td><b class="hl">Google</b></td><td>Gemini</td><td>שירותי גוגל, חיפוש באינטרנט בזמן אמת, יוטיוב</td></tr>
+        <tr><td><b class="hl">xAI</b></td><td>Grok</td><td>מה שקורה עכשיו ברשת X (טוויטר לשעבר), טרנדים</td></tr>
+        <tr><td><b class="hl">OpenAI</b></td><td>ChatGPT</td><td>הכי מוכר, פתח את כל הגל בנובמבר 2022</td></tr>
+      </table></div>
+      <p class="note">בקורס שלנו <b>Claude הוא העיקר</b>. אבל כדאי להכיר את כולם, כי כל אחד טוב למשהו אחר.</p>
+    </section>
+
+    <section class="slide">
+      <div class="kick">שחקן 01 · הראשי שלנו</div>
+      <h2>Anthropic: Claude</h2>
+      <div class="rule"></div>
+      <p class="lead"><b>המוביל בכתיבה, בניתוח ובקוד.</b> החברה הוקמה ב-2021 על ידי בכירים שעזבו את OpenAI, עם גישה זהירה יותר לבטיחות AI. Claude נחשב למוביל בכתיבת קוד ובניתוח מסמכים ארוכים.</p>
+      <div class="compare">
+        <div class="card good"><span class="lbl mono">החוזקות</span><ul><li>ניתוח מסמכים ארוכים: חוזה, דוח, תוכנית</li><li>כתיבה טבעית בעברית ובאנגלית</li><li>קוד ובנייה של דברים: דף, טבלה, מצגת</li><li>חשיבה זהירה ומדודה</li></ul></div>
+        <div class="card"><span class="lbl mono">אצלנו</span><ul><li>זה הכלי שעובדים איתו כמעט בכל השיעורים, גם ב-claude.ai וגם בתוך Cursor. אצלך כבר יש Pro.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kick">שחקן 02</div>
+      <h2>Google: Gemini</h2>
+      <div class="rule"></div>
+      <p class="lead"><b>האינטגרציה הכי חזקה עם שירותי גוגל.</b> לגוגל לקח זמן להגיב לגל ה-AI, אבל היום Gemini חזק במיוחד בכל מה שקשור ל-Gmail, Drive, Sheets ויוטיוב, ובחיפוש באינטרנט בזמן אמת.</p>
+      <div class="compare">
+        <div class="card good"><span class="lbl mono">החוזקות</span><ul><li>מחובר לשירותי גוגל</li><li>מידע עדכני מהאינטרנט</li><li>Deep Research: מחקר מסודר עם מקורות</li><li>ניתוח סרטוני יוטיוב</li></ul></div>
+        <div class="card"><span class="lbl mono">אצלנו</span><ul><li>כלי משלים, למחקר ותכנון. אתה עובד ב-Outlook ולא ב-Gmail, אז היתרון הגדול שלו פחות רלוונטי לך.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kick">שחקן 03</div>
+      <h2>xAI: Grok</h2>
+      <div class="rule"></div>
+      <p class="lead"><b>מידע בזמן אמת מ-X.</b> חברת ה-AI של אילון מאסק. Grok מחובר ישירות לרשת X, ולכן רואה טרנדים, שיחות ופוסטים שקורים עכשיו. גם פחות מסונן מהמתחרים.</p>
+      <div class="compare">
+        <div class="card good"><span class="lbl mono">החוזקות</span><ul><li>מידע בזמן אמת מ-X</li><li>מודע לטרנדים עכשוויים</li><li>תשובות ישירות</li><li>מהיר</li></ul></div>
+        <div class="card"><span class="lbl mono">אצלנו</span><ul><li>שימושי לזיהוי מגמות ומה מדברים עליו ברשתות. לא כלי העבודה היומיומי.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kick">שחקן 04</div>
+      <h2>OpenAI: ChatGPT</h2>
+      <div class="rule"></div>
+      <p class="lead"><b>החלוץ שפתח את הגל.</b> החברה שהביאה את ChatGPT לעולם בנובמבר 2022. הכלי הכי מוכר בעולם, ושווה להכיר אותו. אם השתמשת בו, הרבה ממה שתראה ב-Claude יהיה לך מוכר.</p>
+      <div class="compare">
+        <div class="card good"><span class="lbl mono">החוזקות</span><ul><li>המוצר הכי מוכר בשוק</li><li>יצירת תמונות</li><li>ממשק קולי טוב</li></ul></div>
+        <div class="card"><span class="lbl mono">אצלנו</span><ul><li>בקורס אנחנו פחות נסתמך עליו: Claude עדיף בכתיבה, בניתוח ובקוד, ולאחרים יש יתרון בחיפוש בזמן אמת.</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="kick">חלק 1 · כלל אצבע</div>
+      <h2>איזה כלי לאיזו משימה?</h2>
+      <div class="rule"></div>
+      <p class="lead">Claude הוא ברירת המחדל, והוא הכלי הנכון לרוב המשימות. אלה המקרים שבהם פונים לכלי אחר:</p>
+      <div class="scroll"><table class="tbl">
+        <tr><th>המשימה</th><th>הכלי</th><th>למה</th></tr>
+        <tr><td>מייל באנגלית ללקוח</td><td><b class="hl">Claude</b></td><td>כתיבה טבעית, טון נכון</td></tr>
+        <tr><td>ניתוח חוזה, מסמך או PDF ארוך</td><td><b class="hl">Claude</b></td><td>קורא את כל הקובץ</td></tr>
+        <tr><td>בנייה: דף, טבלה, מצגת</td><td><b class="hl">Claude</b></td><td>המוביל בקוד</td></tr>
+        <tr><td>מחקר שוק עם מקורות</td><td>Perplexity</td><td>מקורות שאפשר לבדוק</td></tr>
+        <tr><td>עבודה עם Gmail, Drive, Sheets</td><td>Gemini</td><td>מחובר לגוגל</td></tr>
+        <tr><td>טרנדים ברשתות</td><td>Grok</td><td>מחובר ל-X בזמן אמת</td></tr>
+        <tr><td>תמונה או הדמיה</td><td>כלי תמונות ייעודי</td><td>נגיע לזה בשיעור ההדמיות</td></tr>
+      </table></div>
+    </section>
+
+    <section class="slide rule-slide">
+      <div class="kick">הטעות הנפוצה של מתחילים</div>
+      <p class="huge">לא מי שיודע יותר על AI,<br>אלא מי שיודע <b>מתי</b> להשתמש <b>בכל כלי</b>.</p>
+      <p class="lead">הטעות הראשונה היא לחפש את "הכלי האחד שיעשה הכול". זה לא קיים. נכון יותר לראות את הכלים כצוות עובדים, לכל אחד התמחות. אצלנו <b>Claude הוא ראש הצוות</b>: אליו פונים קודם, ורק כשצריך משהו ספציפי פונים לאחר.</p>
+    </section>
+
     <!-- 3 -->
     <section class="slide">
-      <div class="kick">חלק 1 · מה זה Claude</div>
+      <div class="kick">חלק 2 · מה זה Claude</div>
       <h2>עוזר שכותבים לו</h2>
       <div class="rule"></div>
       <p class="lead">אתה כותב לו בעברית רגילה מה אתה צריך, והוא עושה את זה: מיילים ומסמכים, סיכומים, ניתוח קבצים, ובנייה של טבלה, מצגת או דף אינטרנט.</p>
@@ -214,7 +307,7 @@ ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
 
     <!-- 4 -->
     <section class="slide">
-      <div class="kick">חלק 1 · דוגמה חיה</div>
+      <div class="kick">חלק 2 · דוגמה חיה</div>
       <h2>מייל ארוך ומבולגן, ותשובה בשלוש שורות</h2>
       <div class="rule"></div>
       <p class="lead">אני מראה על המסך שלי. אתה רק מסתכל ושם לב: לא כתבתי פקודה מיוחדת. כתבתי כמו שהייתי כותב לעובד שיושב לידי.</p>
@@ -232,7 +325,7 @@ ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
 
     <!-- 5 -->
     <section class="slide">
-      <div class="kick">חלק 2 · ההבדל</div>
+      <div class="kick">חלק 3 · ההבדל</div>
       <h2>חיפוש בגוגל מול Claude</h2>
       <div class="rule"></div>
       <div class="compare">
@@ -250,7 +343,7 @@ ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
 
     <!-- 6 -->
     <section class="slide">
-      <div class="kick">חלק 2 · מה הוא יודע, ומה לא</div>
+      <div class="kick">חלק 3 · מה הוא יודע, ומה לא</div>
       <h2>ארבעה דברים שחשובים בעבודה</h2>
       <div class="rule"></div>
       <ul class="num">
@@ -271,7 +364,7 @@ ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
 
     <!-- 8 -->
     <section class="slide">
-      <div class="kick">חלק 3 · החשבון</div>
+      <div class="kick">חלק 4 · החשבון</div>
       <h2>Free או Pro?</h2>
       <div class="rule"></div>
       <div class="scroll"><table class="tbl">
@@ -285,7 +378,7 @@ ul.num li span{display:block;color:var(--txt-dim);font-size:.9em;margin-top:2px}
 
     <!-- 9 -->
     <section class="slide">
-      <div class="kick">חלק 4 · סיור במסך</div>
+      <div class="kick">חלק 5 · סיור במסך</div>
       <h2>איפה כל דבר נמצא ב-claude.ai</h2>
       <div class="rule"></div>
       <div class="do">
